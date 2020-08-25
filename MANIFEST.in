@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include eieweb *.css
+recursive-include eieweb *.csv
+recursive-include eieweb *.html
+recursive-include eieweb *.ico
+recursive-include eieweb *.js
+recursive-include eieweb *.json
+recursive-include eieweb *.md
+recursive-include eieweb *.png
+recursive-include eieweb *.py
+recursive-include eieweb *.svg
+recursive-include eieweb *.txt
+recursive-exclude eieweb *.pyc

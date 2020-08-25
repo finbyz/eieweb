@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- Built on Frappe. https://frappe.io/ -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1.0">
+    <meta name="generator" content="frappe">
+
+    {% block meta_block %}
+    {% include "templates/includes/meta_block.html" %}
+    {% endblock %}
+
+    <title>{% block title %}{{ title | striptags }}{% endblock %}</title>
+
+    {% block favicon %}
+    <link rel="shortcut icon" href="{{ (favicon or "/assets/frappe/images/favicon.png") | abs_url }}"
+        type="image/x-icon">
+    {% endblock %}
+
+    {%- block head -%}
+    {% if head_html is defined -%}
+    {{ head_html or "" }}
+    {%- endif %}
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/eieweb/css/bootstrap.min.css">
+    <!-- OWL CSS -->
+    <link rel="stylesheet" href="/assets/eieweb/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/eieweb/css/owl.theme.min.css">
+    <link rel="stylesheet" href="/assets/eieweb/css/owl.transitions.css">
+    <!-- <link rel="stylesheet" href="/assets/eieweb/css/font-awesome.min.css"> -->
+
+    <!-- END CUSTOM CSS -->
+
+    {% if theme.theme_url %}
+    <link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+    {% else %}
+    <link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css">
+
+
+
+    {%- for link in web_include_css %}
+    <link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
+    {%- endfor -%}
+    {% endif %}
+
+    {%- endblock -%}
+
+    {%- block head_include %}
+    {{ head_include or "" }}
+    {% endblock -%}
+
+    {%- block style %}{%- endblock -%}
+
+    <script>
+        window.frappe = {};
+        frappe.ready_events = [];
+        frappe.ready = function (fn) {
+            frappe.ready_events.push(fn);
+        }
+        window.dev_server = {{ dev_server }};
+        window.socketio_port = {{ frappe.socketio_port }};
+    </script>
+</head>
+
+<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}"
+    data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown"
+    {% endif -%}>
+    {%- block banner -%}
+    {% include "templates/includes/banner_extension.html" ignore missing %}
+
+    {% if banner_html -%}
+    {{ banner_html or "" }}
+    {%- endif %}
+    {%- endblock -%}
+
+    {%- block navbar -%}
+    {% include "templates/includes/navbar/eie_nav.html" %}
+    {%- endblock -%}
+
+    {% block content %}
+    {{ content }}
+    {% endblock %}
+
+    {%- block footer -%}
+    {% include "templates/includes/footer/eie_footer.html" %}
+    {%- endblock -%}
+
+    {% block base_scripts %}
+    <!-- js should be loaded in body! -->
+    <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
+
+    <!-- design script -->
+
+    <script type="text/javascript" src="/assets/eieweb/js/owl.carousel.min.js"></script>
+
+
+    <!-- animation script currently running scrollMagic only -->
+    <script type="text/javascript" src="/assets/eieweb/js/combine.min.js"></script>
+    <script src="/assets/eieweb/js/debug.addIndicators.min.js"></script>
+    <script src="/assets/eieweb/js/ScrollTrigger.min.js"></script>
+
+    <script src="/assets/eieweb/js/modernizr.min.js"></script>
+    <!-- <script src="/assets/eieweb/js/fontawesome.js"></script> -->
+
+    <script src="/assets/eieweb/js/classie.js"></script>
+    <script src="/assets/eieweb/js/gsap.min.js"></script>
+    <script src="/assets/eieweb/js/ScrollTrigger.min.js"></script>
+
+    {% endblock %}
+
+    {%- for link in web_include_js %}
+    <script type="text/javascript" src="{{ link | abs_url }}"></script>
+    {%- endfor -%}
+    <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
+    {%- block script %}{%- endblock %}
+    <!-- csrf_token -->
+    {%- block body_include %}{{ body_include or "" }}{% endblock -%}
+</body>
+
+</html>
