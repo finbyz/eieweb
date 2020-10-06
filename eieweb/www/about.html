@@ -5,8 +5,8 @@
 <section>
     <div class="container-fluid"></div>
     <div class="row pt-50">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <h2 class="dark-text">{{ doc.company_history_heading }}</h2>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+            <h2 class="dark-text title-underline ">{{ doc.company_history_heading }}</h2>
         </div>
     </div>
 
@@ -15,18 +15,20 @@
         <div class="col-md-12">
             <div class="main-timeline">
                 {% for timeline_time in doc.get({"doctype":"Company History"}) %}
-                <div class="timeline">
-                    <a href="#" class="timeline-content">
-                        <div class="timeline-icon"
+                <div class="timeline {{ loop.cycle('eie-fadeinleft', 'eie-fadeinright') }}">
+                    <a href="#" class="timeline-content ">
+                        <div class="timeline-icon  eie-fadeinrscale"
                             style="vertical-align: middle; object-fit: contain; -o-object-fit: contain;">
-                            <i class="fa" style="vertical-align: middle;
+                            <i class="fa " style="vertical-align: middle;
                             object-fit: contain;
                             -o-object-fit: contain;">
-                                <img class="finbyz-icon-custom" src="{{ timeline_time.image }}">
+                                <img class="finbyz-icon-custom eie-fadeinscale" src="{{ timeline_time.image  }}">
                             </i>
                         </div>
-                        <h3 class="title">{{ timeline_time.year }}</h3>
-                        <p class="description">
+
+                        <h3 class="title eie-fadeinrscale">{{ timeline_time.year }}</h3>
+
+                        <p class="description ">
                             {{ timeline_time.highlight }}
                         </p>
                     </a>
@@ -47,9 +49,9 @@
 
 <section class="services" id="service-section">
     <div class="container-fluid">
-        <div class="row pt-50 pt-0">
+        <div class="row pt-50 pt-0 ">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <h2 class="dark-text">{{ doc.team_members_heading }}</h2>
+                <h2 class="dark-text  title-underline">{{ doc.team_members_heading }}</h2>
             </div>
         </div>
 
@@ -59,7 +61,7 @@
 
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="row bd-callout bd-callout-info">
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 grayscale-img">
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 grayscale-img ">
                         {% if key_emp.image_link %}
                         <img src="{{ key_emp.image_link }}" class="align-self-start"
                             style="object-fit: contain; vertical-align: middle; -o-object-fit: contain;"
@@ -73,8 +75,8 @@
                     </div>
                     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                         <div class="mr-5">
-                            <h5 class="mt-0">{{ key_emp.full_name }}</h5>
-                            <p> {{ key_emp.bio }}
+                            <h5 class="mt-0 eie-fadeinup-text">{{ key_emp.full_name }}</h5>
+                            <p class="eie-fadeinup-text"> {{ key_emp.bio }}
                             </p>
                         </div>
                     </div>
@@ -84,12 +86,11 @@
 
         </div>
 
-        <div class="row pt-50 d-flex pt-0">
+        <!-- <div class="row pt-50 d-flex pt-0">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <h2 class="dark-text">Member</h2>
+                <h2 class="dark-text title-underline">Member</h2>
             </div>
-            <!-- <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 m-o p-0"> -->
-            <!-- {{ emp_list }} -->
+            
             {% for row in employee %}
             {% if row.image %}
             <div class=" d-flex p-2">
@@ -112,8 +113,8 @@
             {% endif %}
 
             {% endfor %}
-            <!-- </div> -->
 
-        </div>
+        </div> -->
+
 
 </section>

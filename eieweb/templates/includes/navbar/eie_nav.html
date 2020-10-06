@@ -23,9 +23,9 @@
             </div>
         </li>
         <li class="navSection primary p-2">
-            <a class="rootLink" href="/"> Home </a>
-            <a class="rootLink" href="/about">
-                About
+         <!---  <a class="rootLink" href="/"> Home </a> ----->
+            <a class="rootLink hasDropdown" data-dropdown="about" href="/about">
+                Company
             </a>
             <a class="rootLink hasDropdown" data-dropdown="product">
                 Products
@@ -42,6 +42,16 @@
             <a class="rootLink" href="/contact">
                 Contact
             </a>
+        </li>
+        <li class="navSection secondary">
+            {% if not hide_login %}
+            <a href="/login" class="rootLink btn-login-area">{{ _("Login") }}</a> {% endif %}
+            <a href="#" class="rootLink hasDropdown" data-dropdown="eie-login" data-label="website-post-login">
+                <span class="user-image-wrapper"></span>
+                <span class="full-name"></span>
+                <b class="caret"></b>
+            </a>
+            <a href="#" class="d-none"></a>
         </li>
         <li class="navSection mobile">
             <div id="content">
@@ -64,15 +74,29 @@
                             <a href="/">Home</a>
                         </li>
                         <li class="p-3">
-                            <a href="/about" aria-expanded="false">
-                                About
-                            </a>
+                            <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                alt="Left Arrow" title="Web App Development" height="15" width="15">
+                            About</a>
+                            <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            <ul class="collapse list-unstyled ml-5" id='aboutsubmenu'>
+                               
+                                <li class="p-3">
+                                    <a href="/about"><img class="nav-service-icon" src="/files/about-eie.svg" alt="about-eie" title="About-eie">About EIE</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/Quality%20policy"><img class="nav-service-icon" src="/files/quality.svg" alt="Quality-policy" title="About Quality-policy">Qualityy Policy</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/certificate"><img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificete" title="Certificate">Certificate</a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="p-3">
                             <a href="/product" data-ls="products" data-toggle="collapse" aria-expanded="false"
                                 class="go-tosub-menu">
-                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                   <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
                                     alt="Left Arrow" title="Web App Development" height="15" width="15">
                                 <!-- <img class="nav-service-icon" src="/files/nav-services.svg" alt="Services" title="Services"> -->
                                 Products
@@ -81,46 +105,36 @@
                                 class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
                             <ul class="collapse list-unstyled ml-5" id='products'>
                                 <li class="p-3">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-erp-implementation.svg" alt="ERP Implementation" title="ERP Implementation">  -->
+                                    <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon"> 
                                     <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%7D'
                                         class="link-underline p-1">Industries</a>
                                 </li>
                                 <li class="p-3 pl-4">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-erp-implementation.svg" alt="ERP Implementation" title="ERP Implementation">  -->
+                                    <img class="nav-service-icon" src="/files/oil-petrol-nav-icon.svg" alt="oil-petrol-nav-icon" title="oil-petrol-nav-icon"> 
                                     <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"Double+Charge"%5D%7D'
-                                        class="link-underline p-1">Civil Engineering</a>
+                                        class="link-underline p-1">Civil Engineeringg</a>
                                 </li>
                                 <li class="p-3 pl-4">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-software-development.svg" alt="Software Development" title="Software Development"> -->
+                                    <img class="nav-service-icon" src="/files/pharma-nav-icon.svg" alt="pharma-nav-icon" title="pharma-nav-icon">
                                     <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"%28P%29GVT"%5D%7D'
                                         class="link-underline p-1"> Pharmaceutical & Microbiology </a>
                                 </li>
                                 <li class="p-3 pl-4">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-website-development.svg" alt="Website Development" title="Website Development"> -->
+                                    <img class="nav-service-icon" src="/files/oil-petrol-nav-icon.svg" alt="oil-petrol-nav-icon" title="oil-petrol-nav-icon">
                                     <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"Nano"%5D%7D'
                                         class="link-underline p-1">Oil & Petroleum</a>
                                 </li>
                                 <li class="p-3 pl-4">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-it-consulting.svg" alt="IT Consulting" title="IT Consulting"> -->
+                                    <img class="nav-service-icon" src="/files/tiles-caramic-nav-icon.svg" alt="tiles-caramic-nav-icon" title="tiles-caramic-nav-icon">
                                     <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"Porcelain"%5D%7D'
                                         class="link-underline p-1">Tiles & Ceramics</a>
                                 </li>
-                                <li class="p-3">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-crm-system.svg" alt="CRM Software" title="CRM Software"> -->
-                                    <a class="link-underline p-1"
-                                        href='/product?field_filters=%7B%22tile_type%22%3A%5B%22Wall%22%5D%7D'>Wall
-                                        Tiles</a>
-                                </li>
-                                <li class="p-3">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-data-analytics.svg" alt="Data Analytics" title="Data Analytics"> -->
-                                    <a class="link-underline p-1"
-                                        href='/product?field_filters=%7B"tile_type"%3A%5B"Parking"%5D%7D'>Parking
-                                        Tiles</a>
-                                </li>
-                                <li class="p-3">
-                                    <!-- <img class="nav-service-icon" src="/files/ser-data-analytics.svg" alt="Data Analytics" title="Data Analytics"> -->
-                                    <a class="link-underline p-1" href='/product'>View All</a>
-                                </li>
+                                    <li class="text-center">
+                                        <a class="" href="/all-products">
+                                            <h6 class="title-underline">View All</h6>
+                                        </a>
+                                    </li>
+
                             </ul>
                         </li>
                         <li class="p-3">
@@ -186,25 +200,16 @@
                 </nav>
             </div>
         </li>
-        <li class="navSection secondary p-2">
-            {% if not hide_login %}
-            <a href="/login" class="rootLink btn-login-area">{{ _("Login") }}</a>
-            {% endif %}
-            <a href="#" class="rootLink hasDropdown" data-dropdown="eie-login">
-                <span class="user-image-wrapper"></span>
-                <span class="full-name"></span>
-                <b class="caret"></b>
-            </a>
-            <a href="#" class="d-none"></a>
-        </li>
+        
     </ul>
-
+    
     <div class="dropdownRoot">
         <div class="dropdownBackground">
             <div class="alternateBackground"></div>
         </div>
         <div class="dropdownArrow"></div>
         <div class="dropdownContainer">
+            <!-- Product SUb menu -->
             <div class="dropdownSection left industryGroup" data-dropdown="product">
                 <div class="dropdownContent dropdownContent-product container-fluid">
                     <div class="linkGroup pl-5">
@@ -212,7 +217,7 @@
                             <div class="industry-group-sub col-xl-12 row pt-2  d-flex flex-row">
                                 <div class="d-block col-4">
                                     <a href='#' class="">
-                                        <img alt="Industry" title="Industry" src="svg/nav-ind.svg"
+                                        <img alt="Industry" title="Industry" src="files/eie-icon.svg"
                                             class="nav-icon float-left pt-2 pr-2">
                                         <h3 class="">Industries</h3>
                                     </a>
@@ -221,6 +226,7 @@
                                         <div>
                                             <div class="tabanchor" href=".tabc1">
                                                 <a href='#'>
+                                                    <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon">
                                                     <h6 class="pt-1">Civil Engineering</h6>
                                                 </a>
                                             </div>
@@ -228,6 +234,7 @@
                                         <div>
                                             <div class="tabanchor" href=".tabc2">
                                                 <a href='#'>
+                                                    <img class="nav-service-icon" src="/files/oil-petrol-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon">
                                                     <h6 class="pt-1">Pharmaceutical & Microbiology</h6>
                                                 </a>
                                             </div>
@@ -235,6 +242,7 @@
                                         <div>
                                             <div class="tabanchor" href=".tabc3">
                                                 <a href='#'>
+                                                    <img class="nav-service-icon" src="/files/pharma-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon">
                                                     <h6 class="pt-1">Oil & Petroleum</h6>
                                                 </a>
 
@@ -243,6 +251,7 @@
                                         <div class="c4">
                                             <div class="tabanchor" href=".tabc4">
                                                 <a href='#'>
+                                                    <img class="nav-service-icon" src="/files/tiles-caramic-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon">
                                                     <h6 class="pt-1">Tiles & Ceramics</h6>
                                                 </a>
                                             </div>
@@ -250,10 +259,12 @@
                                         <div class="c5">
                                             <div class="tabanchor" href=".tabc5">
                                                 <a href='#'>
+                                                    <img class="nav-service-icon" src="/files/yarn-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon">
                                                     <h6 class="pt-1">POY(Filament Yarn) Testing Instrument</h6>
                                                 </a>
                                             </div>
                                         </div>
+                                        
                                     </ul>
                                 </div>
                                 <div class="col-4">
@@ -272,14 +283,14 @@
                                         </div>
 
                                         <div class="tabc2 flex-inner">
-                                            <p><a href="#">Aggregate Testing Equipment</a></p>
-                                            <p><a href="#">Bitumen Testing Equipment</a></p>
-                                            <p><a href="#">Cement Testing Equipment</a></p>
-                                            <p><a href="#">Concrete Testing Equipment</a></p>
-                                            <p><a href="#">Soil Testing Equipment</a></p>
-                                            <p><a href="#">Surveying Equipment</a></p>
-                                            <p><a href="#">Strength Of Material Testing Equipment</a></p>
-                                            <p><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
+                                            <p><a href="#">Manual Universal Gauge (Plucometer) TC-101M</a></p>
+                                            <p><a href="#">Calibrating (Zeroing) Plate - TC-A1</a></p>
+                                            <p><a href="#">MOR Testing machine TC-104</a></p>
+                                            <p><a href="#">Surface abrasion testing machine TC-107</a></p>
+                                            <p><a href="#">Thermal Shock Tank - TC-110</a></p>
+                                            <p><a href="#">Frost resistance test apparatus TC-113</a></p>
+                                            <p><a href="#">Glass / Plastic Dessicator</a></p>
+                                            <p><a href="#">Chamois Leather</a></p>
                                         </div>
                                         <div class="tabc3 flex-inner">
                                             <p><a href="#">Aggregate Testing Equipment</a></p>
@@ -343,26 +354,70 @@
                                 </div>
                             </div>
                         </div>
+                       
                     </div>
-
+                    <ul class="linkGroup linkList prodsubGroup">
+                        <li class="text-center">
+                            <a class="" href="/all-products">
+                                <h6 class="title-underline">View All</h6>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+               
             </div>
-            {% if not hide_login %}
+           
+           <!-- About Sub menu -->
+            <div class="dropdownSection" data-dropdown="about">
+                <div class="dropdownContent" style="width: 254px;">
+                    <ul class="linkGroup">
+                        <li>
+                            <a class="linkContainer" href="/about">
+                                <img class="nav-service-icon" src="/files/about-eie.svg" alt="Certificate" title="Certificate">
+                                <h6 class="link-underline mt-1">About EIE</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer" href="/Quality%20policy">
+                                <img class="nav-service-icon" src="/files/quality.svg" alt="Quality Policy" title="Quality Policy">
+                                <h6 class="link-underline mt-1">Quality Policy
+                                </h6>
+                            </a>
+                            <div>
+                                <!-- <div class="linkContainer" href=".tabc1">
+                                    <a href='#'>
+                                        <h6 class="pt-1">Civil Engineering</h6>
+                                    </a>
+                                </div> -->
+                            </div>
+                        </li>
+            
+                        <li>
+                            <a class="linkContainer" href="/certificate">
+                                <img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificate" title="Certificate">
+                                <h6 class="link-underline mt-1">Certificate</h6>
+                            </a>
+                        </li>
+                    </ul>
+            
+                </div>
+                
+            </div> 
+            <!-- login submenu -->
             <div class="dropdownSection left logged-in" data-dropdown="eie-login">
                 <div class="dropdownContent">
                     <div class="linkGroup linkList loginGroup">
                         <div>
                             <a class="linkContainer item-about" href="/me" rel="nofollow">
-                                <img class="nav-service-icon float-left" src="/files/nav-my-account.svg"
-                                    alt="My account" title="My account">
+                                <img class="nav-service-icon float-left" src="/files/nav-my-account.svg" alt="My account"
+                                    title="My account">
                                 <h6 class="d-inline-block mt-1">{{ _('My Account') }}
                                 </h6>
                             </a>
                         </div>
                         <div>
                             <a class="linkContainer item-about" href="/?cmd=web_logout" rel="nofollow">
-                                <img class="nav-service-icon float-left" src="/files/nav-logout.svg" alt="Logout"
-                                    title="Logout">
+                                <img class="nav-service-icon float-left" src="/files/nav-logout.svg" alt="Logout" title="Logout">
                                 <h6 class="d-inline-block mt-1">{{ _('Logout') }}
                                 </h6>
                             </a>
@@ -378,7 +433,7 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
         </div>
+        
     </div>
 </header>

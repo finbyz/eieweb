@@ -1,13 +1,12 @@
 {
  "allow_guest_to_view": 1,
  "autoname": "field:title",
- "creation": "2020-08-24 17:34:42.332543",
+ "creation": "2020-09-04 11:15:51.181124",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "certificate_title",
   "image",
   "route",
   "published"
@@ -18,11 +17,6 @@
    "fieldtype": "Data",
    "label": "Title",
    "unique": 1
-  },
-  {
-   "fieldname": "certificate_title",
-   "fieldtype": "Data",
-   "label": "Certificate Title"
   },
   {
    "fieldname": "image",
@@ -43,10 +37,10 @@
  ],
  "has_web_view": 1,
  "is_published_field": "published",
- "modified": "2020-09-21 10:10:37.990148",
+ "modified": "2020-09-04 15:00:38.397421",
  "modified_by": "Administrator",
  "module": "Eieweb",
- "name": "Certificate",
+ "name": "Gallery",
  "owner": "Administrator",
  "permissions": [
   {
@@ -63,6 +57,7 @@
   }
  ],
  "quick_entry": 1,
+ "route": "gallery",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

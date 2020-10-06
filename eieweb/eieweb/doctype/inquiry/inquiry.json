@@ -1,0 +1,71 @@
+{
+ "creation": "2020-08-26 15:06:20.891120",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "first_name",
+  "last_name",
+  "email",
+  "phone",
+  "requirements"
+ ],
+ "fields": [
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Last Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Date",
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requirements",
+   "fieldtype": "Data",
+   "label": "Requirements ",
+   "reqd": 1
+  }
+ ],
+ "modified": "2020-08-26 17:48:49.380039",
+ "modified_by": "Administrator",
+ "module": "Eieweb",
+ "name": "Inquiry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

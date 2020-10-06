@@ -6,5 +6,5 @@ from __future__ import unicode_literals
 # import frappe
 from frappe.website.website_generator import WebsiteGenerator
 
-class Certificate(WebsiteGenerator):
+class Gallery(WebsiteGenerator):
 	pass
