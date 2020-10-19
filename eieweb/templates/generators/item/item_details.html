@@ -1,21 +1,21 @@
-<div class="col-md-8">
+<div class=" container col-md-7 ">
     <!-- title -->
-    <h3 itemprop="name">
+    <h3 itemprop=" name" >
         {{ item_name }}
     </h3>
-    <p class="text-muted">
-        <span>{{ _("Item Code") }}:</span>
+    <p class="text-muted  ">
+        <span >{{ _("Item Code") }}:</span>
         <span itemprop="productID" >{{ doc.name }}</span>
     </p>
     <!-- description -->
-    <div itemprop="description">
-    {% if frappe.utils.strip_html(doc.web_long_description or '') %}
-        {{ doc.web_long_description | safe }}
-    {% elif frappe.utils.strip_html(doc.description or '')  %}
-        {{ doc.description | safe }}
-    {% else %}
-        {{ _("No description given") }}
-    {% endif  %}
+    <div itemprop="description" > 
+        {% if frappe.utils.strip_html(doc.web_long_description or '') %}
+            {{ doc.web_long_description | safe }}
+        {% elif frappe.utils.strip_html(doc.description or '')  %}
+            {{ doc.small_description | safe }}
+        {% else %}
+            {{ _("No description given") }}
+        {% endif  %}
     
     </div>
     
@@ -26,5 +26,5 @@
         <!-- add variant to cart -->
         {% include "templates/generators/item/item_add_to_cart.html" %}
     {% endif %}
-    </div>
+</div>
     

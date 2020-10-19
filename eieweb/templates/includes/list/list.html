@@ -12,10 +12,13 @@
 		{%- endif %} -->
     {% if result_heading_template %}{% include result_heading_template %}{% endif %}
 
-    <div class="row result">
-        {% for item in result %}
-        {{ item }}
-        {% endfor %}
+    <div class="result">
+        <div class="container-fluid pt-50">
+
+            {% for item in result %}
+            {{ item }}
+            {% endfor %}
+        </div>
     </div>
     <div class="more-block {% if not show_more -%} hidden {%- endif %}">
         <button class="btn btn-light btn-more btn-sm">{{ _("More") }}</button>

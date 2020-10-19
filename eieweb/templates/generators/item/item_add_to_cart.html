@@ -28,30 +28,16 @@
 		</div>
 		{% endif %}
 		{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
-		<div class="mt-3 row1" style="display:inline-flex;">
-			 <a href="/cart"
-				class="btn btn-light btn-view-in-cart {% if not product_info.qty %}hidden{% endif %}"
-				role="button"
-			>
-				{{ _("View in Cart") }}
-			</a> 
-			<!-- <a href="/cart" role="button"><div class="eie-button eie-fadeindown {% if not product_info.qty %}hidden{% endif %}" style="opacity: 1; transform: translate(0%, -50%) translate(-94.4px, 0px);">View in Cart<div class="eie-ring eie-btn-bottom"></div> </div>
-			    {{ _("View in Cart") }}
-			</a> -->
-			
-			<button
-				data-item-code="{{item_code}}"
-				class="btn btn-outline-primary btn-add-to-cart {% if product_info.qty %}hidden{% endif %}"
-			>
-				{{ _("Add to Cart") }}
-			</button>
-
-			<!-- <button
-				data-item-code="{{item_code}}"
-				class="btn eie-button eie-fadeindown btn-add-to-cart {% if product_info.qty %}hidden{% endif %}"style="opacity: 1; transform: translate(0%, -50%) translate(-94.4px, 0px);border-radius: 0;">Add to Cart<div class="eie-ring eie-btn-bottom"></div> </div>
-			>
-				{{ _("Add to Cart") }}
-			</button> -->
+		<div class="mt-3 container " style="display:inline-flex;">
+			 
+			<a href="/#"><div class="eie-button eie-fadeindown cart-button">{{ _("View in Cart") }}
+				<div class="eie-ring eie-btn-bottom "></div> </div>
+			</a>
+		
+			<a href="/#"><div class="eie-button eie-fadeindown cart-button">{{ _("Add to Cart") }}
+				<div class="eie-ring eie-btn-bottom "></div> </div>
+			</a>
+		
 		</div>
 		{% endif %}
 	</div>

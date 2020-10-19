@@ -11,6 +11,11 @@ app_color = "grey"
 app_email = "info@finbyz.com"
 app_license = "GPL 3.0"
 
+
+from eieweb.api import get_items as my_get_item
+# import erpnext
+# erpnext.portal.product_configurator.utils.get_items = my_get_item
+
 # Includes in <head>
 # ------------------
 

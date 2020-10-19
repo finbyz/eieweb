@@ -90,24 +90,20 @@
     <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
-
- 
-
     {% endblock %}
    <!-- design script -->
 
-   <script type="text/javascript" src="/assets/eieweb/js/owl.carousel.min.js"></script>
-   <script src="/assets/eieweb/js/gsap.min.js"></script>
+     <script type="text/javascript" src="/assets/eieweb/js/owl.carousel.min.js"></script>
+     <script src="/assets/eieweb/js/gsap.min.js"></script>
+  
     <!-- animation script currently running scrollMagic only -->
-    <script type="text/javascript" src="/assets/eieweb/js/combine.min.js"></script>
-
- 
+     <script type="text/javascript" src="/assets/eieweb/js/combine.min.js"></script>
     {%- for link in web_include_js %}
-    <script type="text/javascript" src="{{ link | abs_url }}"></script>
+     <script type="text/javascript" src="{{ link | abs_url }}"></script>
     {%- endfor -%}
-      
+  
 
-    <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
+     <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
     {%- block script %}{%- endblock %}
     <!-- csrf_token -->
     {%- block body_include %}{{ body_include or "" }}{% endblock -%}

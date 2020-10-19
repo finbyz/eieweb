@@ -10,6 +10,7 @@ var controller = new ScrollMagic.Controller({
     globalSceneOptions: { triggerHook: "0.9", duration: "500%" },
 });
 
+
 // build scenes
 
 // init controller for image-anime
@@ -118,6 +119,31 @@ $(document).ready(function () {
         autoPlay: true,
         autoHeight: true,
     });
+
+    $('#related-module').owlCarousel({
+        items:4,
+        loop:true,
+        margin:10,
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:true,
+		responsive: {
+			0: {
+				items: 1
+			},
+			768: {
+				items: 2
+			},
+			970: {
+				items: 4
+			},
+			1200: {
+				items: 4
+			}
+		}
+	});
+
+
     //   Auto Courosel 
     setTimeout(function () {
         $("a.slider--control.right").trigger('click');
@@ -498,11 +524,11 @@ $(function () {
 
        var fadeUpScene1 = new ScrollMagic.Scene({
             triggerElement: this,
-            triggerHook: 1,
+            triggerHook: 0.9,
             reverse: true,
         })
-            .setTween(TweenMax.from(this, 0.8, {
-                y: -40,
+            .setTween(TweenMax.from(this, 0.4, {
+                y: -10,
                 opacity: 0,
                 ease: Sine.easeInOut,
             }))
@@ -577,7 +603,7 @@ $(function () {
                     triggerHook: 0.7,
                 
                 })
-                    .setTween(TweenMax.from(this, 1.5, {
+                    .setTween(TweenMax.from(this, 0.9, {
                         x: 40,
                         opacity: 0,
                         ease: Sine.easeInOut,
@@ -592,10 +618,10 @@ $(function () {
                     triggerHook: 0.6,
                 
                 })
-                    .setTween(TweenMax.from(this, 1.5, {
+                    .setTween(TweenMax.from(this, 0.7, {
                         x: -40,
                         opacity: 0,
-                        ease: Sine.easeInOut,
+                        ease: Sine.easeOut,
                     }))
                     .addTo(scrollController)
             });
@@ -605,7 +631,7 @@ $(function () {
                     triggerElement: this,
                     triggerHook: 0.8,
                 })
-                    .setTween(TweenMax.from(this, 1, {
+                    .setTween(TweenMax.from(this, 0.9, {
                         y: 60,
                         opacity: 0,
                         ease: Sine.easeInOut,
@@ -628,6 +654,7 @@ $(function () {
                     .addTo(scrollController)
 
             });
+         
         
            
 })
