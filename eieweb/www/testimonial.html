@@ -1,0 +1,48 @@
+<section class="section-testimonal" id="testimonial">
+    <div class="main-content-industries">
+      <div class="container-fluid">
+        <div class="row  pt-50" style="padding-top:0; padding-right:0;">
+          <div class="col-xl-4 col-lg-12 col-md-12">
+            <div class="industries-section-content-left">
+              <!-- TITLE START-->
+              <div class="left wt-small-separator-outer">
+                <div class="wt-small-separator">
+                  <h2>What our client say</h2>
+                </div>
+                <h3 class="eie-fadeinup">Happy WIth Customers &amp; Clients</h3>
+                
+                <p class="eie-fadeinup">I feel very happy and be proud to connect with this industry. i presume this is a very productive and
+                  professional industry.i wish very good luck &amp; success for this industry</p>
+              </div>
+              <!-- TITLE END-->
+            </div>
+          </div>
+          {% set testimonial_list = frappe.get_all("Testimonial") %}
+          <div class="col-xl-8 col-lg-12 col-md-12">
+              <div class="testimonal-section-content-right" style="background-image:url(files/bg-left-testimonial.png)">
+                <div id="testimonial-slider" class="owl-carousel">
+                  {% for testimonial in testimonial_list  %}
+                  {% set doc = frappe.get_doc('Testimonial',testimonial.name)%}
+                  <div class="testimonial">
+                      <div class="content"> 
+                          <div class="testimonial-pic">
+                             <img src="{{ doc.image }}" alt=" {{ doc.title }}">
+                          </div>
+                          <div class="testimonial-prof">
+                              <h3 class="testimonial-title"> {{ doc.title }} </h3>
+                              <p class="description">
+                                {{ doc.description }}
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor  %}
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+

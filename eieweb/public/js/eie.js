@@ -119,6 +119,21 @@ $(document).ready(function () {
         autoPlay: true,
         autoHeight: true,
     });
+    $("#testimonial-slider").owlCarousel({
+        items: 1,
+        itemsDesktop: [1000, 2],
+        itemsDesktop: [999, 1],
+        itemsDesktopSmall: [979, 1],
+        itemsTablet: [768, 1],
+        itemsTablet: [750, 1],
+        pagination: false,
+        navigation: true,
+        
+        autoPlay: true,
+        autoHeight: true,
+    });
+    
+
 
     $('#related-module').owlCarousel({
         items:4,

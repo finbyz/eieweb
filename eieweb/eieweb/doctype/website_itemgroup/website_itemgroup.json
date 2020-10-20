@@ -1,0 +1,221 @@
+{
+ "allow_guest_to_view": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:website_itemgroup_name",
+ "creation": "2020-10-20 10:50:47.569073",
+ "description": "Item Classification",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "gs",
+  "website_itemgroup_name",
+  "parent_website_itemgroup",
+  "is_group",
+  "image",
+  "column_break_5",
+  "defaults",
+  "sb9",
+  "show_in_website",
+  "route",
+  "slideshow",
+  "description",
+  "website_specifications",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "fieldname": "gs",
+   "fieldtype": "Section Break",
+   "label": "General Settings"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "description": "Only leaf nodes are allowed in transaction",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Group",
+   "oldfieldname": "is_group",
+   "oldfieldtype": "Select"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "defaults",
+   "fieldtype": "Section Break",
+   "label": "Defaults"
+  },
+  {
+   "fieldname": "sb9",
+   "fieldtype": "Section Break",
+   "label": "Website Settings"
+  },
+  {
+   "default": "0",
+   "description": "Check this if you want to show in website",
+   "fieldname": "show_in_website",
+   "fieldtype": "Check",
+   "label": "Show in Website"
+  },
+  {
+   "depends_on": "show_in_website",
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route",
+   "unique": 1
+  },
+  {
+   "depends_on": "show_in_website",
+   "description": "Show this slideshow at the top of the page",
+   "fieldname": "slideshow",
+   "fieldtype": "Link",
+   "label": "Slideshow",
+   "options": "Website Slideshow"
+  },
+  {
+   "depends_on": "show_in_website",
+   "description": "HTML / Banner that will show on the top of product list.",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "depends_on": "show_in_website",
+   "fieldname": "website_specifications",
+   "fieldtype": "Table",
+   "label": "Website Specifications",
+   "options": "Item Website Specification"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "lft",
+   "no_copy": 1,
+   "oldfieldname": "lft",
+   "oldfieldtype": "Int",
+   "print_hide": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "rgt",
+   "no_copy": 1,
+   "oldfieldname": "rgt",
+   "oldfieldtype": "Int",
+   "print_hide": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "ignore_user_permissions": 1,
+   "label": "old_parent",
+   "no_copy": 1,
+   "oldfieldname": "old_parent",
+   "oldfieldtype": "Data",
+   "options": "Website Itemgroup",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "parent_website_itemgroup",
+   "fieldtype": "Link",
+   "label": "Parent Website Itemgroup",
+   "options": "Website Itemgroup"
+  },
+  {
+   "fieldname": "website_itemgroup_name",
+   "fieldtype": "Data",
+   "label": "Website Itemgroup name",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "has_web_view": 1,
+ "icon": "fa fa-sitemap",
+ "image_field": "image",
+ "is_published_field": "show_in_website",
+ "is_tree": 1,
+ "max_attachments": 3,
+ "modified": "2020-10-20 16:58:20.312344",
+ "modified_by": "Administrator",
+ "module": "Eieweb",
+ "name": "Website Itemgroup",
+ "name_case": "Title Case",
+ "nsm_parent_field": "parent_website_itemgroup",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "set_user_permissions": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase User"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "route": "route",
+ "search_fields": "parent_website_itemgroup",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

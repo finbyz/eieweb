@@ -1,0 +1,45 @@
+{
+ "autoname": "CD.###",
+ "creation": "2020-10-20 10:09:25.879621",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details_list"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_details_list",
+   "fieldtype": "Table",
+   "label": "Customer Details List",
+   "options": "Customer Details List"
+  }
+ ],
+ "modified": "2020-10-20 18:06:52.385579",
+ "modified_by": "Administrator",
+ "module": "Eieweb",
+ "name": "Customer Details",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Guest"
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

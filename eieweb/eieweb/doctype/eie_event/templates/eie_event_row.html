@@ -1,0 +1,145 @@
+<!-- <div>
+	<a href={{ route }}>{{ title }}</a>
+</div> -->
+<!-- this is a sample default list template -->
+<div class="container event-list-cotainer">
+	<div class="events-list row mx-1">
+		<div class="card  my-5 col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto">
+			<div class="row no-gutters">
+				<div class="col-md-12">
+					<div class="card-body card-image">
+
+						<div class="vis-img event-img product-img has-animation has-animation-y animation-ttb scroll">
+							<img class="website-image" src="{{ image }}" alt="{{ title }}">
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="card-content card-body">
+				<div>
+					<h3 class="card-title sub-text">
+						<p class="text-dark">
+							{{ title }} <br>
+							{{ published_on}}
+						</p>
+					</h3>
+					<h5 class="sub-text">
+						<p>
+							{{description}}
+						</p>
+					</h5>
+				</div>
+			</div>
+		</div>
+
+		<div class="card  my-5 col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto ">
+			<div class="row no-gutters">
+				<div class="col-md-12">
+					<div class="card-body card-image">
+
+
+						<div class="vis-img event-img product-img has-animation has-animation-y animation-ttb scroll">
+							<img class="website-image" src="{{ image }}" alt="{{ title }}">
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="card-content card-body">
+				<div>
+					<h3 class="card-title sub-text">
+						<p class="text-dark">
+							{{ title }} <br>
+							{{ published_on}}
+						</p>
+					</h3>
+					<h5 class="sub-text">
+						<p>
+							{{description}}
+						</p>
+					</h5>
+				</div>
+			</div>
+		</div>
+
+		<div class="card  my-5 col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto ">
+			<div class="row no-gutters">
+				<div class="col-md-12">
+					<div class="card-body card-image">
+
+
+						<div class="vis-img event-img product-img has-animation has-animation-y animation-ttb scroll">
+							<img class="website-image" src="{{ image }}" alt="{{ title }}">
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="card-content card-body">
+				<div>
+					<h3 class="card-title sub-text">
+						<p class="text-dark">
+							{{ title }} <br>
+							{{ published_on}}
+						</p>
+					</h3>
+					<h5 class="sub-text">
+						<p>
+							{{description}}
+						</p>
+					</h5>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<style>
+	.event-list-cotainer {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.events-list .card {
+		border: none;
+		-webkit-transform: scale(0.95);
+		-ms-transform: scale(0.95);
+		transform: scale(0.95);
+		-webkit-transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
+		transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
+		-o-transition: box-shadow 0.5s, transform .5s;
+		transition: box-shadow 0.5s, transform .5s;
+		transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s, -webkit-transform .5s;
+	}
+
+	.events-list .card:hover {
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1);
+		-webkit-box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+		box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+	}
+
+	.event-img img {
+		width: 100%;
+	}
+
+	@media screen and (min-width: 40em) .events-list {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		overflow: hidden;
+	}
+
+
+</style>

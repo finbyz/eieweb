@@ -33,10 +33,13 @@
             {% include "templates/includes/eie-banner.html" %}
             {%- block page_content -%}{%- endblock -%}
         </div>
-
-        <div class="page-footer">
+        {% if doctype == "Web Page" and name == "index" %}
+        {% include "www/testimonial.html" %}
+        {% endif %}
+        
+        <!-- <div class="page-footer">
             {%- block page_footer -%}{%- endblock -%}
-        </div>
+        </div> -->
     </main>
     {% endblock %}
 </div>

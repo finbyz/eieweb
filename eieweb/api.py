@@ -1,4 +1,6 @@
 import frappe
+from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent_item_groups
+from erpnext.stock.doctype.item.item import Item
 
 def get_items(filters=None, search=None):
 	start = frappe.form_dict.start or 0
@@ -90,3 +92,20 @@ def get_items(filters=None, search=None):
 		r.image = r.website_image or r.image
 
 	return results
+
+
+def get_context(self, context):
+	context.show_search = True
+	context.search_link = '/product_search'
+
+	#context.parents = get_parent_item_groups(self.item_group)
+
+	context.parents = get_parent_item_groups(self.website_itemgroup)
+
+	self.set_variant_context(context)
+	self.set_attribute_context(context)
+	self.set_disabled_attributes(context)
+	self.set_metatags(context)
+	self.set_shopping_cart_data(context)
+
+	return context
