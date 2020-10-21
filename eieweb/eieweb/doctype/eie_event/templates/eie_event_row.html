@@ -2,144 +2,122 @@
 	<a href={{ route }}>{{ title }}</a>
 </div> -->
 <!-- this is a sample default list template -->
-<div class="container event-list-cotainer">
-	<div class="events-list row mx-1">
-		<div class="card  my-5 col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto">
-			<div class="row no-gutters">
-				<div class="col-md-12">
-					<div class="card-body card-image">
 
-						<div class="vis-img event-img product-img has-animation has-animation-y animation-ttb scroll">
-							<img class="website-image" src="{{ image }}" alt="{{ title }}">
-						</div>
-
+<div class="container">
+	<div class="row card__wrap--outer">
+		<div class="col-xl-4 card__wrap--inner">
+			<div class="card">
+				<img src="{{ image }}">
+				<div class="card__content">
+					<div class="card__title">
+						{{ title }}
 					</div>
-				</div>
-			</div>
-			<div class="card-content card-body">
-				<div>
-					<h3 class="card-title sub-text">
-						<p class="text-dark">
-							{{ title }} <br>
-							{{ published_on}}
-						</p>
-					</h3>
-					<h5 class="sub-text">
-						<p>
-							{{description}}
-						</p>
-					</h5>
+					<p class="card__title">
+						Date: {{ published_on }}
+					</p>
+					<p class="card__text">
+						{{ description }}
+					</p>
 				</div>
 			</div>
 		</div>
 
-		<div class="card  my-5 col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto ">
-			<div class="row no-gutters">
-				<div class="col-md-12">
-					<div class="card-body card-image">
-
-
-						<div class="vis-img event-img product-img has-animation has-animation-y animation-ttb scroll">
-							<img class="website-image" src="{{ image }}" alt="{{ title }}">
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="card-content card-body">
-				<div>
-					<h3 class="card-title sub-text">
-						<p class="text-dark">
-							{{ title }} <br>
-							{{ published_on}}
-						</p>
-					</h3>
-					<h5 class="sub-text">
-						<p>
-							{{description}}
-						</p>
-					</h5>
-				</div>
-			</div>
-		</div>
-
-		<div class="card  my-5 col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto ">
-			<div class="row no-gutters">
-				<div class="col-md-12">
-					<div class="card-body card-image">
-
-
-						<div class="vis-img event-img product-img has-animation has-animation-y animation-ttb scroll">
-							<img class="website-image" src="{{ image }}" alt="{{ title }}">
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="card-content card-body">
-				<div>
-					<h3 class="card-title sub-text">
-						<p class="text-dark">
-							{{ title }} <br>
-							{{ published_on}}
-						</p>
-					</h3>
-					<h5 class="sub-text">
-						<p>
-							{{description}}
-						</p>
-					</h5>
-				</div>
-			</div>
-		</div>
-
+		
 	</div>
+
 </div>
 
 <style>
-	.event-list-cotainer {
-		position: relative;
-		overflow: hidden;
-	}
+	
+	.card__wrap--inner img {
+        height: 200px;
+        width: 100%;
+        display: block;
+    }
 
-	.events-list .card {
-		border: none;
-		-webkit-transform: scale(0.95);
-		-ms-transform: scale(0.95);
-		transform: scale(0.95);
-		-webkit-transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
-		transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
-		-o-transition: box-shadow 0.5s, transform .5s;
-		transition: box-shadow 0.5s, transform .5s;
-		transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s, -webkit-transform .5s;
-	}
+	.card__wrap--outer {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
 
-	.events-list .card:hover {
-		-webkit-transform: scale(1);
-		-ms-transform: scale(1);
-		transform: scale(1);
-		-webkit-box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-		box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-	}
+	.card__wrap--inner {
+        display: -webkit-box;
+        padding: 12px;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        width: 100%;
+    }
 
-	.event-img img {
-		width: 100%;
-	}
+    @media (min-width: 480px) {
 
-	@media screen and (min-width: 40em) .events-list {
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-		-webkit-box-pack: justify;
-		-webkit-justify-content: space-between;
-		-ms-flex-pack: justify;
-		justify-content: space-between;
-		overflow: hidden;
-	}
+        .card__wrap--inner {
+            width: 50%
+        }
+    }
 
+    @media (min-width: 1024px) {
+
+        .card__wrap--inner {
+            width: 33.33%
+        }
+    }
+
+	.card__wrap--outer .card {
+        border: none;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        width: 100%;
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+        -webkit-transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
+        transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
+        -o-transition: box-shadow 0.5s, transform .5s;
+        transition: box-shadow 0.5s, transform .5s;
+        transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s, -webkit-transform .5s;
+    }
+
+	.card__content {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-flex: 1;
+        flex: 1 1 auto;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+	.card__title {
+        font-weight: bold;
+        text-transform: uppercase;
+		font-size: 26px;
+    }
+
+    .card__text {
+        -webkit-box-flex: 1;
+        flex: 1 1 auto;
+        line-height: 1.5;
+        margin-top: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+	.card__wrap--outer .card:hover {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        -webkit-box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+        box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+    }
 
 </style>

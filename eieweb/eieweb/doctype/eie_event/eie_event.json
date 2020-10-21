@@ -51,7 +51,7 @@
  "has_web_view": 1,
  "image_field": "image",
  "is_published_field": "published",
- "modified": "2020-10-20 11:03:12.006529",
+ "modified": "2020-10-20 18:27:54.556040",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "EIE Event",
@@ -83,7 +83,7 @@
   }
  ],
  "quick_entry": 1,
- "route": "/events",
+ "route": "/trade-shows",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
