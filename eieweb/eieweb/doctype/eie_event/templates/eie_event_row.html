@@ -3,121 +3,21 @@
 </div> -->
 <!-- this is a sample default list template -->
 
-<div class="container">
-	<div class="row card__wrap--outer">
-		<div class="col-xl-4 card__wrap--inner">
-			<div class="card">
-				<img src="{{ image }}">
-				<div class="card__content">
-					<div class="card__title">
-						{{ title }}
-					</div>
-					<p class="card__title">
-						Date: {{ published_on }}
-					</p>
-					<p class="card__text">
-						{{ description }}
-					</p>
-				</div>
-			</div>
-		</div>
-
-		
-	</div>
-
+<div class="col-xl-4 card__wrap--inner">
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ image }}">
+        </div>
+        <div class="card__content">
+            <div class="card__title">
+                {{ title }}
+            </div>
+            <p class="card__title" style="font-size: 20px;">
+                Date: {{ published_on }}
+            </p>
+            <p class="card__text">
+                {{ description }}
+            </p>
+        </div>
+    </div>
 </div>
-
-<style>
-	
-	.card__wrap--inner img {
-        height: 200px;
-        width: 100%;
-        display: block;
-    }
-
-	.card__wrap--outer {
-        display: -webkit-box;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-    }
-
-	.card__wrap--inner {
-        display: -webkit-box;
-        padding: 12px;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        flex-direction: row;
-        width: 100%;
-    }
-
-    @media (min-width: 480px) {
-
-        .card__wrap--inner {
-            width: 50%
-        }
-    }
-
-    @media (min-width: 1024px) {
-
-        .card__wrap--inner {
-            width: 33.33%
-        }
-    }
-
-	.card__wrap--outer .card {
-        border: none;
-        display: -webkit-box;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        flex-direction: column;
-        width: 100%;
-        -webkit-transform: scale(0.95);
-        -ms-transform: scale(0.95);
-        transform: scale(0.95);
-        -webkit-transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
-        transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
-        -o-transition: box-shadow 0.5s, transform .5s;
-        transition: box-shadow 0.5s, transform .5s;
-        transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s, -webkit-transform .5s;
-    }
-
-	.card__content {
-        display: -webkit-box;
-        display: flex;
-        -webkit-box-flex: 1;
-        flex: 1 1 auto;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-	.card__title {
-        font-weight: bold;
-        text-transform: uppercase;
-		font-size: 26px;
-    }
-
-    .card__text {
-        -webkit-box-flex: 1;
-        flex: 1 1 auto;
-        line-height: 1.5;
-        margin-top: 1rem;
-        margin-bottom: 1.25rem;
-    }
-
-	.card__wrap--outer .card:hover {
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-        -webkit-box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-        box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-    }
-
-</style>
