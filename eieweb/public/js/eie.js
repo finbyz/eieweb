@@ -118,45 +118,38 @@ $(document).ready(function () {
         autoPlay: true,
         autoHeight: true,
     });
-    // items: 6,
-    // autoPlay:true,
-    // autoplayTimeout:200,
-    // autoplayHoverPause:true,
-    // loop:true,
-    // nav: false,
-    // margin: 10,
-    // navText: false,
-    // dots: false,
-    // mouseDrag: true,
-    // slideBy: 1,
-    // responsive: {
-    //     0: {
-    //         items: 1,
-    //         loop: true,
-    //     },
-    //     600: {
-    //         items: 3,
-    //         loop: true,
-    //     },
-    //     960: {
-    //         items: 5,
-    //         loop: true,
-    //     },
-    //     1200: {
-    //         items: 6,
-    //         loop: true,
-    //     }
-    // }
+    
     
      $('#eie-customer .owl-carousel').owlCarousel({
-        items: 3,
-        loop: true,
-       
-        autoPlay: true,
-        slideTransition: 'linear',
-        autoplayTimeout: 0,
-        autoplaySpeed: 100,
+        items: 6,
+        autoPlay:true,
+        autoplayTimeout:200,
         autoplayHoverPause:true,
+        loop:true,
+        nav: false,
+        margin: 10,
+        navText: false,
+        dots: false,
+        mouseDrag: true,
+        slideBy: 1,
+        responsive: {
+            0: {
+                items: 1,
+                loop: true,
+            },
+            600: {
+                items: 3,
+                loop: true,
+            },
+            960: {
+                items: 5,
+                loop: true,
+            },
+            1200: {
+                items: 6,
+                loop: true,
+            }
+        }
 
     });
 
