@@ -19,30 +19,29 @@
           </div>
           {% set testimonial_list = frappe.get_all("Testimonial") %}
           <div class="col-xl-8 col-lg-12 col-md-12">
-              <div class="testimonal-section-content-right" style="background-image:url(files/bg-left-testimonial.png)">
-                <div id="testimonial-slider" class="owl-carousel">
+            <div class="testimonal-section-content-right" style="background-image:url(files/bg-left-testimonial.png)">
+              <div id="testimonial-slider" class="owl-carousel">
                   {% for testimonial in testimonial_list  %}
                   {% set doc = frappe.get_doc('Testimonial',testimonial.name)%}
-                  <div class="testimonial">
-                      <div class="content"> 
-                          <div class="testimonial-pic">
-                             <img src="{{ doc.image }}" alt=" {{ doc.customer }}">
-                          </div>
-                          <div class="testimonial-prof">
-                              <h3 class="testimonial-title"> {{ doc.customer }} </h3>
-                              <p class="description">
+                <div class="testimonial">
+                    <div class="content"> 
+                        <div class="testimonial-pic">
+                           <img src="{{ doc.image }}" alt=" {{ doc.customer }}">
+                        </div>
+                        <div class="testimonial-prof">
+                            <h3 class="testimonial-title"> {{ doc.customer }} </h3>
+                            <p class="description">
                                 {{ doc.description }}
-                              </p>
-                          </div>
-                      </div>
-                  </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
                   {% endfor  %}
               </div>
             </div>
-          
-          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 

@@ -115,24 +115,45 @@ $(document).ready(function () {
         itemsTablet: [750, 1],
         pagination: false,
         navigation: true,
-        navigationText: ["<img src='/files/left-arrow-nav.svg' height='15'>", "<img src='/files/right-arrow-nav.svg' height='15'>"],
-        autoPlay: true,
-        autoHeight: true,
-    });
-    $("#testimonial-slider").owlCarousel({
-        items: 1,
-        itemsDesktop: [1000, 2],
-        itemsDesktop: [999, 1],
-        itemsDesktopSmall: [979, 1],
-        itemsTablet: [768, 1],
-        itemsTablet: [750, 1],
-        pagination: false,
-        navigation: true,
-        
         autoPlay: true,
         autoHeight: true,
     });
     
+    
+     $('#eie-customer .owl-carousel').owlCarousel({
+        items: 6,
+        autoPlay:true,
+        autoplayTimeout:200,
+        autoplayHoverPause:true,
+        loop:true,
+        nav: false,
+        margin: 10,
+        navText: false,
+        dots: false,
+        mouseDrag: true,
+        slideBy: 1,
+        responsive: {
+            0: {
+                items: 1,
+                loop: true,
+            },
+            600: {
+                items: 3,
+                loop: true,
+            },
+            960: {
+                items: 5,
+                loop: true,
+            },
+            1200: {
+                items: 6,
+                loop: true,
+            }
+        }
+
+    });
+
+
 
 
     $('#related-module').owlCarousel({
