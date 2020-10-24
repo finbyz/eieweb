@@ -3,38 +3,34 @@
 {% endif %}
 {% if not result -%}
 <div class="text-muted" style="min-height: 300px;">
-    {{ no_result_message or _("Nothing to show") }}
+	{{ no_result_message or _("Nothing to show") }}
 </div>
 {% else %}
 <div class="website-list" data-doctype="{{ doctype }}" data-txt="{{ txt or '[notxt]' | e }}">
-    <!-- {% if not hide_filters -%}
+	<!-- {% if not hide_filters -%}
 			{% include "templates/includes/list/filters.html" %}
 		{%- endif %} -->
-    {% if result_heading_template %}{% include result_heading_template %}{% endif %}
+	{% if result_heading_template %}{% include result_heading_template %}{% endif %}
 
-    <div class="result">
-        <div class="container-fluid pt-50">
-            <div class="container">
-<<<<<<< HEAD
-                <div class="row card__wrap--outer">
-                    {% for item in result %}
-                    {{ item }}
-                    {% endfor %}
-=======
-                <div class="card-columns">
+	<div class="result">
 
-                    
-                        {% for item in result %}
-                        {{ item }}
-                        {% endfor %}
-                    
->>>>>>> 84c04e6b2a409ef86a8a07ff50cd81be58271bc8
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="more-block {% if not show_more -%} hidden {%- endif %}">
-        <button class="btn btn-light btn-more btn-sm">{{ _("More") }}</button>
-    </div>
+		{% if route == "trade-shows"%}
+		<div class="container">
+			<div class="card-columns">
+				{% for item in result %}
+				{{ item }}
+				{% endfor %}
+			</div>
+		</div>
+		{% else %}
+		{% for item in result %}
+		{{ item }}
+		{% endfor %}
+		{% endif %}
+
+	</div>
+	<div class="more-block {% if not show_more -%} hidden {%- endif %}">
+		<button class="btn btn-light btn-more btn-sm">{{ _("More") }}</button>
+	</div>
 </div>
 {%- endif %}
