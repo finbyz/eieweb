@@ -1,55 +1,68 @@
 <div class="my-3 col-12 col-sm-12">
     <div class="container-fluid">
-        <div class="row ">
-            
+        <div class="row pt-50">
             <div class="col-12 col-sm-12">
-                <h3 class="dark-text title-underline">{{ doc.job_title }}</h3>
+                <h3>{{ doc.job_title }}</h3>
             </div>
             {% if frappe.db.get_value("Job Opening",doc.name,"image")  %}
             <div class="col-12 col-md-4">
                 <div class="text-center mt-0 pt-0">
+                    <!-- <img alt="{{ doc.get(title_field) }}" title="{{ doc.get(title_field) }}" class="img-fluid"
+                    src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}"> -->
                     <div class="image-container">
                         <div class="image-container-overlap">
-                            <div class="image-stack">
-                                <div class="image-stack__item image-stack__item--top behind-square">
-                                    <img src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}"
-                                        alt="{{ doc.get(title_field) }}" class="img-fluid img2-back-overlay"
-                                        style="border-radius: 0; padding: 0;">
-                                </div>
-                                <div class="image-stack__item image-stack__item--bottom">
-                                    <img src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}"
-                                        alt="{{ doc.get(title_field) }}" class="img-fluid image-anime "
-                                        style="border: 0px; border-radius: 0px; padding: 0px; margin-left: 0px; box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 50px; transform: translate3d(0px, -8.9928%, 0px);">
-                                </div>
+                          <div class="image-stack">
+                            <div class="image-stack__item image-stack__item--top behind-square">
+                                  <img src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}" alt="job-opening-img" class="img-fluid img2-back-overlay" style="border-radius: 0; padding: 0;">
                             </div>
-
+                            <div class="image-stack__item image-stack__item--bottom">
+                           
+                                    <img src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}" alt="job-opening-img" class="img-fluid image-anime " style="border: 0px; border-radius: 0px; padding: 0px; margin-left: 0px; box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 50px; transform: translate3d(0px, -10.5863%, 0px);">
+                         
+                          </div>
                         </div>
+                       
+                      </div>
                     </div>
+
                 </div>
             </div>
             {%- endif -%}
             <div class="col-12 col-md-8">
-                <p>{{ doc.description }}</p>
-                <div class="d-md-flex d-sm-block d-block text-center">
-                    <div class="ml-3">
+            <h5> Description</h5>
+           <p style="font-size: 18px;">{{frappe.db.get_value("Job Opening", doc.name,"small_description")}}</p>
+           <h5> Job Description</h5>
+           <p>{{frappe.db.get_value("Job Opening", doc.name,"job_description")}}</p>
+           <!-- <p>{{frappe.db.get_value("Job Opening", doc.name,"min_experience")}}</p> -->
+
+                <div class="d-md-flex d-sm-block d-block text-center mx-5">
+                   
+                        <!-- <a class="finbyz-button" href="{{ frappe.db.get_value('Job Opening',doc.name,'route') }}">
+                            Know More
+                        </a> -->
                         <a href="{{ frappe.db.get_value('Job Opening',doc.name,'route') }}">
-                            <div class="eie-button eie-fadeindown cart-button"
+                            <div class="eie-button eie-fadeindown cart-button "
                                 style="opacity: 1; transform: translate(-50%, -50%);"> Know More
                                 <div class="eie-ring eie-btn-bottom "></div>
                             </div>
                         </a>
-                    </div>
-                    <div class="ml-3">
+
+                   
+                    
+                        <!-- <a class="finbyz-button" href="/job-application-form?new=1&job_title={{ doc.name }}">
+                            {{ _("Apply Now") }}
+                        </a> -->
                         <a href="/job-application-form?new=1&job_title={{ doc.name }}">
-                            <div class="eie-button eie-fadeindown cart-button"
+                            <div class="eie-button eie-fadeindown cart-button "
                                 style="opacity: 1; transform: translate(-50%, -50%);"> {{ _("Apply Now") }}
                                 <div class="eie-ring eie-btn-bottom "></div>
                             </div>
                         </a>
-                    </div>
+                    
+
                 </div>
             </div>
-            
+           
         </div>
     </div>
 </div>
