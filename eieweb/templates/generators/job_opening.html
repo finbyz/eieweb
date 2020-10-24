@@ -1,103 +1,88 @@
 {% extends "templates/web.html" %}
 
 {% block breadcrumbs %}
-	{% include "templates/includes/breadcrumbs.html" %}
+{% include "templates/includes/breadcrumbs.html" %}
 {% endblock %}
 
 
 
 {% block page_content %}
-<div class="container-fluid">
-    
+<div class="container">
+
     <div class="row">
-        <div class="col-lg-8 col-xl-8 web-title">
-            <div class="title-font pt-100 pl-45 pt-50">
-                <h3 class="title-underline">{{ job_title }}</h3>
-            </div>
+        <div class="col-12 col-sm-12">
+            <h3 class="title-underline">{{ job_title }}</h3>
         </div>
-        <div class="col-lg-4 col-xl-4 text-center banner-jobs">
-           
+        <div class="col-lg-4 col-md-4 text-center banner-jobs ">
             <div class="image-container">
                 <div class="image-container-overlap">
-                  <div class="image-stack">
-                    <div class="image-stack__item image-stack__item--top behind-square">
-                          <img src="{{ image }}" alt="validation-img" class="img-fluid img2-back-overlay" style="border-radius: 0; padding: 0;">
+                    <div class="image-stack">
+                        <div class="image-stack__item image-stack__item--top behind-square">
+                            <img src="{{ image }}" alt="validation-img" class="img-fluid img2-back-overlay"
+                                style="border-radius: 0; padding: 0;">
+                        </div>
+                        <div class="image-stack__item image-stack__item--bottom">
+                            <img src="{{ image }}" alt="validation-img" class="img-fluid image-anime "
+                                style="border: 0px; border-radius: 0px; padding: 0px; margin-left: 0px; box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 50px; transform: translate3d(0px, -8.9928%, 0px);">
+                        </div>
                     </div>
-                    <div class="image-stack__item image-stack__item--bottom">
-                   
-                            <img src="{{ image }}" alt="validation-img" class="img-fluid image-anime " style="border: 0px; border-radius: 0px; padding: 0px; margin-left: 0px; box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 50px; transform: translate3d(0px, -8.9928%, 0px);">
-                 
-                  </div>
                 </div>
-               
-              </div>
             </div>
-             
+        </div>
+        <div class="col-lg-8 col-md-8 web-title mt-3">
+            {%- if job_description -%}
+            
+                <div class="col-md-12">
+                    <h5>Job Description</h5>
+                    <p> {{job_description }}</p>
+                </div>
+            
+            {% endif %}
+            {%- if job_opening_skill -%}
+       
+                <div class="col-md-12">
+                    <h5>Key Skills</h5>
+                    <p>{{  job_opening_skill }} </p>
+                </div>
+        
+            {% endif %}
+            {%- if qualification -%}
+            
+                <div class="col-md-12">
+                    <h5>Qualification</h5>
+                    <p class="ml-4"> {{ qualification }} </p>
+                </div>
+          
+            {% endif %}
+
+            {%- if min_experience -%}
+          
+                <div class="col-md-12">
+                    <h5>Min Experience</h5>
+                    <p class="ml-4">{{ min_experience }} </p>
+                </div>
+        
+            {% endif %}
+
+            {%- if max_experience -%}
+            
+                <div class="col-md-12">
+                    <h5>Max Experience</h5>
+                    <p class="ml-4">{{ max_experience }}
+                </div>
+                </p>
+         
+            {% endif %}
+            <div class="row ml-5 mt-5">
+                <a href="/job-application-form?new=1&job_title={{ doc.name }}">
+                    <div class="eie-button eie-fadeindown cart-button mt-2"
+                        style="opacity: 1; transform: translate(-50%, -50%);">
+                        {{ _("Apply Now") }}
+                        <div class="eie-ring eie-btn-bottom "></div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>
-<div class="container-fluid mt-50">
-	{%- if description -%}
-	<div class="row pt-50">
-		<div class="col-md-12">
-		<h5>Job Description</h5>
-           <p> {{ small_description }}</p>
-           <p> {{ description }}</p>
-		</div>
-	</div>
-	{% endif %}
-	{%- if _job_opening_skill -%}
-	<div class="row pl-5">
-		<div class="col-md-12">
-		<h5>Key Skills</h5>
-        <p>{{  _job_opening_skill }} </p>
-		</div>
-	</div>
-    {% endif %}
-    
-{%- if qualification -%}
-<div class="row pl-5">
-    <div class="col-md-12">
-    <h5>Qualification</h5>
-   <p> {{  qualification }} </p>
-    </div>
-</div>
-{% endif %}
-
-{%- if min_experience -%}
-<div class="row pl-5">
-    <div class="col-md-12">
-    <h5>min_experience</h5>
-   <p>{{  min_experience }} </p> 
-    </div>
-</div>
-{% endif %}
-
-{%- if max_experience -%}
-<div class="row pl-5">
-    <div class="col-md-12">
-    <h5>Max-Experience</h5>
-   <p>{{  max_experience }} 
-</div></p> 
-</div>
-{% endif %}
-
-</div>
-
-</div>
-
-
-<div class="row ml-5 pt-50">
-        <a href="/job-application-form?new=1&job_title={{ doc.name }}"><div class="eie-button eie-fadeindown cart-button mt-2" style="opacity: 1; transform: translate(-50%, -50%);">   {{ _("Apply Now") }}
-            <div class="eie-ring eie-btn-bottom "></div> </div>
-        </a>
-</div>
-
-<!-- <div style='margin-top: 30px' class="button pt-50">
-	<a class='finbyz-button'
-	href='/job-application-form?new=1&job_title={{ doc.name }}'>
-    {{ _("Apply Now") }}</a>
-
-</div> -->
-
 {% endblock %}
