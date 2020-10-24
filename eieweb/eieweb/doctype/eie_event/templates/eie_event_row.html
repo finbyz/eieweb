@@ -1,64 +1,10 @@
-<!-- <div>
-	<a href={{ route }}>{{ title }}</a>
-</div> -->
-<!-- this is a sample default list template -->
-
-<!-- dfg -->
-
 
 <div class="card event-card">
-    <img class="card-img img-fluid"
-        src="{{ image }}"
-        alt="{{ title }}">
+    <img class="card-img img-fluid" src="{{ image }}" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{ title }}</h5>
-        <p class="card-text">Date: {{ published_on}}</p>
-        <p class="card-text">{{ description}}</p>
+        <p class="card-text">Date: {{ published_on }}</p>
+        <p class="card-text">{{ description }}</p>
 
     </div>
 </div>
-
-
-
-<style>
-    /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-    @media (min-width: 768px) {
-        .card-columns {
-            column-count: 3;
-        }
-    }
-
-    /* Large devices (desktops, 992px and up) */
-    @media (min-width: 992px) {
-        .card-columns {
-            column-count: 3;
-        }
-    }
-
-    /* Extra large devices (large desktops, 1200px and up) */
-    @media (min-width: 1200px) {
-        .card-columns {
-            column-count: 3;
-        }
-    }
-
-    .event-card {
-        border: none;
-        -webkit-transform: scale(0.95);
-        -ms-transform: scale(0.95);
-        transform: scale(0.95);
-        -webkit-transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
-        transition: -webkit-box-shadow 0.5s, -webkit-transform .5s;
-        -o-transition: box-shadow 0.5s, transform .5s;
-        transition: box-shadow 0.5s, transform .5s;
-        transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s, -webkit-transform .5s;
-    }
-
-    .event-card:hover {
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-        -webkit-box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-        box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-    }
-</style>

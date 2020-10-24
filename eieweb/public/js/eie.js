@@ -114,53 +114,61 @@ $(document).ready(function () {
         itemsTablet: [768, 1],
         itemsTablet: [750, 1],
         pagination: false,
+        navigationText: ["<img src='/files/left-arrow-nav.svg' height='15'>", "<img src='/files/right-arrow-nav.svg' height='15'>"],
         navigation: true,
         autoPlay: true,
         autoHeight: true,
     });
-    
-    
-     $('#eie-customer .owl-carousel').owlCarousel({
+
+
+      //EiE Customer slider
+    var owl = $('#eie-customer .owl-carousel');
+	owl.owlCarousel({
         items: 6,
-        autoPlay:true,
-        autoplayTimeout:200,
-        autoplayHoverPause:true,
-        loop:true,
-        nav: false,
-        margin: 10,
-        navText: false,
-        dots: false,
-        mouseDrag: true,
+        itemsDesktop: [1000, 2],
+        itemsDesktop: [999, 2],
+        itemsDesktopSmall: [979, 2],
+        itemsTablet: [768, 1],
+        itemsTablet: [750, 1],
+		autoPlay: true,
+        slideTransition: 'linear',
+        // autoplayTimeout: 0,
+        // autoplaySpeed: 5000,
+		loop: true,
+		nav: false,
+		margin: 10,
+		navText: false,
+		dots: false,
+		mouseDrag: true,
         slideBy: 1,
-        responsive: {
-            0: {
-                items: 1,
-                loop: true,
-            },
-            600: {
-                items: 3,
-                loop: true,
-            },
-            960: {
-                items: 5,
-                loop: true,
-            },
-            1200: {
-                items: 6,
-                loop: true,
-            }
-        }
-
+        pagination: false,
+		responsive: {
+			0: {
+				items: 2,
+				loop: true,
+			},
+			600: {
+				items: 3,
+				loop: true,
+			},
+			960: {
+				items: 5,
+				loop: true,
+			},
+			1200: {
+				items: 6,
+				loop: true,
+			}
+		}
     });
+    
 
-
-
-
+     //Products related Items
     $('#related-module').owlCarousel({
         items:4,
         loop:true,
         margin:10,
-        autoplay:true,
+        autoPlay:true,
         autoplayTimeout:1000,
         autoplayHoverPause:true,
 		responsive: {
@@ -690,7 +698,26 @@ $(function () {
                     .addTo(scrollController)
 
             });
-         
-        
-           
 })
+// li js
+        $('.result ul').each(function () {
+                 var ul = $(this);
+                 h= ul.children('li').height(); 
+                 console.log(h);
+                 ul.css({ 'height': (h *5) + 'px', 'overflow': 'hidden' });
+        });
+
+        $(window).on('load', function () {
+
+            setTimeout(function () {
+                if ($(".web-form-footer button").hasClass('btn btn-primary btn-sm')) {
+                    $(".web-form-footer button").parent().addClass('inquiry-button');
+                    $(".web-form-footer button").addClass('eie-button').removeClass('btn btn-primary btn-sm');
+                    $(".web-form-footer button").text('save');
+
+                }
+                if ($(".website-list .result a").hasClass('btn btn-primary btn-sm')) {
+                    $(".website-list .result a").addClass('eie-button').removeClass('btn btn-primary btn-sm') ;
+                }
+            });
+        })
