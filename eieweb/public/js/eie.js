@@ -684,11 +684,9 @@ $(function () {
             });
             //heading 
             $(".eie-heading").each(function () {
-
                 var fadeUpScene9 = new ScrollMagic.Scene({
                     triggerElement: this,
                     triggerHook: 0.7,
-                  
                 })
                     .setTween(TweenMax.from(this, 0.9, {
                         rotationY: 90,
@@ -696,7 +694,6 @@ $(function () {
                         ease: Sine.easeInOut,
                     }))
                     .addTo(scrollController)
-
             });
 })
 // li js
@@ -707,14 +704,13 @@ $(function () {
                  ul.css({ 'height': (h *5) + 'px', 'overflow': 'hidden' });
         });
 
-        $(window).on('load', function () {
+        $(document).ready(function () {
 
             setTimeout(function () {
                 if ($(".web-form-footer button").hasClass('btn btn-primary btn-sm')) {
                     $(".web-form-footer button").parent().addClass('inquiry-button');
                     $(".web-form-footer button").addClass('eie-button').removeClass('btn btn-primary btn-sm');
                     $(".web-form-footer button").text('save');
-
                 }
                 if ($(".website-list .result a").hasClass('btn btn-primary btn-sm')) {
                     $(".website-list .result a").addClass('eie-button').removeClass('btn btn-primary btn-sm') ;

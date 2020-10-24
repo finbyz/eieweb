@@ -64,7 +64,7 @@
    "label": "Website Settings"
   },
   {
-   "default": "0",
+   "default": "1",
    "description": "Check this if you want to show in website",
    "fieldname": "show_in_website",
    "fieldtype": "Check",
@@ -154,7 +154,7 @@
  "is_published_field": "show_in_website",
  "is_tree": 1,
  "max_attachments": 3,
- "modified": "2020-10-20 16:58:20.312344",
+ "modified": "2020-10-24 18:07:32.958875",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Website Itemgroup",
