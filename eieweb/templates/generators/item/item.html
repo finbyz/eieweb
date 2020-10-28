@@ -6,7 +6,7 @@
 {% from "eieweb/templates/includes/macros.html" import product_image %}
 <div class="container">
     <div class="row pt-10">
-        <div class="item-content mt-5">
+        <div class="item-content mt-3">
             <div class="product-page-content" itemscope itemtype="http://schema.org/Product">
                 <div class="row mb-5 container">
                     
@@ -83,10 +83,12 @@
                 <div class="row no-gutters">
                     <div class="col-md-12">
                         <div class="card-body card-image">
-                         
+                     
                                 <img class="website-image" alt="{{ link.accessory }}"
                                     src="{{ frappe.db.get_value('Item',link.accessory,'image') or '/files/eie-icon.svg' }}"
                                     title="{{ link.accessory }}">
+                           
+                            
                         </div>
                     </div>
                 </div>
