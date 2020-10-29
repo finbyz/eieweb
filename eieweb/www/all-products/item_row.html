@@ -1,14 +1,20 @@
 
 
-<div class="card  my-5 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto ">
+<div class="card  my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12 mx-auto ">
 	<div class="row no-gutters">
 		<div class="col-md-12">
 			<div class="card-body card-image">
 				
 				<a class="no-underline" href="/{{ item.route }}">
+					
 					<div class="vis-img product-img has-animation has-animation-y animation-ttb scroll">
-						<img class="website-image" src="{{  item.website_image or item.image or 'no-image.jpg'  }}"
-							alt="{{ item.item_name  }}">
+						{% if item.image or item.website_image %}
+							<img class="website-image" src="{{ item.image or item.website_image or 'no-image.jpg'  }}"
+								alt="{{ item.item_name  }}">
+						{% else %}
+							<img class="website-image" src="/files/eie-logo.svg"
+							alt="{{ item.item_name  }}" style="width: 200px;">
+						{% endif %}
 					</div>
 				</a>
 			</div>

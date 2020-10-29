@@ -1,3 +1,5 @@
+
+  
 {% extends "templates/web.html" %}
 
 {% block header %}<h1>{{ name }}</h1>{% endblock %}
@@ -5,7 +7,7 @@
 {% block page_content %}
 
 <div class="container-fluid ">
-    <div class="item-group-content pt-50" itemscope itemtype="http://schema.org/Product">
+    <div class="item-group-content" itemscope itemtype="http://schema.org/Product">
         <div>
             {% if slideshow %}
             <!-- slideshow -->
@@ -13,10 +15,10 @@
             {% endif %}
             {% if description %}
             <!-- description -->
-            <div class="mb-3" itemprop="description">{{ description or ""}}</div>
+            <!-- <div class="mb-3" itemprop="description">{{ description or ""}}</div> -->
             {% endif %}
         </div>
-        <div class="row mt-50">
+        <div class="row">
             <div class="col-md-12">
                 {% if items %}
                 <div id="search-list" class=" row  order-2  order-md-1 products-list">
@@ -32,60 +34,7 @@
                 
                 <div class="item-group-nav-buttons">
                     
-                    {% if f{% extends "templates/web.html" %}
-
-                    {% block header %}<h1>{{ name }}</h1>{% endblock %}
-                    
-                    {% block page_content %}
-                    
-                    <div class="container-fluid ">
-                        <div class="item-group-content pt-50" itemscope itemtype="http://schema.org/Product">
-                            <div>
-                                {% if slideshow %}
-                                <!-- slideshow -->
-                                {% include "templates/includes/slideshow.html" %}
-                                {% endif %}
-                                {% if description %}
-                                <!-- description -->
-                                <!-- <div class="mb-3" itemprop="description">{{ description or ""}}</div> -->
-                                {% endif %}
-                            </div>
-                            <div class="row mt-50">
-                                <div class="col-md-12">
-                                    {% if items %}
-                                    <div id="search-list" class=" row  order-2  order-md-1 products-list">
-                                        {% for i in range(0, page_length) %}
-                                        {% if items[i] %}
-                                        {%- set item = items[i] %}
-                                        {% include "eieweb/www/all-products/item_row.html" %}
-                                        {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    <hr>
-                                    
-                                    
-                                    <div class="item-group-nav-buttons">
-                                        
-                                        {% if frappe.form_dict.start|int > 0 %}
-                                        <a class="btn btn-outline-secondary"
-                                            href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}"><button class="eie-button"><span>{{ _("Prev") }}</span></button></a>
-                                        {% endif %}
-                                        {% if items|length > page_length %}
-                                        <a class=""
-                                            href="/{{ pathname }}?start={{ frappe.form_dict.start|int + page_length }}" ><button class="eie-button"><span>{{ _("Next") }}</span></button></a>
-                                        {% endif %}
-                                        
-                                    </div>
-                                    
-                                    {% else %}
-                                    <div class="text-muted">{{ _("No items listed") }}.</div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    {% endblock %}rappe.form_dict.start|int > 0 %}
+                    {% if frappe.form_dict.start|int > 0 %}
                     <a class="btn btn-outline-secondary"
                         href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}"><button class="eie-button"><span>{{ _("Prev") }}</span></button></a>
                     {% endif %}
@@ -105,3 +54,4 @@
 </div>
 
 {% endblock %}
+
