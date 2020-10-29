@@ -132,8 +132,8 @@ $(document).ready(function () {
         itemsTablet: [750, 1],
 		autoPlay: true,
         slideTransition: 'linear',
-        // autoplayTimeout: 0,
-        // autoplaySpeed: 5000,
+        autoPlayTimeout: 0,
+        autoPlaySpeed: 5000,
 		loop: true,
 		nav: false,
 		margin: 10,
@@ -144,7 +144,7 @@ $(document).ready(function () {
         pagination: false,
 		responsive: {
 			0: {
-				items: 2,
+				items: 1,
 				loop: true,
 			},
 			600: {

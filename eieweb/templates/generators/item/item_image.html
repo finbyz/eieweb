@@ -17,7 +17,7 @@
     <div class=" has-animation has-animation-x has-animation-orange animation-ltr scroll">
     {{ product_image(slides[-1].image, 'product-image') }}
     </div>
-    <div class="item-slideshow d-flex"> 
+    <div class="item-slideshow d-flex justify-content-center"> 
         {% for item in slides|reverse %}
         <img class="item-slideshow-image mt-2 {% if loop.first %}active{% endif %}" src="{{ item.image }}"
             alt="{{ item.heading }}">
