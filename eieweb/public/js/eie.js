@@ -428,7 +428,6 @@ $('.tabanchor').on('mouseenter', function (e) {
     var getTab = $(this).attr('href');
     $(this).parent().addClass('active');
     $('.flex-inner').removeClass('active')
-
     $(getTab).addClass('active')
     e.preventDefault();
 })
@@ -697,10 +696,33 @@ $(function () {
             });
 })
 // li js
+
         $('.result ul').each(function () {
                  var ul = $(this);
                  h= ul.children('li').height(); 
-                 console.log(h);
                  ul.css({ 'height': (h *5) + 'px', 'overflow': 'hidden' });
         });
-  
+        $('#download').click(function(){
+            console.log('download start');
+         localStorage.setItem("url", "{{ url }}");
+        }) ;
+
+
+//  product vidio
+
+$(document).ready(function(){
+    var div,
+    n,
+    v = $("#product-youtube");
+    for (n = 0; n < v.length; n++){
+    div = document.createElement("iframe");
+    var str=  v[n].dataset.src;
+    var res = str.split("=");
+    var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
+    div.setAttribute("src", embeddedUrl);
+    v[n].appendChild(div);
+    }
+})
+
+      
+ 

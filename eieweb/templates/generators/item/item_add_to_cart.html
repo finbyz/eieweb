@@ -4,7 +4,7 @@
 {% set product_info = shopping_cart.product_info %}
 
 <div class="item-cart row mt-2" data-variant-item-code="{{ item_code }}">
-	<div class="col-md-12">
+	<div class="ml-3">
 		{% if cart_settings.show_price and product_info.price %}
 		<h4>
 			{{ product_info.price.formatted_price_sales_uom }}
@@ -28,17 +28,30 @@
 		</div>
 		{% endif %}
 		{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
-		<div class="mt-3 container " style="display:inline-flex;">
+		<div class="col-md-12 col-xs-12 col-lg-7 mt-3 d-md-flex flex-md-column flex-lg-row ">
+			{% if  frappe.db.get_value("Item",doc.name,'product_leaflet') %}
+				{% set url = frappe.db.get_value("Item",doc.name,'product_leaflet') %}
+					<a target="_blank" href="{{product_leaflet}}"><div class="eie-button eie-fadeindown cart-button moblie-button ">Download Manual
+						<div class="eie-ring eie-btn-bottom "></div> </div>
+					</a>
+			{% endif %}
+				<script>
+					window.onload = function () {
+						localStorage.setItem("url", "{{ url }}");
+					}
+				</script>
 			 
-			<a href="/#"><div class="eie-button eie-fadeindown cart-button">{{ _("View in Cart") }}
+			<a href="/#"><div class="eie-button eie-fadeindown cart-button moblie-button">{{ _("View in Cart") }}
 				<div class="eie-ring eie-btn-bottom "></div> </div>
 			</a>
 		
-			<a href="/#"><div class="eie-button eie-fadeindown cart-button">{{ _("Add to Cart") }}
+			<a href="/#"><div class="eie-button eie-fadeindown cart-button moblie-button">{{ _("Add to Cart") }}
 				<div class="eie-ring eie-btn-bottom "></div> </div>
 			</a>
-		
 		</div>
+	
+			
+		
 		{% endif %}
 	</div>
 </div>

@@ -5,29 +5,25 @@
 {% block page_content %}
 {% from "eieweb/templates/includes/macros.html" import product_image %}
 <div class="container">
-    <div class="row pt-10">
+   
         <div class="item-content mt-3">
             <div class="product-page-content" itemscope itemtype="http://schema.org/Product">
-                <div class="row mb-5 container">
-                    
+                <div class="row mb-5 ">
                     {% include "templates/generators/item/item_image.html" %}
                     {% include "templates/generators/item/item_details.html" %}
-                   
                 </div>
         
                 {% include "templates/generators/item/item_specifications.html" %}
-        
                 {{ doc.website_content or '' }}
-                
             </div>
         </div>
-    </div>   
+    </div>
 </div>
-<div class="container">
+<div class="container mt-4">
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" href="#moreinfo" role="tab" data-toggle="tab">
-            <h3 class="dark-text " style="font-size: 24px;">
+            <h3 class="dark-text sizing" >
                 More Information
             </h3>
         </a>
@@ -35,7 +31,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="#tecspe" role="tab" data-toggle="tab">
-            <h3 class="dark-text" style="font-size: 24px;">
+            <h3 class="dark-text sizing"  >
                 Technical specification
             </h3>
         </a>
@@ -43,7 +39,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="#acc" role="tab" data-toggle="tab">
-            <h3 class="dark-text " style="font-size: 24px;">
+            <h3 class="dark-text sizing" >
                 Accessories
             </h3>
         </a>
@@ -51,9 +47,27 @@
 
 </ul>
 
-<div class="tab-content " >
+<div class="tab-content  min-height" >
     <div role="tabpanel" class="tab-pane fade in active" id="moreinfo">
-        <br><p class="min-height">{{ description }}</p>
+        <div class="container product-video">
+            <div class="row pt-10 ">
+                <!-- start video section -->
+                {% if  frappe.db.get_value("Item",doc.name,'youtube_link') %}
+                    <div class="col-lg-5 col-xl-5 col-md-12">
+                        <h3 class="dark-text sizing d-flex justify-content-center mt-3">Product Video</h3>
+                        <div class="d-flex justify-content-center my-4"  id="product-youtube"  data-src="{{youtube_link }}"> </div> 
+                    </div>
+                    <div class="col-lg-7 col-xl-7 col-md-12 mt-5 ">
+                        <br><p>{{ description }}</p>
+                    </div>
+                    {% else %}
+                    <div class="col-12">
+                        <br><p>{{ description }}</p>
+                    </div>
+                {% endif %}    
+               
+            </div>
+        </div>
     </div>
     <div role="tabpanel" class="tab-pane fade " id="tecspe">
         {% if specifications %}
@@ -83,12 +97,9 @@
                 <div class="row no-gutters">
                     <div class="col-md-12">
                         <div class="card-body card-image">
-                     
                                 <img class="website-image" alt="{{ link.accessory }}"
                                     src="{{ frappe.db.get_value('Item',link.accessory,'image') or '/files/eie-icon.svg' }}"
                                     title="{{ link.accessory }}">
-                           
-                            
                         </div>
                     </div>
                 </div>
@@ -165,11 +176,10 @@
                 aria-label="Previous">‹</span></button><button type="button" role="presentation"
             class="owl-next"><span aria-label="Next">›</span></button></div> -->
         </div>
-       
     </div>
-
 </section>
 {% endif %}
+
 {% endblock %}
 
 {% block base_scripts %}
@@ -181,6 +191,6 @@
 <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
 {% endblock %}
 
-                   
+
                            
                    
