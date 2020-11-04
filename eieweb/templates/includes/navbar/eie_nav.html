@@ -46,6 +46,7 @@
             {% endif %}
             <a href="#" class="d-none"></a>
         </li>
+        <!-- mobile section -->
         <li class="navSection mobile">
             <div id="content">
                 <div id="navsidebarCollapse" class="navbar-btn">
@@ -82,9 +83,6 @@
                                 </li>
                                 <li class="p-3">
                                     <a href="/certificate"><img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificete" title="Certificate">Certificate</a>
-                                </li>
-                                <li class="p-3">
-                                    <a href="/job opening"><img class="nav-service-icon" src="/files/responsibility.svg" alt="Careers" title="Careers">Careers</a>
                                 </li>
                             </ul>
                         </li>
@@ -161,12 +159,26 @@
                             <a href="/event">Event</a>
                         </li>
                         <li class="p-3">
-                            <!-- <img class="nav-service-icon" src="/files/nav-Gallery.svg" alt="Gallery" title="Gallery"> -->
-                            <a href="/inquiry">Inquiry</a>
-                        </li>
-                        <li class="p-3">
-                            <!-- <img class="nav-service-icon" src="/files/nav-Gallery.svg" alt="Gallery" title="Gallery"> -->
-                            <a href="/contact">Contact</a>
+                            <a href="/about" data-ls="ContactUsmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                alt="Left Arrow" title="Web App Development" height="15" width="15">
+                            Contact US</a>
+                            <img data-ls="ContactUsmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            <ul class="collapse list-unstyled ml-5" id='ContactUsmenu'>
+                               
+                                <li class="p-3">
+                                    <a href="/inquiry?new=1"><img class="nav-service-icon" src="/files/clipboard.svg" alt="Inquiry" title="Inquiry">Inquiry</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/contact"><img class="nav-service-icon" src="/files/phone-call.svg" alt="Contact us" title="Contact us">Contact us</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/jobs"><img class="nav-service-icon" src="/files/job-search.svg" alt="Job opening" title="Job opening">Job opening</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/issues"><img class="nav-service-icon" src="/files/project.svg" alt="Issues" title="Issues">Issues</a>
+                                </li>
+                            </ul>
                         </li>
                         {% if not hide_login %}
                         <li class="btn-login-area">
