@@ -1,19 +1,5 @@
 <header class="eieNav noDropdownTransition">
 
-    <style type="text/css">
-        .eie-logo {
-            width: 295px;
-            margin: inherit;
-            vertical-align: middle;
-            vertical-align: -webkit-baseline-middle;
-        }
-
-        @media (max-width: 320px) {
-            .eie-logo {
-                width: 230px;
-            }
-        }
-    </style>
     <ul class="navRoot">
         <li class="navSection logo mt-2 ml-2">
             <div class="eie-logo">
@@ -30,17 +16,20 @@
             <a class="rootLink hasDropdown" data-dropdown="product">
                 Products
             </a>
+            <a class="rootLink hasDropdown" data-dropdown="service">
+                Services
+            </a>
             <a class="rootLink" href="/catalogue">
                 E-Catalogue
             </a>
             <a class="rootLink" href="/trade-shows">
                 Event
             </a>
-            <a class="rootLink" href="/inquiry">
+            <!-- <a class="rootLink" href="/inquiry">
                 Inquiry
-            </a>
-            <a class="rootLink" href="/contact">
-                Contact 
+            </a> -->
+            <a class="rootLink hasDropdown" href="/contact" data-dropdown="contact">
+                Contact Us 
             </a>
         </li>
         <li class="navSection secondary">
@@ -95,10 +84,7 @@
                                     <a href="/certificate"><img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificete" title="Certificate">Certificate</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/manufacturing-facilities"><img class="nav-service-icon" src="/files/factoryf8143e.svg" alt="Certificete" title="Certificate">Infrastructure </a>
-                                </li>
-                                <li class="p-3">
-                                    <a href="/job opening"><img class="nav-service-icon" src="/files/responsibility.svg" alt="Certificete" title="Certificate">Careers</a>
+                                    <a href="/job opening"><img class="nav-service-icon" src="/files/responsibility.svg" alt="Careers" title="Careers">Careers</a>
                                 </li>
                             </ul>
                         </li>
@@ -147,6 +133,25 @@
 
                             </ul>
                         </li>
+
+                        <li class="p-3">
+                            <a href="" data-ls="servicesubmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                alt="Left Arrow" title="Services" height="15" width="15">
+                            Services</a>
+                            <img data-ls="servicesubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            <ul class="collapse list-unstyled ml-5" id='servicesubmenu'>
+                               
+                                <li class="p-3">
+                                    <a href="/calibration-and-validation-services"><img class="nav-service-icon" src="/files/calibration_validation_icon.svg" alt="calibration and validation service" title="Calibration & Validation Services">Calibration & Validation Services</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/manufacturing-facilities"><img class="nav-service-icon" src="/files/factory.svg" alt="Manufacturing Facilities" title="Manufacturing Facilities">Manufacturing Facilities</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
                         <li class="p-3">
                             <!-- <img class="nav-service-icon" src="/files/nav-tech-update.svg" alt="Blog" title="Blog"> -->
                             <a href="">E-Catalogue</a>
@@ -280,56 +285,56 @@
                                 <div class="col-4">
                                     <a href='#' class="d-block">
                                         <div class="tabc1 flex-inner active">
-                                            <p><a href="#">Aggregate Testing Equipment</a></p>
-                                            <p><a href="#">Bitumen Testing Equipment</a></p>
-                                            <p><a href="#">Cement Testing Equipment</a></p>
-                                            <p><a href="#">Concrete Testing Equipment</a></p>
-                                            <p><a href="#">Soil Testing Equipment</a></p>
-                                            <p><a href="#">Surveying Equipment</a></p>
-                                            <p><a href="#">Strength Of Material Testing Equipment</a></p>
-                                            <p><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
+                                            <p class="sizing-nav"><a href="#">Aggregate Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Bitumen Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Cement Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Concrete Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Soil Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Surveying Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Strength Of Material Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
 
                                         </div>
 
                                         <div class="tabc2 flex-inner">
-                                            <p><a href="#">Manual Universal Gauge (Plucometer) TC-101M</a></p>
-                                            <p><a href="#">Calibrating (Zeroing) Plate - TC-A1</a></p>
-                                            <p><a href="#">MOR Testing machine TC-104</a></p>
-                                            <p><a href="#">Surface abrasion testing machine TC-107</a></p>
-                                            <p><a href="#">Thermal Shock Tank - TC-110</a></p>
-                                            <p><a href="#">Frost resistance test apparatus TC-113</a></p>
-                                            <p><a href="#">Glass / Plastic Dessicator</a></p>
-                                            <p><a href="#">Chamois Leather</a></p>
+                                            <p class="sizing-nav"><a href="#">Manual Universal Gauge (Plucometer) TC-101M</a></p>
+                                            <p class="sizing-nav"><a href="#">Calibrating (Zeroing) Plate - TC-A1</a></p>
+                                            <p class="sizing-nav"><a href="#">MOR Testing machine TC-104</a></p>
+                                            <p class="sizing-nav"><a href="#">Surface abrasion testing machine TC-107</a></p>
+                                            <p class="sizing-nav"><a href="#">Thermal Shock Tank - TC-110</a></p>
+                                            <p class="sizing-nav"><a href="#">Frost resistance test apparatus TC-113</a></p>
+                                            <p class="sizing-nav"><a href="#">Glass / Plastic Dessicator</a></p>
+                                            <p class="sizing-nav"><a href="#">Chamois Leather</a></p>
                                         </div>
                                         <div class="tabc3 flex-inner">
-                                            <p><a href="#">Aggregate Testing Equipment</a></p>
-                                            <p><a href="#">Bitumen Testing Equipment</a></p>
-                                            <p><a href="#">Cement Testing Equipment</a></p>
-                                            <p><a href="#">Concrete Testing Equipment</a></p>
-                                            <p><a href="#">Soil Testing Equipment</a></p>
-                                            <p><a href="#">Surveying Equipment</a></p>
-                                            <p><a href="#">Strength Of Material Testing Equipment</a></p>
-                                            <p><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
+                                            <p class="sizing-nav"><a href="#">Aggregate Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Bitumen Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Cement Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Concrete Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Soil Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Surveying Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Strength Of Material Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
                                         </div>
                                         <div class="tabc4 flex-inner">
-                                            <p><a href="#">Manual Universal Gauge (Plucometer) TC-101M</a></p>
-                                            <p><a href="#">Calibrating (Zeroing) Plate - TC-A1</a></p>
-                                            <p><a href="#">MOR Testing machine TC-104</a></p>
-                                            <p><a href="#">Surface abrasion testing machine TC-107</a></p>
-                                            <p><a href="#">Thermal Shock Tank - TC-110</a></p>
-                                            <p><a href="#">Frost resistance test apparatus TC-113</a></p>
-                                            <p><a href="#">Glass / Plastic Dessicator</a></p>
-                                            <p><a href="#">Chamois Leather</a></p>
+                                            <p class="sizing-nav"><a href="#">Manual Universal Gauge (Plucometer) TC-101M</a></p>
+                                            <p class="sizing-nav"><a href="#">Calibrating (Zeroing) Plate - TC-A1</a></p>
+                                            <p class="sizing-nav"><a href="#">MOR Testing machine TC-104</a></p>
+                                            <p class="sizing-nav"><a href="#">Surface abrasion testing machine TC-107</a></p>
+                                            <p class="sizing-nav"><a href="#">Thermal Shock Tank - TC-110</a></p>
+                                            <p class="sizing-nav"><a href="#">Frost resistance test apparatus TC-113</a></p>
+                                            <p class="sizing-nav"><a href="#">Glass / Plastic Dessicator</a></p>
+                                            <p class="sizing-nav"><a href="#">Chamois Leather</a></p>
                                         </div>
                                         <div class="tabc5 flex-inner">
-                                            <p><a href="#">Aggregate Testing Equipment</a></p>
-                                            <p><a href="#">Bitumen Testing Equipment</a></p>
-                                            <p><a href="#">Cement Testing Equipment</a></p>
-                                            <p><a href="#">Concrete Testing Equipment</a></p>
-                                            <p><a href="#">Soil Testing Equipment</a></p>
-                                            <p><a href="#">Surveying Equipment</a></p>
-                                            <p><a href="#">Strength Of Material Testing Equipment</a></p>
-                                            <p><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
+                                            <p class="sizing-nav"><a href="#">Aggregate Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Bitumen Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Cement Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Concrete Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Soil Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Surveying Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">Strength Of Material Testing Equipment</a></p>
+                                            <p class="sizing-nav"><a href="#">POY (FILAMENT YARN) Testing Instruments</a></p>
                                         </div>
                                     </a>
                                 </div>
@@ -378,7 +383,7 @@
            
            <!-- About Sub menu -->
             <div class="dropdownSection" data-dropdown="about">
-                <div class="dropdownContent" style="width: 254px;">
+                <div class="dropdownContent" style="width: 200px;">
                     <ul class="linkGroup">
                         <li>
                             <a class="linkContainer" href="/about">
@@ -407,24 +412,69 @@
                                 <h6 class="link-underline mt-1">Certificate</h6>
                             </a>
                         </li>
-                        <li>
-                            <a class="linkContainer" href="/manufacturing-facilities">
-                                <img class="nav-service-icon" src="/files/factoryf8143e.svg" alt="Certificate" title="Certificate">
-                                <h6 class="link-underline mt-1">Infrastructure </h6>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="linkContainer" href="/jobs">
-                                <img class="nav-service-icon" src="/files/responsibility.svg" alt="Certificate" title="Certificate">
-                                <h6 class="link-underline mt-1">Careers</h6>
-                            </a>
-                        </li>
+                       
                        
                     </ul>
             
                 </div>
                 
-            </div> 
+            </div>
+            <!-- services sub menu -->
+            <div class="dropdownSection" data-dropdown="contact">
+                <div class="dropdownContent" style="width: 210px;">
+                    <ul class="linkGroup">
+                        <li>
+                            <a class="linkContainer" href="/inquiry?new=1">
+                                <img class="nav-service-icon" src="/files/clipboard.svg" alt="Inquiry" title="Inquiry">
+                                <h6 class="link-underline mt-1">Inquiry</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer" href="/contact">
+                                <img class="nav-service-icon" src="/files/phone-call.svg" alt="Contact Us" title="Contact Us">
+                                <h6 class="link-underline mt-1">Contact Us</h6>
+                            </a>
+                        </li>
+            
+                        <li>
+                            <a class="linkContainer" href="/jobs">
+                                <img class="nav-service-icon" src="/files/job-search.svg" alt="Job Application" title="Job Application">
+                                <h6 class="link-underline mt-1">Job Opening</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer" href="/issues">
+                                <img class="nav-service-icon" src="/files/project.svg" alt="Issues" title="Issues">
+                                <h6 class="link-underline mt-1">Issues</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Service Sub menu -->
+            <div class="dropdownSection" data-dropdown="service">
+                <div class="dropdownContent" style="width:353px;">
+                    <ul class="linkGroup">
+                        <li>
+                            <a class="linkContainer" href="/calibration-and-validation-services">
+                                <img class="nav-service-icon" src="/files/calibration_validation_icon.svg" alt="Calibration & Validation Services" title="Calibration & Validation Services">
+                                <h6 class="link-underline mt-1">Calibration & Validation Services</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer" href="/manufacturing-facilities">
+                                <img class="nav-service-icon" src="/files/factory.svg" alt="Manufacturing Facilities" title="Manufacturing Facilities">
+                                <h6 class="link-underline mt-1">Manufacturing Facilities
+                                </h6>
+                            </a>
+                            
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+
+
             <!-- login submenu -->
            
             {% if frappe.session.user != 'Guest' %}
@@ -450,7 +500,7 @@
                             <a class="linkContainer item-about" href="/desk" rel="nofollow">
                                 <img class="nav-service-icon float-left" src="/files/nav-switch-to-desk.svg" alt="Desk"
                                     title="Desk">
-                                <h6 class="d-inline-block mt-1" >{{ _('Switch To Desk') }}
+                                <h6 class="d-inline-block">{{ _('Switch To Desk') }}
                                 </h6>
                             </a>
                         </div>

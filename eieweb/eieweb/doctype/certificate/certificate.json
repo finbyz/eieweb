@@ -8,6 +8,7 @@
  "field_order": [
   "title",
   "certificate_title",
+  "certificate_type",
   "image",
   "route",
   "published"
@@ -17,12 +18,14 @@
    "fieldname": "title",
    "fieldtype": "Data",
    "label": "Title",
+   "reqd": 1,
    "unique": 1
   },
   {
    "fieldname": "certificate_title",
    "fieldtype": "Data",
-   "label": "Certificate Title"
+   "label": "Certificate Title",
+   "reqd": 1
   },
   {
    "fieldname": "image",
@@ -39,11 +42,19 @@
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Published"
+  },
+  {
+   "fieldname": "certificate_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Certificate Type",
+   "options": "\nLegal Documents\nQuality Certification\nPerformance Certification",
+   "reqd": 1
   }
  ],
  "has_web_view": 1,
  "is_published_field": "published",
- "modified": "2020-09-21 10:10:37.990148",
+ "modified": "2020-10-30 14:39:19.313430",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Certificate",

@@ -23,25 +23,25 @@
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" href="#moreinfo" role="tab" data-toggle="tab">
-            <h3 class="dark-text sizing" >
+            <h5 class="dark-text sizing" >
                 More Information
-            </h3>
+            </h5>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="#tecspe" role="tab" data-toggle="tab">
-            <h3 class="dark-text sizing"  >
+            <h5 class="dark-text sizing"  >
                 Technical specification
-            </h3>
+            </h5>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="#acc" role="tab" data-toggle="tab">
-            <h3 class="dark-text sizing" >
+            <h5 class="dark-text sizing" >
                 Accessories
-            </h3>
+            </h5>
         </a>
     </li>
 
@@ -53,19 +53,17 @@
             <div class="row pt-10 ">
                 <!-- start video section -->
                 {% if  frappe.db.get_value("Item",doc.name,'youtube_link') %}
-                    <div class="col-lg-5 col-xl-5 col-md-12">
-                        <h3 class="dark-text sizing d-flex justify-content-center mt-3">Product Video</h3>
+                    <div class="col-lg-5 col-xl-5 col-md-12 mt-2">
                         <div class="d-flex justify-content-center my-4"  id="product-youtube"  data-src="{{youtube_link }}"> </div> 
                     </div>
-                    <div class="col-lg-7 col-xl-7 col-md-12 mt-5 ">
+                    <div class="col-lg-7 col-xl-7 col-md-12 mt-2 ">
                         <br><p>{{ description }}</p>
                     </div>
                     {% else %}
                     <div class="col-12">
                         <br><p>{{ description }}</p>
                     </div>
-                {% endif %}    
-               
+                {% endif %}  
             </div>
         </div>
     </div>

@@ -709,20 +709,22 @@ $(function () {
 
 
 //  product vidio
+        $(document).ready(function(){
+            var div,
+            n,
+            v = $("#product-youtube");
+            for (n = 0; n < v.length; n++){
+            div = document.createElement("iframe");
+            var str=  v[n].dataset.src;
+            var res = str.split("=");
+            var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
+            div.setAttribute("src", embeddedUrl);
+            v[n].appendChild(div);
+                }
+            })
+         
 
-$(document).ready(function(){
-    var div,
-    n,
-    v = $("#product-youtube");
-    for (n = 0; n < v.length; n++){
-    div = document.createElement("iframe");
-    var str=  v[n].dataset.src;
-    var res = str.split("=");
-    var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
-    div.setAttribute("src", embeddedUrl);
-    v[n].appendChild(div);
-    }
-})
+
 
       
  

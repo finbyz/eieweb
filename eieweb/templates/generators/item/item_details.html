@@ -1,31 +1,34 @@
-<div class="  col-md-7 ">
+<div class="  col-md-12 col-xs-12 col-lg-7 mt-3 ">
     <!-- title -->
-    <h3 itemprop=" name" >
+    <h2 itemprop=" name" class="product_title_name">
         {{ website_item_name or item_name}}
-    </h3>
-    <p class="text-muted  ">
+    </h2>
+    <!-- <p class="text-muted  ">
         <span >{{ _("Item Code") }}:</span>
         <span itemprop="productID" >{{ doc.name }}</span>
-    </p>
+    </p> -->
     <!-- description -->
-    <div itemprop="description" class="product_description" > 
-        {% if frappe.utils.strip_html(doc.web_long_description or '') %}
-            {{ doc.web_long_description | safe }}
-        {% elif frappe.utils.strip_html(doc.description or '')  %}
-            {{ doc.small_description | safe }}
-        {% else %}
-            {{ _("No description given") }}
-        {% endif  %}
-    
-    </div>
+    <div itemprop="description" class="product_description " > 
+        <p class="min-height">
+            {% if frappe.utils.strip_html(doc.web_long_description or '') %}
+                {{ doc.web_long_description | safe }}
+            {% elif frappe.utils.strip_html(doc.description or '')  %}
+                {{ doc.small_description | safe }}
+            {% else %}
+                {{ _("No description given") }}
+            {% endif  %}
+        </p>
+    </div>  
+   
     
     {% if has_variants %}
-
         <!-- configure template -->
         {% include "templates/generators/item/item_configure.html" %}
     {% else %}
         <!-- add variant to cart -->
         {% include "templates/generators/item/item_add_to_cart.html" %}
     {% endif %}
+   
 </div>
-    
+
+   

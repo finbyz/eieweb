@@ -1,39 +1,45 @@
 <body>
 
 
-    {% set history_list = frappe.get_list("Certificate", {} ,['title', 'image']) %}
-
+    {% set history_list = frappe.get_list("Certificate", {} ,['title', 'image','certificate_type']) %}
     <section class="pt-50">
 
         <!-- <div class="container-fluid"> -->
-        <div class="row pt-50">
+        <div class="row mb-3">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <h2 class="dark-text title-underline">Certificates</h2>
             </div>
         </div>
-
-        <div class="row container-fluid mx-auto my-auto"  id="gallery"  data-toggle="modal" data-target="#exampleModal">
+        {% set type = ['Legal Documents','Quality Certification','Performance Certification']%}
+        <div class="row container-fluid mx-auto my-auto" id="gallery" data-toggle="modal" data-target="#exampleModal">
             {% set count = namespace(a=0)%}
+            
+            {% for row in type %}
+           <h5 class="col-12 py-2">{{ row }}</h5>
             {% for certi_set in history_list  %}
-            <div class="col-12 col-sm-6 col-lg-3 border-dark Certificates ">
+            {% if row == certi_set.certificate_type %}
+           
+            <div class="col-12 col-sm-6 col-lg-3 border-dark Certificates py-2">
                     <div class="Certificates_image">
                           <img class="px-2 py-2 " src="{{ certi_set.image }}" alt="{{ certi_set.title }}" data-target="#carouselExample"
-                            data-slide-to="{{ count.a }}" Title="{{ certi_set.certificate_title }}" >
+                            data-slide-to="{{ count.a }}" Title="{{ certi_set.title }}" >
                     </div>
                     <div class="Certificates_text">
                         <p class="text-center">{{ certi_set.title }}</p>
-                    
                     </div>
-                
             </div>
+        
             {% set count.a = count.a + 1 %}
+            {% endif %}
+            {% endfor %}
             {% endfor %}
 
         </div>
         <div class="modal fade" tabindex="-5" role="dialog" id="exampleModal">
             <div class="modal-dialog " role="document">
-              <div class="modal-content gallery-content">
-                <div class="modal-header gallery-header">
+              <div class="modal-content">
+                <div class="modal-header">
+                    
                     <p>certificates</p>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -41,14 +47,18 @@
                   <!-- </button> -->
                 </div>
 
-                <div class="modal-body gallery-body">
+                <div class="modal-body">
                     <div id="carouselExample"  class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner mx-auto">
                             
-                            {% set count = namespace(b=0)%}
+                            {% for row in type %}
+                            {% set cont = namespace(b=0)%}
                             {% for certi_set in history_list  %}
+                           
 
-                            {% if count.b == 0 %}
+                            {% if row == certi_set.certificate_type %}
+                            <!-- {{ cont.b }} -->
+                            {% if cont.b == 0 %}
 
                             <div class="carousel-item active ">
                                 <img class="d-inline-block" src="{{ certi_set.image }}" alt="{{ certi_set.title }}">
@@ -58,8 +68,9 @@
                                 <img class="d-inline-block" src="{{ certi_set.image }}" alt="{{ certi_set.title }}">
                             </div>
                             {% endif %}
-
-                            {% set count.b = count.b + 1 %}
+                            {% endif %}
+                            {% set cont.b = cont.b + 1 %}
+                            {% endfor %}
                             {% endfor %}
 
                          </div>
@@ -73,10 +84,7 @@
                         </a>
                     </div> 
                 </div>
-                <!-- <div class="modal-footer">
-                
-                 
-                </div> -->
+               
               </div>
             </div>
           </div>
