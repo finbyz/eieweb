@@ -424,13 +424,14 @@ $('#navsidebarCollapse').on('click', function () {
 
 
 //navbar images
-$('.tabanchor').on('mouseenter', function (e) {
-    var getTab = $(this).attr('href');
-    $(this).parent().addClass('active');
-    $('.flex-inner').removeClass('active')
-    $(getTab).addClass('active')
-    e.preventDefault();
-})
+// $('.tabanchor').on('mouseenter', function (e) {
+//     var getTab = $(this).attr('href');
+//     $(this).parent().addClass('active');
+//     $('.flex-inner').addClass('active');
+//     $('.flex-inner').addClass('active');
+//     $(getTab).addClass('active');
+//     e.preventDefault();
+// })
 
 
 

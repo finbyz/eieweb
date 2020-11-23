@@ -22,9 +22,9 @@
                 </div> -->
 
                 {% if self.header_actions() %}
-                <div class="page-header-actions-block  mt-4">
-                    {% block header_actions %}{% endblock %}
-                </div>
+                    <div class="page-header-actions-block  mt-4">
+                        {% block header_actions %}{% endblock %}
+                    </div>
                 {% endif %}
             </div>
            
@@ -41,12 +41,7 @@
         {% if doctype == "Web Page" and name == "index" %}
         {% include "www/Customer.html" %}
         {% endif %}
-        
-    
-        
-       
-      
-        
+
         <!-- <div class="page-footer">
             {%- block page_footer -%}{%- endblock -%}
         </div> -->
