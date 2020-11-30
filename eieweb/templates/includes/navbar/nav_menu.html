@@ -16,7 +16,8 @@
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                 <li>
                     <a href="/{{ parent_doc.route }}" class="has-child activeP"  id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
-                        <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon" >
+                        <!-- <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon" > -->
+                        
                         <h6 class="pt-1">{{ parent_doc.name }}</h6>
                     </a>
                 </li>
@@ -28,9 +29,9 @@
         <div class="custom-menu-block">
             <div class="child-cat">
                 {% for key, value in data.items() %} 
-                {% if key|replace(' ','')|replace('&','') == 'PaperPackagingTestingInstruments' %}
+                {% if key|replace(' ','')|replace('&','') == 'OilPetroleumProductsTestingInstruments' %}
                 <div id="child{{key|replace(' ','')|replace('&','')}}" class="subcat-inner active">
-                    <ul class="cal-listing mt-5">
+                    <ul class="cal-listing">
                         {% for v in value %}
                         {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}  
                             <li class="sizing-nav active"><a href="/{{child_doc.route}}">{{  child_doc.name }}</a></li>
@@ -39,7 +40,7 @@
                 </div>
                 {% endif %}
                 <div id="child{{key|replace(' ','')|replace('&','')}}" class="subcat-inner" >
-                    <ul class="cal-listing mt-5" >
+                    <ul class="cal-listing">
                         {% for v in value %}
                         {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}  
                             <li class="sizing-nav" style="display: block;"><a href="/{{child_doc.route}}">{{ child_doc.name }}</a></li>
@@ -55,9 +56,16 @@
             <div class="image-container-overlap animated-square-nav">
                 <div class="image-stack">
                 {% for key, value in data.items() %}
-                    <div class="image-stack__item image-stack__item--bottom active" >
+                {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
+                {% if key|replace(' ','')|replace('&','') == 'OilPetroleumProductsTestingInstruments' %}
+                <div class="image-stack__item image-stack__item--bottom" id="image{{key|replace(' ','')|replace('&','')}}" >
+                    <img class=" flex-inner  nav-ind-image active" width="370"
+                        src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="{{parent_doc.name}}">
+                </div>
+                {% endif %}
+                    <div class="image-stack__item image-stack__item--bottom" id="image{{key|replace(' ','')|replace('&','')}}" >
                         <img class=" flex-inner  nav-ind-image" width="370"
-                            src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="Civil">
+                            src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="{{parent_doc.name}}">
                     </div>
                 {% endfor %}
                 </div>
@@ -68,6 +76,7 @@
 
 <script>
        $('.top-cat li a').hover(function() {
+           let i;
         let id = $(this).attr('id');
     	$('.child-cat .subcat-inner').each(function() {
             $(this).removeClass('active');
@@ -75,7 +84,7 @@
         $('.image-stack .flex-inner').each(function() {
             $(this).removeClass('active');
             $(`#${id}`).addClass('active');
-            $(`#child${id}`).addClass('active');
+            $(`#image${id}`).children().addClass('active');
     	});
     	$('.top-label a').each(function(){
     		$(this).removeClass('activeP');

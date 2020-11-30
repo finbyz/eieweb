@@ -21,7 +21,6 @@
                                     <img src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}"
                                         alt="job-opening-img" class="img-fluid image-anime "
                                         style="border: 0px; border-radius: 0px; padding: 0px; margin-left: 0px; box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 50px; transform: translate3d(0px, -10.5863%, 0px);">
-
                                 </div>
                             </div>
                         </div>
@@ -34,6 +33,7 @@
                 <p style="font-size: 18px;">{{frappe.db.get_value("Job Opening", doc.name,"small_description")}}</p>
                 <h5> Job Description</h5>
                 <p>{{frappe.db.get_value("Job Opening", doc.name,"job_description")}}</p>
+
                 <!-- <p>{{frappe.db.get_value("Job Opening", doc.name,"min_experience")}}</p> -->
 
                 <div class="d-md-flex d-sm-block d-block text-center mx-5">
@@ -59,8 +59,6 @@
                             <div class="eie-ring eie-btn-bottom "></div>
                         </div>
                     </a>
-
-
                 </div>
             </div>
 

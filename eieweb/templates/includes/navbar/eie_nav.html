@@ -9,7 +9,6 @@
             </div>
         </li>
         <li class="navSection primary p-2">
-         <!---  <a class="rootLink" href="/"> Home </a> ----->
             <a class="rootLink hasDropdown" data-dropdown="about" href="/about">
                 Company
             </a>
@@ -25,9 +24,6 @@
             <a class="rootLink" href="/trade-shows">
                 Event
             </a>
-            <!-- <a class="rootLink" href="/inquiry">
-                Inquiry
-            </a> -->
             <a class="rootLink hasDropdown" href="/contact" data-dropdown="contact">
                 Contact
             </a>
@@ -64,17 +60,15 @@
                     </div>
                     <ul class="list-unstyled components">
                         <li class="p-3">
-                            <!-- <img src="/files/nav-home.svg" title="Home" alt="Home" class="nav-service-icon"> -->
                             <a href="/">Home</a>
                         </li>
                         <li class="p-3">
                             <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
                                 alt="Left Arrow" title="Web App Development" height="15" width="15">
-                            About</a>
+                                About</a>
                             <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
                             <ul class="collapse list-unstyled ml-5" id='aboutsubmenu'>
-                               
                                 <li class="p-3">
                                     <a href="/about"><img class="nav-service-icon" src="/files/about-eie.svg" alt="about-eie" title="About-eie">About EIE</a>
                                 </li>
@@ -88,47 +82,33 @@
                         </li>
 
                         <li class="p-3">
+                            {% set parent_item_group = frappe.get_all("Website Itemgroup",{'parent_website_itemgroup':'All Item Groups','show_in_website':1,'is_group':1}) %}
+                            {% set data = {} %}
+                            {% for item_group in parent_item_group %}
+                            {% set _ = data.update({item_group.name:frappe.get_all('Website Itemgroup',{'parent_website_itemgroup':item_group.name})}) %}
+                            {% endfor%}
                             <a href="/product" data-ls="products" data-toggle="collapse" aria-expanded="false"
                                 class="go-tosub-menu">
                                    <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
                                     alt="Left Arrow" title="Web App Development" height="15" width="15">
-                                <!-- <img class="nav-service-icon" src="/files/nav-services.svg" alt="Services" title="Services"> -->
                                 Products
                             </a>
                             <img data-ls="products" src="/files/right-arrow-nav.svg"
                                 class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
-                            <ul class="collapse list-unstyled ml-5" id='products'>
+                            <ul class="collapse list-unstyled" id='products'>
+                                {% for key, value in data.items() %}
+                                {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                                 <li class="p-3">
                                     <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon"> 
-                                    <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%7D'
-                                        class="link-underline p-1">Industries</a>
+                                    <a href='/{{ parent_doc.route }}'
+                                        class="link-underline p-1">{{ parent_doc.name }}</a>
                                 </li>
-                                <li class="p-3 pl-4">
-                                    <img class="nav-service-icon" src="/files/oil-petrol-nav-icon.svg" alt="oil-petrol-nav-icon" title="oil-petrol-nav-icon"> 
-                                    <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"Double+Charge"%5D%7D'
-                                        class="link-underline p-1">Civil Engineeringg</a>
+                                {% endfor %}
+                                <li class="text-center">
+                                    <a class="" href="/all-products">
+                                        <h6 class="title-underline">View All</h6>
+                                    </a>
                                 </li>
-                                <li class="p-3 pl-4">
-                                    <img class="nav-service-icon" src="/files/pharma-nav-icon.svg" alt="pharma-nav-icon" title="pharma-nav-icon">
-                                    <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"%28P%29GVT"%5D%7D'
-                                        class="link-underline p-1"> Pharmaceutical & Microbiology </a>
-                                </li>
-                                <li class="p-3 pl-4">
-                                    <img class="nav-service-icon" src="/files/oil-petrol-nav-icon.svg" alt="oil-petrol-nav-icon" title="oil-petrol-nav-icon">
-                                    <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"Nano"%5D%7D'
-                                        class="link-underline p-1">Oil & Petroleum</a>
-                                </li>
-                                <li class="p-3 pl-4">
-                                    <img class="nav-service-icon" src="/files/tiles-caramic-nav-icon.svg" alt="tiles-caramic-nav-icon" title="tiles-caramic-nav-icon">
-                                    <a href='/product?field_filters=%7B"tile_use"%3A%5B"Floor"%5D%2C"tile_type"%3A%5B"Porcelain"%5D%7D'
-                                        class="link-underline p-1">Tiles & Ceramics</a>
-                                </li>
-                                    <li class="text-center">
-                                        <a class="" href="/all-products">
-                                            <h6 class="title-underline">View All</h6>
-                                        </a>
-                                    </li>
-
                             </ul>
                         </li>
 
@@ -148,14 +128,10 @@
                                 </li>
                             </ul>
                         </li>
-
-
                         <li class="p-3">
-                            <!-- <img class="nav-service-icon" src="/files/nav-tech-update.svg" alt="Blog" title="Blog"> -->
                             <a href="">E-Catalogue</a>
                         </li>
                         <li class="p-3">
-                            <!-- <img class="nav-service-icon" src="/files/nav-Gallery.svg" alt="Gallery" title="Gallery"> -->
                             <a href="/trade-shows">Event</a>
                         </li>
                         <li class="p-3">
@@ -181,7 +157,6 @@
                         </li>
                         {% if not hide_login %}
                         <li class="btn-login-area">
-                            <!-- <img class="nav-service-icon" src="/files/nav-login.svg" alt="Login" title="Login"> -->
                             <a href="/login">{{ _("Login") }}</a>
                         </li>
                         {% endif %}
@@ -194,7 +169,6 @@
                                 <span class="full-name"></span>
                                 <b class="caret"></b>
                             </a>
-                            <!-- <img data-ls="loginsubmenu" src="/files/right-arrow.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15"> -->
                             <ul class="collapse list-unstyled ml-5" id='loginsubmenu'>
                                 <li>
                                     <a class="" href="/me" rel="nofollow">
@@ -226,7 +200,6 @@
                 </nav>
             </div>
         </li>
-        
     </ul>
     
     <div class="dropdownRoot">
@@ -271,13 +244,6 @@
                                 <h6 class="link-underline mt-1">Quality Policy
                                 </h6>
                             </a>
-                            <div>
-                                <!-- <div class="linkContainer" href=".tabc1">
-                                    <a href='#'>
-                                        <h6 class="pt-1">Civil Engineering</h6>
-                                    </a>
-                                </div> -->
-                            </div>
                         </li>
             
                         <li>
@@ -369,7 +335,6 @@
                                 <h6 class="link-underline mt-1">Manufacturing Facilities
                                 </h6>
                             </a>
-                            
                         </li>
                     </ul>
                 </div>
