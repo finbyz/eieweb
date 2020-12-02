@@ -5,19 +5,13 @@
 {% endfor%}
 <div class="industry-group-sub col-xl-12 row pt-2  d-flex flex-row">
     <div class="d-block col-4">
-        <a href='#' class="">
-            <img alt="Industry" title="Industry" src="/files/eie-icon.svg"
-                class="nav-icon float-left pt-2 pr-2">
-            <h3 class="">Industries</h3>
-        </a>
         <div class="top-cat" >
-            <ul class=" top-label pb-5 pt-4">
+            <ul class=" top-label">
                 {% for key, value in data.items() %}
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                 <li>
                     <a href="/{{ parent_doc.route }}" class="has-child activeP"  id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
-                        <!-- <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon" > -->
-                        
+                        <img class="nav-service-icon" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}" alt="{{parent_doc.name}}" >
                         <h6 class="pt-1">{{ parent_doc.name }}</h6>
                     </a>
                 </li>
@@ -25,16 +19,16 @@
             </ul>
         </div>
     </div>
-    <div class="col-4 ">
+    <div class="col-4">
         <div class="custom-menu-block">
             <div class="child-cat">
                 {% for key, value in data.items() %} 
-                {% if key|replace(' ','')|replace('&','') == 'OilPetroleumProductsTestingInstruments' %}
+                {% if key|replace(' ','')|replace('&','') == 'PaperPackagingTestingInstruments' %}
                 <div id="child{{key|replace(' ','')|replace('&','')}}" class="subcat-inner active">
                     <ul class="cal-listing">
                         {% for v in value %}
                         {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}  
-                            <li class="sizing-nav active"><a href="/{{child_doc.route}}">{{  child_doc.name }}</a></li>
+                            <li class="sizing-nav active mb-2"><a href="/{{child_doc.route}}">{{  child_doc.name }}</a></li>
                         {% endfor %}       
                     </ul>
                 </div>
@@ -43,7 +37,7 @@
                     <ul class="cal-listing">
                         {% for v in value %}
                         {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}  
-                            <li class="sizing-nav" style="display: block;"><a href="/{{child_doc.route}}">{{ child_doc.name }}</a></li>
+                            <li class="sizing-nav mb-2" style="display: block;"><a href="/{{child_doc.route}}">{{ child_doc.name }}</a></li>
                         {% endfor %}       
                     </ul>
                 </div>
@@ -51,13 +45,13 @@
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 d-flex justify-content-start pl-0">
         <a href='#' class="d-block">
             <div class="image-container-overlap animated-square-nav">
-                <div class="image-stack">
+                <div class="image-stack mt-0">
                 {% for key, value in data.items() %}
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
-                {% if key|replace(' ','')|replace('&','') == 'OilPetroleumProductsTestingInstruments' %}
+                {% if key|replace(' ','')|replace('&','') == 'PaperPackagingTestingInstruments' %}
                 <div class="image-stack__item image-stack__item--bottom" id="image{{key|replace(' ','')|replace('&','')}}" >
                     <img class=" flex-inner  nav-ind-image active" width="370"
                         src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="{{parent_doc.name}}">
