@@ -14,6 +14,7 @@
   "parent_website_itemgroup",
   "is_group",
   "image",
+  "svg",
   "column_break_5",
   "defaults",
   "sb9",
@@ -146,6 +147,11 @@
    "label": "Website Itemgroup name",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "svg",
+   "fieldtype": "Attach Image",
+   "label": "SVG"
   }
  ],
  "has_web_view": 1,
@@ -154,7 +160,7 @@
  "is_published_field": "show_in_website",
  "is_tree": 1,
  "max_attachments": 3,
- "modified": "2020-10-28 17:09:59.618307",
+ "modified": "2020-12-03 10:16:14.724374",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Website Itemgroup",
