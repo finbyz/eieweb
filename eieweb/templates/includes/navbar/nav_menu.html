@@ -23,16 +23,6 @@
         <div class="custom-menu-block">
             <div class="child-cat">
                 {% for key, value in data.items() %} 
-                {% if key|replace(' ','')|replace('&','') == 'PaperPackagingTestingInstruments' %}
-                <div id="child{{key|replace(' ','')|replace('&','')}}" class="subcat-inner active">
-                    <ul class="cal-listing">
-                        {% for v in value %}
-                        {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}  
-                            <li class="sizing-nav active mb-2"><a href="/{{child_doc.route}}">{{  child_doc.name }}</a></li>
-                        {% endfor %}       
-                    </ul>
-                </div>
-                {% endif %}
                 <div id="child{{key|replace(' ','')|replace('&','')}}" class="subcat-inner" >
                     <ul class="cal-listing">
                         {% for v in value %}
@@ -51,12 +41,6 @@
                 <div class="image-stack mt-0">
                 {% for key, value in data.items() %}
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
-                {% if key|replace(' ','')|replace('&','') == 'PaperPackagingTestingInstruments' %}
-                <div class="image-stack__item image-stack__item--bottom" id="image{{key|replace(' ','')|replace('&','')}}" >
-                    <img class=" flex-inner  nav-ind-image active" width="370"
-                        src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="{{parent_doc.name}}">
-                </div>
-                {% endif %}
                     <div class="image-stack__item image-stack__item--bottom" id="image{{key|replace(' ','')|replace('&','')}}" >
                         <img class=" flex-inner  nav-ind-image" width="370"
                             src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="{{parent_doc.name}}">
@@ -67,31 +51,23 @@
         </a>
     </div>
 </div>
-
 <script>
+      $( ".child-cat .subcat-inner:first" ).addClass( 'active');
+      $( ".image-stack .flex-inner:first" ).addClass( 'active');
        $('.top-cat li a').hover(function() {
-           let i;
         let id = $(this).attr('id');
-    	$('.child-cat .subcat-inner').each(function() {
+        $('.child-cat .subcat-inner').each(function() {
             $(this).removeClass('active');
-    	});
+        });
         $('.image-stack .flex-inner').each(function() {
             $(this).removeClass('active');
             $(`#${id}`).addClass('active');
             $(`#image${id}`).children().addClass('active');
-    	});
-    	$('.top-label a').each(function(){
-    		$(this).removeClass('activeP');
-    	});
-    	$(`#${id}`).addClass('activeP');
+        });
+        $('.top-label a').each(function(){
+            $(this).removeClass('activeP');
+        });
+        $(`#${id}`).addClass('activeP');
         $(`#child${id}`).addClass('active');
-        // if ($('.child-cat .subcat-inner').hasClass('active')) {
-        //     // alert('hello');
-        //     $(`#${id}`).addClass('activeP');
-    	// 	$(`#child${id}`).addClass('active');
-        //  } else {
-    	// $(`#${id}`).removeClass('activeP');
-    	// 	$(`#child${id}`).removeClass('active');
-    	// }
     });
 </script>
