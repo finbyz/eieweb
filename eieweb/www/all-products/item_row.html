@@ -7,7 +7,7 @@
 				<a class="no-underline" href="/{{ item.route }}">
 					<div class="vis-img product-img has-animation has-animation-y animation-ttb scroll">
 						{% if item.image or item.website_image %}
-							<img class="website-image" src="{{ item.image or item.website_image or 'no-image.jpg'  }}"
+							<img class="website-image" src="{{ item.image or item.website_image or '/files/no-image.png'  }}"
 								alt="{{ item.item_name  }}">
 						{% else %}
 							<img class="website-image" src="/files/eie-logo.svg"

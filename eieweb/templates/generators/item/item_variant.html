@@ -1,0 +1,158 @@
+<div class="item-attribute-selectors">
+    {% if has_variants and attributes %}
+    {% for d in attributes %}
+    
+    {% if attribute_values[d.attribute] -%}
+    <div class="item-view-attribute {% if (attribute_values[d.attribute] | len)==1 -%} hidden {%- endif %}"
+            style="margin-bottom: 10px;">
+        <h6 class="text-muted">{{ _(d.attribute) }}</h6>
+
+        <ul data-attribute="{{ d.attribute }}" id="selectable">
+
+            {% for value in attribute_values[d.attribute] %}
+            <li value="{{ value }}" {% if selected_attributes and selected_attributes[d.attribute]==value -%}
+           class='selected'
+             {%- elif disabled_attributes and value in disabled_attributes.get(d.attribute, []) -%}
+            disabled
+            {%- endif %}>{{ _(value) }}</li>
+            {% endfor %}    
+        </ul>
+    </div>
+    {%- endif %}
+    {% endfor %}
+
+    {% endif %}
+</div>
+
+<script>
+    var _mousedown = false;
+        
+    $('#selectable li').mousedown(function(){
+        _mousedown = true;
+        $('.ui-selected').removeClass('ui-selected');
+        $('#selectable li').attr('unselectable', 'on').css('user-select', 'none');
+        $(this).addClass('ui-selecting');
+    }).mouseup(function(){
+        _mousedown=false;  
+        $('.ui-selecting').addClass('ui-selected');
+        $('#selectable li').removeAttr('unselectable style');
+   
+    });
+ 
+    $(".item-view-attribute #selectable").on("click", function() {
+       
+		try {
+			var item_code = encodeURIComponent(get_item_code());  
+	    }
+		catch(e) {
+			// unable to find variant
+			// then chose the closest available one
+           
+			var attribute = $(this).attr("data-attribute");
+			var attribute_value = $(this).find('li.ui-selected').text();
+			var item_code = find_closest_match(attribute, attribute_value);
+          
+			if (!item_code) {
+                frappe.msgprint(__("Cannot find a matching Item. Please select some other value for {0}.", [attribute]))
+				throw e;
+			}
+		}
+        
+
+		if (window.location.search == ("?variant=" + item_code) || window.location.search.includes(item_code)) {
+			return;
+		}
+		window.location.href = window.location.pathname + "?variant=" + item_code;
+    });
+
+function get_item_code() {
+    var variant_info =window.variant_info;
+    
+    if(variant_info) {
+        var attributes = get_selected_attributes();
+        var no_of_attributes = Object.keys(attributes).length;
+
+        for(var i in variant_info) {
+            var variant = variant_info[i];
+
+            if (variant.attributes.length < no_of_attributes) {
+                // the case when variant has less attributes than template
+                continue;
+            }
+
+            var match = true;
+            for(var j in variant.attributes) {
+                if(attributes[variant.attributes[j].attribute]
+                    != variant.attributes[j].attribute_value
+                ) {
+                    match = false;
+                    break;
+                }
+            }
+            if(match) {
+                return variant.name;
+            }
+        }
+        throw "Unable to match variant";
+    } else {
+        return window.item_code;
+    }
+}
+
+function find_closest_match(selected_attribute, selected_attribute_value) {
+	// find the closest match keeping the selected attribute in focus and get the item code
+
+	var attributes = get_selected_attributes();
+	var previous_match_score = 0;
+	var previous_no_of_attributes = 0;
+	var matched;
+
+	var variant_info = window.variant_info;
+	for(var i in variant_info) {
+		var variant = variant_info[i];
+		var match_score = 0;
+		var has_selected_attribute = false;
+
+		for(var j in variant.attributes) {
+			if(attributes[variant.attributes[j].attribute]===variant.attributes[j].attribute_value) {
+				match_score = match_score + 1;
+				if (variant.attributes[j].attribute==selected_attribute && variant.attributes[j].attribute_value==selected_attribute_value) {
+					has_selected_attribute = true;
+				}
+			}
+		}
+
+		if (has_selected_attribute
+			&& ((match_score > previous_match_score) || (match_score==previous_match_score && previous_no_of_attributes < variant.attributes.length))) {
+			previous_match_score = match_score;
+			matched = variant;
+			previous_no_of_attributes = variant.attributes.length;
+		}
+	}
+
+	if (matched) {
+		for (var j in matched.attributes) {
+			var attr = matched.attributes[j];
+			$('[itemscope]')
+				.find(repl('.item-view-attribute #selectable[data-attribute="%(attribute)s"] li', attr))
+				.val(attr.attribute_value);
+		}
+		return matched.name;
+
+	}
+}
+
+function get_selected_attributes() {
+	var attributes = {};
+	$('.product-page-content').find(".item-view-attribute #selectable").each(function() {
+		attributes[$(this).attr('data-attribute')] = $(this).find('li.ui-selected').text();
+	});
+	return attributes;
+}
+{% if variant_info %}
+window.variant_info = {{ variant_info }};
+{% else %}
+window.variant_info = null;
+{% endif %}
+
+</script>

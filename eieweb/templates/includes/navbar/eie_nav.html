@@ -29,8 +29,8 @@
         </li>
         <li class="navSection secondary">
             {% if not hide_login %}
-            <a href="/login" class="rootLink btn-login-area">{{ _("Login") }}</a> 
-            
+            <a href="/login" class="rootLink btn-login-area">{{ _("Login") }}</a>
+
             {% endif %}
             {% if frappe.session.user != 'Guest' %}
             <a href="#" class="rootLink hasDropdown" data-dropdown="eie-login" data-label="website-post-login">
@@ -62,34 +62,40 @@
                             <a href="/">Home</a>
                         </li>
                         <li class="p-3">
-                            <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                            <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse"
+                                aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                alt="Left Arrow" title="Web App Development" height="15" width="15">
+                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
                                 About</a>
-                            <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg"
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
                             <ul class="collapse list-unstyled ml-5" id='aboutsubmenu'>
                                 <li class="p-3">
-                                    <a href="/about"><img class="nav-service-icon" src="/files/about-eie.svg" alt="about-eie" title="About-eie">About EIE</a>
+                                    <a href="/about"><img class="nav-service-icon" src="/files/about-eie.svg"
+                                            alt="about-eie" title="About-eie">About EIE</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/Quality%20policy"><img class="nav-service-icon" src="/files/quality.svg" alt="Quality-policy" title="About Quality-policy">Quality Policy</a>
+                                    <a href="/Quality%20policy"><img class="nav-service-icon" src="/files/quality.svg"
+                                            alt="Quality-policy" title="About Quality-policy">Quality Policy</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/certificate"><img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificete" title="Certificate">Certificate</a>
+                                    <a href="/certificate"><img class="nav-service-icon"
+                                            src="/files/certificate3a56c4.svg" alt="Certificete"
+                                            title="Certificate">Certificate</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="p-3">
-                            {% set parent_item_group = frappe.get_all("Website Itemgroup",{'parent_website_itemgroup':'All Item Groups','show_in_website':1,'is_group':1}) %}
+                            {% set parent_item_group = frappe.get_all("Website Itemgroup",{'parent_website_itemgroup':'All Item Groups','show_in_website':1,'is_group':1}, order_by="priority") %}
                             {% set data = {} %}
                             {% for item_group in parent_item_group %}
                             {% set _ = data.update({item_group.name:frappe.get_all('Website Itemgroup',{'parent_website_itemgroup':item_group.name})}) %}
                             {% endfor%}
                             <a href="/product" data-ls="products" data-toggle="collapse" aria-expanded="false"
                                 class="go-tosub-menu">
-                                   <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow"  height="15" width="15">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                    alt="Left Arrow" height="15" width="15">
                                 Products
                             </a>
                             <img data-ls="products" src="/files/right-arrow-nav.svg"
@@ -98,32 +104,41 @@
                                 {% for key, value in data.items() %}
                                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                                 <li class="p-3">
-                                    <img class="nav-service-icon" src="/files/civil-nav-icon.svg" alt="civil-nav-icon" title="civil-nav-icon"> 
+                                    <img class="nav-service-icon" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}" alt="{{parent_doc.name}}"
+                                        title="{{parent_doc.name}}">
                                     <a href='/{{ parent_doc.route }}'
                                         class="link-underline p-1">{{ parent_doc.name }}</a>
                                 </li>
                                 {% endfor %}
                                 <li class="text-center">
-                                    <a class="" href="/all-products">
-                                        <h6 class="title-underline">View All</h6>
+                                    <a  href="/all-products">
+                                        <h6 class="title-underline pt-3">View All</h6>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="p-3">
-                            <a href="" data-ls="servicesubmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                            <a href="" data-ls="servicesubmenu" class="go-tosub-menu" data-toggle="collapse"
+                                aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                alt="Left Arrow" title="Services" height="15" width="15">
-                            Services</a>
-                            <img data-ls="servicesubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                    alt="Left Arrow" title="Services" height="15" width="15">
+                                Services</a>
+                            <img data-ls="servicesubmenu" src="/files/right-arrow-nav.svg"
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
                             <ul class="collapse list-unstyled ml-5" id='servicesubmenu'>
-                               
+
                                 <li class="p-3">
-                                    <a href="/calibration-and-validation-services"><img class="nav-service-icon" src="/files/calibration_validation_icon.svg" alt="calibration and validation service" title="Calibration & Validation Services">Calibration & Validation Services</a>
+                                    <a href="/calibration-and-validation-services"><img class="nav-service-icon"
+                                            src="/files/calibration_validation_icon.svg"
+                                            alt="calibration and validation service"
+                                            title="Calibration & Validation Services">Calibration & Validation
+                                        Services</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/manufacturing-facilities"><img class="nav-service-icon" src="/files/factory.svg" alt="Manufacturing Facilities" title="Manufacturing Facilities">Manufacturing Facilities</a>
+                                    <a href="/manufacturing-facilities"><img class="nav-service-icon"
+                                            src="/files/factory.svg" alt="Manufacturing Facilities"
+                                            title="Manufacturing Facilities">Manufacturing Facilities</a>
                                 </li>
                             </ul>
                         </li>
@@ -134,23 +149,29 @@
                             <a href="/trade-shows">Event</a>
                         </li>
                         <li class="p-3">
-                            <a href="/about" data-ls="ContactUsmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                            <a href="/about" data-ls="ContactUsmenu" class="go-tosub-menu" data-toggle="collapse"
+                                aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                alt="Left Arrow" title="Web App Development" height="15" width="15">
-                            Contact </a>
-                            <img data-ls="ContactUsmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
+                                Contact </a>
+                            <img data-ls="ContactUsmenu" src="/files/right-arrow-nav.svg"
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
                             <ul class="collapse list-unstyled ml-5" id='ContactUsmenu'>
                                 <li class="p-3">
-                                    <a href="/contact"><img class="nav-service-icon" src="/files/phone-call.svg" alt="Contact us" title="Contact us">Contact us</a>
+                                    <a href="/contact"><img class="nav-service-icon" src="/files/phone-call.svg"
+                                            alt="Contact us" title="Contact us">Contact us</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/inquiry?new=1"><img class="nav-service-icon" src="/files/clipboard.svg" alt="Inquiry" title="Inquiry">Inquiry</a>
+                                    <a href="/inquiry?new=1"><img class="nav-service-icon" src="/files/clipboard.svg"
+                                            alt="Inquiry" title="Inquiry">Inquiry</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/jobs"><img class="nav-service-icon" src="/files/job-search.svg" alt="Job opening" title="Job opening">Job opening</a>
+                                    <a href="/jobs"><img class="nav-service-icon" src="/files/job-search.svg"
+                                            alt="Job opening" title="Job opening">Job opening</a>
                                 </li>
                                 <li class="p-3">
-                                    <a href="/issues"><img class="nav-service-icon" src="/files/project.svg" alt="Issues" title="Issues">Issues</a>
+                                    <a href="/issues"><img class="nav-service-icon" src="/files/project.svg"
+                                            alt="Issues" title="Issues">Issues</a>
                                 </li>
                             </ul>
                         </li>
@@ -200,7 +221,7 @@
             </div>
         </li>
     </ul>
-    
+
     <div class="dropdownRoot">
         <div class="dropdownBackground">
             <div class="alternateBackground"></div>
@@ -222,51 +243,51 @@
                     </div>
                     <ul class="linkGroup linkList prodsubGroup my-2">
                         <li class="text-center">
-                            <a class="" href="/all-products">
-                                <h6 class="title-underline">View All</h6>
+                            <a  href="/all-products">
+                                <h6 class="title-underline pt-3">View All</h6>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-           <!-- About Sub menu -->
+            <!-- About Sub menu -->
             <div class="dropdownSection" data-dropdown="about">
                 <div class="dropdownContent" style="width: 200px;">
                     <ul class="linkGroup">
                         <li>
                             <a class="linkContainer" href="/about">
-                                <img class="nav-service-icon" src="/files/about-eie.svg" alt="Certificate" title="Certificate">
+                                <img class="nav-service-icon" src="/files/about-eie.svg" alt="Certificate"
+                                    title="Certificate">
                                 <h6 class="link-underline mt-1">About EIE</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/Quality%20policy">
-                                <img class="nav-service-icon" src="/files/quality.svg" alt="Quality Policy" title="Quality Policy">
+                                <img class="nav-service-icon" src="/files/quality.svg" alt="Quality Policy"
+                                    title="Quality Policy">
                                 <h6 class="link-underline mt-1">Quality Policy
                                 </h6>
                             </a>
                         </li>
-            
+
                         <li>
                             <a class="linkContainer" href="/certificate">
-                                <img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificate" title="Certificate">
+                                <img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificate"
+                                    title="Certificate">
                                 <h6 class="link-underline mt-1">Certificate</h6>
                             </a>
                         </li>
-                       
-                       
                     </ul>
-            
                 </div>
-                
             </div>
             <!-- services sub menu -->
             <div class="dropdownSection" data-dropdown="contact">
-                <div class="dropdownContent" style="width: 300px;">
-                    <ul class="linkGroup ml-5">
+                <div class="dropdownContent" style="width: 220px;">
+                    <ul class="linkGroup">
                         <li>
                             <a class="linkContainer" href="/contact">
-                                <img class="nav-service-icon" src="/files/phone-call.svg" alt="Contact Us" title="Contact Us">
+                                <img class="nav-service-icon" src="/files/phone-call.svg" alt="Contact Us"
+                                    title="Contact Us">
                                 <h6 class="link-underline mt-1">Contact Us</h6>
                             </a>
                         </li>
@@ -278,7 +299,8 @@
                         </li>
                         <li>
                             <a class="linkContainer" href="/jobs">
-                                <img class="nav-service-icon" src="/files/job-search.svg" alt="Job Application" title="Job Application">
+                                <img class="nav-service-icon" src="/files/job-search.svg" alt="Job Application"
+                                    title="Job Application">
                                 <h6 class="link-underline mt-1">Job Opening</h6>
                             </a>
                         </li>
@@ -289,30 +311,33 @@
                             </a>
                         </li>
                     </ul>
-                    <div class=""> 
+                    <div class="ml-2">
                         <div class="my-3 ">
-                            <a href="#" class="d-flex justify-content-center"> 
-                                <p >
+                            <a href="application-form?new=1" class="">
+                                <p class="d-flex justify-content-center">
                                     <img class="nav-service-icon" src="/files/project.svg" alt="Issues" title="Issues">
                                     Job Application
-                                 </p> 
+                                </p>
                             </a>
-                            <ul >
-                                <li class="d-flex justify-content-center mt-1">
-                                    <a href="#" class="d-flex">
-                                        <h6 class="title-underline">
-                                            Sales Executives 
+                            <ul>
+                                <li class=" mt-1 d-flex justify-content-center">
+                                    <a href="/application-form?new=1&job_title=sales-executives-marketing-executive"
+                                        class="d-flex">
+                                        <h6 class="">
+                                            Sales Executives
                                         </h6>
-                                        <img src="/files/right-arrow-nav.svg" class="m-2"  alt="right-arrow" height="15" width="15">
+                                        <img src="/files/right-arrow-nav.svg" class="m-2" alt="right-arrow" height="15"
+                                            width="15">
                                     </a>
                                 </li>
-                               
-                                <li class=" d-flex justify-content-center mt-1">
-                                    <a href="#" class="d-flex">
-                                        <h6 class="title-underline">
+
+                                <li class="  mt-1 d-flex justify-content-center">
+                                    <a href="/application-form?new=1/appllication-form?new=1&job_title=technical-content-writer" class="d-flex">
+                                        <h6 class="">
                                             Content Writer
                                         </h6>
-                                        <img src="/files/right-arrow-nav.svg" class="m-2"  alt="right-arrow" height="15" width="15">
+                                        <img src="/files/right-arrow-nav.svg" class="m-2" alt="right-arrow" height="15"
+                                            width="15">
                                     </a>
                                 </li>
                             </ul>
@@ -326,40 +351,43 @@
                     <ul class="linkGroup">
                         <li>
                             <a class="linkContainer" href="/calibration-and-validation-services">
-                                <img class="nav-service-icon" src="/files/calibration_validation_icon.svg" alt="Calibration & Validation Services" title="Calibration & Validation Services">
+                                <img class="nav-service-icon" src="/files/calibration_validation_icon.svg"
+                                    alt="Calibration & Validation Services" title="Calibration & Validation Services">
                                 <h6 class="link-underline mt-1">Calibration & Validation Services</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/manufacturing-facilities">
-                                <img class="nav-service-icon" src="/files/factory.svg" alt="Manufacturing Facilities" title="Manufacturing Facilities">
+                                <img class="nav-service-icon" src="/files/factory.svg" alt="Manufacturing Facilities"
+                                    title="Manufacturing Facilities">
                                 <h6 class="link-underline mt-1">Manufacturing Facilities
                                 </h6>
                             </a>
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
 
 
             <!-- login submenu -->
-           
+
             {% if frappe.session.user != 'Guest' %}
             <div class="dropdownSection left logged-in" data-dropdown="eie-login">
                 <div class="dropdownContent">
                     <div class="linkGroup linkList loginGroup">
                         <div>
                             <a class="linkContainer item-about" href="/me" rel="nofollow">
-                                <img class="nav-service-icon float-left" src="/files/nav-my-account.svg" alt="My account"
-                                    title="My account">
+                                <img class="nav-service-icon float-left" src="/files/nav-my-account.svg"
+                                    alt="My account" title="My account">
                                 <h6 class="d-inline-block mt-1">{{ _('My Account') }}
                                 </h6>
                             </a>
                         </div>
                         <div>
                             <a class="linkContainer item-about" href="/?cmd=web_logout" rel="nofollow">
-                                <img class="nav-service-icon float-left" src="/files/nav-logout.svg" alt="Logout" title="Logout">
+                                <img class="nav-service-icon float-left" src="/files/nav-logout.svg" alt="Logout"
+                                    title="Logout">
                                 <h6 class="d-inline-block mt-1">{{ _('Logout') }}
                                 </h6>
                             </a>
@@ -377,6 +405,6 @@
             </div>
             {% endif %}
         </div>
-        
+
     </div>
 </header>

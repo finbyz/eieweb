@@ -1,5 +1,5 @@
 {% if not slides %}
-	{% set slides = [{'image' : website_image or '/files/no-image.png'}] %}
+	{% set slides = [{'image' : website_image or '/files/no-image.png', 'item_name' : item_name }] %}
 		{% if cover_image %}
 			{% if slides.append({'image': cover_image}) %}{% endif %}
 		{% endif %}
@@ -19,8 +19,8 @@
     </div>
     <div class="item-slideshow d-flex justify-content-center"> 
         {% for item in slides|reverse %}
-        <img class="item-slideshow-image mt-2 {% if loop.first %}active{% endif %}" src="{{ item.image }}"
-            alt="{{ item.heading }}">
+             <img class="item-slideshow-image mt-2 {% if loop.first %}active{% endif %}" src="{{ item.image}}"
+                   alt="{{ item.item_name }}">
         {% endfor %}
     </div>
     <!-- Simple image slideshow -->
