@@ -697,18 +697,14 @@ $(function () {
             });
 })
 // li js
-
         $('.result ul').each(function () {
                  var ul = $(this);
                  h= ul.children('li').height(); 
                  ul.css({ 'height': (h *5) + 'px', 'overflow': 'hidden' });
         });
         $('#download').click(function(){
-            console.log('download start');
          localStorage.setItem("url", "{{ url }}");
         }) ;
-
-
 //  product vidio
         $(document).ready(function(){
             var div,
@@ -723,9 +719,3 @@ $(function () {
             v[n].appendChild(div);
                 }
             })
-         
-
-
-
-      
- 
