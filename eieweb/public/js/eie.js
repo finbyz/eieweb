@@ -308,7 +308,7 @@ Strut.supports = {
         }
     },
 
-
+    
     eieNavDropdowns.prototype.openDropdown = function (e) {
         var t = this;
         if (this.activeDropdown === e) return;
