@@ -13,6 +13,7 @@
   "website_itemgroup_name",
   "parent_website_itemgroup",
   "is_group",
+  "priority",
   "image",
   "svg",
   "column_break_5",
@@ -152,6 +153,12 @@
    "fieldname": "svg",
    "fieldtype": "Attach Image",
    "label": "SVG"
+  },
+  {
+   "default": "100",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority"
   }
  ],
  "has_web_view": 1,
@@ -160,7 +167,7 @@
  "is_published_field": "show_in_website",
  "is_tree": 1,
  "max_attachments": 3,
- "modified": "2020-12-03 10:16:14.724374",
+ "modified": "2020-12-05 18:03:39.655185",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Website Itemgroup",
