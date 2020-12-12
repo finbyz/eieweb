@@ -9,8 +9,9 @@ $(() => {
         bind_filters() {
             this.field_filters = {};
             this.attribute_filters = {};
-
+            
             $('.product-filter').on('change', frappe.utils.debounce((e) => {
+                
                 const $checkbox = $(e.target);
                 const is_checked = $checkbox.is(':checked');
 
@@ -77,6 +78,7 @@ $(() => {
 
         bind_search() {
             $('input[type=search]').on('keydown', (e) => {
+                
                 if (e.keyCode === 13) {
                     // Enter
                     const value = e.target.value;
@@ -90,6 +92,7 @@ $(() => {
         }
 
         restore_filters_state() {
+           
             const filters = frappe.utils.get_query_params();
             let { field_filters, attribute_filters } = filters;
 

@@ -109,3 +109,7 @@ def get_context(self, context):
 	self.set_shopping_cart_data(context)
 
 	return context
+
+@frappe.whitelist()
+def get_item_compare(item_group):
+    return frappe.get_all("Item",{'website_itemgroup':item_group,'show_in_website':1})

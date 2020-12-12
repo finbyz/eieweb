@@ -7,12 +7,11 @@
     <div class="d-block col-4">
         <div class="top-cat">
             <ul class=" top-label">
-              
                 {% for key, value in data.items() %}
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                 <li>
                     <a href="/{{ parent_doc.route }}" class="has-child activeP"
-                        id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
+                            id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
                         <img class="nav-service-icon" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}"
                             alt="{{parent_doc.name}}">
                         <h6 class="pt-1 parent_group_name">{{ parent_doc.name }}</h6>
@@ -31,12 +30,16 @@
                     <div id="child{{key|replace(' ','')|replace('&','')}}" class="subcat-inner"> 
                         <div class="subcat-child">
                             <ul class="cal-listing">
-                                    {% set count = namespace(a=0) %}
-                                    {% for v in value %}
-                                    {% set count.a = count.a + 1 %}
-                                    {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}
-                                        <li class="sizing-nav mb-2" style="display: block;"><a href="/{{child_doc.route}}">{{ child_doc.name }}</a></li>
-                                    {% endfor %}
+                                {% set count = namespace(a=0) %}
+                                {% for v in value %}
+                                {% set count.a = count.a + 1 %}
+                                {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}
+                                    <li class="sizing-nav mb-2" style="display: block;">
+                                        <a href="/{{child_doc.route}}" id="{{value[count.a-1].name|replace(' ','')|replace('&','')}}">
+                                            {{ child_doc.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                         {% if count.a > 8 %}
@@ -63,12 +66,23 @@
                         id="image{{key|replace(' ','')|replace('&','')}}">
                         <img class=" flex-inner  nav-ind-image" width="370" src="{{ frappe.db.get_value('Website Itemgroup',key,'image') }}" alt="{{parent_doc.name}}">
                     </div>
+                    {% set count = namespace(a=0) %}
+                    {% for v in value %}
+                    {% set count.a = count.a + 1 %}
+                    {% set child_doc = frappe.get_doc("Website Itemgroup",v['name']) %}
+                    {% set child_doc_src= frappe.db.get_value('Website Itemgroup',v.name,'image') %}
+                    <div class="image-stack__item image-stack__item--bottom"
+                    id="image-1{{value[count.a-1].name|replace(' ','')|replace('&','')}}">
+                        <img  class="flex-inner-1 nav-ind-image" src="{{ frappe.db.get_value('Website Itemgroup',v.name,'image') or frappe.db.get_value('Website Itemgroup',key,'image') }}" width="370" alt="">
+                    </div>
+                    {% endfor %}
                     {% endfor %}
                 </div>
             </div>
         </a>
     </div>
 </div>
+
 <script>
     $(".child-cat .subcat-inner:first").addClass('active');
     $(".image-stack .flex-inner:first").addClass('active');
@@ -81,6 +95,7 @@
             $(this).removeClass('active');
             $(`#${id}`).addClass('active');
             $(`#image${id}`).children().addClass('active');
+            $('.image-stack .flex-inner-1').removeClass('active-subcat');
         });
         $('.top-label a').each(function () {
             $(this).removeClass('activeP');
@@ -113,5 +128,15 @@
     $(".down").hover(function(){
         $(".up-button").addClass('activated');
     })
-   
+    $('.child-cat li a').hover(function () {
+        let id = $(this).attr('id');
+        $('.image-stack .flex-inner-1').each(function () {
+            $('.image-stack .flex-inner').removeClass('active');
+            $(this).removeClass('active-subcat');
+            $(`#${id}`).addClass('active-subcat');
+            $(`#image-1${id}`).children().addClass('active-subcat');
+            // $(this).addClass('active-subcat');
+           
+        });
+    })
 </script>

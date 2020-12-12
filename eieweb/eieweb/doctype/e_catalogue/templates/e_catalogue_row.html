@@ -1,0 +1,20 @@
+<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 my-3">
+	<div class=" catalogue__container card-content card-body  mx-auto">
+			<div class="catalogue__images d-flex justify-content-center">
+				<img class="catalogue__image website-image" src="{{ image or '/files/no-image.png' }}" >
+			</div>
+			<div class="catalogue__title mx-auto text-center">
+				<a class="text-dark " href={{ route }}>
+					{{title }}
+				</a>
+			</div>
+		    <div class=" card-button d-flex justify-content-around mt-3" style="margin-left:0px">
+				<a href="{{ download_manual }}" download class="catalgue__button">Download</a>
+				<a href="{{ download_manual }}" target="_blank" class="catalgue__button">View</a> 
+		    </div>
+	</div>
+</div>
+	
+	
+
+<!-- this is a sample default list template -->

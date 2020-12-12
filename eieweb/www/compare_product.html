@@ -1,7 +1,45 @@
+{% set item_groups = frappe.get_all("Website Itemgroup",{'show_in_website':1,'is_group':0}, order_by="priority") %}
+{% if selected_group %}
+{% set selected_items =  frappe.get_all("Item",{'website_itemgroup':selected_group,'show_in_website':1})%}
+{% endif %}
+
+
 <section class="com-pro">
     <div class="container-fluid">
         <h2 class="dark-text title-underline mb-4">Compare Product</h2>
         <div>
+            <div role="form">
+                <select data-fieldname="item_group" id ="selectable">
+                    <option>Select Item Group</option>
+                   
+                    {% for d in item_groups %}
+                    <option value='{{d.name}}' {% if selected_group and selected_group==d.name %}selected{% endif %}>{{d.name}}</option>
+                    {% endfor %}
+                </select>
+                <!-- test -->
+                <div class="dropdown">
+                    <div class="info-list">
+                        <span class="dropbtn" id="selected-group">Select Item Group</span>
+                        <img src="/files/sort-down.svg" alt="downarrow">
+                    </div>
+                    <div id="myDropdown" class="dropdown-content">
+                      <input type="text" placeholder="Search.." id="myInput" >
+                        <div class="list">
+                            <p>Aggregate Testing Equipment</p>
+                            <p>Plastic Testing Instruments</p>
+                            <p>Rock Testing Instruments</p>
+                            <p>Rubber Testing Instruments</p>
+                            <p>Soil Testing Instruments</p>
+                            <p>Steel Testing Instruments</p>
+                            <p>Strength Of Material Testing Instruments</p>
+                            <p>Structure Mechanics Lab Instruments</p>
+                            <p>Surveying Instruments</p>
+                            <p>Synthetic Yarn (Filament Yarn) Testing Instruments</p>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <br>
             <table class="table table-bordered table-hover table-responsive">
                 <thead class="thead-dark">
                     <tr>
@@ -15,58 +53,61 @@
                 <tbody>
                     <tr class="pr-cm-h">
                         <td width="300" height="100"></td>
-                        <td width="21%" class="text-center"><img class="website-image" src="/files/PAN_MIXER_-_NEW.jpg"
-                                alt="PAN MIXER-40 LTRS">
-                            Product Name
+                        <td width="21%" class="text-center">
+                            <select id='itemSelect1' style="width: 250px;">
+                                <option>Select Items</option>
+                                {%  if selected_items %}
+                                {% for d in selected_items %}
+                                <option value="{{ d.name }}" {% if item1 and item1==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                            <img class="website-image" src="{{ frappe.db.get_value('Item',item1,'website_image') or frappe.db.get_value('Item',item1,'image') or '/files/no-image.png'}}"
+                                alt="{{item1 or ''}}">
+                                {{ item1 or '' }}
                         </td>
-                        <td width="21%" class="text-center"><img class="website-image"
-                                src="/files/J-ring_apparatus_for_email.jpg" alt="J RING TEST APPARATUS">
-                            Product Name
+                        <td width="21%" class="text-center">
+                            <select id='itemSelect2' style="width: 250px;">
+                                <option>Select Items</option>
+                                {%  if selected_items %}
+                                {% for d in selected_items %}
+                                <option value="{{ d.name }}" {% if item2 and item2==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                            <img class="website-image" src="{{ frappe.db.get_value('Item',item2,'website_image') or frappe.db.get_value('Item',item2,'image') or '/files/no-image.png'}}"
+                            alt="{{item2 or ''}}">
+                               {{ item2 or ''}}
                         </td>
-                        <td width="21%" class="text-center"><img class="website-image" src="/files/Lab_pulverizer.jpg"
-                                alt="LABORATORY PULVERIZER">
-                            Product Name
+                        <td width="21%" class="text-center">
+                            <select id='itemSelect3' style="width: 250px;">
+                                <option>Select Items</option>
+                                {%  if selected_items %}
+                                {% for d in selected_items %}
+                                <option value="{{ d.name }}" {% if item3 and item3==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                            <img class="website-image" src="{{ frappe.db.get_value('Item',item3,'website_image') or frappe.db.get_value('Item',item3,'image') or '/files/no-image.png'}}"
+                            alt="{{item3 or ''}}">
+                               {{ item3 or '' }}
                         </td>
-                        <td width="21%" class="text-center"><img class="website-image" src="/files/Density_Cup.jpg"
-                                alt="DENSITY CUP  S.S. - 100 CC">
-                            Product Name
+                        <td width="21%" class="text-center">
+                            <select id='itemSelect4' style="width: 250px;">
+                                <option>Select Items</option>
+                                {%  if selected_items %}
+                                {% for d in selected_items %}
+                                <option value="{{ d.name }}" {% if item4 and item4==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                            <img class="website-image" src="{{ frappe.db.get_value('Item',item4,'website_image') or frappe.db.get_value('Item',item4,'image') or '/files/no-image.png'}}"
+                            alt="{{item4 or ''}}">
+                                {{ item4 or ''}}
                         </td>
                     </tr>
-                    <tr class="p-head">
-                        <th scope="row">General Features</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Model Number</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
-                    <tr>
-                        <td>Color</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
-                    <tr>
-                        <td>Width</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
-                    <tr>
-                        <td>Height</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
+                    
+                    {% if specification_dict %}
                     <tr class="p-head">
                         <th scope="row">Technical Specification</th>
                         <td></td>
@@ -74,36 +115,142 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>Processor</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
-                    <tr>
-                        <td>RAM</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
-                    <tr>
-                        <td>Dimention</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
-                    <tr>
-                        <td>Accuracy</td>
-                        <td>dcksdkf</td>
-                        <td>dfksdf</td>
-                        <td>fdhsjs</td>
-                        <td>fdsjkhf</td>
-                    </tr>
+                   {% for key, value in specification_dict.items() %}
+                   <tr>
+                        <td><b>{{key}}</b></td>
+                        <td>{{ value.item1 or 'N/A'}}</td>
+                        <td>{{ value.item2 or 'N/A'}}</td>
+                        <td>{{ value.item3 or 'N/A'}}</td>
+                        <td>{{ value.item4 or 'N/A'}}</td>
+                   </tr>
+                   {% endfor %}
+                   {% endif %}
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+<script>
+    $(".com-pro #selectable").on("change", function() {
+        
+        var item_group = $(this).val()
+        frappe.call({
+            'method':'eieweb.api.get_item_compare',
+            'args': {
+                'item_group': item_group
+            }, 
+            callback:function(r){
+                if(r.message!=[]){
+                    $('#itemSelect1').find('option').remove().end()
+                    $('#itemSelect2').find('option').remove().end()
+                    $('#itemSelect3').find('option').remove().end()
+                    $('#itemSelect4').find('option').remove().end()
+                    for (let item of r.message) {
+                        $('#itemSelect1').append(new Option(item['name'], item['name']))
+                        $('#itemSelect2').append(new Option(item['name'], item['name']))
+                        $('#itemSelect3').append(new Option(item['name'], item['name']))
+                        $('#itemSelect4').append(new Option(item['name'], item['name']))
+                    }  
+                }
+                else{
+                    $('#itemSelect').append(new Option('No item found', 'No item found'))
+                }
+            }
+        })
+        if (window.location.search == ("&item_group=" + item_group) || window.location.search.includes(item_group)) {
+			return;
+		}
+        window.location.href = window.location.pathname + "?item_group=" + item_group;
+    //    frappe.call({
+    //         'method':'eieweb.api.get_item_compare',
+    //         'args': {
+    //             'item_group': item_group
+    //         }, 
+    //         callback:function(r){
+    //             document.cookie = "data=" + "item_groups"
+    //         }
+    //     }) 
+    //     console.log(frappe.get_cookie("data"))
+    });
+    
+    $("#itemSelect1").on("change", function() {
+        if (window.location.search.includes('item1')) {
+			oldvalue = urlParam('item1')
+            window.location.href = window.location.href.replace('item1='+oldvalue,'item1='+$(this).val());
+		}
+        else{
+            window.location.href = window.location.href + "&item1=" + $(this).val();
+        }
+    });
+    
+    $("#itemSelect2").on("change", function() {
+        if (window.location.search.includes('item2')) {
+			oldvalue = urlParam('item2')
+            window.location.href = window.location.href.replace('item2='+oldvalue,'item2='+$(this).val());
+		}
+        else{
+        window.location.href = window.location.href + "&item2=" + $(this).val();
+        }
+     });
+    $("#itemSelect3").on("change", function() {
+        if (window.location.search.includes('item3')) {
+			oldvalue = urlParam('item3')
+            window.location.href = window.location.href.replace('item3='+oldvalue,'item3='+$(this).val());
+		}
+        else{
+        window.location.href = window.location.href + "&item3=" + $(this).val();
+        }
+    });
+    $("#itemSelect4").on("change", function() {
+        if (window.location.search.includes('item4')) {
+			oldvalue = urlParam('item4')
+            window.location.href = window.location.href.replace('item4='+oldvalue,'item4='+$(this).val());
+		}
+        else{
+        window.location.href = window.location.href + "&item4=" + $(this).val();
+        }
+    });
+    function urlParam(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null) {
+        return null;
+        }
+        return (results[1]) || 0;
+    }
+
+    //compare product
+   $('.dropbtn').on('click',()=>{
+    document.getElementById("myDropdown").classList.toggle("show");
+  })
+  $('#myInput').on('keyup',()=>{
+    var input, filter,div, p, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    p = div.getElementsByTagName("p");
+    for (i = 0; i < p.length; i++) {
+     var txtValue = p[i].textContent || p[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        p[i].style.display = "";
+      } else {
+        p[i].style.display = "none";
+      }
+    }
+  })
+  $('.list p').on('click',(e)=>{
+        let value=e.target.innerHTML;
+        // console.log(value);
+        let text= $('#selected-group').text(value);
+        // console.log(text);
+        var pathname = window.location.pathname;
+        var origin   = window.location.origin; 
+        console.log(pathname);
+        console.log(origin);
+        console.log(value);
+        var URL=origin+pathname+"?item_group="+value;
+        console.log(URL);
+        window.location= URL;
+        $('#myDropdown').removeClass("show");
+    })
+</script>
+

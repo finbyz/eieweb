@@ -30,7 +30,7 @@
             {%- endif -%}
             <div class="col-12 col-md-8 mt-4">
                 <h5> Description</h5>
-                <p style="font-size: 18px;">{{frappe.db.get_value("Job Opening", doc.name,"small_description")}}</p>
+                <p>{{frappe.db.get_value("Job Opening", doc.name,"small_description")}}</p>
                 <h5> Job Description</h5>
                 <p>{{frappe.db.get_value("Job Opening", doc.name,"job_description")}}</p>
 

@@ -1,3 +1,10 @@
+cur_frm.fields_dict.website_itemgroup.get_query = function(doc) {
+	return {
+		filters: {
+			"is_group": 0,
+		}
+	}   
+};
 frappe.ui.form.on("Item", {
     refresh: function(frm) {
         if(frm.doc.show_in_website){

@@ -13,7 +13,6 @@
 	{% if result_heading_template %}{% include result_heading_template %}{% endif %}
 
 	<div class="result row">
-
 		{% if route == "trade-shows"%}
 		<div class="container">
 			<div class="card-columns">
@@ -22,9 +21,14 @@
 				{% endfor %}
 			</div>
 		</div>
-
-		
-
+		{% elif route == "download" %}
+		<div class="container">
+			<div class="row">
+				{% for item in result %}
+				{{ item }}
+				{% endfor %}
+			</div>
+		</div>
 		{% else %}
 		{% for item in result %}
 		{{ item }}
