@@ -29,11 +29,14 @@
 		{% endif %}
 		{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
 		<div class="col-md-12 col-xs-12 col-lg-7 mt-3 d-md-flex flex-md-column flex-lg-row ">
-			{% if  frappe.db.get_value("Item",doc.name,'product_leaflet') %}
-				{% set url = frappe.db.get_value("Item",doc.name,'product_leaflet') %}
-					<a target="_blank" href="{{product_leaflet}}"><div class="eie-button eie-fadeindown cart-button moblie-button ">Download Manual
+			{% if  frappe.db.get_value("Item",doc.name,'e_catalogue') %}
+			<!-- {{ e_catalogue }} -->
+			{% set c = frappe.db.get_value("E Catalogue",doc.e_catalogue,'download_manual') %}
+				<!-- {% set url = frappe.db.get_value("Item",doc.name,'e_catalogue') %} -->
+					<a target="_blank" href="{{ c }}"><div class="eie-button eie-fadeindown cart-button moblie-button ">Download Manual
 						<div class="eie-ring eie-btn-bottom "></div> </div>
 					</a>
+					
 			{% endif %}
 				<script>
 					window.onload = function () {
