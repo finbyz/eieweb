@@ -1,6 +1,11 @@
+from __future__ import unicode_literals
 import frappe
+from frappe.model.document import Document
 from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent_item_groups
 from erpnext.stock.doctype.item.item import Item
+
+
+
 
 def get_items(filters=None, search=None):
 	start = frappe.form_dict.start or 0
@@ -116,6 +121,18 @@ def get_item_compare(item_group):
 
 def item_validate(self,method):
 	description =  self.description.replace('&lt;o:p&gt;&lt;/o:p&gt;','')
-	description =  description.replace('lt;o:p&gt;','')
+	description =  description.replace('&lt;o:p&gt;','')
 	description =  description.replace('&lt;/o:p&gt;','')
 	self.db_set('description',description)
+
+@frappe.whitelist(allow_guest=True)
+def set_form_data(lead_name,company_name,mobile_no, title,email):
+	data = frappe.new_doc("Lead")
+	data.lead_name = lead_name
+	data.company_name = company_name
+	data.mobile_no = mobile_no
+	data.source = 'Website'
+	data.notes = title
+	data.email_id = email
+	data.save(ignore_permissions=True)
+	frappe.db.commit()
