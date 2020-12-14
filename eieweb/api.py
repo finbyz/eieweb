@@ -113,3 +113,9 @@ def get_context(self, context):
 @frappe.whitelist()
 def get_item_compare(item_group):
     return frappe.get_all("Item",{'website_itemgroup':item_group,'show_in_website':1})
+
+def item_validate(self,method):
+	description =  self.description.replace('&lt;o:p&gt;&lt;/o:p&gt;','')
+	description =  description.replace('lt;o:p&gt;','')
+	description =  description.replace('&lt;/o:p&gt;','')
+	self.db_set('description',description)

@@ -15,7 +15,8 @@ class ItemAsVariant(Document):
 				frappe.throw(frappe.bold(str(attr.attribute)) + " should be in included in the Attributes" )
 
 		doc = frappe.get_doc("Item",self.make_variant)
-		doc.variant_of = self.template
+		doc.db_set('variant_of',self.template)
+		#doc.variant_of = self.template
 		for attr in self.attributes:
 			doc.append('attributes',{
 				'attribute':attr.attribute,

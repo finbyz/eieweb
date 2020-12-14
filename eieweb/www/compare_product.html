@@ -8,36 +8,34 @@
     <div class="container-fluid">
         <h2 class="dark-text title-underline mb-4">Compare Product</h2>
         <div>
-            <div role="form">
-                <select data-fieldname="item_group" id ="selectable">
-                    <option>Select Item Group</option>
-                   
-                    {% for d in item_groups %}
-                    <option value='{{d.name}}' {% if selected_group and selected_group==d.name %}selected{% endif %}>{{d.name}}</option>
-                    {% endfor %}
-                </select>
-                <!-- test -->
-                <div class="dropdown">
-                    <div class="info-list">
-                        <span class="dropbtn" id="selected-group">Select Item Group</span>
-                        <img src="/files/sort-down.svg" alt="downarrow" style="width: 15px; cursor: pointer;">
-                    </div>
-                    <div id="myDropdown" class="dropdown-content">
-                      <input type="text" placeholder="Search.." id="myInput" >
-                        <div class="list">
-                            <p>Aggregate Testing Equipment</p>
-                            <p>Plastic Testing Instruments</p>
-                            <p>Rock Testing Instruments</p>
-                            <p>Rubber Testing Instruments</p>
-                            <p>Soil Testing Instruments</p>
-                            <p>Steel Testing Instruments</p>
-                            <p>Strength Of Material Testing Instruments</p>
-                            <p>Structure Mechanics Lab Instruments</p>
-                            <p>Surveying Instruments</p>
-                            <p>Synthetic Yarn (Filament Yarn) Testing Instruments</p>
+            <div role="form" class="container-fluid">
+                <div class="row d-flex justify-content-between">
+                    <!-- with select option -->
+                        <!-- <select data-fieldname="item_group" id ="selectable">
+                            <option>Select Item Group</option>
+                        
+                            {% for d in item_groups %}
+                            <option value='{{d.name}}' {% if selected_group and selected_group==d.name %}selected{% endif %}>{{d.name}}</option>
+                            {% endfor %}
+                        </select> -->
+                        <div class="dropdown">
+                            <div class="info-list" >
+                                <span class="dropbtn" id="selected-group" >Select Item Group</span>
+                                <img src="/files/sort-down.svg" alt="downarrow" style="width: 15px; ">
+                            </div>
+                            <div id="myDropdown" class="dropdown-content" data-fieldname="item_group" id ="selectable">
+                            <input type="text" placeholder="Search Item Group.." id="myInput" autocomplete="off" >
+                                <div class="list">
+                                    {% for d in item_groups %}
+                                    <p value='{{d.name}}' {% if selected_group and selected_group==d.name %}selected{% endif %}>{{d.name}}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                  </div>
+                        <div class="col-4  col-md-2 d-flex justify-content-end">
+                            <a class="d-inline-block clear-filter" style="cursor: pointer;" >{{ _('Clear Filters') }}</a>
+                        </div>
+                </div>
             </div>
             <br>
             <table class="table table-bordered table-hover table-responsive">
@@ -54,7 +52,7 @@
                     <tr class="pr-cm-h">
                         <td width="300" height="100"></td>
                         <td width="21%" class="text-center">
-                            <select id='itemSelect1' style="width: 250px;">
+                            <select id='itemSelect1' style="width:250px ;">
                                 <option>Select Items</option>
                                 {%  if selected_items %}
                                 {% for d in selected_items %}
@@ -132,7 +130,7 @@
 </section>
 <script>
     $(".com-pro #selectable").on("change", function() {
-        
+  
         var item_group = $(this).val()
         frappe.call({
             'method':'eieweb.api.get_item_compare',
@@ -219,7 +217,7 @@
     }
 
     //compare product
-   $('.dropbtn').on('click',()=>{
+   $('.info-list').on('click',()=>{
     document.getElementById("myDropdown").classList.toggle("show");
   })
   $('#myInput').on('keyup',()=>{
@@ -239,18 +237,40 @@
   })
   $('.list p').on('click',(e)=>{
         let value=e.target.innerHTML;
-        // console.log(value);
         let text= $('#selected-group').text(value);
-        // console.log(text);
         var pathname = window.location.pathname;
         var origin   = window.location.origin; 
-        console.log(pathname);
-        console.log(origin);
-        console.log(value);
         var URL=origin+pathname+"?item_group="+value;
-        console.log(URL);
         window.location= URL;
         $('#myDropdown').removeClass("show");
+        urlParam(value);
     })
+    $('.clear-filter').on('click',()=>{
+        var pathname = window.location.pathname;
+        var origin   = window.location.origin; 
+        var URL=origin+pathname;
+        window.location= URL;
+    })
+  
+    $(document).ready( function()  {
+        let text= $('.list p').text();
+        var current_location=window.location.search;
+        var check=current_location.search('&');
+              if(check== -1){
+                if(current_location != ''){
+                  var res = current_location.replace("item_group", "");
+                  var item_group_name= res.replace(/[^\w\s]/g, '  ');
+                  $('#selected-group').text(item_group_name.replace(/\d+/g, ''));
+                 }
+              }
+              else{
+                var removed=current_location.split('&', 1);
+                var string= removed.toString();
+                var res = string.replace("item_group", "");
+                  var item_group_name= res.replace(/[^\w\s]/g, '  ');
+                  $('#selected-group').text(item_group_name.replace(/\d+/g, ''));
+               
+              }
+        })
 </script>
 

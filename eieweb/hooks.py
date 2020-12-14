@@ -99,7 +99,11 @@ doctype_js = {
 # 		"on_trash": "method"
 #	}
 # }
-
+doc_events = {
+    "Item": {
+        'validate': 'eieweb.api.item_validate'
+    }
+}
 # Scheduled Tasks
 # ---------------
 
