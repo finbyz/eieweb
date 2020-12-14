@@ -19,11 +19,11 @@ class ItemAsVariant(Document):
 		for d in self.attributes:
 			args[d.attribute] = d.attribute_value
 
-		variant = get_variant(self.template,args,self.make_variant)
+		variant = get_variant(self.template,args)
 		if variant:
 			if frappe.db.get_value("Item",variant,'disabled') != 1:
 				frappe.throw("Item variant {0} exists with same attributes".format(variant))
-				
+
 		doc = frappe.get_doc("Item",self.make_variant)
 		#doc.variant_of = self.template
 		doc.db_set('variant_of',self.template)
