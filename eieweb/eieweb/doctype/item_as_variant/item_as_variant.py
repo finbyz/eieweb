@@ -5,6 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from erpnext.stock.doctype.item.item import get_variant
 
 class ItemAsVariant(Document):
 	def on_submit(self):
@@ -14,9 +15,19 @@ class ItemAsVariant(Document):
 			if attr.attribute not in attr_list:
 				frappe.throw(frappe.bold(str(attr.attribute)) + " should be in included in the Attributes" )
 
+		args = {}
+		for d in self.attributes:
+			args[d.attribute] = d.attribute_value
+
+		variant = get_variant(self.template,args,self.make_variant)
+		if variant:
+			if frappe.db.get_value("Item",variant,'disabled') != 1:
+				frappe.throw("Item variant {0} exists with same attributes".format(variant))
+				
 		doc = frappe.get_doc("Item",self.make_variant)
-		doc.db_set('variant_of',self.template)
 		#doc.variant_of = self.template
+		doc.db_set('variant_of',self.template)
+
 		for attr in self.attributes:
 			doc.append('attributes',{
 				'attribute':attr.attribute,
