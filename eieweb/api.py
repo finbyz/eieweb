@@ -123,6 +123,8 @@ def item_validate(self,method):
 	description =  self.description.replace('&lt;o:p&gt;&lt;/o:p&gt;','')
 	description =  description.replace('&lt;o:p&gt;','')
 	description =  description.replace('&lt;/o:p&gt;','')
+	description = description.replace('&lt;font color="#000000"&gt;','')
+	description = description.replace('&lt;/font&gt;','')
 	self.db_set('description',description)
 
 @frappe.whitelist(allow_guest=True)
