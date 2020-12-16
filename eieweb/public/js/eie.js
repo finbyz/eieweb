@@ -946,7 +946,7 @@ $(function () {
                             number: s = "+91 9227230010"
                         } = e,
                         {
-                            avatar: p = "/files/eie-logo.svg"
+                            avatar: p = "/files/eie.svg"
                         } = e,
                         {
                             description: c = "Typically replies within an hour"
@@ -1161,6 +1161,41 @@ $(function () {
   
     $(".news-list").Ticker();
   })(jQuery);
- 
-  
+ //inquiry form
+$(document).ready(function(){
+ function lead_creation() {
+    frappe.call({
+        method: "eieweb.api.set_form_data",
+        args: {
+            'lead_name': $('#lead_name').val(),
+            'company_name': $('#company_name').val(),
+            'message': $('#message').val(),
+            'mobile_no': $('#mobile_no').val(),
+            'product_name': $('#product_name').val(),
+            'title': document.title + '</br>' + window.location.href,
+            'email': $('#email').val()
+        },
+        callback: function (r) {
+            $('#lead_name').val('');
+            $('#company_name').val('');
+            $('#message').val('');
+            $('#mobile_no').val('');
+            $('#product_name').val('');
+            $('#email').val('');
+            frappe.msgprint("Your interest is inspiring us to do better...");
+        }
+    });
+};
+
+var form = $('#inquiry'),
+    submit = form.find('[name="submit"]');
+
+form.on('submit', function (e) {
+    console.log('clicked');
+        setTimeout(function () {
+            lead_creation();
+        }, 100);
+    e.preventDefault();
+});
+}) 
  

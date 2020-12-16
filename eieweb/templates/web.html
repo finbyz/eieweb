@@ -5,8 +5,15 @@
 
 {% macro main_content() %}
 <div class="page-content-wrapper">
+
+    <div class="pt-5">
+    {% if (doctype == "Web Page" and name != "index") or doctype != "Web Page" %}
+        {% include "www/news.html" %}
+    {% endif %}
+    </div>
+
     <!-- breadcrumbs -->
-    <div class="page-breadcrumbs pt-5">
+    <div class="page-breadcrumbs pt-1">
         {% block breadcrumbs %}
         {% include 'templates/includes/breadcrumbs.html' %}
         
@@ -29,6 +36,7 @@
             </div>
            
         </div>
+
         
         <div class="page_content">
             {% include "templates/includes/eie-banner.html" %}
@@ -43,6 +51,10 @@
        
         {% if doctype == "Web Page" and name == "index" %}
         {% include "www/Customer.html" %}
+        {% endif %}
+
+        {% if doctype == "Web Page" or  doctype != "Web Page" %}
+        {% include "templates/includes/form/inquiry_form.html" %}
         {% endif %}
 
         <!-- <div class="page-footer">

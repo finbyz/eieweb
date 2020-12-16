@@ -1,0 +1,94 @@
+
+<div id="inquiry-form-section" class="inquiry-form-section ad-campaign-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 bg-white inquiry-form-fields">
+                <div id="inquiry-form">
+                    <form id="inquiry" name="contact" class="inquiry-main bg-white ml-auto position-relative" accept-charset="utf-8">
+                        <h5 class="pb-2 pt-3 text-center">
+                            INQUIRE NOW
+						</h5>
+                        <input class="form-control inquiry-input my-3" name="lead_name" type="text" id="lead_name" placeholder="Name" autocomplete="off">
+                        <input class="form-control inquiry-input my-3" name="company_name" type="text" id="company_name" placeholder="Organization Name" autocomplete="off">
+                        <input class="form-control inquiry-input my-3" name="email" type="email" id="email" placeholder="Email" autocomplete="off">
+                        <input class="form-control inquiry-input my-3" data-bind="value:mobile_no" id="mobile_no" name="mobile_no" min="0" required="" placeholder="Mobile No" type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="15" autocomplete="off">
+                        <input class="form-control inquiry-input my-3" name="product_name" type="text" id="product_name" placeholder="Product Name" autocomplete="off">
+                        <textarea  class="form-control inquiry-input my-3" name="message" type="text" id="message" placeholder="Message" autocomplete="off" rows="2" cols="50"></textarea>
+                        <div class="text-center mt-2">
+							<button class="btn eie-button responsive-eie-button" name="submit" type="submit" value="Send" style="transform: translate(-35%, -50%); margin-top: 20px;">Submit</button>
+                        </div>
+                        <div id="campaign_enquire_btn" class="enquire-btn d-flex">
+                            <p class="pr-2  d-flex ">
+                                <img src="/files/inquiry-right.svg" class="pt-2 active" alt="Inquiry right arrow" id="rightArrow" >
+                                <img src="/files/inquiry-left.svg" class="pt-2 deactivated" alt="Inquiry left arrow"  id="leftArrow">
+                                <span class="pr-2 pl-2 pb-2">INQUIRY</span>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+	<script>
+    $('#campaign_enquire_btn').on('click', function () {
+        if ($("#inquiry-form-section").hasClass('slide-right active')) {
+            $('#inquiry-form-section').removeClass('active').toggleClass('slide-right');
+        }
+        else if ($("#inquiry-form-section").hasClass('active')) {
+            $('#inquiry-form-section').removeClass('active');
+        }
+        // toggle class on click contact button
+        else if ($("#inquiry-form-section").hasClass('slide-right')) {
+            $('#inquiry-form-section').toggleClass('slide-right');
+        }
+        else {
+            $('#inquiry-form-section').toggleClass('slide-right');
+        }
+        if ($('#inquiry-form-section').hasClass('slide-right')){
+            setTimeout(function () {
+            $('#rightArrow').removeClass('active');
+            $('#rightArrow').addClass('deactivated');
+            $('#leftArrow').addClass('active');
+        }, 600);
+      }
+      else{
+        setTimeout(function () {
+        $('#leftArrow').removeClass('active');
+        $('#leftArrow').addClass('deactivated');
+        $('#rightArrow').addClass('active');
+        }, 600);
+      }
+    });
+  
+//active form at certain height 
+
+if(window.location.href.length == 22){
+    var isOpened = false;
+            jQuery(function() {
+                jQuery(window).scroll(function() {
+                    var scroll = jQuery(window).scrollTop();
+
+                    if (scroll >= 2000 && !isOpened) {
+                        isOpened = true;
+                        jQuery("#inquiry-form-section").addClass("slide-right");
+                    }
+            if ($('#inquiry-form-section').hasClass('slide-right')){
+                setTimeout(function () {
+                    $('#rightArrow').removeClass('active');
+                    $('#rightArrow').addClass('deactivated');
+                    $('#leftArrow').addClass('active');
+                    })
+                }
+                else{
+                setTimeout(function () {
+                    $('#leftArrow').removeClass('active');
+                    $('#leftArrow').addClass('deactivated');
+                    $('#rightArrow').addClass('active');
+                })
+                }
+            });
+        });
+}
+           
+	</script>
+</div>
