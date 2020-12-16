@@ -148,6 +148,7 @@
                     <div class="eie-ring eie-btn-bottom "></div>
                 </button>
                 {% endif %}
+                
                 {% if items|length >= page_length %}
                 <button class="eie-button nextpage" data-start="{{ frappe.form_dict.start|int + page_length }}">{{ _("Next") }} 
                     <div class="eie-ring eie-btn-bottom"></div>

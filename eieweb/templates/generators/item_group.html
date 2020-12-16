@@ -72,19 +72,23 @@
                 {% if items %}
                 <div id="search-list" class=" row  order-2  order-md-1 products-list">
                     {% for i in range(0, page_length) %}
+                   
                     {% if items[i] %}
                     {%- set item = items[i] %}
                     {% include "eieweb/www/all-products/item_row.html" %}
                     {% endif %}
                     {% endfor %}
                 </div>
-                <div class="item-group-nav-buttons">
+                <div class="container d-flex justify-content-center">
                     
                     {% if frappe.form_dict.start|int > 0 %}
-                    <a class="btn btn-outline-secondary"
-                        href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}"><button class="eie-button"><span>{{ _("Prev") }}</span></button></a>
+                    <!-- <a class="btn btn-outline-secondary" -->
+                    <a class=""
+                        href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}"><button class="eie-button" 
+                        style="transform: translate(0%, -50%);"><span>{{ _("Prev") }}</span></button></a>
                     {% endif %}
                     {% if items|length > page_length %}
+                    
                     <a class=""
                         href="/{{ pathname }}?start={{ frappe.form_dict.start|int + page_length }}" ><button class="eie-button"><span>{{ _("Next") }}</span></button></a>
                     {% endif %}
