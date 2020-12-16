@@ -35,3 +35,10 @@ class ItemAsVariant(Document):
 				'variant_of':self.template
 			})
 		doc.save()
+	
+	def on_cancel(self):
+		doc = frappe.get_doc('Item',self.make_variant)
+		if doc.variant_of == self.template:
+			doc.db_set('variant_of',None)
+			doc.attributes = []
+			doc.save()
