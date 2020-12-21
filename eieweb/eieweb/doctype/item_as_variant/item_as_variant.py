@@ -27,6 +27,7 @@ class ItemAsVariant(Document):
 		doc = frappe.get_doc("Item",self.make_variant)
 		#doc.variant_of = self.template
 		doc.db_set('variant_of',self.template)
+		doc.db_set('show_in_website', 0)
 
 		for attr in self.attributes:
 			doc.append('attributes',{
