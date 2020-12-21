@@ -1185,6 +1185,7 @@ $(document).ready(function(){
             frappe.msgprint("Your interest is inspiring us to do better...");
         }
     });
+    $('#inquiry-form-section').removeClass('slide-right');
 };
 
 var form = $('#inquiry'),

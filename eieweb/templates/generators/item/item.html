@@ -18,122 +18,9 @@
         </div>
     </div>
 </div>
-<div class="container mt-4">
-    <ul class="nav nav-tabs" role="tablist">
 
-        <li class="nav-item ">
-            <a class="nav-link active" href="#moreinfo" role="tab" data-toggle="tab">
-                <h5 class="dark-text sizing" >
-                    More Information
-                </h5>
-            </a>
-        </li>
-
-        <li class="nav-item ">
-            <a class="nav-link" href="#tecspe" role="tab" data-toggle="tab">
-                <h5 class="dark-text sizing"  >
-                    Technical specification
-                </h5>
-            </a>
-        </li>
-
-        <li class="nav-item ">
-            <a class="nav-link" href="#acc" role="tab" data-toggle="tab">
-                <h5 class="dark-text sizing" >
-                    Accessories
-                </h5>
-            </a>
-        </li>
-
-    </ul>
-
-<div class="tab-content  min-height" >
-    <div role="tabpanel" class="tab-pane fade in active" id="moreinfo">
-        <div class="container product-video">
-            <div class="row pt-10 ">
-                <!-- start video section -->
-                {% if  frappe.db.get_value("Item",doc.name,'youtube_link') %}
-                    <div class="col-lg-5 col-xl-5 col-md-12 mt-2">
-                        <div class="d-flex justify-content-center my-4"  id="product-youtube"  data-src="{{youtube_link }}"> </div> 
-                    </div>
-                    <div class="col-lg-7 col-xl-7 col-md-12 mt-2 ">
-                        <br><p>{{ description }}</p>
-                    </div>
-                    {% else %}
-                    <div class="col-12">
-                        <br><p>{{ description }}</p>
-                    </div>
-                {% endif %}  
-            </div>
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane fade " id="tecspe">
-        {% if specifications %}
-        <br>       
-                <table class="table table-striped table-bordered " width="60%">
-                    {% for row in specifications%}
-                    <tr>
-                        <td  width="50%" style="padding:0.1rem;"><p style="margin-bottom: 0px;">{{ row.specification or '' }}</p></td>
-                        <td  width="50%" style="padding:0.1rem;"><p style="margin-bottom: 0px;">{{ row.value or ''}}</p></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-        <br>
-        {% endif %}
-    </div>
-
-    <div role="tabpanel" class="tab-pane fade" id="acc">
-        {% if optional_accessories %}
-
-        <section class=" related-items remove_padding" >
-        <div class="container products-list-container">
-        <div class="products-list finbyz row">
-            {% for link in optional_accessories %}
-            
-            {% if frappe.db.get_value("Item",link.accessory,'show_in_website') %}
-            <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
-                <div class="row no-gutters">
-                    <div class="col-md-12">
-                        <div class="card-body card-image">
-                                <img class="website-image" alt="{{ link.accessory }}"
-                                    src="{{ frappe.db.get_value('Item',link.accessory,'image') or '/files/eie-icon.svg' }}"
-                                    title="{{ link.accessory }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content card-body" style="padding-top:0px">
-                                <a 
-                                    href="/{{ frappe.db.get_value('Item',link.accessory,'route') }}">
-                                  
-                                    <h5 class="card-title sub-text">
-                                        {{ link.accessory }}
-                                    </h5>
-                                    <p class="card-title sub-text">
-                                        {{ frappe.db.get_value('Item',link.accessory,'small_description') or ''}}          
-                                    </p>
-                                </a>
-                
-                         <a class="eie-button eie-fadeindown Accessories-button" href="/{{ frappe.db.get_value('Item',link.accessory,'route') }}" style="margin-top: 15px;">View More
-                            <div class="eie-ring eie-btn-bottom"></div> 
-                        </a>
-                   
-                 </div>
-            </div>
-                           
-             
-            {% endif %}
-            
-            {% endfor %}
-        </div>
-    </div>
-</div>
-</section>
-{% endif %}
-    </div>
-</div>
-</div>
-
-
+{% include "templates/generators/item/item-specification.html" %}
+<!-- specificati on end -->
 
 
 {% if related_items %}
@@ -168,6 +55,7 @@
                 {% endfor %}
              
             </div>
+
             </div>
             <!-- <div class="owl-nav "><button type="button" role="presentation" class="owl-prev"><span
                 aria-label="Previous">‹</span></button><button type="button" role="presentation"

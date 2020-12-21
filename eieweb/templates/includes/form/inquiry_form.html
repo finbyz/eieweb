@@ -62,33 +62,33 @@
   
 //active form at certain height 
 
-if(window.location.href.length == 22){
+if(window.location.pathname == '/'){
     var isOpened = false;
-            jQuery(function() {
-                jQuery(window).scroll(function() {
-                    var scroll = jQuery(window).scrollTop();
+            $(function() {
+                $(window).scroll(function() {
+                    var scroll = $(window).scrollTop();
 
                     if (scroll >= 2000 && !isOpened) {
                         isOpened = true;
-                        jQuery("#inquiry-form-section").addClass("slide-right");
+                        $("#inquiry-form-section").addClass("slide-right");
                     }
-            if ($('#inquiry-form-section').hasClass('slide-right')){
-                setTimeout(function () {
-                    $('#rightArrow').removeClass('active');
-                    $('#rightArrow').addClass('deactivated');
-                    $('#leftArrow').addClass('active');
-                    })
-                }
-                else{
-                setTimeout(function () {
-                    $('#leftArrow').removeClass('active');
-                    $('#leftArrow').addClass('deactivated');
-                    $('#rightArrow').addClass('active');
-                })
-                }
-            });
-        });
-}
+                    if ($('#inquiry-form-section').hasClass('slide-right')){
+                        setTimeout(function () {
+                            $('#rightArrow').removeClass('active');
+                            $('#rightArrow').addClass('deactivated');
+                            $('#leftArrow').addClass('active');
+                            })
+                        }
+                        else{
+                        setTimeout(function () {
+                            $('#leftArrow').removeClass('active');
+                            $('#leftArrow').addClass('deactivated');
+                            $('#rightArrow').addClass('active');
+                        })
+                        }
+                    });
+                });
+    }
            
 	</script>
 </div>
