@@ -103,14 +103,14 @@
         $(`#${id}`).addClass('activeP');
         $(`#child${id}`).addClass('active');
     });
-    $(".uplist").mouseover(function () {
+    $(".up-button").mouseover(function () {
         $(".subcat-child").animate({
         "scrollTop": 0,
         }, 1000);
         }).mouseout(function () {
             $(".subcat-child").stop();
         });
-    $(".down").mouseover(function () {
+    $(".down-button").mouseover(function () {
         $(".subcat-child").animate({
         "scrollTop": $(".subcat-inner").height(),
         }, 1000); 
@@ -125,7 +125,7 @@
         $('.subcat-child ').css({ 'max-height': (h * 10) + 'px', 'overflow':'hidden'}); 
         }
     });
-    $(".down").hover(function(){
+    $(".down-button").hover(function(){
         $(".up-button").addClass('activated');
     })
     $('.child-cat li a').hover(function () {

@@ -1,4 +1,4 @@
-<div class="news-ticker mt-4">
+<div class="news-ticker">
     <span>Latest Updates</span>
     {% set news_list = frappe.get_all("News", order_by = "date desc" , limit = 5) %}
   <ul class="news-list">

@@ -49,11 +49,7 @@
         {% include "www/testimonial.html" %}
         {% endif %}
 
-        {% if doctype == "Web Page" and name == "index" %}
-        {% include "www/counter.html" %}
-        {% endif %}
-       
-        {% if doctype == "Web Page" and name == "index" %}
+        {% if doctype == "Web Page" or (route == "certificate" or route == "testimonial" or route == "trade-shows") %}
         {% include "www/Customer.html" %}
         {% endif %}
 

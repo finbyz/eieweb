@@ -1,6 +1,7 @@
 <header class="eieNav noDropdownTransition">
+    {% include "templates/includes/header-contact.html" %}
     <ul class="navRoot">
-        <li class="navSection logo mt-2 ml-2">
+        <li class="navSection logo">
             <div class="eie-logo">
                 <a href="/">
                     <img src="/files/eie-logo.svg" class="eie-logo" alt="EIE Instruments Pvt Ltd"
@@ -17,9 +18,9 @@
             <a class="rootLink hasDropdown" data-dropdown="service">
                 Services
             </a>
-            <!-- <a class="rootLink" href="/catalogue">
-                E-Catalogue
-            </a> -->
+            <a class="rootLink hasDropdown" data-dropdown="clients">
+                Clientele
+            </a>
             <a class="rootLink" href="/trade-shows">
                 Event
             </a>
@@ -143,9 +144,29 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- <li class="p-3">
-                            <a href="">E-Catalogue</a>
-                        </li> -->
+                        <li class="p-3">
+                            <a href="" data-ls="clientelesubmenu" class="go-tosub-menu" data-toggle="collapse"
+                                aria-expanded="false">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                    alt="Left Arrow" title="Services" height="15" width="15">
+                                Clientele</a>
+                            <img data-ls="clientelesubmenu" src="/files/right-arrow-nav.svg"
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            <ul class="collapse list-unstyled ml-5" id='clientelesubmenu'>
+
+                                <li class="p-3">
+                                    <a href="/Customer"><img class="nav-service-icon"
+                                            src="/files/target.svg"
+                                            alt="Clients"
+                                            title="Clients">Clients</a>
+                                </li>
+                                <li class="p-3">
+                                    <a href="/testimonial"><img class="nav-service-icon"
+                                            src="/files/review.svg" alt="Testimonials"
+                                            title="Testimonials">Testimonials</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="p-3">
                             <a href="/trade-shows">Event</a>
                         </li>
@@ -344,6 +365,28 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- clients menu -->
+            <div class="dropdownSection" data-dropdown="clients">
+                <div class="dropdownContent" style="width: 200px;">
+                    <ul class="linkGroup">
+                        <li>
+                            <a class="linkContainer" href="/Customer">
+                                <img class="nav-service-icon" src="/files/target.svg" alt="Clients"
+                                    title="Clients">
+                                <h6 class="link-underline mt-1">Clients</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer" href="/testimonial">
+                                <img class="nav-service-icon" src="/files/review.svg" alt="Testimonials"
+                                    title="Testimonials">
+                                <h6 class="link-underline mt-1">Testimonials
+                                </h6>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <!-- Service Sub menu -->

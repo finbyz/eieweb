@@ -1,5 +1,4 @@
-
-<div class="eie-Tech">
+<div class="eie-Tech ">
    <div class="row">
 		<div class="col-md-12">
 			<div id="eie-customer">
@@ -15,3 +14,17 @@
 		</div>
 	</div>
 </div>
+<!-- cliennt list for other page -->
+<!-- <div class="customer deactivated mt-3">
+	<div class="container"> 	
+		<h5>Our Valueable Clients</h5>
+			<div id="client-slider" class="owl-carousel">
+				{% set customer_doc = frappe.get_doc("Customer Details", "Customer Details") %}
+					{% for i in customer_doc.get({"doctype":"Customer Details List"}) %}
+					<div class="item pl-20 pr-20 center-item">
+						<img src="{{ i.image }}" alt="{{ i.customer }}" title='{{ i.customer }}' class="customer-logo-img  xyz">
+					</div>
+					{% endfor %}
+			</div>
+	</div>
+</div> -->

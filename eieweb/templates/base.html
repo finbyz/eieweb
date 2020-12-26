@@ -6,13 +6,240 @@
     <meta charset="utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1.0">
+    <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{% endblock %}</title>
     <meta name="generator" content="frappe">
 
+    {% if keywords %}
+    <meta name="keywords" content="{{ keywords }}">
+    {% endif %}
+
+    {% if small_description or blog_intro %}
+    <meta name="description" content="{{ small_description or blog_intro }}" />
+    {% endif %}
+
+    {% block description %}{% endblock %}
+
+    {% if (doctype == "Web Page" and name == "index") %}
+      <link rel="canonical" href="/"> 
+    {% endif %}
+
+    {% if (doctype == "Web Page" and (name == "index" or name == "contact-us")) %}
+    <script type="application/ld+json" crossorigin="anonymous">
+      {"
+            @context":"http://schema.org",
+            "@type":"Organization","name":"EIE Instruments PVT LTD",
+            "image":"https://erp.eieinstruments.com/files/eie-logo.svg",
+            "@id":"https://erp.eieinstruments.com",
+            "url":"https://erp.eieinstruments.com",
+            "location":[
+            {"@type":"LocalBusiness",
+            "parentOrganization":{"name":"EIE Instruments PVT LTD"},
+            "name":"EIE Instruments PVT LTD - Ahmedabad",
+            "image":"https://erp.eieinstruments.com/files/eie-logo.svg",
+            "address":{
+              "@type":"PostalAddress",
+              "addressLocality":"Ahmedabad",
+              "addressRegion":"Gujarat",
+              "postalCode":"382433",
+              "streetAddress":"EIE Instruments Pvt Ltd, Survey No. 1098, Nr. Mahakali Temple, Opp. Primary School, Village Kubadthal, Tal : Daskroi, Ahmedabad"},
+              "geo":
+              {"@type":"GeoCoordinates",
+              "latitude":21.657706,
+              "longitude":73.135444},
+              "openingHoursSpecification":[
+              {"@type":"OpeningHoursSpecification",
+              "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens":"09:00","closes":"18:00"}],
+              "telephone":"+91-79660 40611",
+              "sameAs":["https://www.facebook.com/EIEInstruments",
+              "https://twitter.com/eieinstrument",
+              "https://www.linkedin.com/company/eie-instruments-pvt-ltd",
+              "https://www.youtube.com/watch?v=A49xThsRn3I&t=5s"],
+              "priceRange":"$$"}],
+              "description":"Established in 1978, EIE Instruments designs, develops and manufactures a comprehensive range of laboratory testing products catering to various engineering and academic sectors, such as Material (Soil, Cement, Asphalt) Testing Laboratories, POY Industires, Textiles Industries, Tiles-Ceramic Industries, Cement & Concrete Industries, Healthcare Industries, Pharmaceutical & Microbiology laboratories, Hospital and Medical Colleges, Universities & research institutes."}
+    </script>
+    {% elif(doctype == "Web Page") %}
+    <script type="application/ld+json" crossorigin="anonymous">
+        {
+            "@context": "http://www.schema.org",
+            "@type": "ProfessionalService",
+            "name": "{{ seo_title }}",
+            "url": "https://erp.eieinstruments.com/{{ route }}",
+            "logo": "https://erp.eieinstruments.com/files/eie-logo.svg",
+            "image": "{% if image_seo %}{{ image_seo }}{% elif image %}{{ image }}{% else %}  /files/eie-logo.svg {% endif %}",
+            "description": "{{ small_description | replace('\n','. ') }}",
+            "priceRange": "INR",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Survey No. 1098, Nr. Mahakali Temple, Opp. Primary School, Village Kubadthal, Tal : Daskroi, Ahmedabad 382433",
+              "addressLocality": "Ahmedabad",
+              "addressRegion": "Gujarat",
+              "postalCode": "382433",
+              "addressCountry": "India"
+            },
+            "telephone": "+91-79660 40611",
+            "openingHours": "Mo, Tu, We, Th, Fr, Sa 9.00:00-18:00",
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+91-79660 40611",
+                "contactType": "customer support",
+                "areaServed": [
+                  "IN"
+                ],
+                "availableLanguage": [
+                  "Hindi",
+                  "Gujarati",
+                  "English"
+                ]
+              }
+            ],
+            "sameAs": [
+            "https://www.facebook.com/EIEInstruments",
+            "https://twitter.com/eieinstrument",
+            "https://www.linkedin.com/company/eie-instruments-pvt-ltd",
+            "https://www.youtube.com/watch?v=A49xThsRn3I&t=5s"
+            ]
+          }
+    </script>
+    {% endif %}
+
+    {% if doctype == "Blog Post" and blog_intro or doctype == "Gallery" %}
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "name": "{{ title }}",
+            "headline": "{{ blog_intro or small_description | replace('\n','. ') }}",
+            "author": {
+              "@type": "Person",
+              "name": "{{ blogger }}"
+            },
+            "datePublished": "{{ published_on or creation }}",
+            "dateModified": "{{ modified }}",
+            "image": "{{ image_seo or image or animated_image or 'https://erp.eieinstruments.com/files/eie-logo.svg'}}",
+            "publisher": {
+              "@type": "ProfessionalService",
+              "name": "EIE Instruments PVT LTD",
+              "sameAs": "https://erp.eieinstruments.com/",
+              "email": "info@eieinstruments.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://erp.eieinstruments.com/files/eie-logo.svg",
+                "height": "300px",
+                "width": "300px"
+              }
+            }
+        }
+    </script>
+    {% endif %}
+
+    {% if doctype == "Blog Post" and blog_intro %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "EIE Instruments PVT LTD",
+                "item": "https://erp.eieinstruments.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://erp.eieinstruments.com/blog"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ blog_category }}",
+                "item": "https://erp.eieinstruments.com/blog?blog_category={{blog_category}}"
+              }
+            ]
+          }
+    </script>
+    {% endif %}
+
+    {% if doctype == "Job Opening" and description %}
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "JobPosting",
+            "title": "{{ job_title }}",
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "EIE Instruments PVT LTD",
+              "sameAs": "https://erp.eieinstruments.com/",
+              "logo": "https://erp.eieinstruments.com/files/eie-logo.svg",
+              "email": "info@eieinstruments.com"
+            },
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "name": "EIE Instruments PVT LTD",
+                "addressLocality": "Ahmedabad",
+                "addressRegion": "Gujarat",
+                "addressCountry": "India",
+                "postalCode": "382433",
+                "streetAddress": "Survey No. 1098, Nr. Mahakali Temple, Opp. Primary School, Village Kubadthal, Tal : Daskroi, Ahmedabad"
+              }
+            },
+            "datePosted": "{{ modified }}",
+            "baseSalary": {
+              "@type": "MonetaryAmount",
+              "value": "{{ salary }}",
+              "currency": "INR"
+            },
+            "description": "<h2><strong>Job Description</strong><h2><br><p>{{ description }}</p><br><h2><strong>Key Skills</strong></h2><p>{{ job_opening_skill }}</p><br><br><h2><strong>About EIE Instruments PVT LTD</strong></h2>",
+            "employmentType": "Full-Time",
+            "validThrough": "{{ valid_till }}"
+          }
+    </script>
+    {% endif %}
+
+   <meta property="og:locale" content="en_US" />
+   <meta property="og:type" content="article" />
+   <meta name="name" content="{{ seo_title or title }}">
+   <meta property="og:title" content="{{ seo_title or title }}" />
+   <meta property="og:url" content="/{{ route }}" />
+   <meta property="og:site_name" content="EIE Instruments PVT LTD" />
+
+   {% if doctype == "Blog Post" and blog_intro %}
+    <meta property="og:image" content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+    {% else %}
+    <meta property="og:image" content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+   {% endif %}
+
+   {% if small_description or blog_intro %}
+   <meta property="og:description" content="{{ small_description or blog_intro }}" />
+   {% endif %}
+
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="{{ seo_title or title }}">
+   <meta name="twitter:url" content="/{{ route }}">
+   <meta name="twitter:site" content="@eieinstruments" />
+   <meta name="twitter:creator" content="@eieinstruments" />
+
+   {% if doctype == "Blog Post" and blog_intro %}
+   <meta property="twitter:image"
+      content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+      {% else %}
+      <meta property="twitter:image" content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+   {% endif %}
+
+   {% if small_description or blog_intro %}
+   <meta name="twitter:description" content="{{ small_description or blog_intro }}">
+   {% endif %}
+ 
     {% block meta_block %}
     {% include "templates/includes/meta_block.html" %}
     {% endblock %}
 
-    <title>{% block title %}{{ title | striptags }}{% endblock %}</title>
+    
 
     {% block favicon %}
     <link rel="shortcut icon" href="{{ (favicon or '/assets/frappe/images/favicon.png') | abs_url }}"

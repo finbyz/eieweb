@@ -119,7 +119,20 @@ $(document).ready(function () {
         autoPlay: true,
         autoHeight: true,
     });
-
+    $("#client-slider").owlCarousel({
+        items: 3,
+        itemsDesktop: [1000, 2],
+        itemsDesktop: [999, 1],
+        itemsDesktopSmall: [979, 1],
+        itemsTablet: [768, 1],
+        itemsTablet: [750, 1],
+        pagination: false,
+        loop: true,
+        navigationText: ["<img src='/files/left-arrow-nav.svg' height='15'>", "<img src='/files/right-arrow-nav.svg' height='15'>"],
+        navigation: true,
+        autoPlay: true,
+        autoHeight: true,
+    });
 
       //EiE Customer slider
     var owl = $('#eie-customer .owl-carousel');
@@ -1192,11 +1205,46 @@ var form = $('#inquiry'),
     submit = form.find('[name="submit"]');
 
 form.on('submit', function (e) {
-    console.log('clicked');
-        setTimeout(function () {
+    setTimeout(function () {
             lead_creation();
         }, 100);
-    e.preventDefault();
-});
+        e.preventDefault(); 
+    });
 }) 
+
+$(document).ready( function()  {
+    function searchProduct(){
+        var productName=$('#search-product-Nav').val();
+                var pathname = window.location.pathname;
+                var origin   = window.location.origin; 
+                if(productName == ''){
+                    var URL=origin+pathname;
+                     window.location= URL;
+                }else{
+                    var URL = origin+"/all-products?search="+productName;
+                    window.location= URL;
+                }
+        }
+            $('input[type=search]').on('keydown',(e)=>{
+                if (e.keyCode === 13) {
+                    searchProduct();
+                }
+            })
+            $('.nav-search-btn').on('click',(e)=>{
+                searchProduct();
+            })
+
+    var current_location=window.location.pathname;
+    if(current_location != '/'){
+       $('.eie-Tech').addClass('remove_margin');
+    }
+    if(current_location == '/testimonial'){
+        console.log('you are at testimonial page');
+        $('.eie-Tech').removeClass('remove_margin');
+    }
+    if(current_location == '/Customer'){
+    //    $('.eie-Tech ').addClass('deactivated');
+    //     $('.customer').removeClass('deactivated');
+    }
+})
  
