@@ -11,10 +11,10 @@ def get_context(context):
 	url = frappe.request.url.rsplit('?', 1)[-1].replace('%20',' ')
 	if url:
 		final_dict.update({"url": url})
-	item_group = get_param_from_url(url,'item_group')
-	if item_group:
-		final_dict.update({"selected_group": item_group})
-		selected_option = frappe.get_all("Website Itemgroup",{'show_in_website':1,'is_group':0}, order_by="priority")
+	# item_group = get_param_from_url(url,'item_group')
+	# if item_group:
+	# 	final_dict.update({"selected_group": item_group})
+	# 	selected_option = frappe.get_all("Website Itemgroup",{'show_in_website':1,'is_group':0}, order_by="priority")
 	item1 = get_param_from_url(url,'item1')
 	item2 = get_param_from_url(url,'item2')
 	item3 = get_param_from_url(url,'item3')

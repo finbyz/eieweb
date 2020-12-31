@@ -271,7 +271,7 @@ function eieNavDropdowns(e) {
         t.closeDropdown()
     })
 }
-/* end finbyznavDropdown */
+/* end eieNavDropdown */
 
 /* Starting code */
 var Strut = {
@@ -1239,12 +1239,144 @@ $(document).ready( function()  {
        $('.eie-Tech').addClass('remove_margin');
     }
     if(current_location == '/testimonial'){
-        console.log('you are at testimonial page');
         $('.eie-Tech').removeClass('remove_margin');
     }
     if(current_location == '/Customer'){
     //    $('.eie-Tech ').addClass('deactivated');
     //     $('.customer').removeClass('deactivated');
     }
+
+    //news list
+    // $('#news li:first').addClass('active');
+    // $('#news li:first').addClass('fadeout');
+    // var news_length= $('#news li');
+    // setInterval(function () {
+    //     moveRight();
+    //    }, 4000);
+    //    function moveRight() {
+    //     var len=$('#news li');
+    //     var i=1;
+    //     $('#news li').each(function(){
+    //         i++;
+    //          if($(this).attr('class')=="active fadeout")
+    //          {
+    //              $(this).next('#news li').addClass('active');
+    //              $(this).next('#news li').addClass('fadeout');
+    //              $(this).removeClass('active');
+    //              $(this).removeClass('fadeout');
+    //              return false;
+    //          }
+    //         if(len.length==i)
+    //         {
+    //             $('li:nth-child(1)').addClass('active');
+    //             $('li:nth-child(1)').addClass('fadeout');
+    //         }
+    //     });
+        
+    // }
+   
+  
 })
- 
+
+// client grid hover effect
+
+// set some global properties
+TweenLite.set('.client-grid-wrap', {
+	perspective: 1000
+});
+TweenLite.set('.client-grid-wrap-inner', {
+	transformStyle: "preserve-3d"
+});
+TweenLite.set('.grid-back', {
+	rotationX: -90
+});
+TweenLite.set(['.grid-back', '.grid-front'], {
+	backfaceVisibility: "hidden",
+	transformOrigin: '50% 0'
+});
+
+// loop through each element
+$(".client-grid-wrapper").each(function (i, el) {
+
+	// create a timeline for this element in paused state
+	var tl = new TimelineMax({
+		paused: true
+	});
+
+	// create your tween of the timeline in a variable
+	var t = tl
+		.set(el, {
+			willChange: "transform"
+		})
+		.to($(el).find('.client-grid-wrap-inner'), 0.53, {
+			y: "-40px",
+			rotationX: 90,
+			zIndex: 2,
+			overwrite: "all",
+			ease: Back.easeOut
+		}, 0);
+
+	// store the tween timeline in the javascript DOM node
+	el.animation = t;
+
+	//create the event handler
+	$(el).on("mouseenter", function () {
+		this.animation.play();
+	}).on("mouseleave", function () {
+		this.animation.reverse();
+	});
+
+});
+// navigation
+$(window).scroll(function() { 
+    var scroll = $(window).scrollTop();
+    if (scroll >= 20) {
+        $(".navRoot").addClass("active");
+    }
+    else {
+        $(".navRoot").removeClass("active");
+    }
+});
+//Navigation bar swing effect on scroll
+
+var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop,
+isVisible = true;
+          function show(){
+          if(!isVisible){
+              TweenLite.to(".eieNav", 1, { y: "0%"}, 0);
+              TweenLite.to(".header-hide-content", 1, {y: "0%"}, 0);
+              isVisible = true;
+          }
+          }
+          function hide(){
+          if(isVisible){
+              TweenLite.to(".eieNav", 1, { y: "-40%"}, 0);
+              TweenLite.to(".header-hide-content", 1, { y: "-100%"}, 0);
+              isVisible = false;
+          }
+          }
+
+function refresh() {
+var newScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+if (newScrollTop > currentScrollTop) {
+   
+  hide();
+} else if (newScrollTop < currentScrollTop) {
+  show();
+}
+currentScrollTop = newScrollTop;
+}
+
+window.addEventListener("scroll", refresh, {
+passive: true
+});
+refresh();
+
+// alphabetical number
+$('#letters').hover(
+    function(){ 
+        $('.Alpha').toggleClass("active");
+        $('.Alpha').toggleClass("fadeIn");
+    })
+

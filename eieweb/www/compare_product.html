@@ -1,8 +1,6 @@
-{% set item_groups = frappe.get_all("Website Itemgroup",{'show_in_website':1,'is_group':0}, order_by="priority") %}
-{% if selected_group %}
-{% set selected_items =  frappe.get_all("Item",{'website_itemgroup':selected_group,'show_in_website':1})%}
+{% if item1 %}
+{% set selected_items =  frappe.get_all("Compare Item Detail",{'parent':frappe.db.get_value("Compare Item Detail",{'item_code':item1},'parent')},'item_code',order_by='idx' )%}
 {% endif %}
-
 
 <section class="com-pro">
     <div class="container-fluid">
@@ -18,7 +16,7 @@
                             <option value='{{d.name}}' {% if selected_group and selected_group==d.name %}selected{% endif %}>{{d.name}}</option>
                             {% endfor %}
                         </select> -->
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <div class="info-list" >
                                 <span class="dropbtn" id="selected-group" >Select Item Group</span>
                                 <img src="/files/sort-down.svg" alt="downarrow" style="width: 15px; ">
@@ -31,10 +29,10 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-4  col-md-2 d-flex justify-content-end">
-                            <a class="d-inline-block clear-filter" style="cursor: pointer;" >{{ _('Clear Filters') }}</a>
-                        </div>
+                        </div> -->
+                        <!-- <div class="col-4  col-md-2 d-flex justify-content-end">
+                            <a class="d-inline-block clear-filter" style="cursor: pointer;" >{{ _('Clear All Filters') }}</a>
+                        </div> -->
                 </div>
             </div>
             <br>
@@ -56,7 +54,7 @@
                                 <option>Select Items</option>
                                 {%  if selected_items %}
                                 {% for d in selected_items %}
-                                <option value="{{ d.name }}" {% if item1 and item1==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                <option value="{{ d.item_code }}" {% if item1 and item1==d.item_code %}selected{% endif %}>{{ d.item_code }}</option>
                                 {% endfor %}
                                 {% endif %}
                             </select>
@@ -69,7 +67,7 @@
                                 <option>Select Items</option>
                                 {%  if selected_items %}
                                 {% for d in selected_items %}
-                                <option value="{{ d.name }}" {% if item2 and item2==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                <option value="{{ d.item_code }}" {% if item2 and item2==d.item_code %}selected{% endif %}>{{ d.item_code }}</option>
                                 {% endfor %}
                                 {% endif %}
                             </select>
@@ -82,7 +80,7 @@
                                 <option>Select Items</option>
                                 {%  if selected_items %}
                                 {% for d in selected_items %}
-                                <option value="{{ d.name }}" {% if item3 and item3==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                <option value="{{ d.item_code }}" {% if item3 and item3==d.item_code %}selected{% endif %}>{{ d.item_code }}</option>
                                 {% endfor %}
                                 {% endif %}
                             </select>
@@ -95,7 +93,7 @@
                                 <option>Select Items</option>
                                 {%  if selected_items %}
                                 {% for d in selected_items %}
-                                <option value="{{ d.name }}" {% if item4 and item4==d.name %}selected{% endif %}>{{ d.name }}</option>
+                                <option value="{{ d.item_code }}" {% if item4 and item4==d.item_code %}selected{% endif %}>{{ d.item_code }}</option>
                                 {% endfor %}
                                 {% endif %}
                             </select>

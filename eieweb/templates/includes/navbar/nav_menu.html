@@ -9,13 +9,16 @@
             <ul class=" top-label">
                 {% for key, value in data.items() %}
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
-                <li>
-                    <a href="/{{ parent_doc.route }}" class="has-child activeP"
-                            id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
-                        <img class="nav-service-icon" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}"
-                            alt="{{parent_doc.name}}">
-                        <h6 class="pt-1 parent_group_name">{{ parent_doc.name }}</h6>
-                    </a>
+                <li class="top-label-list">
+                    <div  style="border-bottom: 1px solid #EEEEEE;">
+                        <a href="/{{ parent_doc.route }}" class="has-child activeP d-flex"
+                                id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
+                            <img class="nav-service-icon mt-2" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}"
+                                alt="{{parent_doc.name}}" >
+                            <h6 class="pt-1 parent_group_name ">
+                                {{ parent_doc.name }}</h6>
+                        </a>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>
@@ -84,6 +87,8 @@
 </div>
 
 <script>
+    $(".top-label .top-label-list:first").children().addClass('hovered_list');
+    $(".top-label .top-label-list:first").children().children().children('h6').addClass('hovered_item');
     $(".child-cat .subcat-inner:first").addClass('active');
     $(".image-stack .flex-inner:first").addClass('active');
     $('.top-cat li a').hover(function () {
@@ -99,8 +104,12 @@
         });
         $('.top-label a').each(function () {
             $(this).removeClass('activeP');
+            $(this).children('h6').removeClass('hovered_item');
+            $(this).parent().removeClass('hovered_list');
         });
         $(`#${id}`).addClass('activeP');
+        $(`#${id}`).children('h6').addClass('hovered_item');
+        $(`#${id}`).parent().addClass('hovered_list');
         $(`#child${id}`).addClass('active');
     });
     $(".up-button").mouseover(function () {

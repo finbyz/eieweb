@@ -4,10 +4,8 @@ from frappe.model.document import Document
 from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent_item_groups
 from erpnext.stock.doctype.item.item import Item
 
-
-
-
 def get_items(filters=None, search=None):
+	frappe.msgprint('call')
 	start = frappe.form_dict.start or 0
 	products_settings = get_product_settings()
 	page_length = products_settings.products_per_page
@@ -79,7 +77,8 @@ def get_items(filters=None, search=None):
 		GROUP BY
 			`tabItem`.`name`
 		ORDER BY
-			`tabItem`.`weightage` DESC
+			`tabItem`.`weightage` DESC,
+			`tabItem`.`item_sequence` ASC
 		LIMIT
 			{page_length}
 		OFFSET
@@ -126,6 +125,8 @@ def item_validate(self,method):
 	description = description.replace('&lt;font color="#000000"&gt;','')
 	description = description.replace('&lt;/font&gt;','')
 	self.db_set('description',description)
+	if self.variant_of:
+		self.db_set('show_in_website',0)
 
 @frappe.whitelist(allow_guest=True)
 def set_form_data(lead_name,company_name,message,mobile_no,product_name, title,email):

@@ -6,7 +6,7 @@
 {% endblock header %}
 {% block page_content %}
 <div class="container">
-<div class="row pt-50 pb-0 mt-3 d-flex justify-content-between">
+<div class="row pt-50 pb-0 mt-3 d-flex ">
     <div class="col-8">
        
         <div class="search" >
@@ -32,9 +32,9 @@
         </script>
     </div>
     <!-- filter section start   -->
-    <div class="col-4  col-md-2 d-flex justify-content-end">
+    <div class="col-4  col-md-2 d-flex justify-content-start">
         {% if frappe.form_dict.start or frappe.form_dict.field_filters or frappe.form_dict.attribute_filters or frappe.form_dict.search %}
-            <a class="d-inline-block clear-filter" href="/all-products" >{{ _('Clear Filters') }}</a>
+            <a class="d-inline-block clear-filter pt-1" href="/all-products" >{{ _('Clear Filters') }}</a>
         {% endif %}
 
         <div class="collapse d-md-block" id="product-filters">

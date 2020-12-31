@@ -1,0 +1,26 @@
+<section class="testimonial-sec">
+    <div class="container-fluid">
+        <h2 class="dark-text title-underline">Client Testimonials</h2>
+    </div>
+    {% set testimonial_list = frappe.get_all("Testimonial") %}
+    <div class="container">
+        <div class="row">
+            {% for testimonial in testimonial_list  %}
+                  {% set doc = frappe.get_doc('Testimonial',testimonial.name)%}
+            <div class="col-12 col-sm-6 val-ser p-3">
+                <div class="card t-card event-card">
+                    <img class="card-img img-fluid t-image" src="{{ doc.image }}" alt=" {{ doc.customer }}">
+                    <div class="card-body">
+                        <p class="card-title t-title">
+                            {{ doc.customer }} 
+                        </p>
+                        <p class="card-text pt-small">
+                            {{ doc.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

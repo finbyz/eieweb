@@ -3,8 +3,23 @@
     <h2 itemprop=" name" class="product_title_name">
         {{ website_item_name or item_name}}
     </h2>
+    
+   
+        {% if frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent') %}
+        {% set item_list = frappe.get_all("Compare Item Detail",{'parent':frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent'),'item_code':('!=',item_code)},'item_code',order_by="idx",limit=3) %}
+        {% if item_list %}
+            {% set ids = [] %} 
+            {% for item in item_list %}
+            {% set idx = loop.index + 1 %}
+            {% set param = 'item'~idx+'='~item.item_code %}
+            {% set d = ids.append(param) %}
+            {% endfor %}
+            <a href="/compare_product?item1={{item_code}}&{{ ids|join('&') }}"><div class="float-right eie-button">Compare Item</div></a>
+        {% endif %}
+        {% endif %}
+   
     <p>
-        <span style="font-weight:500; color: #fb383b;">  Model Number : {{ model_no }} </span>
+        <span style="font-weight:500; color: #fb383b;">  Model Number : {{ model_no or '' }} </span>
     </p>
     <!-- description -->
     <div itemprop="description" class="product_description " > 

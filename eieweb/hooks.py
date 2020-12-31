@@ -14,8 +14,9 @@ app_license = "GPL 3.0"
 
 from eieweb.api import get_items as my_get_item, get_context
 from erpnext.stock.doctype.item.item import Item
-# import erpnext
-# erpnext.portal.product_configurator.utils.get_items = my_get_item
+#import erpnext
+# from erpnext.portal.product_configurator.utils import get_items as get_item
+# get_items = my_get_item
 Item.get_context = get_context
 # Includes in <head>
 # ------------------

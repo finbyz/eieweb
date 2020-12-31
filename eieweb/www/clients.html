@@ -1,0 +1,81 @@
+<section class="client-sec pt-5">
+    <div class="container-fluid">
+        <h2 class="dark-text title-underline mb-5">Our Valueable Clients</h2>
+        <div class="container">
+            <div class="client-row"
+                style="display: grid!important;grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));grid-gap: 2rem;">
+                {% set customer_doc = frappe.get_doc("Customer Details", "Customer Details") %}
+                {% for i in customer_doc.get({"doctype":"Customer Details List"}) %}
+                <div class="client-grid-wrapper">
+                    <div class="client-grid-wrap">
+                        <div class="client-grid-wrap-inner">
+                            <div class="client-img-main grid-front">
+                                <img src="{{ i.image }}" alt="{{ i.customer }}" title='{{ i.customer }}' class="client-image">
+                            </div>
+                            <div class="client-info grid-back">
+                                <p class="client-info-txt">
+                                    {{ i.customer }}
+								</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+            <!-- <div>
+                <ul id="filter-list">
+                    <li>All</li>
+                    <li id="letters">
+                        Alphabetic Order
+                        <ul class="Alpha" style="width: 227px;">
+                            <li class="filter" data-filter="a">A</li>
+                            <li class="filter" data-filter="b">B</li>
+                            <li class="filter" data-filter="c">C</li>
+                            <li class="filter" data-filter="d">D</li>
+                            <li class="filter" data-filter="e">E</li>
+                            <li class="filter" data-filter="f">F</li>
+                            <li class="filter" data-filter="g">G</li>
+                            <li class="filter" data-filter="h">H</li>
+                            <li class="filter" data-filter="i">I</li>
+                            <li class="filter" data-filter="j">J</li>
+                            <li class="filter" data-filter="k">K</li>
+                            <li class="filter" data-filter="l">L</li>
+                            <li class="filter" data-filter="m">M</li>
+                            <li class="filter" data-filter="n">N</li>
+                            <li class="filter" data-filter="o">O</li>
+                            <li class="filter" data-filter="p">P</li>
+                            <li class="filter" data-filter="q">Q</li>
+                            <li class="filter" data-filter="r">R</li>
+                            <li class="filter" data-filter="s">S</li>
+                            <li class="filter" data-filter="t">T</li>
+                            <li class="filter" data-filter="u">U</li>
+                            <li class="filter" data-filter="v">V</li>
+                            <li class="filter" data-filter="w">W</li>
+                            <li class="filter" data-filter="x">X</li>
+                            <li class="filter" data-filter="y">Y</li>
+                            <li class="filter" data-filter="z">Z</li>
+                        </ul>
+                    </li>
+                </ul>
+                <table id="paging_container1">
+                    <tbody>
+                        <tr id="portfolio">
+                            {% set customer_doc = frappe.get_doc("Customer Details", "Customer Details") %}
+                                {% for i in customer_doc.get({"doctype":"Customer Details List"}) %}
+                            <td class="item a mix_all" style="display: inline-block; opacity: 1;">
+                                <div class="customer-all card-content">
+                                        <h6>{{ i.customer }}</h6>
+                                        <p>JAIPUR</p>
+                                    
+                                </div>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> -->
+</section>
