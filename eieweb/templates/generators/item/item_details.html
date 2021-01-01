@@ -18,8 +18,9 @@
         {% endif %}
         {% endif %}
    
+        {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
     <p>
-        <span style="font-weight:500; color: #fb383b;">  Model Number : {{ model_no or '' }} </span>
+        <span style="font-weight:500; color: #fb383b;">  Model Number : {{  doc.model_no or '' }} </span>
     </p>
     <!-- description -->
     <div itemprop="description" class="product_description " > 

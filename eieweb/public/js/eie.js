@@ -1,3 +1,56 @@
+//news 
+$('#news li:first').addClass('active');
+$('#news li:first').addClass('fadeout');
+
+function moveRight(){
+      var activeclass=$('li.active');
+    $(activeclass).removeClass('active');
+   
+    if(activeclass.next().length == 0){
+      $('#news li').eq(0).addClass('active');
+       $('#news li').eq(0).addClass('fadeout');
+    }
+    else{
+      $(activeclass).next().addClass('active');
+      $(activeclass).next().addClass('fadeout');
+    }
+}
+function moveLeft(){
+    var activeclass=$('li.active');
+    $(activeclass).removeClass('active');
+
+    if(activeclass.prev().length == 0){
+      $('#news li').eq(-1).addClass('active');
+        $('#news li').eq(-1).addClass('fadeout');
+    }
+    else{
+      $(activeclass).prev().addClass('active');
+        $(activeclass).prev().addClass('fadeout');
+     }
+}
+
+$('.bn-prev').on('click',()=>{
+    moveLeft();
+})
+$('.bn-next').on('click',()=>{
+   moveRight();
+})
+var interval = setInterval(function () {
+    moveRight();
+}, 5000);
+$('.pause').on('click',()=>{
+    clearInterval(interval);
+})
+
+$('.play').on('click',()=>{
+    console.log('clicked');
+    setInterval(()=>{
+         setTimeout(function () {
+        moveRight();
+    }, 500);
+    },5000)
+    
+})
 
 // Modal
 if (document.getElementById('gallery')) {
@@ -215,7 +268,6 @@ $(document).ready(function () {
 
 
 /* Nav */
-
 
 function eieNavDropdowns(e) {
     var t = this;
@@ -727,8 +779,14 @@ $(function () {
             div = document.createElement("iframe");
             var str=  v[n].dataset.src;
             var res = str.split("=");
-            var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
-            div.setAttribute("src", embeddedUrl);
+            if(typeof res[2] === "undefined"){
+                var embeddedUrl = "https://www.youtube.com/embed/"+res[1]
+            }else{
+                var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
+            }
+            var EmbeddedUrl =embeddedUrl.split('&', 1)[0];
+            console.log(EmbeddedUrl);
+            div.setAttribute("src", EmbeddedUrl);
             v[n].appendChild(div);
                 }
             })
@@ -1245,37 +1303,7 @@ $(document).ready( function()  {
     //    $('.eie-Tech ').addClass('deactivated');
     //     $('.customer').removeClass('deactivated');
     }
-
-    //news list
-    // $('#news li:first').addClass('active');
-    // $('#news li:first').addClass('fadeout');
-    // var news_length= $('#news li');
-    // setInterval(function () {
-    //     moveRight();
-    //    }, 4000);
-    //    function moveRight() {
-    //     var len=$('#news li');
-    //     var i=1;
-    //     $('#news li').each(function(){
-    //         i++;
-    //          if($(this).attr('class')=="active fadeout")
-    //          {
-    //              $(this).next('#news li').addClass('active');
-    //              $(this).next('#news li').addClass('fadeout');
-    //              $(this).removeClass('active');
-    //              $(this).removeClass('fadeout');
-    //              return false;
-    //          }
-    //         if(len.length==i)
-    //         {
-    //             $('li:nth-child(1)').addClass('active');
-    //             $('li:nth-child(1)').addClass('fadeout');
-    //         }
-    //     });
-        
-    // }
-   
-  
+    
 })
 
 // client grid hover effect
