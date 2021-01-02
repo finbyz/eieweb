@@ -1,56 +1,71 @@
 //news 
 $('#news li:first').addClass('active');
-$('#news li:first').addClass('fadeout');
+$('#news li:first p').addClass('active');
+$('#news li:first strong').addClass('fadeout');
 
 function moveRight(){
-      var activeclass=$('li.active');
-    $(activeclass).removeClass('active');
-   
+    var activeclass=$('li.active');
+        $(activeclass).removeClass('active');
+        $(activeclass).children('p').removeClass('active');
+        $(activeclass).children('strong').removeClass('fadeout');
+
     if(activeclass.next().length == 0){
-      $('#news li').eq(0).addClass('active');
-       $('#news li').eq(0).addClass('fadeout');
+        $('#news li').eq(0).addClass('active');
+        $('#news li').eq(0).children('p').addClass('active');
+        $('#news li').eq(0).children('strong').addClass('fadeout');
     }
     else{
       $(activeclass).next().addClass('active');
-      $(activeclass).next().addClass('fadeout');
+      $(activeclass).next().children('p').addClass('active');
+      $(activeclass).next().children('strong').addClass('fadeout');
     }
 }
 function moveLeft(){
     var activeclass=$('li.active');
-    $(activeclass).removeClass('active');
+        $(activeclass).removeClass('active');
+        $(activeclass).children('p').removeClass('active');
+        $(activeclass).children('strong').removeClass('fadeout');
 
     if(activeclass.prev().length == 0){
-      $('#news li').eq(-1).addClass('active');
-        $('#news li').eq(-1).addClass('fadeout');
+        $('#news li').eq(-1).addClass('active');
+        $('#news li').eq(-1).children('p').addClass('active');
+        $('#news li').eq(-1).children('strong').addClass('fadeout');
     }
     else{
-      $(activeclass).prev().addClass('active');
-        $(activeclass).prev().addClass('fadeout');
+        $(activeclass).prev().addClass('active');
+        $(activeclass).prev().children('p').addClass('active');
+        $(activeclass).prev().children('strong').addClass('fadeout');
      }
 }
 
-$('.bn-prev').on('click',()=>{
-    moveLeft();
-})
-$('.bn-next').on('click',()=>{
-   moveRight();
-})
-var interval = setInterval(function () {
-    moveRight();
-}, 5000);
-$('.pause').on('click',()=>{
-    clearInterval(interval);
-})
-
-$('.play').on('click',()=>{
-    console.log('clicked');
-    setInterval(()=>{
-         setTimeout(function () {
+        $('.bn-prev').on('click',()=>{
+            moveLeft();
+        })
+        $('.bn-next').on('click',()=>{
         moveRight();
-    }, 500);
-    },5000)
-    
-})
+        })
+        var interval = setInterval(function () {
+            moveRight();
+        }, 5000);
+        $('.pause').on('click',()=>{
+            console.log('pause button clicked')
+            clearInterval(interval);
+            //togglr playbutton
+            $('.pause').children('img').toggleClass('play_button');
+        })
+
+        $('.play').on('click',()=>{
+            var interval1 = setInterval(()=>{
+                    setTimeout(function () {
+                        console.log('paly button clicked')
+                        moveRight();
+                    }, 500);
+                },5000);
+                $('.pause').on('click',()=>{
+                    console.log('clicked inside play ')
+                    clearInterval(interval1);
+                })
+        })
 
 // Modal
 if (document.getElementById('gallery')) {
@@ -1138,100 +1153,7 @@ $(function () {
             }();
 //search 
        
-//news
-/**
- * @title Simple jQuery News Ticker
- */
-(function ($) {
-    $.fn.Ticker = function (options) {
-      var defaults = {
-        // Time to display each news item. (integer, milliseconds)
-        pause: 5000,
-  
-        // Time taken to fade in next news item. (integer, milliseconds)
-        fadeIn: 800,
-  
-        // Time taken to fade out current news item. (integer, milliseconds)
-        fadeOut: 800,
-  
-        // Pause between displaying each item when fading between items. (integer, milliseconds)
-        delay: 500,
-  
-        // Next news item typed out one character at a time. If false item will fade in. (boolean)
-        typewriter: true,
-  
-        // Time to type each character if using the typewriter effect (integer, milliseconds)
-        speed: 35,
-  
-        // Character to use to mimic a computer cursor if using the typewriter effect (string|boolean)
-        cursor: "_"
-      };
-  
-      // Merge default options with user options
-      var opts = $.extend({}, defaults, options);
-  
-      return $(this).each(function () {
-        var list = $(this),
-          typewriter = {},
-          interval;
-  
-        // Activate ticker and display first item
-        list.addClass("ticker-active").children(":first").css("display", "block");
-  
-        function changeItem() {
-          var item = list.children(":first"),
-            next = item.next(),
-            copy = item.clone();
-  
-          clearTimeout(interval);
-  
-          // Append copy of current item to bottom of list
-          $(copy).css("display", "none").appendTo(list);
-  
-          // Fade current item out, remove from DOM then animate the next item
-          item.fadeOut(opts.fadeOut, function () {
-            $(this).remove();
-  
-            // Animate
-            if (opts.typewriter) {
-              typewriter.string = next.text();
-  
-              next.text("").css("display", "block");
-  
-              typewriter.count = 0;
-              typewriter.timeout = setInterval(type, opts.speed);
-            } else {
-              next.delay(opts.delay).fadeIn(opts.fadeIn, function () {
-                setTimeout(changeItem, opts.pause);
-              });
-            }
-          });
-        }
-  
-        function type() {
-          typewriter.count++;
-  
-          var text = typewriter.string.substring(0, typewriter.count);
-  
-          if (typewriter.count >= typewriter.string.length) {
-            clearInterval(typewriter.timeout);
-            setTimeout(changeItem, opts.pause);
-          } else if (opts.cursor) {
-            text += " " + opts.cursor;
-          }
-  
-          list.children(":first").text(text);
-        }
-  
-        // Test there are more items to display then start ticker
-        if (list.find("li").length > 1) {
-          interval = setTimeout(changeItem, opts.pause);
-        }
-      });
-    };
-  
-    $(".news-list").Ticker();
-  })(jQuery);
+
  //inquiry form
 $(document).ready(function(){
  function lead_creation() {

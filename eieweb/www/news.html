@@ -1,10 +1,26 @@
-<div class="news-ticker">
-    <span>Latest Updates</span>
-    {% set news_list = frappe.get_all("News", order_by = "date desc" , limit = 5) %}
-  <ul class="news-list">
-    {% for n in news_list%}
-    {% set doc = frappe.get_doc('News',n.name) %}
-    <li class="news-item">{{ doc.date.strftime('%d %b') }}: {{ doc.news }}</li>
-    {% endfor %}
-  </ul>
+
+<div id="wrapper" class="news">
+            <div style="float:left;">
+              <h3>Latest Updates</h3>
+                {% set news_list = frappe.get_all("News", order_by = "date desc" , limit = 5) %}
+            </div>
+        <div style="float:right">
+          <div class="bn-controls mt-1">
+            <button class="bn-arrow bn-prev"><img src="/files/left-arrow-news.svg" alt="left arrow"></button>
+              <button class="bn-arrow  pause"><img src="/files/pause-button.svg" alt="pause arow"></button>
+              <button class="bn-arrow  play"> <img src="/files/play-button.svg" alt="paly arrow"> </button>
+            <button class="bn-arrow bn-next"><img src="/files/right-arrow-news.svg" alt="right arrow"></button>
+          </div>
+        </div>
+        <div id="ticker_container">
+          <div id="newscontent">
+            <div id="news"  style="display: block; opacity: 0.933535;">
+              {% for n in news_list%}
+              {% set doc = frappe.get_doc('News',n.name) %}
+                <li> <strong>{{ doc.date.strftime('%d') }}<span>{{ doc.date.strftime('%b') }}</span></strong> <p>{{ doc.news }}</p> </a> </li>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
 </div>
+
