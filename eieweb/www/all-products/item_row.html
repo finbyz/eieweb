@@ -5,11 +5,9 @@
 				<a class="no-underline" href="/{{ item.route }}">
 					<div class="vis-img product-img has-animation has-animation-y animation-ttb scroll">
 						{% if item.image or item.website_image %}
-							<img class="website-image" src="{{ item.image or item.website_image or '/files/no-image.png'  }}"
-								alt="{{ item.item_name  }}">
+							<img class="website-image" src="{{ item.image or item.website_image or '/files/no-image.png'  }}" alt="{{ item.item_name  }}">
 						{% else %}
-							<img class="website-image" src="/files/eie-logo.svg"
-							alt="{{ item.item_name  }}" style="width: 200px;">
+							<img class="website-image" src="/files/eie-logo.svg" alt="{{ item.item_name  }}" style="width: 200px;">
 						{% endif %}
 					</div>
 				</a>
@@ -19,7 +17,7 @@
 	<div class="card-content card-body">
 		<h5 class="card-title sub-text">
 			<a class="text-dark" href="/{{ item.route }}">
-				{{ item.item_name or item.name }}
+				{{ frappe.db.get_value("Item",item.item_code,'website_item_name') or item.item_name  }}
 			</a>
 		</h5>
 		<div class=" card-button">

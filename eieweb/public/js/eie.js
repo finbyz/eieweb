@@ -48,7 +48,6 @@ function moveLeft(){
             moveRight();
         }, 5000);
         $('.pause').on('click',()=>{
-            console.log('pause button clicked')
             clearInterval(interval);
             //togglr playbutton
             $('.pause').children('img').toggleClass('play_button');
@@ -57,12 +56,10 @@ function moveLeft(){
         $('.play').on('click',()=>{
             var interval1 = setInterval(()=>{
                     setTimeout(function () {
-                        console.log('paly button clicked')
                         moveRight();
                     }, 500);
                 },5000);
                 $('.pause').on('click',()=>{
-                    console.log('clicked inside play ')
                     clearInterval(interval1);
                 })
         })
@@ -521,13 +518,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var div,
         n,
         v = document.getElementsByClassName("youtube-player");
-    for (n = 0; n < v.length; n++) {
-        div = document.createElement("div");
-        div.setAttribute("data-id", v[n].dataset.id);
-        div.innerHTML = labnolThumb(v[n].dataset.id);
-        div.onclick = labnolIframe;
-        v[n].appendChild(div);
-    }
+        for (n = 0; n < v.length; n++) {
+            div = document.createElement("div");
+            div.setAttribute("data-id", v[n].dataset.id);
+            div.innerHTML = labnolThumb(v[n].dataset.id);
+            div.onclick = labnolIframe;
+            v[n].appendChild(div);
+        }
 });
 
 function labnolThumb(id) {
@@ -787,26 +784,50 @@ $(function () {
         }) ;
 //  product vidio
         $(document).ready(function(){
-            var div,
-            n,
-            v = $("#product-youtube");
-            for (n = 0; n < v.length; n++){
-            div = document.createElement("iframe");
-            var str=  v[n].dataset.src;
-            var res = str.split("=");
-            if(typeof res[2] === "undefined"){
-                var embeddedUrl = "https://www.youtube.com/embed/"+res[1]
+           
+            var dataset= $('#product-youtube').attr("data-src");
+            // console.log(dataset);
+            var findcharacter=dataset.search("&");
+            if(findcharacter == -1){
+                var video_id = dataset.split('watch?v=').pop();
             }else{
-                var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
+                var video_id =(dataset.split('watch?v=').pop()).split('&', 1)[0];
             }
-            var EmbeddedUrl =embeddedUrl.split('&', 1)[0];
-            console.log(EmbeddedUrl);
-            div.setAttribute("src", EmbeddedUrl);
-            v[n].appendChild(div);
-                }
+            var thumbnail= `https://i.ytimg.com/vi/${video_id}/sddefault.jpg`;
+                 $('.video-image img').attr('src', thumbnail);
+            var videoactive= $('.video-image');
+            $('.video-image').on('click',()=>{
+                $(videoactive).addClass('fade-black');
+                $(videoactive).removeClass('active');
+                $(videoactive).children().removeClass('active');
+                setTimeout(()=>{
+                    $(videoactive).removeClass('fade-black');
+                    youtubevideo();
+                },600)
             })
-            //whats app
+         
+            function youtubevideo(){
+                    var div,
+                        n,
+                        v = $("#product-youtube");
+                        for (n = 0; n < v.length; n++){
+                        div = document.createElement("iframe");
+                        var str=  v[n].dataset.src;
+                        var res = str.split("=");
+                            if(typeof res[2] === "undefined"){
+                                var embeddedUrl = "https://www.youtube.com/embed/"+res[1]
+                            }else{
+                            var embeddedUrl = "https://www.youtube.com/embed/"+res[1];
+                            }
+                    var EmbeddedUrl =embeddedUrl.split('&', 1)[0];
+                    div.setAttribute("src", EmbeddedUrl);
+                    v[n].appendChild(div);
+                }
+            }
+            // console.log(embeddedUrl);
+        })
 
+            //whats app
             var mwb_whatsapp = function () {
                 "use strict";
         
@@ -1299,29 +1320,28 @@ isVisible = true;
           }
           }
           function hide(){
-          if(isVisible){
-              TweenLite.to(".eieNav", 1, { y: "-40%"}, 0);
-              TweenLite.to(".header-hide-content", 1, { y: "-100%"}, 0);
-              isVisible = false;
-          }
+            if(isVisible){
+                TweenLite.to(".eieNav", 1, { y: "-40%"}, 0);
+                TweenLite.to(".header-hide-content", 1, { y: "-100%"}, 0);
+                isVisible = false;
+            }
           }
 
 function refresh() {
 var newScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-if (newScrollTop > currentScrollTop) {
-   
-  hide();
-} else if (newScrollTop < currentScrollTop) {
-  show();
-}
-currentScrollTop = newScrollTop;
-}
+    if (newScrollTop > currentScrollTop) {
+         hide();
+    } else if (newScrollTop < currentScrollTop) {
+        show();
+    }
+    currentScrollTop = newScrollTop;
+    }
 
-window.addEventListener("scroll", refresh, {
-passive: true
-});
-refresh();
+    window.addEventListener("scroll", refresh, {
+        passive: true
+    });
+    refresh();
 
 // alphabetical number
 $('#letters').hover(
@@ -1329,4 +1349,6 @@ $('#letters').hover(
         $('.Alpha').toggleClass("active");
         $('.Alpha').toggleClass("fadeIn");
     })
+
+
 

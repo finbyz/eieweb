@@ -4,7 +4,7 @@
 
 <section class="com-pro">
     <div class="container-fluid">
-        <h2 class="dark-text title-underline mb-4">Compare Product</h2>
+        <h2 class="dark-text title-underline">Compare Product</h2>
         <div>
             <div role="form" class="container-fluid">
                 <div class="row d-flex justify-content-between">
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered table-hover table-responsive">
+            <table class="table table-bordered table-hover table-responsive pt-50">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Compare Results</th>
@@ -49,7 +49,7 @@
                 <tbody>
                     <tr class="pr-cm-h">
                         <td width="300" height="100"></td>
-                        <td width="21%" class="text-center">
+                        <td width="21%" class="text-center bold">
                             <select id='itemSelect1' style="width:250px ;">
                                 <option>Select Items</option>
                                 {%  if selected_items %}
@@ -58,11 +58,15 @@
                                 {% endfor %}
                                 {% endif %}
                             </select>
+                            <a href="/{{ frappe.db.get_value('Item',item1,'route') }}" class="bold dark-text"> 
                             <img class="website-image" src="{{ frappe.db.get_value('Item',item1,'website_image') or frappe.db.get_value('Item',item1,'image') or '/files/no-image.png'}}"
                                 alt="{{item1 or ''}}">
-                                {{ item1 or '' }}
+                              
+                                    {{ item1 or '' }}
+                                </a> 
+                              
                         </td>
-                        <td width="21%" class="text-center">
+                        <td width="21%" class="text-center bold">
                             <select id='itemSelect2' style="width: 250px;">
                                 <option>Select Items</option>
                                 {%  if selected_items %}
@@ -71,11 +75,13 @@
                                 {% endfor %}
                                 {% endif %}
                             </select>
-                            <img class="website-image" src="{{ frappe.db.get_value('Item',item2,'website_image') or frappe.db.get_value('Item',item2,'image') or '/files/no-image.png'}}"
-                            alt="{{item2 or ''}}">
-                               {{ item2 or ''}}
+                            <a href="/{{ frappe.db.get_value('Item',item2,'route') }}" class="bold dark-text"> 
+                                <img class="website-image" src="{{ frappe.db.get_value('Item',item2,'website_image') or frappe.db.get_value('Item',item2,'image') or '/files/no-image.png'}}"
+                                alt="{{item2 or ''}}">
+                                {{ item2 or ''}}
+                            </a>
                         </td>
-                        <td width="21%" class="text-center">
+                        <td width="21%" class="text-center bold">
                             <select id='itemSelect3' style="width: 250px;">
                                 <option>Select Items</option>
                                 {%  if selected_items %}
@@ -84,11 +90,13 @@
                                 {% endfor %}
                                 {% endif %}
                             </select>
-                            <img class="website-image" src="{{ frappe.db.get_value('Item',item3,'website_image') or frappe.db.get_value('Item',item3,'image') or '/files/no-image.png'}}"
-                            alt="{{item3 or ''}}">
-                               {{ item3 or '' }}
+                            <a href="/{{ frappe.db.get_value('Item',item3,'route') }}" class="bold dark-text"> 
+                                <img class="website-image" src="{{ frappe.db.get_value('Item',item3,'website_image') or frappe.db.get_value('Item',item3,'image') or '/files/no-image.png'}}"
+                                alt="{{item3 or ''}}">
+                                {{ item3 or '' }}
+                            </a>
                         </td>
-                        <td width="21%" class="text-center">
+                        <td width="21%" class="text-center bold">
                             <select id='itemSelect4' style="width: 250px;">
                                 <option>Select Items</option>
                                 {%  if selected_items %}
@@ -97,9 +105,11 @@
                                 {% endfor %}
                                 {% endif %}
                             </select>
+                            <a href="/{{ frappe.db.get_value('Item',item4,'route') }}" class="bold dark-text"> 
                             <img class="website-image" src="{{ frappe.db.get_value('Item',item4,'website_image') or frappe.db.get_value('Item',item4,'image') or '/files/no-image.png'}}"
                             alt="{{item4 or ''}}">
                                 {{ item4 or ''}}
+                            </a>
                         </td>
                     </tr>
                     

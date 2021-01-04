@@ -28,17 +28,7 @@
 <script>
     var _mousedown = false;
         
-    $('#selectable li').mousedown(function(){
-        _mousedown = true;
-        $('.ui-selected').removeClass('ui-selected');
-        $('#selectable li').attr('unselectable', 'on').css('user-select', 'none');
-        $(this).addClass('ui-selecting');
-    }).mouseup(function(){
-        _mousedown=false;  
-        $('.ui-selecting').addClass('ui-selected');
-        $('#selectable li').removeAttr('unselectable style');
    
-    });
  
     $(".item-view-attribute #selectable").on("click", function() {
        
@@ -64,7 +54,15 @@
 		}
 		window.location.href = window.location.pathname + "?variant=" + item_code;
     });
-
+    $('#selectable li').mousedown(function(){
+        _mousedown = true;
+        $('.ui-selected').removeClass('ui-selected');
+        $(this).addClass('ui-selecting');
+    }).mouseup(function(){
+        _mousedown=false;  
+        $('.ui-selecting').addClass('ui-selected');
+   
+    });
 function get_item_code() {
     var variant_info =window.variant_info;
     
@@ -102,22 +100,23 @@ function get_item_code() {
 function find_closest_match(selected_attribute, selected_attribute_value) {
 	// find the closest match keeping the selected attribute in focus and get the item code
 
-	var attributes = get_selected_attributes();
+    var attributes = get_selected_attributes();
 	var previous_match_score = 0;
 	var previous_no_of_attributes = 0;
 	var matched;
 
-	var variant_info = window.variant_info;
 	for(var i in variant_info) {
 		var variant = variant_info[i];
 		var match_score = 0;
 		var has_selected_attribute = false;
 
 		for(var j in variant.attributes) {
-			if(attributes[variant.attributes[j].attribute]===variant.attributes[j].attribute_value) {
+            if(attributes[variant.attributes[j].attribute]===variant.attributes[j].attribute_value) {
+                // console.log('inside_if')
+                // console.log(variant.attributes[j].attribute_value)
 				match_score = match_score + 1;
 				if (variant.attributes[j].attribute==selected_attribute && variant.attributes[j].attribute_value==selected_attribute_value) {
-					has_selected_attribute = true;
+                    has_selected_attribute = true;
 				}
 			}
 		}
@@ -125,7 +124,7 @@ function find_closest_match(selected_attribute, selected_attribute_value) {
 		if (has_selected_attribute
 			&& ((match_score > previous_match_score) || (match_score==previous_match_score && previous_no_of_attributes < variant.attributes.length))) {
 			previous_match_score = match_score;
-			matched = variant;
+            matched = variant;
 			previous_no_of_attributes = variant.attributes.length;
 		}
 	}
@@ -144,8 +143,11 @@ function find_closest_match(selected_attribute, selected_attribute_value) {
 
 function get_selected_attributes() {
 	var attributes = {};
-	$('.product-page-content').find(".item-view-attribute #selectable").each(function() {
-		attributes[$(this).attr('data-attribute')] = $(this).find('li.ui-selected').text();
+	$('[itemscope]').find(".item-view-attribute ul").each(function() { 
+        attributes[$(this).attr('data-attribute')] = $(this).find('li.selected').text();
+        if($(this).find('li.ui-selected').text()){
+            attributes[$(this).attr('data-attribute')] = $(this).find('li.ui-selected').text();
+        }
 	});
 	return attributes;
 }

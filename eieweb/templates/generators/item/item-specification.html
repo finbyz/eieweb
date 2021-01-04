@@ -28,10 +28,14 @@
             <div class="row pt-10 ">
                 <!-- start video section -->
                 {% if  frappe.db.get_value("Item",doc.name,'youtube_link') %}
-                    <div class="col-lg-5 col-xl-5 col-md-12 mt-2">
-                        <div class="d-flex justify-content-center my-4"  id="product-youtube"  data-src="{{youtube_link }}"> </div> 
+                    <div class="col-lg-5 col-xl-5 col-md-12 mt-4 order-lg-2 order-md-1 order-sm-1">
+                        <div class="video-image active">
+                            <div class="play active"></div>
+                            <img  alt="{{ website_item_name or item_name }}" class="active"/>
+                        </div>
+                        <div class="d-flex justify-content-center"  id="product-youtube"  data-src="{{youtube_link }}"> </div> 
                     </div>
-                    <div class="col-lg-7 col-xl-7 col-md-12 mt-2 ">
+                    <div class="col-lg-7 col-xl-7 col-md-12 mt-2 order-lg-1 order-md-2 order-sm-1">
                         <br><p>{{ description }}</p>
                     </div>
                     {% else %}

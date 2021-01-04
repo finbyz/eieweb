@@ -313,9 +313,12 @@
     {% include "templates/includes/footer/eie_footer.html" %}
     {%- endblock -%}
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     {% block base_scripts %}
     <!-- js should be loaded in body! -->
-    <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+   
+    
     <script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
     {% endblock %}
@@ -323,7 +326,8 @@
 
      <script type="text/javascript" src="/assets/eieweb/js/owl.carousel.min.js"></script>
      <script src="/assets/eieweb/js/gsap.min.js"></script>
-  
+
+     
     <!-- animation script currently running scrollMagic only -->
      <script type="text/javascript" src="/assets/eieweb/js/combine.min.js"></script>
     {%- for link in web_include_js %}
