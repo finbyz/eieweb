@@ -17,7 +17,8 @@
 	<div class="card-content card-body">
 		<h5 class="card-title sub-text">
 			<a class="text-dark" href="/{{ item.route }}">
-				{{ frappe.db.get_value("Item",item.item_code,'website_item_name') or item.item_name  }}
+				
+				{{ frappe.db.get_value("Item",item.item_code,'website_item_name') or item.name  }}
 			</a>
 		</h5>
 		<div class=" card-button">
