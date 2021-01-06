@@ -50,7 +50,15 @@ function moveLeft(){
         $('.pause').on('click',()=>{
             clearInterval(interval);
             //togglr playbutton
-            $('.pause').children('img').toggleClass('play_button');
+            // if($('.play').hasClass('deactivated')){
+            //     $('.play').addClass('active').removeClass('deactivated');
+            //     $('.pause').addClass('deactivated');
+            // }else{
+            //     $('.pause').addClass('active').removeClass('deactivated');
+            //     $('.play').addClass('deactivated');
+            // }
+            // $('.pause').children('img').toggleClass('play_button');
+           
         })
 
         $('.play').on('click',()=>{
@@ -784,28 +792,27 @@ $(function () {
         }) ;
 //  product vidio
         $(document).ready(function(){
-           
             var dataset= $('#product-youtube').attr("data-src");
-            // console.log(dataset);
-            var findcharacter=dataset.search("&");
-            if(findcharacter == -1){
-                var video_id = dataset.split('watch?v=').pop();
-            }else{
-                var video_id =(dataset.split('watch?v=').pop()).split('&', 1)[0];
+            if( typeof dataset != "undefined"){
+                console.log(dataset);
+                if(dataset.search("&") === -1){
+                    var video_id = dataset.split('watch?v=').pop();
+                }else{
+                    var video_id =(dataset.split('watch?v=').pop()).split('&', 1)[0];
+                }
+                var thumbnail= `https://i.ytimg.com/vi/${video_id}/sddefault.jpg`;
+                    $('.video-image img').attr('src', thumbnail);
+                var videoactive= $('.video-image');
+                $('.video-image').on('click',()=>{
+                    $(videoactive).addClass('fade-black');
+                    $(videoactive).removeClass('active');
+                    $(videoactive).children().removeClass('active');
+                    setTimeout(()=>{
+                        $(videoactive).removeClass('fade-black');
+                        youtubevideo();
+                    },600)
+                })
             }
-            var thumbnail= `https://i.ytimg.com/vi/${video_id}/sddefault.jpg`;
-                 $('.video-image img').attr('src', thumbnail);
-            var videoactive= $('.video-image');
-            $('.video-image').on('click',()=>{
-                $(videoactive).addClass('fade-black');
-                $(videoactive).removeClass('active');
-                $(videoactive).children().removeClass('active');
-                setTimeout(()=>{
-                    $(videoactive).removeClass('fade-black');
-                    youtubevideo();
-                },600)
-            })
-         
             function youtubevideo(){
                     var div,
                         n,
@@ -1309,19 +1316,36 @@ $(window).scroll(function() {
     }
 });
 //Navigation bar swing effect on scroll
+(function($) {
+    var $window = $(window),
+        $eieNav = $('.eieNav');
+
+    function resize() {
+        if ($window.width() < 514) {
+            return $eieNav.addClass('mobile_view');
+        }
+        $eieNav.removeClass('mobile_view');
+    }
+    
+    $window
+        .resize(resize)
+        .trigger('resize');
+})(jQuery);
 
 var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop,
-isVisible = true;
+    isVisible = true;
           function show(){
           if(!isVisible){
-              TweenLite.to(".eieNav", 1, { y: "0%"}, 0);
-              TweenLite.to(".header-hide-content", 1, {y: "0%"}, 0);
-              isVisible = true;
+                TweenLite.to(".eieNav", 1, { y: "0%"}, 0);
+                TweenLite.to(".mobile_view", 1, { y: "0%"}, 0);
+                TweenLite.to(".header-hide-content", 1, {y: "0%"}, 0);
+                isVisible = true;
           }
           }
           function hide(){
             if(isVisible){
                 TweenLite.to(".eieNav", 1, { y: "-40%"}, 0);
+                TweenLite.to(".mobile_view", 1, { y: "-56%"}, 0);
                 TweenLite.to(".header-hide-content", 1, { y: "-100%"}, 0);
                 isVisible = false;
             }
