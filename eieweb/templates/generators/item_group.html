@@ -28,34 +28,35 @@
             </div>
             <div class="col-4  col-md-2 d-flex justify-content-end">
                 {% if frappe.form_dict.start or frappe.form_dict.field_filters or frappe.form_dict.attribute_filters or frappe.form_dict.search %}
-                    <a class="d-inline-block clear-filter" style="cursor: pointer;" >{{ _('Clear Filters') }}</a>
+                    <a class="d-inline-block clear-filter" style="cursor: pointer;">{{ _('Clear Filters') }}</a>
                 {% endif %}
             </div>
             <script>
-                
-                $('input[type=search]').on('keydown',(e)=>{
-                    if (e.keyCode === 13) {
-                        const value = e.target.value;
-                        console.log(value)
-                        if (value) {
-                            window.location.search = 'search=' + e.target.value;
-                        } else {
-                            window.location.search = '';
-                        }
-                    }
-                })
-                $('.searchButton').on('click',(e)=>{
+                console.log('search-product')
+                 function searchGroupProduct(){
                     var productName=$('#search-product').val();
-                    var pathname = window.location.pathname;
-                    var origin   = window.location.origin; 
-                    if(productName == ''){
-                        var URL=origin+pathname;
-                         window.location= URL;
-                    }else{
-                        var URL = origin+pathname+"?search="+productName;
-                        window.location= URL;
+                            var pathname = window.location.pathname;
+                            console.log(pathname);
+                            var origin   = window.location.origin; 
+                            if(productName == ''){
+                                let URL=origin+pathname;
+                                window.location= URL;
+                            }else{
+                                let URL = origin+pathname+"?search="+productName;
+                                console.log(URL);
+                                window.location= URL;
+                            }
                     }
-                })
+                    $('#search-product').keyup(function(e){
+                        if (event.keyCode === 13) {
+                        e.preventDefault();
+                        var searchtext = $('#search-product').val();
+                        window.location.href = '?search='+searchtext ;
+                        }
+                    })
+                    $('.searchButton').on('click',(e)=>{
+                            searchGroupProduct();
+                    })
 
                 $('.clear-filter').on('click',()=>{
                     var pathname = window.location.pathname;
