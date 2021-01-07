@@ -43,3 +43,12 @@ class ItemAsVariant(Document):
 			doc.db_set('variant_of',None)
 			doc.attributes = []
 			doc.save()
+
+@frappe.whitelist()
+def item_cancel(doc):
+	doc_item = frappe.get_doc("Item",doc)
+	if doc_item.variant_of:
+		doc_item.db_set('variant_of',None)
+		doc_item.attributes = []
+		doc_item.save()
+		return True
