@@ -5,7 +5,7 @@
 <h1>{{ _('Products') }}</h1>
 {% endblock header %}
 {% block page_content %}
-<div class="container">
+<div class="container-fluid">
 <div class="row pt-50 pb-0 mt-3 d-flex ">
     <div class="col-8">
        
@@ -127,7 +127,7 @@
     <!-- filter section end -->
 </div>
     
-        <div class="container products-list-container">
+        <div class="container-fluid products-list-container p-lr-50">
             <div class=" products-list finbyz row mx-1">
                 {% if items %}
                 {% for item in items %}

@@ -4,9 +4,8 @@
 
 {% block page_content %}
 {% from "eieweb/templates/includes/macros.html" import product_image %}
-<div class="container">
-   
-        <div class="item-content mt-3">
+<div class="container-fluid">
+        <div class="item-content mt-3 p-lr-50">
             <div class="product-page-content" itemscope itemtype="http://schema.org/Product">
                 <div class="row mb-5 ">
                     {% include "templates/generators/item/item_image.html" %}
@@ -16,8 +15,8 @@
                 {{ doc.website_content or '' }}
             </div>
         </div>
-    </div>
 </div>
+
 
 {% include "templates/generators/item/item-specification.html" %}
 <!-- specificati on end -->
@@ -25,8 +24,8 @@
 
 {% if related_items %}
 <section class="related-items " style="padding-top: 10px">
-    <div class="container ">
-        <div class="row ">
+    <div class="container-fluid ">
+        <div class="row p-lr-50">
             <div class="col-12">
                 <h5 class="title-underline ">Related Item</h5>
             <div class="owl-carousel " id= "related-module">
@@ -44,7 +43,7 @@
                         
                         <div class="card-content">
                             <h5 class="card-title sub-text">
-                              {{ frappe.db.get_value('Item',item.item_code,'item_name') }}
+                              {{ frappe.db.get_value('Item',item.item_code,'website_item_name') or frappe.db.get_value('Item',item.item_code,'item_name') or '' }}
                             </h5>
                             <a class="eie-button related-item-button" href="/{{ frappe.db.get_value('Item',item.item_code,'route') }}">View More
                             <div class="eie-ring eie-btn-bottom"></div> 
