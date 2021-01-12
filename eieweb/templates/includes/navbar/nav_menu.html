@@ -10,11 +10,11 @@
                 {% for key, value in data.items() %}
                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                 <li class="top-label-list">
-                    <div  style="border-bottom: 1px solid #EEEEEE;">
+                    <div style="border-bottom: 1px solid #EEEEEE;">
                         <a href="/{{ parent_doc.route }}" class="has-child activeP d-flex"
                                 id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
                             <img class="nav-service-icon mt-2" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}"
-                                alt="{{parent_doc.name}}" >
+                                alt="{{parent_doc.name}}" width="40">
                             <h6 class="pt-1 parent_group_name ">
                                 {{ parent_doc.name }}</h6>
                         </a>

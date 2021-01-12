@@ -49,15 +49,6 @@ function moveLeft(){
         }, 5000);
         $('.pause').on('click',()=>{
             clearInterval(interval);
-            //togglr playbutton
-            // if($('.play').hasClass('deactivated')){
-            //     $('.play').addClass('active').removeClass('deactivated');
-            //     $('.pause').addClass('deactivated');
-            // }else{
-            //     $('.pause').addClass('active').removeClass('deactivated');
-            //     $('.play').addClass('deactivated');
-            // }
-            // $('.pause').children('img').toggleClass('play_button');
            
         })
 

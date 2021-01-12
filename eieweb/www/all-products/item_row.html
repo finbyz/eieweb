@@ -21,7 +21,7 @@
 				{{ frappe.db.get_value("Item",item.item_code,'website_item_name') or item.name  }}
 			</a>
 		</h5>
-		<div class=" card-button">
+		<div class=" card-button d-flex justify-content-center">
 		<a href="/{{ item.route }}"><div class="eie-button eie-fadeindown product-button">{{ _('More details') }}
 			<div class="eie-ring eie-btn-bottom "></div> </div>
 		</a>
