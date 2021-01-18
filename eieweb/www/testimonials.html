@@ -9,7 +9,7 @@
                   {% set doc = frappe.get_doc('Testimonial',testimonial.name)%}
             <div class="col-12 col-sm-6 val-ser p-3">
                 <div class="card t-card event-card">
-                    <img class="card-img img-fluid t-image" src="{{ doc.image }}" alt=" {{ doc.customer }}">
+                    <img class="card-img img-fluid t-image" src="{{ doc.image }}" alt=" {{ doc.customer }}" width="150">
                     <div class="card-body">
                         <p class="card-title t-title">
                             {{ doc.customer }} 

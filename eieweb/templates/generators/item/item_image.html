@@ -20,7 +20,7 @@
     <div class="item-slideshow d-flex justify-content-center"> 
         {% for item in slides|reverse %}
              <img class="item-slideshow-image mt-2 {% if loop.first %}active{% endif %}" src="{{ item.image}}"
-                   alt="{{ item.item_name }}">
+                   alt="{{ item.item_name }}" width="65">
         {% endfor %}
     </div>
     <!-- Simple image slideshow -->

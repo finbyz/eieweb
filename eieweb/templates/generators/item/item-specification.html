@@ -98,7 +98,7 @@
                                 <div class="card-body card-image">
                                         <img class="website-image" alt="{{ link.accessory }}"
                                             src="{{ frappe.db.get_value('Item',link.accessory,'image') or '/files/eie-icon.svg' }}"
-                                            title="{{ link.accessory }}">
+                                            title="{{ link.accessory }}" width="240">
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                 <div class="card-body card-image">
                                         <img class="website-image" alt="{{ link.spare }}"
                                             src="{{ frappe.db.get_value('Item',link.spare,'image') or '/files/eie-icon.svg' }}"
-                                            title="{{ link.spare }}">
+                                            title="{{ link.spare }}" width="240px">
                                 </div>
                             </div>
                         </div>
