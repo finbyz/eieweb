@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "department",
+  "priority",
   "website_contact_details"
  ],
  "fields": [
@@ -21,9 +22,15 @@
    "fieldtype": "Table",
    "label": "Website Contact Details",
    "options": "Website Contact Details"
+  },
+  {
+   "default": "100",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority"
   }
  ],
- "modified": "2021-01-12 12:14:41.974122",
+ "modified": "2021-01-12 16:41:48.335905",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Website Contact",
