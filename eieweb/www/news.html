@@ -23,4 +23,18 @@
           </div>
         </div>
 </div>
-
+<script>
+  $(document).ready(()=>{
+    var pathname = window.location.pathname;
+    if(pathname == '/all-products'){
+      $('#wrapper').css('display','none');
+    }
+   var doctype_name= $('body').children('div')[0].dataset.doctype;
+   if(doctype_name == 'Website Itemgroup'){
+    $('#wrapper').css('display','none');
+   }
+   if(doctype_name == 'Item'){
+    $('#wrapper').css('display','none');
+   }
+  })
+</script>

@@ -5,9 +5,9 @@
 				<a class="no-underline" href="/{{ item.route }}">
 					<div class="vis-img product-img has-animation has-animation-y animation-ttb scroll">
 						{% if item.image or item.website_image %}
-							<img class="website-image" src="{{ item.image or item.website_image or '/files/no-image.png'  }}" alt="{{ item.item_name  }}">
+							<img class="website-image" src="{{ item.image or item.website_image or '/files/no-image.png'  }}" alt="{{ item.item_name  }}" width="240">
 						{% else %}
-							<img class="website-image" src="/files/eie-logo.svg" alt="{{ item.item_name  }}" style="width: 200px;">
+							<img class="website-image" src="/files/eie-logo.svg" alt="{{ item.item_name  }}" style="width: 200px;" width="240">
 						{% endif %}
 					</div>
 				</a>

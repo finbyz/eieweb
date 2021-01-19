@@ -13,8 +13,8 @@
     <meta name="keywords" content="{{ keywords }}">
     {% endif %}
 
-    {% if small_description or blog_intro %}
-    <meta name="description" content="{{ small_description or blog_intro }}" />
+    {% if seo_description or small_description or blog_intro %}
+    <meta name="description" content="{{ seo_description or small_description or blog_intro }}" />
     {% endif %}
 
     {% block description %}{% endblock %}

@@ -1,12 +1,12 @@
-<div class="  col-md-12 col-xs-12 col-lg-7 mt-3 ">
+<div class="  col-md-12 col-xs-12 col-lg-7  ">
     <!-- title -->
-    <h2 itemprop=" name" class="product_title_name">
+    <h2 itemprop=" name" class="product_title_name" style="margin-bottom: 0;">
         {{ website_item_name or item_name}}
     </h2>
     <div class="row">
         <div class="col-6">
             {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
-            <p>
+            <p style="margin-bottom: 0px;">
                 <span style="font-weight:500; color: #fb383b;">  Model Number : {{  doc.model_no or '' }} </span>
             </p>
         </div>
