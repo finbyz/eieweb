@@ -1,3 +1,4 @@
+{% set Catalogue_list = frappe.db.get_value("Item",doc.name,'e_catalogue') %}
 <ul class="tabs p-lr-50">
     <li class="activated" rel="tab1">
         <h5 class="dark-text sizing">
@@ -19,11 +20,13 @@
             Spares
         </h5>
     </li>
+    {% if Catalogue_list %}
     <li rel="tab5">
         <h5 class="dark-text sizing download">
             Download <span></span>
         </h5>
     </li>
+    {% endif %}
 </ul>
 <div class="tab_container">
     <div class="information-container d-flex justify-content-between">
@@ -82,7 +85,6 @@
             <br>
             {% endif %}
         </div>
-
     </div>
     <!-- #tab2 -->
     <div class="information-container d-flex justify-content-between">
@@ -174,6 +176,7 @@
         {% endif %}
     </div>
     <!-- #tab4 -->
+    {% if Catalogue_list %}
     <div class="information-container d-flex justify-content-between">
         <h5 class="tab_drawer_heading  download" rel="tab5">Download<span></span></h5>
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13" />
@@ -183,15 +186,14 @@
             <div class="row ml-1">
                 <p style="font-weight: bold;"> Manual</p>
             </div>
-            {% set Catalogue_list = frappe.db.get_value("Item",doc.name,'e_catalogue') %}
             <div class="manual-container ml-4">
-                <a style="cursor: pointer; text-transform: uppercase;" target="_blank" href="{{ frappe.db.get_value(" E
-                    Catalogue",Catalogue_list,'download_manual')}}">
+                <a style="cursor: pointer; text-transform: uppercase;" target="_blank" href="{{ frappe.db.get_value("E Catalogue",Catalogue_list,'download_manual')}}">
                     {{ frappe.db.get_value("E Catalogue",Catalogue_list,'title') }} Manual
                 </a>
             </div>
         </div>
     </div>
+    {% endif %}
     <!-- #tab5 -->
 </div>
 <!-- .tab_container -->
@@ -217,7 +219,6 @@
         });
         /* if in drawer mode */
         $(".tab_drawer_heading").click(function () {
-
             $(".tab_content").hide();
             var d_activeTab = $(this).attr("rel");
             $("#" + d_activeTab).fadeIn();
@@ -230,16 +231,9 @@
             $("ul.tabs li").removeClass("activated");
             $("ul.tabs li[rel^='" + d_activeTab + "']").addClass("activated");
         });
-        // if($(".tab_drawer_heading").hasClass("d_active")){
-        //     $(".tab_drawer_heading").addClass('done')
-        // }else{
-        //     $(".tab_drawer_heading").removeClass('done')
-        // }
-
-        /* Extra class "tab_last"  to add border to right side of last tab */
         $('ul.tabs li').last().addClass("tab_last");
-
+        /* diaplsy  download button */
         var manual_length = $('.manual-container').children().length;
-        $('.download span').text(`(${manual_length})`);
-    });
+            $('.download span').text(`(${manual_length})`);
+        });
 </script>
