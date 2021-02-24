@@ -25,7 +25,7 @@
     {%- endif %}
     {% endfor %}
     
-    <div class="mt-3">
+    <div class=" d-md-flex flex-md-column flex-lg-row mt-3">
         {% if frappe.db.get_value("Item",doc.name,'e_catalogue') %}
 			{% set c = frappe.db.get_value("E Catalogue",doc.e_catalogue,'download_manual') %}
 				<a target="_blank" href="{{ c }}" class="eie-button cart-button  moblie-button my-md-1 mx-1">
