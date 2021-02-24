@@ -42,8 +42,8 @@
                             Know More
                         </a> -->
                     <a href="{{ frappe.db.get_value('Job Opening',doc.name,'route') }}">
-                        <div class="eie-button eie-fadeindown cart-button "
-                            style="opacity: 1; transform: translate(-50%, -50%);"> Know More
+                        <div class="eie-button eie-fadeindown cart-button mx-2 my-2"
+                            style="opacity: 1; "> Know More
                             <div class="eie-ring eie-btn-bottom "></div>
                         </div>
                     </a>
@@ -51,8 +51,8 @@
                             {{ _("Apply Now") }}
                         </a> -->
                     <a href="/application-form?new=1&job_title={{ doc.name }}">
-                        <div class="eie-button eie-fadeindown cart-button "
-                            style="opacity: 1; transform: translate(-50%, -50%);"> {{ _("Apply Now") }}
+                        <div class="eie-button eie-fadeindown cart-button mx-2 my-2 "
+                            style="opacity: 1; "> {{ _("Apply Now") }}
                             <div class="eie-ring eie-btn-bottom "></div>
                         </div>
                     </a>

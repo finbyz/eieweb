@@ -27,6 +27,12 @@
             <a class="rootLink hasDropdown" href="/contact" data-dropdown="contact">
                 Contact
             </a>
+            <a class="rootLink shopping-cart cart-icon hidden" href="/cart">Cart
+                <svg class="icon icon-lg">
+                    <use href="#icon-assets"></use>
+                </svg>
+                <span class="badge badge-primary cart-badge" id="cart-count"></span>
+            </a>
         </li>
         <li class="navSection secondary">
             {% if not hide_login %}
@@ -84,6 +90,7 @@
                                             src="/files/certificate3a56c4.svg" alt="Certificete"
                                             title="Certificate">Certificate</a>
                                 </li>
+                               
                             </ul>
                         </li>
 
@@ -197,6 +204,14 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <li>
+                            <a class="rootLink shopping-cart cart-icon hidden" href="/cart">Cart
+                                <svg class="icon icon-lg">
+                                    <use href="#icon-assets"></use>
+                                </svg>
+                                <span class="badge badge-primary cart-badge" id="cart-count"></span>
+                            </a>
+                            </li>
                         {% if not hide_login %}
                         <li class="btn-login-area">
                             <a href="/login">{{ _("Login") }}</a>

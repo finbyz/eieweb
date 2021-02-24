@@ -784,6 +784,7 @@ $(function () {
 //  product vidio
         $(document).ready(function(){
             var dataset= $('#product-youtube').attr("data-src");
+          
             if( typeof dataset != "undefined"){
                 console.log(dataset);
                 if(dataset.search("&") === -1){

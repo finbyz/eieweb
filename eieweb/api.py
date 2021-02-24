@@ -3,6 +3,8 @@ import frappe
 from frappe.model.document import Document
 from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent_item_groups
 from erpnext.stock.doctype.item.item import Item
+from erpnext.controllers.website_list_for_contact import get_list_for_transactions, rfq_transaction_list, get_customers_suppliers, post_process
+import json
 
 def get_items(filters=None, search=None):
 	frappe.msgprint('call')
@@ -141,3 +143,65 @@ def set_form_data(lead_name,company_name,message,mobile_no,product_name, title,e
 	data.email_id = email
 	data.save(ignore_permissions=True)
 	frappe.db.commit()
+
+
+def quotation_get_list_context(context=None):
+	list_context = get_list_context(context)
+	list_context.update({
+		'show_sidebar': True,
+		'show_search': True,
+		'no_breadcrumbs': True,
+		'title': _('Quotations'),
+	})
+
+	return list_context
+
+
+def get_list_context(context=None):
+	return {
+		"global_number_format": frappe.db.get_default("number_format") or "#,###.##",
+		"currency": frappe.db.get_default("currency"),
+		"currency_symbols": json.dumps(dict(frappe.db.sql("""select name, symbol
+			from tabCurrency where enabled=1"""))),
+		"row_template": "eieweb/templates/includes/transaction_row.html",
+		"get_list": get_transaction_list
+	}
+
+def get_transaction_list(doctype, txt=None, filters=None, limit_start=0, limit_page_length=20, order_by="modified"):
+	user = frappe.session.user
+	ignore_permissions = False
+
+	if not filters: filters = []
+
+	if doctype in ['Supplier Quotation', 'Purchase Invoice', 'Quotation']:
+		filters.append((doctype, 'docstatus', '<', 2))
+	else:
+		filters.append((doctype, 'docstatus', '=', 1))
+
+	if (user != 'Guest' and is_website_user()) or doctype == 'Request for Quotation':
+		parties_doctype = 'Request for Quotation Supplier' if doctype == 'Request for Quotation' else doctype
+		# find party for this contact
+		customers, suppliers = get_customers_suppliers(parties_doctype, user)
+
+		if customers:
+			if doctype == 'Quotation':
+				filters.append(('quotation_to', '=', 'Customer'))
+				filters.append(('party_name', 'in', customers))
+			else:
+				filters.append(('customer', 'in', customers))
+		elif suppliers:
+			filters.append(('supplier', 'in', suppliers))
+		else:
+			return []
+
+		if doctype == 'Request for Quotation':
+			parties = customers or suppliers
+			return rfq_transaction_list(parties_doctype, doctype, parties, limit_start, limit_page_length)
+
+		# Since customers and supplier do not have direct access to internal doctypes
+		ignore_permissions = True
+
+	transactions = get_list_for_transactions(doctype, txt, filters, limit_start, limit_page_length,
+		fields='name', ignore_permissions=ignore_permissions, order_by='modified desc')
+
+	return post_process(doctype, transactions)

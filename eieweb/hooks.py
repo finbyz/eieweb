@@ -18,6 +18,14 @@ from erpnext.stock.doctype.item.item import Item
 # from erpnext.portal.product_configurator.utils import get_items as get_item
 # get_items = my_get_item
 Item.get_context = get_context
+
+
+#override for sowing draft quotation on website
+# from erpnext.controllers import website_list_for_contact
+# from eieweb.api import get_list_context
+# website_list_for_contact.get_list_context = get_list_context
+
+
 # Includes in <head>
 # ------------------
 

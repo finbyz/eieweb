@@ -14,7 +14,7 @@
 
 {% block header_actions %}
 {% if is_list %}
-<div class="list-view-actions"></div>
+<div class="list-view-actions mt-5"></div>
 {% else %}
 <div class="web-form-actions"></div>
 {% endif %}
@@ -29,8 +29,8 @@ data-web-form="{{ name }}" data-web-form-doctype="{{ doc_type }}" data-login-req
 	{% if is_list %}
 	{# web form list #}
 	<div class="web-form-wrapper" {{ container_attributes() }}></div>
-	<div id="list-filters" class="row"></div>
-	<div id="datatable" class="pt-3 " ></div>	
+	<div id="list-filters" class="d-flex justify-content-end"></div>
+	<div id="datatable" class="border mb-3"></div>	
 	<div class="list-view-footer text-right"></div>
 	{% else %}
 	{# web form #}

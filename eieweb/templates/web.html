@@ -7,7 +7,10 @@
 <div class="page-content-wrapper">
 
     <div class="pt-5">
-    {% if (doctype == "Web Page" and name != "index") or doctype != "Web Page" %}
+   
+    {% if (doctype == "Web Page" and name != "index") or path == "about" 
+            or path =="certificate" or path =="clients" 
+            or path == "testimonials" or path == "trade-shows" %}
         {% include "www/news.html" %}
     {% endif %}
     </div>
@@ -72,14 +75,14 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 {% endmacro %}
 
 {% if show_sidebar %}
-<div class="container">
-    <div class="row" {{ container_attributes() }}>
-        <div class="pt-4 col-sm-2 border-right sidebar-column d-none d-sm-block">
+<div class="container-fluid">
+    <div class="row p-lr-50" {{ container_attributes() }}>
+        <div class="pt-4 col-xl-2 col-md-12  col-sm-12 order-xl-1 order-2 border-right sidebar-column d-none d-sm-block">
             {% block page_sidebar %}
             {% include "templates/includes/web_sidebar.html" %}
             {% endblock %}
         </div>
-        <div class="col-sm-10 main-column">
+        <div class="col-xl-10 col-md-12 col-sm-12 main-column order-xl-2 order-1">
             {{ main_content() }}
         </div>
     </div>
