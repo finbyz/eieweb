@@ -1,4 +1,5 @@
 {% set Catalogue_list = frappe.db.get_value("Item",doc.name,'e_catalogue') %}
+
 <ul class="tabs p-lr-50">
     <li class="activated" rel="tab1">
         <h5 class="dark-text sizing">
@@ -15,11 +16,15 @@
             Accessories
         </h5>
     </li>
+    <!-- {% for link in doc.spares %}
+    {% if frappe.db.get_value("Item",link.spare,'show_in_website') %} -->
     <li rel="tab4">
         <h5 class="dark-text sizing">
             Spares
         </h5>
     </li>
+    <!-- {% endif %}
+    {% endfor %} -->
     {% if Catalogue_list %}
     <li rel="tab5">
         <h5 class="dark-text sizing download">
@@ -141,7 +146,6 @@
     </div>
     <div id="tab4" class="tab_content">
         {% if doc.spares %}
-
         <section class=" related-items remove_padding">
             <div class="container-fluid products-list-container p-lr-50">
                 <div class="products-list finbyz row">
