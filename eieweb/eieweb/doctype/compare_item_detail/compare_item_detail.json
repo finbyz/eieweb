@@ -1,6 +1,7 @@
 {
  "creation": "2020-12-28 17:09:35.563528",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "item_code",
@@ -8,6 +9,7 @@
  ],
  "fields": [
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "item_code",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -26,7 +28,7 @@
   }
  ],
  "istable": 1,
- "modified": "2020-12-28 17:09:35.563528",
+ "modified": "2021-01-01 12:36:18.237057",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Compare Item Detail",
