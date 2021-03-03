@@ -27,7 +27,7 @@
 			{% endif %}
 		</div>
 		{% endif %}
-		{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
+	
 		<div class="d-md-flex flex-md-column flex-lg-row">
 			{% if frappe.db.get_value("Item",doc.name,'e_catalogue') %}
 			{% set c = frappe.db.get_value("E Catalogue",doc.e_catalogue,'download_manual') %}
@@ -35,15 +35,16 @@
 					Download Manual
 				</a>
 			{% endif %}
+			{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
 			<a href="/cart" class="eie-button  cart-button moblie-button btn-view-in-cart my-md-1 mx-1  {% if not product_info.qty %} hidden	{% endif %}">
 					{{ _("View in Cart") }}
 			</a>
 			<div data-item-code="{{item_code}}" class="eie-button  cart-button btn-add-to-cart moblie-button my-md-1  mx-1">{{ _("Add
 				to Cart") }}
 			</div>
+			{% endif %}
 
 		</div>
-		{% endif %}
 	</div>
 </div>
 
