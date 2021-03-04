@@ -31,8 +31,8 @@
 		<div class="d-md-flex flex-md-column flex-lg-row">
 			{% if frappe.db.get_value("Item",doc.name,'e_catalogue') %}
 			{% set c = frappe.db.get_value("E Catalogue",doc.e_catalogue,'download_manual') %}
-				<a target="_blank" href="{{ c }}" class="eie-button cart-button  moblie-button my-md-1 mx-1">
-					Download Manual
+				<a target="_blank" href="{{ c }}" class="eie-button cart-button  moblie-button my-md-1 mx-1" style="width: auto;">
+					Download Catalogue
 				</a>
 			{% endif %}
 			{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
