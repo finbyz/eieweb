@@ -10,12 +10,12 @@
             Technical specification
         </h5>
     </li>
-    <li rel="tab3">
+    <li rel="tab3" id="accesosary">
         <h5 class="dark-text sizing">
             Accessories
         </h5>
     </li>
-    <li rel="tab4">
+    <li rel="tab4" id="spares-item">
         <h5 class="dark-text sizing">
             Spares
         </h5>
@@ -30,7 +30,7 @@
 </ul>
 <div class="tab_container">
     <div class="information-container d-flex justify-content-between">
-        <h5 class="d_active tab_drawer_heading " style="border-bottom:1px sold red;" rel="tab1">More Information</h5>
+        <h5 class="d_active tab_drawer_heading "  rel="tab1">More Information</h5>
         <img src="/files/down-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13"/>
     </div>
     <div id="tab1" class="tab_content">
@@ -140,6 +140,7 @@
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13" />
     </div>
     <div id="tab4" class="tab_content">
+        
         {% if doc.spares %}
 
         <section class=" related-items remove_padding">
@@ -184,11 +185,11 @@
     <div id="tab5" class="tab_content">
         <div class="container-fluid mt-4 p-lr-50">
             <div class="row ml-1">
-                <p style="font-weight: bold;"> Manual</p>
+                <p style="font-weight: bold;">Catalogue</p>
             </div>
             <div class="manual-container ml-4">
                 <a style="cursor: pointer; text-transform: uppercase;" target="_blank" href="{{ frappe.db.get_value("E Catalogue",Catalogue_list,'download_manual')}}">
-                    {{ frappe.db.get_value("E Catalogue",Catalogue_list,'title') }} Manual
+                    {{ frappe.db.get_value("E Catalogue",Catalogue_list,'title') }} Catalogue
                 </a>
             </div>
         </div>
@@ -198,7 +199,14 @@
 </div>
 <!-- .tab_container -->
 <script>
-    $(document).ready(() => {
+    $(document).ready(() => { 
+        var spares_items = $('#spares-item'),
+            related_items = $('#accesosary'),
+            related_items_length = $('.related-items .products-list').children().length,
+            spares_items_lenght= $('.spares-items .products-list').children().length;
+            // spares_items_lenght == 0 ? $(spares_items).css("display", "none") : $(spares_items).css("display", "block");
+            // related_items_length == 0 ?  $(related_items).css("display","none") : $(related_items).css("display","block");
+          
         $(".tab_content").hide();
         $(".tab_content:first").show();
 

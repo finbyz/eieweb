@@ -4,16 +4,16 @@
         {{ website_item_name or item_name}}
     </h2>
     <div class="row">
-        <div class="col-6">
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
             {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
             <p style="margin-bottom: 0px;">
                 <span style="font-weight:500; color: #fb383b;">  Model Number : {{  doc.model_no or '' }} </span>
             </p>
         </div>
-        <div class="col-6 d-flex justify-content-end">
+        <div class="col-xl-6 col-lg-12 col-sm-12 col-md-12 d-flex justify-content-between">
             {% if frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent') %}
-        {% set item_list = frappe.get_all("Compare Item Detail",{'parent':frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent'),'item_code':('!=',item_code)},'item_code',order_by="idx",limit=3) %}
-        {% if item_list %}
+            {% set item_list = frappe.get_all("Compare Item Detail",{'parent':frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent'),'item_code':('!=',item_code)},'item_code',order_by="idx",limit=3) %}
+            {% if item_list %}
             {% set ids = [] %} 
             {% for item in item_list %}
             {% set idx = loop.index + 1 %}
@@ -21,22 +21,24 @@
             {% set d = ids.append(param) %}
             {% endfor %}
                 <a href="/compare_product?item1={{item_code}}&{{ ids|join('&') }}">  
-                    <div class=" eie-button" 
+                    <div class=" eie-button " 
                         style="margin: 0px;
                                 transform: translate(0px, 0px);"> 
                                 Compare Item
                     </div>
                 </a>
-        {% endif %}
-        {% endif %}
+            {% endif %}
+            {% endif %}
+                <a class="eie-button"  style="margin: 0px; transform: translate(0px, 0px); width:130px;"
+                    href='/printview?doctype={{ doc.doctype}}&name={{ doc.name }}&format=Items%20EIE'
+                        target="_blank" >
+                    {{ _("Print") }}
+		        </a>
         </div>
     </div>
-   
-        
-   
       
     <!-- description -->
-    <div itemprop="description" class="product_description " > 
+    <div itemprop="description" class="product_description mt-3" > 
         <p class="min-height">
             {% if frappe.utils.strip_html(doc.web_long_description or '') %}
                 {{ doc.web_long_description | safe }}
