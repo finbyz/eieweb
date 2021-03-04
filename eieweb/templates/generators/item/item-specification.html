@@ -1,4 +1,4 @@
-{% set Catalogue_list = frappe.db.get_value("Item",doc.name,'e_catalogue') %}
+
 <ul class="tabs p-lr-50">
     <li class="activated" rel="tab1">
         <h5 class="dark-text sizing">
@@ -20,7 +20,7 @@
             Spares
         </h5>
     </li>
-    {% if Catalogue_list %}
+    {% if doc.instruction_manual %}
     <li rel="tab5">
         <h5 class="dark-text sizing download">
             Download <span></span>
@@ -177,7 +177,7 @@
         {% endif %}
     </div>
     <!-- #tab4 -->
-    {% if Catalogue_list %}
+    {% if doc.instruction_manual %}
     <div class="information-container d-flex justify-content-between">
         <h5 class="tab_drawer_heading  download" rel="tab5">Download<span></span></h5>
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13" />
@@ -185,11 +185,11 @@
     <div id="tab5" class="tab_content">
         <div class="container-fluid mt-4 p-lr-50">
             <div class="row ml-1">
-                <p style="font-weight: bold;">Catalogue</p>
+                <p style="font-weight: bold;">Manual</p>
             </div>
             <div class="manual-container ml-4">
-                <a style="cursor: pointer; text-transform: uppercase;" target="_blank" href="{{ frappe.db.get_value("E Catalogue",Catalogue_list,'download_manual')}}">
-                    {{ frappe.db.get_value("E Catalogue",Catalogue_list,'title') }} Catalogue
+                <a style="cursor: pointer; text-transform: uppercase;" target="_blank" href="{{ doc.instruction_manual }}">
+                    {{ doc.item_name }} Manual
                 </a>
             </div>
         </div>
