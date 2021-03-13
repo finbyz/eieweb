@@ -36,10 +36,10 @@
 				</a>
 			{% endif %}
 			{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.in_stock) %}
-			<a href="/cart" class="eie-button  cart-button moblie-button btn-view-in-cart my-md-1 mx-1  {% if not product_info.qty %} hidden	{% endif %}">
+			<a href="/cart" class="eie-button  cart-button moblie-button btn-view-in-cart my-md-1 mx-1  {% if not product_info.qty %} hidden	{% endif %}" style="width: 150px">
 					{{ _("View in Cart") }}
 			</a>
-			<div data-item-code="{{item_code}}" class="eie-button  cart-button btn-add-to-cart moblie-button my-md-1  mx-1">{{ _("Add
+			<div data-item-code="{{item_code}}" class="eie-button  cart-button btn-add-to-cart moblie-button my-md-1  mx-1" style="width: 150px;">{{ _("Add
 				to Cart") }}
 			</div>
 			{% endif %}
