@@ -7,54 +7,56 @@
         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
             {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
             <p style="margin-bottom: 0px;">
-                <span style="font-weight:500; color: #fb383b;">  Model Number : {{  doc.model_no or '' }} </span>
+                <span style="font-weight:600; color: #fb383b;"> Model Number : {{ doc.model_no or '' }} </span>
             </p>
         </div>
         <div class="col-xl-6 col-lg-12 col-sm-12 col-md-12 space-between-buttons" style="position: relative;">
             {% if frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent') %}
-            {% set item_list = frappe.get_all("Compare Item Detail",{'parent':frappe.db.get_value("Compare Item Detail",{'item_code':item_code},'parent'),'item_code':('!=',item_code)},'item_code',order_by="idx",limit=3) %}
+            {% set item_list = frappe.get_all("Compare Item Detail",{'parent':frappe.db.get_value("Compare Item
+            Detail",{'item_code':item_code},'parent'),'item_code':('!=',item_code)},'item_code',order_by="idx",limit=3)
+            %}
             {% if item_list %}
-            {% set ids = [] %} 
+            {% set ids = [] %}
             {% for item in item_list %}
             {% set idx = loop.index + 1 %}
             {% set param = 'item'~idx+'='~item.item_code %}
             {% set d = ids.append(param) %}
             {% endfor %}
-                <a href="/compare_product?item1={{item_code}}&{{ ids|join('&') }}">  
-                    <div class=" eie-button relative" 
-                        style="margin: 0px;
+            <a href="/compare_product?item1={{item_code}}&{{ ids|join('&') }}">
+                <div class=" eie-button relative" style="margin: 0px;
                                 transform: translate(0px, 0px);
                                 position: absolute; left: 0;
-                                top: 5px;"> 
-                                Compare Item
-                    </div>
-                </a>
+                                top: 5px;">
+                    Compare Item
+                </div>
+            </a>
             {% endif %}
             {% endif %}
-                <a class="eie-button relative"  style="margin: 0px; transform: translate(0px, 0px); width:100px; 
+            <a class="eie-button relative" style="margin: 0px; transform: translate(0px, 0px); width:100px; 
                                               position: absolute; right: 16px;
                                               top: 5px;"
-                    href='/printview?doctype={{ doc.doctype}}&name={{ doc.name }}&format=Items%20EIE'
-                        target="_blank" >
-                    {{ _("Print") }}
-		        </a>
+                href='/printview?doctype={{ doc.doctype}}&name={{ doc.name }}&format=Items%20EIE' target="_blank">
+                {{ _("Print") }}
+            </a>
         </div>
     </div>
-      
+
     <!-- description -->
-    <div itemprop="description" class="product_description mt-4" > 
-        <p class="min-height">
+    <div itemprop="description" class="product_description mt-4">
+        <p class="min-height" style="font-weight: 600;">
+            <span style=" color: #fb383b;">
+                Compliance Standards :
+            </span>
             {{ compliance_standards or '' }}
-         
         </p>
-    </div>  
-    
+    </div>
+
     {% if has_variants %}
-        <!-- configure template -->
-        {% include "templates/generators/item/item_variant.html" %}
-    {% else %}  
-        <!-- add variant to cart -->
-        {% include "templates/generators/item/item_add_to_cart.html" %}
+    <!-- configure template -->
+    {% include "templates/generators/item/item_variant.html" %}
+    {% else %}
+    <!-- add variant to cart -->
+    {% include "templates/generators/item/item_add_to_cart.html" %}
     {% endif %}
-   
+
 </div>
