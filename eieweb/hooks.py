@@ -17,8 +17,13 @@ from erpnext.stock.doctype.item.item import Item
 #import erpnext
 # from erpnext.portal.product_configurator.utils import get_items as get_item
 # get_items = my_get_item
-Item.get_context = get_context
+Item.get_context = get_context 
 
+
+# override for customer disabled 0
+from erpnext.portal import utils
+from eieweb.api import create_customer_or_supplier
+utils.create_customer_or_supplier = create_customer_or_supplier
 
 #override for sowing draft quotation on website
 # from erpnext.controllers import website_list_for_contact
