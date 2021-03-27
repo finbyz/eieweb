@@ -14,7 +14,7 @@
                         <a href="/{{ parent_doc.route }}" class="has-child activeP d-flex"
                                 id="{{ parent_doc.name|replace(' ','')|replace('&','') }}">
                             <img class="nav-service-icon mt-2" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}"
-                                alt="{{parent_doc.name}}" width="40">
+                                alt="{{parent_doc.name}}" width="42" height="23">
                             <h6 class="pt-1 parent_group_name ">
                                 {{ parent_doc.name }}</h6>
                         </a>
@@ -47,10 +47,10 @@
                         </div>
                         {% if count.a > 8 %}
                         <div class="down-button d-flex justify-content-center">
-                             <img alt="down-icon" src="/files/down-thin-arrow.svg" class="down" style="cursor: pointer;" width="15">
+                             <img alt="down-icon" src="/files/down-thin-arrow.svg" class="down" style="cursor: pointer;" width="15" height="20">
                         </div>
                         <div class="up-button d-flex justify-content-center">
-                            <img alt="up-icon" src="/files/up-thin-arrow.svg" class="uplist" style="cursor: pointer;" width="15">
+                            <img alt="up-icon" src="/files/up-thin-arrow.svg" class="uplist" style="cursor: pointer;" width="15" height="20">
                         </div>
                         {% endif %}
                     </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="col-4 d-flex justify-content-start pl-0">
-        <a href='#' class="d-block">
+        <a href='#' class="d-block">    
             <div class="image-container-overlap animated-square-nav">
                 <div class="image-stack mt-0">
                     {% for key, value in data.items() %}

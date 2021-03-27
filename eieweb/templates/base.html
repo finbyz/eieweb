@@ -3,28 +3,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1.0">
-    <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{% endblock %}</title>
-    <meta name="generator" content="frappe">
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5.0">
+  <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{%
+    endblock %}</title>
+  <meta name="generator" content="frappe">
 
-    {% if keywords %}
-    <meta name="keywords" content="{{ keywords }}">
-    {% endif %}
+  {% if keywords %}
+  <meta name="keywords" content="{{ keywords }}">
+  {% endif %}
 
-    {% if seo_description or small_description or blog_intro %}
-    <meta name="description" content="{{ seo_description or small_description or blog_intro }}" />
-    {% endif %}
+  {% if seo_description or small_description or blog_intro %}
+  <meta name="description" content="{{ seo_description or small_description or blog_intro }}" />
+  {% endif %}
 
-    {% block description %}{% endblock %}
+  {% block description %}{% endblock %}
 
-    {% if (doctype == "Web Page" and name == "index") %}
-      <link rel="canonical" href="/"> 
-    {% endif %}
+  {% if (doctype == "Web Page" and name == "index") %}
+  <link rel="canonical" href="https://erp.eieinstruments.com/">
+  {% endif %}
 
-    {% if (doctype == "Web Page" and (name == "index" or name == "contact-us")) %}
-    <script type="application/ld+json" crossorigin="anonymous">
+  {% if (doctype == "Web Page" and (name == "index" or name == "contact-us")) %}
+  <script type="application/ld+json" crossorigin="anonymous">
       {"
             @context":"http://schema.org",
             "@type":"Organization","name":"EIE Instruments PVT LTD",
@@ -58,8 +59,8 @@
               "priceRange":"$$"}],
               "description":"Established in 1978, EIE Instruments designs, develops and manufactures a comprehensive range of laboratory testing products catering to various engineering and academic sectors, such as Material (Soil, Cement, Asphalt) Testing Laboratories, POY Industires, Textiles Industries, Tiles-Ceramic Industries, Cement & Concrete Industries, Healthcare Industries, Pharmaceutical & Microbiology laboratories, Hospital and Medical Colleges, Universities & research institutes."}
     </script>
-    {% elif(doctype == "Web Page") %}
-    <script type="application/ld+json" crossorigin="anonymous">
+  {% elif(doctype == "Web Page") %}
+  <script type="application/ld+json" crossorigin="anonymous">
         {
             "@context": "http://www.schema.org",
             "@type": "ProfessionalService",
@@ -102,10 +103,10 @@
             ]
           }
     </script>
-    {% endif %}
+  {% endif %}
 
-    {% if doctype == "Blog Post" and blog_intro or doctype == "Gallery" %}
-    <script type="application/ld+json">
+  {% if doctype == "Blog Post" and blog_intro or doctype == "Gallery" %}
+  <script type="application/ld+json">
         {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
@@ -132,10 +133,10 @@
             }
         }
     </script>
-    {% endif %}
+  {% endif %}
 
-    {% if doctype == "Blog Post" and blog_intro %}
-    <script type="application/ld+json">
+  {% if doctype == "Blog Post" and blog_intro %}
+  <script type="application/ld+json">
         {
             "@context": "https://schema.org/",
             "@type": "BreadcrumbList",
@@ -161,10 +162,10 @@
             ]
           }
     </script>
-    {% endif %}
+  {% endif %}
 
-    {% if doctype == "Job Opening" and description %}
-    <script type="application/ld+json">
+  {% if doctype == "Job Opening" and description %}
+  <script type="application/ld+json">
         {
             "@context": "http://schema.org",
             "@type": "JobPosting",
@@ -199,145 +200,134 @@
             "validThrough": "{{ valid_till }}"
           }
     </script>
-    {% endif %}
+  {% endif %}
 
-   <meta property="og:locale" content="en_US" />
-   <meta property="og:type" content="article" />
-   <meta name="name" content="{{ seo_title or title }}">
-   <meta property="og:title" content="{{ seo_title or title }}" />
-   <meta property="og:url" content="/{{ route }}" />
-   <meta property="og:site_name" content="EIE Instruments PVT LTD" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="article" />
+  <meta name="name" content="{{ seo_title or title }}">
+  <meta property="og:title" content="{{ seo_title or title }}" />
+  <meta property="og:url" content="/{{ route }}" />
+  <meta property="og:site_name" content="EIE Instruments PVT LTD" />
 
-   {% if doctype == "Blog Post" and blog_intro %}
-    <meta property="og:image" content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
-    {% else %}
-    <meta property="og:image" content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
-   {% endif %}
+  {% if doctype == "Blog Post" and blog_intro %}
+  <meta property="og:image"
+    content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+  {% else %}
+  <meta property="og:image"
+    content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+  {% endif %}
 
-   {% if small_description or blog_intro %}
-   <meta property="og:description" content="{{ small_description or blog_intro }}" />
-   {% endif %}
+  {% if small_description or blog_intro %}
+  <meta property="og:description" content="{{ small_description or blog_intro }}" />
+  {% endif %}
 
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="{{ seo_title or title }}">
-   <meta name="twitter:url" content="/{{ route }}">
-   <meta name="twitter:site" content="@eieinstruments" />
-   <meta name="twitter:creator" content="@eieinstruments" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title or title }}">
+  <meta name="twitter:url" content="/{{ route }}">
+  <meta name="twitter:site" content="@eieinstruments" />
+  <meta name="twitter:creator" content="@eieinstruments" />
 
-   {% if doctype == "Blog Post" and blog_intro %}
-   <meta property="twitter:image"
-      content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
-      {% else %}
-      <meta property="twitter:image" content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
-   {% endif %}
+  {% if doctype == "Blog Post" and blog_intro %}
+  <meta property="twitter:image"
+    content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+  {% else %}
+  <meta property="twitter:image"
+    content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+  {% endif %}
 
-   {% if small_description or blog_intro %}
-   <meta name="twitter:description" content="{{ small_description or blog_intro }}">
-   {% endif %}
+  {% if small_description or blog_intro %}
+  <meta name="twitter:description" content="{{ small_description or blog_intro }}">
+  {% endif %}
+
+  {% block meta_block %}
+  {% include "templates/includes/meta_block.html" %}
+  {% endblock %}
+
+
+
+  {% block favicon %}
+  <link rel="shortcut icon" href="{{ (favicon or '/assets/frappe/images/favicon.png') | abs_url }}" type="image/x-icon">
+  {% endblock %}
+
+  {%- block head -%}
+  {% if head_html is defined -%}
+  {{ head_html or "" }}
+  {%- endif %}
+  <!-- custom CSS -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/combine/gh/finbyz/eieweb/eieweb/public/css/bootstrap.min.css,gh/finbyz/eieweb/eieweb/public/css/owl.carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/finbyz/eieweb/eieweb/public/css/bootstrap.min.css,gh/finbyz/eieweb/eieweb/public/css/owl.carousel.min.css"></noscript>
+  
  
-    {% block meta_block %}
-    {% include "templates/includes/meta_block.html" %}
-    {% endblock %}
-
-    
-
-    {% block favicon %}
-    <link rel="shortcut icon" href="{{ (favicon or '/assets/frappe/images/favicon.png') | abs_url }}"
-        type="image/x-icon">
-    {% endblock %}
-
-    {%- block head -%}
-    {% if head_html is defined -%}
-    {{ head_html or "" }}
-    {%- endif %}
-    <!-- custom CSS -->
-    <link rel="stylesheet" href="/assets/eieweb/css/bootstrap.min.css">
-    <!-- OWL CSS -->
-    <link rel="stylesheet" href="/assets/eieweb/css/owl.carousel.min.css">
-    <!-- <link rel="stylesheet" href="/assets/eieweb/css/font-awesome.min.css"> -->
-
-    <!-- END CUSTOM CSS -->
-
-    {% if theme.theme_url %}
-    <link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
-    {% else %}
-    <link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css">
+  <!-- END CUSTOM CSS -->
+  {% if theme.theme_url %}
+  <link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+  {% else %}
+  <link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css">
 
 
 
-    {%- for link in web_include_css %}
-    <link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
-    {%- endfor -%}
-    {% endif %}
+  {%- for link in web_include_css %}
+  <link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
+  {%- endfor -%}
+  {% endif %}
 
-    {%- endblock -%}
+  {%- endblock -%}
 
-    {%- block head_include %}
-    {{ head_include or "" }}
-    {% endblock -%}
+  {%- block head_include %}
+  {{ head_include or "" }}
+  {% endblock -%}
 
-    {%- block style %}{%- endblock -%}
+  {%- block style %}{%- endblock -%}
 
-    <script>
-        window.frappe = {};
-        frappe.ready_events = [];
-        frappe.ready = function (fn) {
-            frappe.ready_events.push(fn);
-        }
-        window.dev_server = {{ dev_server }};
-        window.socketio_port = {{ frappe.socketio_port }};
-    </script>
-    <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+  <script>
+    window.frappe = {};
+    frappe.ready_events = [];
+    frappe.ready = function (fn) {
+      frappe.ready_events.push(fn);
+    }
+    window.dev_server = {{ dev_server }};
+    window.socketio_port = {{ frappe.socketio_port }};
+  </script>
+  <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
 </head>
 
 <body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}"
-    data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown"
-    {% endif -%}>
-    {%- block banner -%}
-    {% include "templates/includes/banner_extension.html" ignore missing %}
+  data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {% endif
+  -%}>
+  {%- block banner -%}
+  {% include "templates/includes/banner_extension.html" ignore missing %}
 
-    {% if banner_html -%}
-    {{ banner_html or "" }}
-    {%- endif %}
-    {%- endblock -%}
+  {% if banner_html -%}
+  {{ banner_html or "" }}
+  {%- endif %}
+  {%- endblock -%}
 
-    {%- block navbar -%}
-    {% include "templates/includes/navbar/eie_nav.html" %}
-    {%- endblock -%}
-    {% block content %}
-    {{ content }}
-    {% endblock %}
-
-    
-    {%- block footer -%}
-    {% include "templates/includes/footer/eie_footer.html" %}
-    {%- endblock -%}
+  {%- block navbar -%}
+  {% include "templates/includes/navbar/eie_nav.html" %}
+  {%- endblock -%}
+  {% block content %}
+  {{ content }}
+  {% endblock %}
 
 
-    {% block base_scripts %}
-    <!-- js should be loaded in body! -->
-   
-    
-    <script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
-    {% endblock %}
-   <!-- design script -->
+  {%- block footer -%}
+  {% include "templates/includes/footer/eie_footer.html" %}
+  {%- endblock -%}
+  {% block base_scripts %}
+  <script type="text/javascript" crossorigin="anonymous"
+    src=" https://cdn.jsdelivr.net/combine/gh/finbyz/eieweb/eieweb/public/js/frappe-web.min.js,npm/bootstrap@4.1.0/dist/js/bootstrap.min.js"></script>
+  {% endblock %}
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/combine/gh/finbyz/eieweb/eieweb/public/js/owl.carousel.min.js,npm/gsap@3.6.0/dist/gsap.min.js,gh/finbyz/eieweb/eieweb/public/js/combine.min.js"></script>
 
-     <script type="text/javascript" src="/assets/eieweb/js/owl.carousel.min.js"></script>
-     <script src="/assets/eieweb/js/gsap.min.js"></script>
+  {%- for link in web_include_js %}
+  <script type="text/javascript" src="{{ link | abs_url }}"></script>
+  {%- endfor -%}
 
-     
-    <!-- animation script currently running scrollMagic only -->
-     <script type="text/javascript" src="/assets/eieweb/js/combine.min.js"></script>
-    {%- for link in web_include_js %}
-     <script type="text/javascript" src="{{ link | abs_url }}"></script>
-    {%- endfor -%}
-  
-
-     <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
-    {%- block script %}{%- endblock %}
-    <!-- csrf_token -->
-    {%- block body_include %}{{ body_include or "" }}{% endblock -%}
+  <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
+  {%- block script %}{%- endblock %}
+  <!-- csrf_token -->
+  {%- block body_include %}{{ body_include or "" }}{% endblock -%}
 </body>
 
 </html>

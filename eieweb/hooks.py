@@ -30,7 +30,11 @@ utils.create_customer_or_supplier = create_customer_or_supplier
 # from eieweb.api import get_list_context
 # website_list_for_contact.get_list_context = get_list_context
 
-
+# override bcz getting 404 error in thirt party files
+from frappe.website import render
+from eieweb.api import add_preload_headers as my_add_preload_headers
+render.add_preload_headers = my_add_preload_headers
+ 
 # Includes in <head>
 # ------------------
 

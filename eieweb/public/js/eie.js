@@ -156,7 +156,7 @@ $(document).ready(function () {
         itemsTablet: [750, 1],
         pagination: false,
         navigation: true,
-        navigationText: ["<img src='/files/left-arrow-nav.svg' height='15'>", "<img src='/files/right-arrow-nav.svg' height='15'>"],
+        navigationText: ["<img src='/files/left-arrow-nav.svg' alt='left_arrow' width='15' height='15'>", "<img src='/files/right-arrow-nav.svg' alt='left_arrow' width='15' height='15'>"],
         slideSpeed: 1000,
         autoPlay: true
     });
@@ -171,7 +171,7 @@ $(document).ready(function () {
         itemsTablet: [768, 1],
         itemsTablet: [750, 1],
         pagination: false,
-        navigationText: ["<img src='/files/left-arrow-nav.svg' height='15'>", "<img src='/files/right-arrow-nav.svg' height='15'>"],
+        navigationText: ["<img src='/files/left-arrow-nav.svg' alt='left_arrow' width='15' height='15'>", "<img src='/files/right-arrow-nav.svg' alt='left_arrow' width='15' height='15'>"],
         navigation: true,
         autoPlay: true,
         autoHeight: true,
@@ -185,7 +185,7 @@ $(document).ready(function () {
         itemsTablet: [750, 1],
         pagination: false,
         loop: true,
-        navigationText: ["<img src='/files/left-arrow-nav.svg' height='15'>", "<img src='/files/right-arrow-nav.svg' height='15'>"],
+        navigationText: ["<img src='/files/left-arrow-nav.svg' alt='left_arrow' width='15' height='15'>", "<img src='/files/right-arrow-nav.svg' alt='left_arrow' width='15' height='15'>"],
         navigation: true,
         autoPlay: true,
         autoHeight: true,
@@ -521,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function labnolThumb(id) {
     var thumb =
-        '<img src="/files/EIE-Instruments.svg" title="youtube video" alt="Youtube Video">',
+        '<img src="/files/EIE-Instruments_png.png" title="youtube video" alt="Youtube Video">',
         play = '<div class="play"></div>';
     return thumb + play;
 }

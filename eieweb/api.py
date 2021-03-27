@@ -144,7 +144,9 @@ def set_form_data(lead_name,company_name,message,mobile_no,product_name, title,e
 	data.email_id = email
 	data.save(ignore_permissions=True)
 	frappe.db.commit()
-
+	
+def add_preload_headers(response):
+	pass
 
 def quotation_get_list_context(context=None):
 	list_context = get_list_context(context)

@@ -5,20 +5,20 @@
             <div class="eie-logo">
                 <a href="/">
                     <img src="/files/eie-logo.svg" class="eie-logo" alt="EIE Instruments Pvt Ltd"
-                        title="EIE Instruments Pvt Ltd" style="transform: translate(0%, 0%);"></a>
+                        title="EIE Instruments Pvt Ltd" style="transform: translate(0%, 0%);" width="320" height="42"></a>
             </div>
         </li>
         <li class="navSection primary p-2" style="height: 60px; align-items: center;">
             <a class="rootLink hasDropdown" data-dropdown="about" href="/about">
                 Company
             </a>
-            <a class="rootLink hasDropdown" data-dropdown="product">
+            <a class="rootLink hasDropdown" data-dropdown="product" href="#">
                 Products
             </a>
-            <a class="rootLink hasDropdown" data-dropdown="service">
+            <a class="rootLink hasDropdown" data-dropdown="service" href="#">
                 Services
             </a>
-            <a class="rootLink hasDropdown" data-dropdown="clients">
+            <a class="rootLink hasDropdown" data-dropdown="clients" href="#">
                 Clientele
             </a>
             <a class="rootLink" href="/trade-shows">
@@ -61,7 +61,7 @@
                 <nav id="navsidebar" class="vh-100">
                     <!-- navsidebar Links -->
                     <div class="d-flex justify-content-center p-2">
-                        <img src="/files/eie-logo.svg" alt="logo" title="Logo" style="
+                        <img src="/files/eie-logo.svg" alt="logo" title="Logo" width="260" height="35" style="
                         width: 260px;">
                     </div>
                     <ul class="list-unstyled components">
@@ -72,22 +72,22 @@
                             <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse"
                                 aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
+                                    alt="Left Arrow" title="left-arrow" width="30" height="25">
                                 About</a>
                             <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg"
-                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" width="30" height="25">
                             <ul class="collapse list-unstyled ml-5" id='aboutsubmenu'>
                                 <li class="p-3">
                                     <a href="/about"><img class="nav-service-icon" src="/files/about-eie.svg"
-                                            alt="about-eie" title="About-eie">About EIE</a>
+                                            alt="about-eie" title="About-eie" width="30" height="25">About EIE</a>
                                 </li>
                                 <li class="p-3">
                                     <a href="/Quality%20policy"><img class="nav-service-icon" src="/files/quality.svg"
-                                            alt="Quality-policy" title="About Quality-policy">Quality Policy</a>
+                                            alt="Quality-policy" title="About Quality-policy" width="30" height="25">Quality Policy</a>
                                 </li>
                                 <li class="p-3">
                                     <a href="/certificate"><img class="nav-service-icon"
-                                            src="/files/certificate3a56c4.svg" alt="Certificete"
+                                            src="/files/certificate3a56c4.svg" width="30" height="25" alt="Certificete"
                                             title="Certificate">Certificate</a>
                                 </li>
                                
@@ -104,17 +104,17 @@
                                 class="go-tosub-menu">
                                 
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" height="15" width="15">
+                                    alt="Left Arrow" width="30" height="25">
                                 Products
                             </a>
                             <img data-ls="products" src="/files/right-arrow-nav.svg"
-                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" width="30" height="25">
                             <ul class="collapse list-unstyled" id='products'>
                                 {% for key, value in data.items() %}
                                 {% set parent_doc = frappe.get_doc("Website Itemgroup",key)%}
                                 <li class="p-3">
                                     <img class="nav-service-icon" src="{{ frappe.db.get_value('Website Itemgroup',key,'svg') }}" alt="{{parent_doc.name}}"
-                                        title="{{parent_doc.name}}">
+                                        title="{{parent_doc.name}}" width="30" height="25">
                                     <a href='/{{ parent_doc.route }}'
                                         class="link-underline p-1">{{ parent_doc.name }}</a>
                                 </li>
@@ -131,15 +131,16 @@
                             <a href="" data-ls="servicesubmenu" class="go-tosub-menu" data-toggle="collapse"
                                 aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" title="Services" height="15" width="15">
+                                    alt="Left Arrow" title="Services" width="30" height="25">
                                 Services</a>
                             <img data-ls="servicesubmenu" src="/files/right-arrow-nav.svg"
-                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" width="30" height="25">
                             <ul class="collapse list-unstyled ml-5" id='servicesubmenu'>
 
                                 <li class="p-3">
                                     <a href="/calibration-and-validation-services"><img class="nav-service-icon"
                                             src="/files/calibration_validation_icon.svg"
+                                            width="30" height="25"
                                             alt="calibration and validation service"
                                             title="Calibration & Validation Services">Calibration & Validation
                                         Services</a>
@@ -147,6 +148,7 @@
                                 <li class="p-3">
                                     <a href="/manufacturing-facilities"><img class="nav-service-icon"
                                             src="/files/factory.svg" alt="Manufacturing Facilities"
+                                            width="30" height="25"
                                             title="Manufacturing Facilities">Manufacturing Facilities</a>
                                 </li>
                             </ul>
@@ -155,22 +157,23 @@
                             <a href="" data-ls="clientelesubmenu" class="go-tosub-menu" data-toggle="collapse"
                                 aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" title="Services" height="15" width="15">
+                                    alt="Left Arrow" title="Services" width="30" height="25">
                                 Clientele</a>
                             <img data-ls="clientelesubmenu" src="/files/right-arrow-nav.svg"
-                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" width="30" height="25">
                             <ul class="collapse list-unstyled ml-5" id='clientelesubmenu'>
 
                                 <li class="p-3">
                                     <a href="/clients"><img class="nav-service-icon"
                                             src="/files/target.svg"
                                             alt="Clients"
-                                            title="Clients">Clients</a>
+                                            title="Clients"
+                                            width="30" height="25">Clients</a>
                                 </li>
                                 <li class="p-3">
                                     <a href="/testimonials"><img class="nav-service-icon"
                                             src="/files/review.svg" alt="Testimonials"
-                                            title="Testimonials">Testimonials</a>
+                                            width="30" height="25" title="Testimonials">Testimonials</a>
                                 </li>
                             </ul>
                         </li>
@@ -181,22 +184,22 @@
                             <a href="/about" data-ls="ContactUsmenu" class="go-tosub-menu" data-toggle="collapse"
                                 aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
+                                    alt="Left Arrow" title="Web App Development" width="30" height="25">
                                 Contact </a>
                             <img data-ls="ContactUsmenu" src="/files/right-arrow-nav.svg"
-                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" width="30" height="25">
                             <ul class="collapse list-unstyled ml-5" id='ContactUsmenu'>
                                 <li class="p-3">
                                     <a href="/contact"><img class="nav-service-icon" src="/files/phone-call.svg"
-                                            alt="Contact us" title="Contact us">Contact us</a>
+                                            alt="Contact us" title="Contact us" width="30" height="25">Contact us</a>
                                 </li>
                                 <li class="p-3">
                                     <a href="/inquiry?new=1"><img class="nav-service-icon" src="/files/clipboard.svg"
-                                            alt="Inquiry" title="Inquiry">Inquiry</a>
+                                            alt="Inquiry" title="Inquiry" width="30" height="25">Inquiry</a>
                                 </li>
                                 <li class="p-3">
                                     <a href="/jobs"><img class="nav-service-icon" src="/files/job-search.svg"
-                                            alt="Job opening" title="Job opening">Job opening</a>
+                                            alt="Job opening" title="Job opening" width="30" height="25">Job opening</a>
                                 </li>
                                 <!-- <li class="p-3">
                                     <a href="/issues"><img class="nav-service-icon" src="/files/project.svg"
@@ -221,7 +224,7 @@
                             <a data-ls="loginsubmenu" class="go-tosub-menu" data-toggle="collapse"
                                 aria-expanded="false">
                                 <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" title="About Company">
+                                    alt="Left Arrow" title="About Company" width="30" height="25">
                                 <span class="user-image-wrapper"></span>
                                 <span class="full-name"></span>
                                 <b class="caret"></b>
@@ -230,7 +233,7 @@
                                 <li>
                                     <a class="" href="/me" rel="nofollow">
                                         <img class="nav-service-icon" src="/files/nav-my-account.svg" alt="About FinByz"
-                                            title="About FinByz">
+                                            title="About EIE" width="30" height="25">
                                         <h6 class="link-underline mt-1">{{ _('My Account') }}
                                         </h6>
                                     </a>
@@ -238,7 +241,7 @@
                                 <li>
                                     <a class="linkContainer item-about" href="/?cmd=web_logout" rel="nofollow">
                                         <img class="nav-service-icon" src="/files/nav-logout.svg" alt="About FinByz"
-                                            title="About FinByz">
+                                            title="About EIE" width="30" height="25">
                                         <h6 class="link-underline mt-1">{{ _('Logout') }}
                                         </h6>
                                     </a>
@@ -246,7 +249,7 @@
                                 <li>
                                     <a class="linkContainer item-about" href="/desk" rel="nofollow">
                                         <img class="nav-service-icon" src="/files/nav-switch-to-desk.svg"
-                                            alt="About FinByz" title="About FinByz">
+                                            alt="About EIE" title="About FinByz" width="30" height="25">
                                         <h6 class="link-underline mt-1">{{ _('Switch To Desk') }}
                                         </h6>
                                     </a>
@@ -274,7 +277,7 @@
                             <div style="float: left;">
                             <a href='#' class="nav-pr">
                                 <img alt="Industry" title="Industry" src="/files/eie-icon.svg"
-                                    class="nav-icon float-left pt-2 pr-2">
+                                    class="nav-icon float-left pt-2 pr-2" width="56" height="36">
                                 <h3 style="float: right;">Industries</h3>
                             </a>
                             </div>
@@ -297,15 +300,15 @@
                     <ul class="linkGroup">
                         <li>
                             <a class="linkContainer" href="/about">
-                                <img class="nav-service-icon" src="/files/about-eie.svg" alt="Certificate"
-                                    title="Certificate">
+                                <img class="nav-service-icon" src="/files/about-eie.svg" alt="Abutus"
+                                    title="Abutus" width="30" height="25">
                                 <h6 class="link-underline mt-1">About EIE</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/Quality%20policy">
                                 <img class="nav-service-icon" src="/files/quality.svg" alt="Quality Policy"
-                                    title="Quality Policy">
+                                    title="Quality Policy" width="30" height="25">
                                 <h6 class="link-underline mt-1">Quality Policy
                                 </h6>
                             </a>
@@ -314,7 +317,7 @@
                         <li>
                             <a class="linkContainer" href="/certificate">
                                 <img class="nav-service-icon" src="/files/certificate3a56c4.svg" alt="Certificate"
-                                    title="Certificate">
+                                    title="Certificate" width="30" height="25">
                                 <h6 class="link-underline mt-1">Certificate</h6>
                             </a>
                         </li>
@@ -328,20 +331,20 @@
                         <li>
                             <a class="linkContainer" href="/contact">
                                 <img class="nav-service-icon" src="/files/phone-call.svg" alt="Contact Us"
-                                    title="Contact Us">
+                                    title="Contact Us" width="30" height="25">
                                 <h6 class="link-underline mt-1">Contact Us</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/inquiry?new=1">
-                                <img class="nav-service-icon" src="/files/clipboard.svg" alt="Inquiry" title="Inquiry">
+                                <img class="nav-service-icon" src="/files/clipboard.svg" alt="Inquiry" title="Inquiry" width="30" height="25">
                                 <h6 class="link-underline mt-1">Inquiry</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/jobs">
                                 <img class="nav-service-icon" src="/files/job-search.svg" alt="Job Application"
-                                    title="Job Application">
+                                    title="Job Application" width="30" height="25">
                                 <h6 class="link-underline mt-1">Job Opening</h6>
                             </a>
                         </li>
@@ -356,7 +359,7 @@
                         <div class="my-3 ">
                             <a href="application-form?new=1" class="">
                                 <p class="d-flex justify-content-center">
-                                    <img class="nav-service-icon" src="/files/project.svg" alt="Issues" title="Issues">
+                                    <img class="nav-service-icon" src="/files/project.svg" alt="Issues" title="Issues" width="30" height="25">
                                     Job Application
                                 </p>
                             </a>
@@ -367,8 +370,7 @@
                                         <h6 class="">
                                             Sales Executives
                                         </h6>
-                                        <img src="/files/right-arrow-nav.svg" class="m-2" alt="right-arrow" height="15"
-                                            width="15">
+                                        <img src="/files/right-arrow-nav.svg" class="m-2" alt="right-arrow" width="30" height="25">
                                     </a>
                                 </li>
 
@@ -377,8 +379,7 @@
                                         <h6 class="">
                                             Content Writer
                                         </h6>
-                                        <img src="/files/right-arrow-nav.svg" class="m-2" alt="right-arrow" height="15"
-                                            width="15">
+                                        <img src="/files/right-arrow-nav.svg" class="m-2" alt="right-arrow"width="30" height="25">
                                     </a>
                                 </li>
                             </ul>
@@ -393,14 +394,14 @@
                         <li>
                             <a class="linkContainer" href="/clients">
                                 <img class="nav-service-icon" src="/files/target.svg" alt="Clients"
-                                    title="Clients">
+                                    title="Clients" width="30" height="25">
                                 <h6 class="link-underline mt-1">Clients</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/testimonials">
                                 <img class="nav-service-icon" src="/files/review.svg" alt="Testimonials"
-                                    title="Testimonials">
+                                    title="Testimonials" width="30" height="25">
                                 <h6 class="link-underline mt-1">Testimonials
                                 </h6>
                             </a>
@@ -415,14 +416,14 @@
                         <li>
                             <a class="linkContainer" href="/calibration-and-validation-services">
                                 <img class="nav-service-icon" src="/files/calibration_validation_icon.svg"
-                                    alt="Calibration & Validation Services" title="Calibration & Validation Services">
+                                    alt="Calibration & Validation Services" title="Calibration & Validation Services" width="30" height="25">
                                 <h6 class="link-underline mt-1">Calibration & Validation Services</h6>
                             </a>
                         </li>
                         <li>
                             <a class="linkContainer" href="/manufacturing-facilities">
                                 <img class="nav-service-icon" src="/files/factory.svg" alt="Manufacturing Facilities"
-                                    title="Manufacturing Facilities">
+                                    title="Manufacturing Facilities" width="30" height="25">
                                 <h6 class="link-underline mt-1">Manufacturing Facilities
                                 </h6>
                             </a>
@@ -442,7 +443,7 @@
                         <div>
                             <a class="linkContainer item-about" href="/me" rel="nofollow">
                                 <img class="nav-service-icon float-left" src="/files/nav-my-account.svg"
-                                    alt="My account" title="My account">
+                                    alt="My account" title="My account" width="30" height="25">
                                 <h6 class="d-inline-block mt-1">{{ _('My Account') }}
                                 </h6>
                             </a>
@@ -450,7 +451,8 @@
                         <div>
                             <a class="linkContainer item-about" href="/?cmd=web_logout" rel="nofollow">
                                 <img class="nav-service-icon float-left" src="/files/nav-logout.svg" alt="Logout"
-                                    title="Logout">
+                                    title="Logout"
+                                    width="30" height="25">
                                 <h6 class="d-inline-block mt-1">{{ _('Logout') }}
                                 </h6>
                             </a>
@@ -458,7 +460,8 @@
                         <div>
                             <a class="linkContainer item-about" href="/desk" rel="nofollow">
                                 <img class="nav-service-icon float-left" src="/files/nav-switch-to-desk.svg" alt="Desk"
-                                    title="Desk">
+                                    title="Desk"
+                                    width="30" height="25">
                                 <h6 class="d-inline-block">{{ _('Switch To Desk') }}
                                 </h6>
                             </a>
