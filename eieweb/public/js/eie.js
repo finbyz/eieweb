@@ -1226,12 +1226,12 @@ $(document).ready(function () {
     $('.nav-search-btn').on('click', (e) => {
         searchProduct();
     })
-
+    console.log('running');
     var current_location = window.location.pathname;
     if (current_location != '/') {
         $('.eie-Tech').addClass('remove_margin');
     }
-    if (current_location == '/testimonial') {
+    if (current_location == '/testimonial' || current_location == '/index' ) {
         $('.eie-Tech').removeClass('remove_margin');
     }
     if (current_location == '/Customer') {
