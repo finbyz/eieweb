@@ -13,13 +13,13 @@ function moveRight() {
         $('#news li').eq(0).addClass('active');
         $('#news li').eq(0).children('p').addClass('active');
         $('#news li').eq(0).children('strong').addClass('fadeout');
-    }
-    else {
+    } else {
         $(activeclass).next().addClass('active');
         $(activeclass).next().children('p').addClass('active');
         $(activeclass).next().children('strong').addClass('fadeout');
     }
 }
+
 function moveLeft() {
     var activeclass = $('li.active');
     $(activeclass).removeClass('active');
@@ -30,8 +30,7 @@ function moveLeft() {
         $('#news li').eq(-1).addClass('active');
         $('#news li').eq(-1).children('p').addClass('active');
         $('#news li').eq(-1).children('strong').addClass('fadeout');
-    }
-    else {
+    } else {
         $(activeclass).prev().addClass('active');
         $(activeclass).prev().children('p').addClass('active');
         $(activeclass).prev().children('strong').addClass('fadeout');
@@ -44,7 +43,7 @@ $('.bn-prev').on('click', () => {
 $('.bn-next').on('click', () => {
     moveRight();
 })
-var interval = setInterval(function () {
+var interval = setInterval(function() {
     moveRight();
 }, 5000);
 $('.pause').on('click', () => {
@@ -52,16 +51,16 @@ $('.pause').on('click', () => {
 })
 
 $('.play').on('click', () => {
-    var interval1 = setInterval(() => {
-        setTimeout(function () {
-            moveRight();
-        }, 500);
-    }, 5000);
-    $('.pause').on('click', () => {
-        clearInterval(interval1);
+        var interval1 = setInterval(() => {
+            setTimeout(function() {
+                moveRight();
+            }, 500);
+        }, 5000);
+        $('.pause').on('click', () => {
+            clearInterval(interval1);
+        })
     })
-})
-// Modal
+    // Modal
 if (document.getElementById('gallery')) {
     document.getElementById('gallery').classList.add("custom");
     document.getElementById('exampleModal').classList.add("custom");
@@ -74,7 +73,7 @@ var controller = new ScrollMagic.Controller({
 // build scenes
 
 // init controller for image-anime
-$(".image-anime").each(function () {
+$(".image-anime").each(function() {
     new ScrollMagic.Scene({ triggerElement: this })
         .setTween(this, {
             y: "-80%",
@@ -84,7 +83,7 @@ $(".image-anime").each(function () {
 });
 
 // for reverse animation
-$(".image-anime-child").each(function () {
+$(".image-anime-child").each(function() {
     new ScrollMagic.Scene({ triggerElement: this })
         .setTween(this, {
             y: "80%",
@@ -94,7 +93,7 @@ $(".image-anime-child").each(function () {
 });
 
 // image anime slow with 60%
-$(".image-anime-slow").each(function () {
+$(".image-anime-slow").each(function() {
     new ScrollMagic.Scene({ triggerElement: this })
         .setTween(this, {
             y: "-60%",
@@ -147,7 +146,7 @@ column3Anim.staggerTo($(columns3), 0.5, { autoAlpha: 0.1 }, 0.2, 0.25);
 
 // minjs for sliding animation
 //Industries Home slider
-$(document).ready(function () {
+$(document).ready(function() {
     $("#industries-slider").owlCarousel({
         items: 2,
         itemsDesktop: [1000, 2],
@@ -259,13 +258,13 @@ $(document).ready(function () {
 
 
     //   Auto Courosel 
-    setTimeout(function () {
+    setTimeout(function() {
         $("a.slider--control.right").trigger('click');
     }, 100);
     $("a.slider--control.right").on("click", () => {
-        $("#page3").attr("checked", true);
-    })
-    // END
+            $("#page3").attr("checked", true);
+        })
+        // END
 });
 
 //Job Opening Main Effect
@@ -289,7 +288,7 @@ function eieNavDropdowns(e) {
         this.dropdownContainer = this.container.querySelector(".dropdownContainer"),
         this.dropdownArrow = this.container.querySelector(".dropdownArrow"),
         this.dropdownRoots = Strut.queryArray(".hasDropdown", this.root),
-        this.dropdownSections = Strut.queryArray(".dropdownSection", this.container).map(function (e) {
+        this.dropdownSections = Strut.queryArray(".dropdownSection", this.container).map(function(e) {
             return {
                 el: e,
                 name: e.getAttribute("data-dropdown"),
@@ -301,29 +300,29 @@ function eieNavDropdowns(e) {
         enter: "pointerenter",
         leave: "pointerleave"
     } : {
-            end: "touchend",
-            enter: "mouseenter",
-            leave: "mouseleave"
-        };
-    this.dropdownRoots.forEach(function (e, r) {
-        e.addEventListener(n.end, function (n) {
+        end: "touchend",
+        enter: "mouseenter",
+        leave: "mouseleave"
+    };
+    this.dropdownRoots.forEach(function(e, r) {
+        e.addEventListener(n.end, function(n) {
             n.preventDefault(), n.stopPropagation(), t.toggleDropdown(e)
-        }), e.addEventListener(n.enter, function (n) {
+        }), e.addEventListener(n.enter, function(n) {
             if (n.pointerType == "touch") return;
             t.stopCloseTimeout(), t.openDropdown(e)
-        }), e.addEventListener(n.leave, function (e) {
+        }), e.addEventListener(n.leave, function(e) {
             if (e.pointerType == "touch") return;
             t.startCloseTimeout()
         })
-    }), this.dropdownContainer.addEventListener(n.end, function (e) {
+    }), this.dropdownContainer.addEventListener(n.end, function(e) {
         e.stopPropagation()
-    }), this.dropdownContainer.addEventListener(n.enter, function (e) {
+    }), this.dropdownContainer.addEventListener(n.enter, function(e) {
         if (e.pointerType == "touch") return;
         t.stopCloseTimeout()
-    }), this.dropdownContainer.addEventListener(n.leave, function (e) {
+    }), this.dropdownContainer.addEventListener(n.leave, function(e) {
         if (e.pointerType == "touch") return;
         t.startCloseTimeout()
-    }), document.body.addEventListener(n.end, function (e) {
+    }), document.body.addEventListener(n.end, function(e) {
         t.closeDropdown()
     })
 }
@@ -331,11 +330,11 @@ function eieNavDropdowns(e) {
 
 /* Starting code */
 var Strut = {
-    queryArray: function (e, t) {
+    queryArray: function(e, t) {
         // console.log(e,t);
         return t || (t = document.body), Array.prototype.slice.call(t.querySelectorAll(e))
     },
-    ready: function (e) {
+    ready: function(e) {
         // console.log(e);
         document.addEventListener("DOMContentLoaded", e)
     }
@@ -343,16 +342,16 @@ var Strut = {
 
 
 Strut.supports = {
-    pointerEvents: function () {
+        pointerEvents: function() {
 
-        var e = document.createElement("a").style;
-        // console.log(e);
-        return e.cssText = "pointer-events:auto", e.pointerEvents === "auto"
+            var e = document.createElement("a").style;
+            // console.log(e);
+            return e.cssText = "pointer-events:auto", e.pointerEvents === "auto"
 
-    }(),
-},
+        }(),
+    },
 
-    eieNavDropdowns.prototype.checkCollision = function () {
+    eieNavDropdowns.prototype.checkCollision = function() {
 
         var e = this;
 
@@ -378,16 +377,16 @@ Strut.supports = {
     },
 
 
-    eieNavDropdowns.prototype.openDropdown = function (e) {
+    eieNavDropdowns.prototype.openDropdown = function(e) {
         var t = this;
         if (this.activeDropdown === e) return;
-        this.container.classList.add("overlayActive"), this.container.classList.add("dropdownActive"), this.activeDropdown = e, this.dropdownRoots.forEach(function (e, t) {
+        this.container.classList.add("overlayActive"), this.container.classList.add("dropdownActive"), this.activeDropdown = e, this.dropdownRoots.forEach(function(e, t) {
             e.classList.remove("active")
         }), e.classList.add("active");
         var n = e.getAttribute("data-dropdown"),
             r = "left",
             i, s, o;
-        this.dropdownSections.forEach(function (e) {
+        this.dropdownSections.forEach(function(e) {
             e.el.classList.remove("active"), e.el.classList.remove("left"), e.el.classList.remove("right"), e.name == n ? (e.el.classList.add("active"), r = "right", i = e.content.offsetWidth, s = e.content.offsetHeight, o = e.content) : e.el.classList.add(r)
         });
         var u = 520,
@@ -397,7 +396,7 @@ Strut.supports = {
             c = e.getBoundingClientRect(),
             h = c.left + c.width / 2 - i / 2;
 
-        h = Math.round(Math.max(h, 10)), clearTimeout(this.disableTransitionTimeout), this.enableTransitionTimeout = setTimeout(function () {
+        h = Math.round(Math.max(h, 10)), clearTimeout(this.disableTransitionTimeout), this.enableTransitionTimeout = setTimeout(function() {
             t.container.classList.remove("noDropdownTransition")
         }, 50), this.dropdownBackground.style.transform = "translateX(" + h + "px) scaleX(" + f + ") scaleY(" + l + ")", this.dropdownContainer.style.transform = "translateX(" + h + "px)", this.dropdownContainer.style.width = i + "px", this.dropdownContainer.style.height = s + "px";
         var p = Math.round(c.left + c.width / 2);
@@ -409,17 +408,17 @@ Strut.supports = {
         this.dropdownBackgroundAlt.style.transform = "translateY(" + d + "px)"
 
     },
-    eieNavDropdowns.prototype.closeDropdown = function () {
+    eieNavDropdowns.prototype.closeDropdown = function() {
 
         var e = this;
 
         if (!this.activeDropdown) return;
 
-        this.dropdownRoots.forEach(function (e, t) {
+        this.dropdownRoots.forEach(function(e, t) {
 
-            e.classList.remove("active")
+                e.classList.remove("active")
 
-        }),
+            }),
 
             clearTimeout(this.enableTransitionTimeout),
 
@@ -429,22 +428,22 @@ Strut.supports = {
 
             this.activeDropdown = undefined
 
-    }, eieNavDropdowns.prototype.toggleDropdown = function (e) {
+    }, eieNavDropdowns.prototype.toggleDropdown = function(e) {
         this.activeDropdown === e ? this.closeDropdown() : this.openDropdown(e)
-    }, eieNavDropdowns.prototype.startCloseTimeout = function () {
+    }, eieNavDropdowns.prototype.startCloseTimeout = function() {
         var e = this;
-        e.closeDropdownTimeout = setTimeout(function () {
+        e.closeDropdownTimeout = setTimeout(function() {
             e.closeDropdown()
         }, 180)
-    }, eieNavDropdowns.prototype.stopCloseTimeout = function () {
+    }, eieNavDropdowns.prototype.stopCloseTimeout = function() {
         var e = this;
         clearTimeout(e.closeDropdownTimeout)
-    }, Strut.supports.pointerEvents, Strut.ready(function () {
+    }, Strut.supports.pointerEvents, Strut.ready(function() {
         new eieNavDropdowns(".eieNav")
     });
 /* Multilevel Sidebar - menu */
 
-$(".go-tosub-menu").on("click", function (event) {
+$(".go-tosub-menu").on("click", function(event) {
     let lsid = $(this).data("ls");
     let icon = $(this).data("icon");
     if ($(`#${lsid}`).hasClass("d-block")) {
@@ -452,7 +451,7 @@ $(".go-tosub-menu").on("click", function (event) {
         let $li = $("#navsidebar").children("ul").children("li");
         $(`#${lsid}`).parent("li").removeClass("show");
         setTimeout(() => {
-            $.each($li, function (ix, list) {
+            $.each($li, function(ix, list) {
                 $(this).removeClass("d-none");
             });
             $("#navsidebar").children("ul").addClass("show");
@@ -470,14 +469,14 @@ $(".go-tosub-menu").on("click", function (event) {
             $(`#${lsid}`).parent("li").children("img").addClass("d-none");
             $(`#${lsid}`).parent("li").find("a img:first").removeClass("d-none");
             let $li = $("#navsidebar").children("ul").children("li").not("li.show");
-            $.each($li, function (ix, list) {
+            $.each($li, function(ix, list) {
                 $(this).addClass("d-none");
             });
         }
     }
 });
 
-$('#navsidebarCollapse').on('click', function () {
+$('#navsidebarCollapse').on('click', function() {
     $('#navsidebar').toggleClass('active');
     $("header.eieNav div.nav-wrapper").css({
         "left": "0px",
@@ -506,7 +505,7 @@ $('#navsidebarCollapse').on('click', function () {
 
 //  Video JS start here
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     var div,
         n,
         v = document.getElementsByClassName("youtube-player");
@@ -583,7 +582,7 @@ window.addEventListener('resize', mediaSize, false);
 // Timeline tree about us
 
 /* Check the location of each element */
-$('.timeline_content').each(function (i) {
+$('.timeline_content').each(function(i) {
 
     var bottom_of_object = $(this).offset().top + $(this).outerHeight();
     var bottom_of_window = $(window).height();
@@ -594,9 +593,9 @@ $('.timeline_content').each(function (i) {
 });
 
 
-$(window).scroll(function () {
+$(window).scroll(function() {
     /* Check the location of each element hidden */
-    $('.hidden').each(function (i) {
+    $('.hidden').each(function(i) {
 
         var bottom_of_object = $(this).offset().top + $(this).outerHeight();
         var bottom_of_window = $(window).scrollTop() + $(window).height();
@@ -616,166 +615,166 @@ $(window).scroll(function () {
 
 //heading fade in js
 //done
-$(function () {
-    var scrollController = new ScrollMagic.Controller();
-    $(".eie-fadeinup").each(function () {
+$(function() {
+        var scrollController = new ScrollMagic.Controller();
+        $(".eie-fadeinup").each(function() {
 
-        var fadeUpScene0 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.8,
-        })
-            .setTween(TweenMax.from(this, 0.8, {
-                y: 50,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
+            var fadeUpScene0 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.8,
+                })
+                .setTween(TweenMax.from(this, 0.8, {
+                    y: 50,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
 
 
-    $(".eie-fadeindown").each(function () {
+        $(".eie-fadeindown").each(function() {
 
-        var fadeUpScene1 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.9,
-            reverse: true,
-        })
-            .setTween(TweenMax.from(this, 0.4, {
-                y: -10,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
+            var fadeUpScene1 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.9,
+                    reverse: true,
+                })
+                .setTween(TweenMax.from(this, 0.4, {
+                    y: -10,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
 
-    $(".eie-fadeinright").each(function () {
+        $(".eie-fadeinright").each(function() {
 
-        var fadeUpScene2 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.7,
+            var fadeUpScene2 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
 
-        })
-            .setTween(TweenMax.from(this, 0.8, {
-                x: 90,
-                opacity: 0,
-                ease: Sine.easeInOut
-            }))
-            .addTo(scrollController)
-    });
+                })
+                .setTween(TweenMax.from(this, 0.8, {
+                    x: 90,
+                    opacity: 0,
+                    ease: Sine.easeInOut
+                }))
+                .addTo(scrollController)
+        });
 
-    $(".eie-fadeinleft").each(function () {
+        $(".eie-fadeinleft").each(function() {
 
-        var fadeUpScene3 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.7,
+            var fadeUpScene3 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
 
-        })
-            .setTween(TweenMax.from(this, 0.8, {
-                x: -90,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
-    //scale eeffect
-    $(".eie-fadeinrscale").each(function () {
+                })
+                .setTween(TweenMax.from(this, 0.8, {
+                    x: -90,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
+        //scale eeffect
+        $(".eie-fadeinrscale").each(function() {
 
-        var fadeUpScene4 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.7,
+            var fadeUpScene4 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
 
-        })
-            .setTween(TweenMax.from(this, 0.6, {
-                scale: 1.3,
-                ease: Sine.easeInOut,
+                })
+                .setTween(TweenMax.from(this, 0.6, {
+                    scale: 1.3,
+                    ease: Sine.easeInOut,
 
-            }))
-            .addTo(scrollController)
-    });
+                }))
+                .addTo(scrollController)
+        });
 
-    $(".eie-fadeinrotate").each(function () {
+        $(".eie-fadeinrotate").each(function() {
 
-        var fadeUpScene5 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.7,
+            var fadeUpScene5 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
 
-        })
-            .setTween(TweenMax.from(this, 1, {
+                })
+                .setTween(TweenMax.from(this, 1, {
 
-                x: 500,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
-    //text decoration
-    $(".eie-fadein-text-right").each(function () {
+                    x: 500,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
+        //text decoration
+        $(".eie-fadein-text-right").each(function() {
 
-        var fadeUpScene6 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.7,
+            var fadeUpScene6 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
 
-        })
-            .setTween(TweenMax.from(this, 0.9, {
-                x: 40,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
+                })
+                .setTween(TweenMax.from(this, 0.9, {
+                    x: 40,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
 
-    $(".eie-fadein-text-left").each(function () {
+        $(".eie-fadein-text-left").each(function() {
 
-        var fadeUpScene7 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.6,
+            var fadeUpScene7 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.6,
 
-        })
-            .setTween(TweenMax.from(this, 0.7, {
-                x: -40,
-                opacity: 0,
-                ease: Sine.easeOut,
-            }))
-            .addTo(scrollController)
-    });
-    $(".eie-fadeinup-text").each(function () {
+                })
+                .setTween(TweenMax.from(this, 0.7, {
+                    x: -40,
+                    opacity: 0,
+                    ease: Sine.easeOut,
+                }))
+                .addTo(scrollController)
+        });
+        $(".eie-fadeinup-text").each(function() {
 
-        var fadeUpScene8 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.8,
-        })
-            .setTween(TweenMax.from(this, 0.9, {
-                y: 60,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
-    //heading 
-    $(".eie-heading").each(function () {
-        var fadeUpScene9 = new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 0.7,
-        })
-            .setTween(TweenMax.from(this, 0.9, {
-                rotationY: 90,
-                opacity: 0,
-                ease: Sine.easeInOut,
-            }))
-            .addTo(scrollController)
-    });
-})
-//li js
-$('.result ul').each(function () {
+            var fadeUpScene8 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.8,
+                })
+                .setTween(TweenMax.from(this, 0.9, {
+                    y: 60,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
+        //heading 
+        $(".eie-heading").each(function() {
+            var fadeUpScene9 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
+                })
+                .setTween(TweenMax.from(this, 0.9, {
+                    rotationY: 90,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
+    })
+    //li js
+$('.result ul').each(function() {
     var ul = $(this);
     h = ul.children('li').height();
     ul.css({ 'height': (h * 5) + 'px', 'overflow': 'hidden' });
 });
-$('#download').click(function () {
+$('#download').click(function() {
     localStorage.setItem("url", "{{ url }}");
 });
 // product vidio
-$(document).ready(function () {
+$(document).ready(function() {
     var dataset = $('#product-youtube').attr("data-src");
 
     if (typeof dataset != "undefined") {
@@ -798,6 +797,7 @@ $(document).ready(function () {
             }, 600)
         })
     }
+
     function youtubevideo() {
         var div,
             n,
@@ -820,10 +820,10 @@ $(document).ready(function () {
 })
 
 //whats app
-var mwb_whatsapp = function () {
+var mwb_whatsapp = function() {
     "use strict";
 
-    function t() { }
+    function t() {}
 
     function e(t) {
         return t()
@@ -960,7 +960,7 @@ var mwb_whatsapp = function () {
             };
         let f = !1;
         var b, m, v;
-        u.ctx = s ? s(i, g, (t, e, a = e) => (u.ctx && c(u.ctx[t], u.ctx[t] = a) && (u.bound[t] && u.bound[t](a), f && B(i, t)), e)) : [], u.update(), f = !0, n(u.before_update), u.fragment = !!p && p(u.ctx), r.target && (r.hydrate ? u.fragment && u.fragment.l((v = r.target, Array.from(v.childNodes))) : u.fragment && u.fragment.c(), r.intro && ((b = i.$$.fragment) && b.i && (E.delete(b), b.i(m))), function (t, a, i) {
+        u.ctx = s ? s(i, g, (t, e, a = e) => (u.ctx && c(u.ctx[t], u.ctx[t] = a) && (u.bound[t] && u.bound[t](a), f && B(i, t)), e)) : [], u.update(), f = !0, n(u.before_update), u.fragment = !!p && p(u.ctx), r.target && (r.hydrate ? u.fragment && u.fragment.l((v = r.target, Array.from(v.childNodes))) : u.fragment && u.fragment.c(), r.intro && ((b = i.$$.fragment) && b.i && (E.delete(b), b.i(m))), function(t, a, i) {
             const {
                 fragment: r,
                 on_mount: s,
@@ -1060,12 +1060,12 @@ var mwb_whatsapp = function () {
             "name" in t && a(9, r = t.name), "number" in t && a(10, s = t.number), "avatar" in t && a(0, p = t.avatar), "description" in t && a(1, c = t.description), "welcomeMessage" in t && a(2, l = t.welcomeMessage), "pattern" in t && a(3, d = t.pattern)
         }), t.$$.update = (() => {
             1536 & t.$$.dirty && a(6, n = r || s)
-        }), [p, c, l, d, o, i, n, function () {
+        }), [p, c, l, d, o, i, n, function() {
             a(4, o = !o)
-        }, function () {
+        }, function() {
             var t = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "https://wa.me/" + String(s).replace("+", "") + "?text=" + encodeURIComponent(i) : "https://web.whatsapp.com/send?phone=" + s + "&text=" + encodeURIComponent(i);
             window.open(t, "_blank"), a(5, i = ""), a(4, o = !1)
-        }, r, s, function () {
+        }, r, s, function() {
             i = this.value, a(5, i)
         }]
     }
@@ -1082,7 +1082,7 @@ var mwb_whatsapp = function () {
             this[t] = a
         }
         $destroy() {
-            ! function (t, e) {
+            ! function(t, e) {
                 const a = t.$$;
                 null !== a.fragment && (n(a.on_destroy), a.fragment && a.fragment.d(e), a.on_destroy = a.fragment = null, a.ctx = [])
             }(this, 1), this.$destroy = t
@@ -1093,7 +1093,7 @@ var mwb_whatsapp = function () {
                 const t = a.indexOf(e); - 1 !== t && a.splice(t, 1)
             }
         }
-        $set() { }
+        $set() {}
     });
     class _ extends L {
         constructor(t) {
@@ -1168,7 +1168,7 @@ var mwb_whatsapp = function () {
 
 
 //inquiry form
-$(document).ready(function () {
+$(document).ready(function() {
     function lead_creation() {
         frappe.call({
             method: "eieweb.api.set_form_data",
@@ -1181,7 +1181,7 @@ $(document).ready(function () {
                 'title': document.title + '</br>' + window.location.href,
                 'email': $('#email').val()
             },
-            callback: function (r) {
+            callback: function(r) {
                 $('#lead_name').val('');
                 $('#company_name').val('');
                 $('#message').val('');
@@ -1197,15 +1197,15 @@ $(document).ready(function () {
     var form = $('#inquiry'),
         submit = form.find('[name="submit"]');
 
-    form.on('submit', function (e) {
-        setTimeout(function () {
+    form.on('submit', function(e) {
+        setTimeout(function() {
             lead_creation();
         }, 100);
         e.preventDefault();
     });
 })
 
-$(document).ready(function () {
+$(document).ready(function() {
     function searchProduct() {
         var productName = $('#search-product-Nav').val();
         var pathname = window.location.pathname;
@@ -1226,12 +1226,12 @@ $(document).ready(function () {
     $('.nav-search-btn').on('click', (e) => {
         searchProduct();
     })
-    console.log('running');
+
     var current_location = window.location.pathname;
     if (current_location != '/') {
         $('.eie-Tech').addClass('remove_margin');
     }
-    if (current_location == '/testimonial' || current_location == '/index' ) {
+    if (current_location == '/testimonial' || current_location == '/index') {
         $('.eie-Tech').removeClass('remove_margin');
     }
     if (current_location == '/Customer') {
@@ -1259,7 +1259,7 @@ TweenLite.set(['.grid-back', '.grid-front'], {
 });
 
 // loop through each element
-$(".client-grid-wrapper").each(function (i, el) {
+$(".client-grid-wrapper").each(function(i, el) {
 
     // create a timeline for this element in paused state
     var tl = new TimelineMax({
@@ -1283,25 +1283,24 @@ $(".client-grid-wrapper").each(function (i, el) {
     el.animation = t;
 
     //create the event handler
-    $(el).on("mouseenter", function () {
+    $(el).on("mouseenter", function() {
         this.animation.play();
-    }).on("mouseleave", function () {
+    }).on("mouseleave", function() {
         this.animation.reverse();
     });
 
 });
 // navigation
-$(window).scroll(function () {
+$(window).scroll(function() {
     var scroll = $(window).scrollTop();
     if (scroll >= 20) {
         $(".navRoot").addClass("active");
-    }
-    else {
+    } else {
         $(".navRoot").removeClass("active");
     }
 });
 //Navigation bar swing effect on scroll
-(function ($) {
+(function($) {
     var $window = $(window),
         $eieNav = $('.eieNav');
 
@@ -1319,6 +1318,7 @@ $(window).scroll(function () {
 
 var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop,
     isVisible = true;
+
 function show() {
     if (!isVisible) {
         TweenLite.to(".eieNav", 1, { y: "0%" }, 0);
@@ -1327,6 +1327,7 @@ function show() {
         isVisible = true;
     }
 }
+
 function hide() {
     if (isVisible) {
         TweenLite.to(".eieNav", 1, { y: "-40%" }, 0);
@@ -1354,7 +1355,7 @@ refresh();
 
 // alphabetical number
 $('#letters').hover(
-    function () {
+    function() {
         $('.Alpha').toggleClass("active");
         $('.Alpha').toggleClass("fadeIn");
     })
