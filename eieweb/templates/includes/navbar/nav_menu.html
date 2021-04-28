@@ -4,7 +4,7 @@
 {% set _ = data.update({item_group.name:frappe.get_all('Website Itemgroup',{'parent_website_itemgroup':item_group.name})}) %}
 {% endfor%}
 <div class="industry-group-sub col-xl-12 row pt-2  d-flex flex-row">
-    <div class="d-block col-4">
+    <div class="d-block col-5">
         <div class="top-cat">
             <ul class=" top-label">
                 {% for key, value in data.items() %}
@@ -25,7 +25,7 @@
         </div>
     </div>
     <!-- sub catagory list -->
-    <div class="col-4">
+    <div class="col-3">
         <div class="custom-menu-block">
             {% for key, value in data.items() %}
             <div class="child-cat ">
