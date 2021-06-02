@@ -12,12 +12,15 @@ app_email = "info@finbyz.com"
 app_license = "GPL 3.0"
 
 
-from eieweb.api import get_items as my_get_item, get_context
+from eieweb.api import get_items as my_get_item, get_context, make_route
 from erpnext.stock.doctype.item.item import Item
 #import erpnext
 # from erpnext.portal.product_configurator.utils import get_items as get_item
 # get_items = my_get_item
-Item.get_context = get_context 
+Item.get_context = get_context
+
+# override for random string
+Item.make_route = make_route
 
 
 # override for customer disabled 0
@@ -52,8 +55,6 @@ render.add_preload_headers = my_add_preload_headers
 # include js in doctype views
 doctype_js = {
     "Item" : "public/js/item.js"
- 
- 
 }
 
 

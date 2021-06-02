@@ -6,6 +6,7 @@ from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent
 from erpnext.stock.doctype.item.item import Item
 from erpnext.controllers.website_list_for_contact import get_list_for_transactions, rfq_transaction_list, get_customers_suppliers, post_process
 import json
+from frappe.utils import cint, cstr, flt
 
 def get_items(filters=None, search=None):
 	frappe.msgprint('call')
@@ -348,3 +349,8 @@ def party_exists(doctype, user):
 		return doctype in doctypes
 
 	return False
+
+def make_route(self):
+	if not self.route:
+		return cstr(frappe.db.get_value('Item Group', self.item_group,
+				'route')) + '/' + self.scrub((self.item_name if self.item_name else self.item_code))
