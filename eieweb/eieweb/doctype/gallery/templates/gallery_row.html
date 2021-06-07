@@ -1,68 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <style>
-        @import url(https://fonts.googleapis.com/css?family=Montserrat:500);
-         :root {
-            /* Base font size */
-            font-size: 10px;
-        }
-   
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-    body {
-        min-height: 100vh;
-        background-color: #fafafa;
-    }
-    
-    .container {
-        max-width: 100rem;
-        margin: 0 auto;
-        padding: 0 2rem 2rem;
-    }
-</style>
-</head>
-
-<body>
-
     {% set history_list = frappe.get_list("Gallery", {} ,['image','category_name']) %}
-    
     {% set type = ['Conference Room','Calibration Department','Account Department',"CEO's Cabin"]%}
-    
-    <div class="container-fluid col-md-4 col-lg-3" data-toggle="modal" data-target="#exampleModal">
-        {% set count = namespace(a=0)%}
-            {% for row in type %}
-           <h5 class="col-12 py-2">{{ row }}</h5>
-            {% for certi_set in history_list  %}
-            {% if row == certi_set.category_name %}
-	
 
-        <!-- <h1 class="heading">Image Gallery with CSS Grid <span>& Flexbox Fallback</span></h1> -->
-
-        <div class="gallery">
-
-            <div class="gallery-item">
-                <img class="gallery-image" src="{{certi_set.image}}" alt="person writing in a notebook beside by an iPad, laptop, printed photos, spectacles, and a cup of coffee on a saucer" data-target="#carouselExample"
-                data-slide-to="{{ count.a }}">
-            </div>
-
-
-
+    <div class="row container-fluid mx-auto p-lr-50 pb-5" id="gallery" data-toggle="modal" data-target="#gallery_model">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+            <h2 class="dark-text title-underline">Gallery</h2>
         </div>
+        {% set count = namespace(a=0)%}
+            
+        {% for row in type %}
+       
+        <h5 class="col-12 py-2 mt-3">{{ row }}</h5>
+        {% for certi_set in history_list %}
+    
+        {% if row == certi_set.category_name %}
+        <div class="col-12 col-sm-6 col-lg-3 py-2">
+                <div class="gallery-item">
+                    <img class="gallery-image" src="{{certi_set.image}}"
+                        alt="{{ certi_set.category_name}}_{{count.a}}_image"
+                        data-target="#carouselExample" data-slide-to="{{ count.a }}">
+                </div>
+            </div>
         {% set count.a = count.a + 1 %}
         {% endif %}
         {% endfor %}
         {% endfor %}
 
     </div>
-    <div class="modal fade" tabindex="-5" role="dialog" id="exampleModal">
+    <div class="modal fade" tabindex="-5" role="dialog" id="gallery_model">
         <div class="modal-dialog " role="document">
-          <div class="modal-content gallery-content">
-            <div class="modal-header gallery-header">
+          <div class="modal-content">
+            <div class="modal-header">
+                
                 <p>Gallery</p>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -70,14 +38,17 @@
               <!-- </button> -->
             </div>
 
-            <div class="modal-body gallery-body">
+            <div class="modal-body">
                 <div id="carouselExample"  class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner mx-auto">
                         
-                        {% set count = namespace(b=0)%}
+                        {% for row in type %}
+                        {% set cont = namespace(b=0)%}
                         {% for certi_set in history_list  %}
+                       
 
-                        {% if count.b == 0 %}
+                        {% if row == certi_set.category_name %}
+                        {% if cont.b == 0 %}
 
                         <div class="carousel-item active ">
                             <img style="width:100%;" class="d-inline-block" src="{{ certi_set.image }}" alt="{{ certi_set.title }}">
@@ -87,8 +58,9 @@
                             <img style="width:100%;" class="d-inline-block" src="{{ certi_set.image }}" alt="{{ certi_set.title }}">
                         </div>
                         {% endif %}
-
-                        {% set count.b = count.b + 1 %}
+                        {% endif %}
+                        {% set cont.b = cont.b + 1 %}
+                        {% endfor %}
                         {% endfor %}
 
                      </div>
@@ -102,18 +74,7 @@
                     </a>
                 </div> 
             </div>
-            <!-- <div class="modal-footer">
-            
-             
-            </div> -->
+           
           </div>
         </div>
-      </div>
-    
-    
-	
-
-</body>
-
-
-</html>
+    </div>

@@ -12,7 +12,7 @@ app_email = "info@finbyz.com"
 app_license = "GPL 3.0"
 
 
-from eieweb.api import get_items as my_get_item, get_context, make_route
+from eieweb.api import get_items as my_get_item, get_context, make_route, get_context_jobs
 from erpnext.stock.doctype.item.item import Item
 #import erpnext
 # from erpnext.portal.product_configurator.utils import get_items as get_item
@@ -21,7 +21,8 @@ Item.get_context = get_context
 
 # override for random string
 Item.make_route = make_route
-
+from erpnext.hr.doctype.job_opening.job_opening import JobOpening
+JobOpening.get_context = get_context_jobs
 
 # override for customer disabled 0
 from erpnext.portal import utils
@@ -37,6 +38,11 @@ utils.create_customer_or_supplier = create_customer_or_supplier
 from frappe.website import render
 from eieweb.api import add_preload_headers as my_add_preload_headers
 render.add_preload_headers = my_add_preload_headers
+
+
+website_route_rules=[
+	{"from_route": "/careers", "to_route": "Job Opening"}
+]
  
 # Includes in <head>
 # ------------------
@@ -54,7 +60,7 @@ render.add_preload_headers = my_add_preload_headers
 
 # include js in doctype views
 doctype_js = {
-    "Item" : "public/js/item.js"
+	"Item" : "public/js/item.js"
 }
 
 
@@ -119,9 +125,9 @@ doctype_js = {
 #	}
 # }
 doc_events = {
-    "Item": {
-        'validate': 'eieweb.api.item_validate'
-    }
+	"Item": {
+		'validate': 'eieweb.api.item_validate'
+	}
 }
 # Scheduled Tasks
 # ---------------

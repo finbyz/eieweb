@@ -20,23 +20,23 @@
 
   {% block description %}{% endblock %}
 
-  {% if (doctype == "Web Page" and name == "index") %}
-  <link rel="canonical" href="https://erp.eieinstruments.com/index">
+  {% if route == "index" %}
+  <link rel="canonical" href="https://www.eieinstruments.com/home">
   {% endif %}
 
-  {% if (doctype == "Web Page" and (name == "index" or name == "contact-us")) %}
+  {% if (doctype == "Web Page" and (name == "home" or name == "contact-us")) %}
   <script type="application/ld+json" crossorigin="anonymous">
       {"
             @context":"http://schema.org",
             "@type":"Organization","name":"EIE Instruments PVT LTD",
-            "image":"https://erp.eieinstruments.com/files/eie-logo.svg",
+            "image":"https://www.eieinstruments.com/files/eie-logo.svg",
             "@id":"https://erp.eieinstruments.com",
             "url":"https://erp.eieinstruments.com",
             "location":[
             {"@type":"LocalBusiness",
             "parentOrganization":{"name":"EIE Instruments PVT LTD"},
             "name":"EIE Instruments PVT LTD - Ahmedabad",
-            "image":"https://erp.eieinstruments.com/files/eie-logo.svg",
+            "image":"https://www.eieinstruments.com/files/eie-logo.svg",
             "address":{
               "@type":"PostalAddress",
               "addressLocality":"Ahmedabad",
@@ -65,8 +65,8 @@
             "@context": "http://www.schema.org",
             "@type": "ProfessionalService",
             "name": "{{ seo_title }}",
-            "url": "https://erp.eieinstruments.com/{{ route }}",
-            "logo": "https://erp.eieinstruments.com/files/eie-logo.svg",
+            "url": "https://www.eieinstruments.com/{{ route }}",
+            "logo": "https://www.eieinstruments.com/files/eie-logo.svg",
             "image": "{% if image_seo %}{{ image_seo }}{% elif image %}{{ image }}{% else %}  /files/eie-logo.svg {% endif %}",
             "description": "{{ small_description | replace('\n','. ') }}",
             "priceRange": "INR",
@@ -118,15 +118,15 @@
             },
             "datePublished": "{{ published_on or creation }}",
             "dateModified": "{{ modified }}",
-            "image": "{{ image_seo or image or animated_image or 'https://erp.eieinstruments.com/files/eie-logo.svg'}}",
+            "image": "{{ image_seo or image or animated_image or 'https://www.eieinstruments.com/files/eie-logo.svg'}}",
             "publisher": {
               "@type": "ProfessionalService",
               "name": "EIE Instruments PVT LTD",
-              "sameAs": "https://erp.eieinstruments.com/",
+              "sameAs": "https://www.eieinstruments.com/",
               "email": "info@eieinstruments.com",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://erp.eieinstruments.com/files/eie-logo.svg",
+                "url": "https://www.eieinstruments.com/files/eie-logo.svg",
                 "height": "300px",
                 "width": "300px"
               }
@@ -145,19 +145,19 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "EIE Instruments PVT LTD",
-                "item": "https://erp.eieinstruments.com/"
+                "item": "https://www.eieinstruments.com/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://erp.eieinstruments.com/blog"
+                "item": "https://www.eieinstruments.com/blog"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "{{ blog_category }}",
-                "item": "https://erp.eieinstruments.com/blog?blog_category={{blog_category}}"
+                "item": "https://www.eieinstruments.com/blog?blog_category={{blog_category}}"
               }
             ]
           }
@@ -173,8 +173,8 @@
             "hiringOrganization": {
               "@type": "Organization",
               "name": "EIE Instruments PVT LTD",
-              "sameAs": "https://erp.eieinstruments.com/",
-              "logo": "https://erp.eieinstruments.com/files/eie-logo.svg",
+              "sameAs": "https://www.eieinstruments.com/",
+              "logo": "https://www.eieinstruments.com/files/eie-logo.svg",
               "email": "info@eieinstruments.com"
             },
             "jobLocation": {
@@ -211,10 +211,10 @@
 
   {% if doctype == "Blog Post" and blog_intro %}
   <meta property="og:image"
-    content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+    content="{% if image_seo %}{{ image_seo }}{% else %} https://www.eieinstruments.com/files/eie-logo.svg {% endif %}" />
   {% else %}
   <meta property="og:image"
-    content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+    content="{% if image %}{{image}}{% else %} https://www.eieinstruments.com/files/eie-logo.svg {% endif %}" />
   {% endif %}
 
   {% if small_description or blog_intro %}
@@ -229,10 +229,10 @@
 
   {% if doctype == "Blog Post" and blog_intro %}
   <meta property="twitter:image"
-    content="{% if image_seo %}{{ image_seo }}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+    content="{% if image_seo %}{{ image_seo }}{% else %} https://www.eieinstruments.com/files/eie-logo.svg {% endif %}" />
   {% else %}
   <meta property="twitter:image"
-    content="{% if image %}{{image}}{% else %} https://erp.eieinstruments.com/files/eie-logo.svg {% endif %}" />
+    content="{% if image %}{{image}}{% else %} https://www.eieinstruments.com/files/eie-logo.svg {% endif %}" />
   {% endif %}
 
   {% if small_description or blog_intro %}

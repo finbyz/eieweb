@@ -21,7 +21,7 @@
 				{% endfor %}
 			</div>
 		</div>
-		{% elif route == "download" %}
+		{% elif route == "Download" %}
 		<div class="container">
 			<div class="row">
 				{% for item in result %}
@@ -29,6 +29,12 @@
 				{% endfor %}
 			</div>
 		</div>
+		{% elif route == "gallery" %}
+			{% for item in result %}
+				{% if loop.index == 1 %}
+					{{ item }}
+				{% endif %}
+			{% endfor %}
 		{% else %}
 		{% for item in result %}
 		{{ item }}

@@ -1,0 +1,65 @@
+{% extends "templates/web.html" %}
+
+{%- block title -%}{{_("Not Found")}}{%- endblock -%}
+
+{% block page_content %}
+<div class="full_height">
+    <div class="container-fluid p-lr-50">
+        <div class="row mt-50">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="error_words ">
+                    <div class="err">4</div>
+                    <div class="err changed_color">O</div>
+                    <div class="err">4</div>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <h2 class="dark-text title-underline">Page Not Found</h2>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class=" col-12 ">
+                <div class="error_content">
+                    <div class="error_text">
+                        <span class='indicator darkgrey'>{{_("Page Missing or Moved")}}</span>
+                        <hr>
+                        <p>{{_("The page you are looking for is missing. This could be because it is moved or there is a typo in the link.")}}</p>
+                        <a href="/"><div class="eie-button eie-fadeindown responsive-eie-button">{{ _("Home") }} </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class='text-muted text-center small' >{{ _("Error Code: {0}").format('404') }}</p>
+    </div>
+</div>
+<!-- <div class='page-card mt-50'>
+	<div class='page-card-head'>
+		<span class='indicator darkgrey'>{{_("Page Missing or Moved")}}</span>
+	</div>
+</div> -->
+<style>
+     .err {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+     }
+     .changed_color{
+        color: #fb383b;
+     }
+     .error_words{
+         display: flex;
+     }
+     .error_text{
+        max-width: 400px;
+         border :1px solid rgba(0,0,0,.1);
+         padding: 15px;
+     }
+     .full_height{
+         height: 100vh;
+     }
+     .error_content{
+         display: flex;
+         justify-content: center;
+     }
+</style>
+{% endblock %}

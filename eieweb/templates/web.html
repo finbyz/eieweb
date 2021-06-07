@@ -8,7 +8,7 @@
 
     <div class="pt-5">
    
-    {% if (doctype == "Web Page" and name != "index") or path == "about" 
+    {% if (doctype == "Web Page" and name != "home") or path == "company" 
             or path =="certificate" or path =="clients" 
             or path == "testimonials" or path == "trade-shows" %}
         {% include "www/news.html" %}
@@ -24,6 +24,7 @@
 
     {% block page_container %}
     <main>
+        
         <div class="container">
         
             <div class="d-flex justify-content-end align-items-center">
@@ -39,7 +40,7 @@
             </div>
            
         </div>
-
+       
         
         <div class="page_content">
             
@@ -49,14 +50,14 @@
 
         
         
-        {% if doctype == "Web Page" and name == "index" %}
+        {% if name == "home" %}
         {% include "www/testimonial.html" %}
         {% endif %}
 
-        {% if doctype == "Web Page" or (route == "certificate" or route == "testimonial" or route == "trade-shows") %}
+        {% if doctype == "Web Page" or (route == "certificate" or route == "testimonial" or route == "trade-shows" or route == "home" or route == "") %}
         {% include "www/Customer.html" %}
         {% endif %}
-
+    
         {% if doctype == "Web Page" or  doctype != "Web Page" %}
         {% include "templates/includes/form/inquiry_form.html" %}
         {% endif %}

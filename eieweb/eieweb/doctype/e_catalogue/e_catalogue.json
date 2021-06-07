@@ -33,7 +33,7 @@
   }
  ],
  "has_web_view": 1,
- "modified": "2020-12-10 13:41:09.223183",
+ "modified": "2021-06-07 11:59:59.374825",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "E Catalogue",
@@ -53,7 +53,7 @@
   }
  ],
  "quick_entry": 1,
- "route": "download",
+ "route": "Download",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

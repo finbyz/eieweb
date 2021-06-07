@@ -1,0 +1,16 @@
+{
+    "short_name": "eie",
+    "name": "EIE Instruments Pvt Ltd",
+    "start_url": "/",
+    "icons": [
+      {
+        "src":"https://www.eieinstruments.com/files/EIE_manifest_logo.png",
+        "sizes": "550X550",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "background_color": "#EF3538",
+    "theme_color": "#EF3538",
+    "display": "standalone"
+  }
