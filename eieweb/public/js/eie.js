@@ -1562,6 +1562,7 @@ $('#letters').hover(
             })()
             });
     }
-    
-
-    
+// avatar name 
+$(document).ready(()=>{
+    $(".full-name").html(frappe.get_cookie("full_name"))
+})   
