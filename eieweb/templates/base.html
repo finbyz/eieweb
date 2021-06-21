@@ -6,8 +6,15 @@
   <meta charset="utf-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5.0">
+  {% if route == "home" or route == "" %}
+  <title>EIE Instruments PVT LTD
+  </title>
+  {% else %}
   <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{%
     endblock %}</title>
+  {% endif %}
+
+ 
   <meta name="generator" content="frappe">
 
   {% if keywords %}
@@ -204,8 +211,13 @@
 
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="article" />
+  {% if route == "home" or route == "" %}
+  <meta name="name" content="EIE Instruments PVT LTD">
+  <meta property="og:title" content="EIE Instruments PVT LTD" />
+  {% else %}
   <meta name="name" content="{{ seo_title or title }}">
   <meta property="og:title" content="{{ seo_title or title }}" />
+  {% endif %}
   <meta property="og:url" content="/{{ route }}" />
   <meta property="og:site_name" content="EIE Instruments PVT LTD" />
 
@@ -222,7 +234,11 @@
   {% endif %}
 
   <meta name="twitter:card" content="summary_large_image">
+  {% if route == "home" or route == "" %}
+  <meta name="twitter:title" content="EIE Instruments PVT LTD">
+  {% else %}
   <meta name="twitter:title" content="{{ seo_title or title }}">
+  {% endif %}
   <meta name="twitter:url" content="/{{ route }}">
   <meta name="twitter:site" content="@eieinstruments" />
   <meta name="twitter:creator" content="@eieinstruments" />

@@ -352,7 +352,7 @@ def party_exists(doctype, user):
 
 def make_route(self):
 	if not self.route:
-		return cstr(frappe.db.get_value('Item Group', self.item_group,
+		return cstr(frappe.db.get_value('Website Itemgroup', self.website_itemgroup,
 				'route')) + '/' + self.scrub((self.item_name if self.item_name else self.item_code))
 
 def get_context_jobs(self, context):

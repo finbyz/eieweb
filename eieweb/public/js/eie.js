@@ -64,7 +64,7 @@ $('.play').on('click', () => {
 if (document.getElementById('gallery')) {
     document.getElementById('gallery').classList.add("custom");
     document.getElementById('exampleModal').classList.add("custom");
-    document.getElementById('gallery_model').classList.add("custom");
+    // document.getElementById('gallery_model').classList.add("custom");
 }
 var controller = new ScrollMagic.Controller({
     globalSceneOptions: { triggerHook: "0.9", duration: "500%" },
