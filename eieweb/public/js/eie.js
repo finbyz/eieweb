@@ -1163,9 +1163,6 @@ var mwb_whatsapp = function() {
         target: document.body
     })
 }();
-//search 
-
-
 //inquiry form
 $(document).ready(function() {
     function lead_creation() {
@@ -1202,18 +1199,16 @@ $(document).ready(function() {
         }, 100);
         e.preventDefault();
     });
-})
-
-$(document).ready(function() {
+    // custom search
     function searchProduct() {
         var productName = $('#search-product-Nav').val();
         var pathname = window.location.pathname;
         var origin = window.location.origin;
         if (productName == '') {
-            var URL = origin + pathname;
+            var URL = `${origin}${pathname}`;
             window.location = URL;
         } else {
-            var URL = origin + "/all-products?search=" + productName;
+            var URL = `${origin}/all-products?search=${productName}`;
             window.location = URL;
         }
     }
@@ -1233,11 +1228,6 @@ $(document).ready(function() {
     if (current_location == '/testimonial' || current_location == '/home') {
         $('.eie-Tech').removeClass('remove_margin');
     }
-    if (current_location == '/Customer') {
-        //    $('.eie-Tech ').addClass('deactivated');
-        //     $('.customer').removeClass('deactivated');
-    }
-
 })
 
 // client grid hover effect

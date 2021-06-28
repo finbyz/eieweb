@@ -40,6 +40,17 @@ from eieweb.api import add_preload_headers as my_add_preload_headers
 render.add_preload_headers = my_add_preload_headers
 
 
+# override for item search not working
+import importlib
+erp_get_context = importlib.import_module("erpnext.www.all-products.index")
+eie_get_context = importlib.import_module("eieweb.www.all-products.index")
+
+erp_get_context.get_context = eie_get_context.get_context
+
+from eieweb.api import update_party_blanket_order
+from erpnext.stock import get_item_details
+get_item_details.update_party_blanket_order = update_party_blanket_order
+
 website_route_rules=[
 	{"from_route": "/careers", "to_route": "Job Opening"}
 ]

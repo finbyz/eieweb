@@ -8,29 +8,15 @@
 <div class="container-fluid">
 <div class="row pt-50 pb-0 mt-3 d-flex ">
     <div class="col-8">
-       
         <div class="search" >
             <input type="search"  class="searchTerm" placeholder="Search Product" aria-label="{{_('Product Search')}}" 
-                aria-describedby="product-search" value="{{ frappe.form_dict.search or '' }}" id="search-product">
+                aria-describedby="product-search" value="{{ frappe.form_dict.search or '' }}">
                 <button type="search" class="searchButton">
                     <img class="nav-service-icon pl-2" src="/files/search-gery.svg">
                 </button>
         </div>
-        <script>
-            $('.searchButton').on('click',(e)=>{
-                    var productName=$('#search-product').val();
-                    var pathname = window.location.pathname;
-                    var origin   = window.location.origin; 
-                    if(productName == ''){
-                        var URL=origin+pathname;
-                         window.location= URL;
-                    }else{
-                        var URL = origin+pathname+"?search="+productName;
-                        window.location= URL;
-                    }
-                })
-        </script>
     </div>
+   
     <!-- filter section start   -->
     <div class="col-4  col-md-2 d-flex justify-content-start">
         {% if frappe.form_dict.start or frappe.form_dict.field_filters or frappe.form_dict.attribute_filters or frappe.form_dict.search %}
@@ -166,6 +152,18 @@
             window.location.href = path;
         });
     });
+    $('.searchButton').on('click', (e) => {
+    var productName = $('#search-product').val();
+    var pathname = window.location.pathname;
+    var origin = window.location.origin;
+    if (productName == '') {
+        var URL = `${origin}${pathname}`;
+        window.location = URL;
+    } else {
+        var URL = `${origin}${pathname}?search=${productName}`;
+        window.location = URL;
+    }
+})
 </script>
 
 {% endblock %}

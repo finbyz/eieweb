@@ -10,8 +10,7 @@
   <title>EIE Instruments PVT LTD
   </title>
   {% else %}
-  <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{%
-    endblock %}</title>
+  <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{% endblock %}</title>
   {% endif %}
 
  
@@ -208,6 +207,12 @@
           }
     </script>
   {% endif %}
+  {% if doctype == "Website Itemgroup" or doctype == "Item" %}
+  <script type="application/ld+json" crossorigin="anonymous">
+    {"@context":"https://schema.org/","@type":"Product","name":"{{ title }}","image":"https://www.eieinstruments.com{{ image or website_image or cover_image }}","description":"{{ seo_description or small_description or  'EIE Instruments Products'  }}","brand":{"@type":"Thing","name":"hhttps://www.eieinstruments.com/files/eie-logo.svg"},"review":{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Deepak Parikh"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"8"}, "offers": {"@type": "Offer","url": "https://www.eieinstruments.com/{{ route }}", "priceCurrency": "INR","price": "5000", "priceValidUntil": "2021-11-20","itemCondition": "https://schema.org/UsedCondition","availability": "https://schema.org/InStock"}}
+  </script>
+  
+  {% endif %}
 
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="article" />
@@ -352,7 +357,11 @@
   {%- endfor -%}
 
   <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
-  {%- block script %}{%- endblock %}
+  {%- block script %}
+		{% if colocated_js -%}
+			<script>{{ colocated_js }}</script>
+		{%- endif %}
+	{%- endblock %}
   <!-- csrf_token -->
   {%- block body_include %}{{ body_include or "" }}{% endblock -%}
 </body>

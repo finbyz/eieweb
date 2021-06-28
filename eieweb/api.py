@@ -4,6 +4,7 @@ from frappe import _
 from frappe.model.document import Document
 from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent_item_groups
 from erpnext.stock.doctype.item.item import Item
+from erpnext.stock.get_item_details import get_blanket_order_details
 from erpnext.controllers.website_list_for_contact import get_list_for_transactions, rfq_transaction_list, get_customers_suppliers, post_process
 import json
 from frappe.utils import cint, cstr, flt
@@ -358,3 +359,8 @@ def make_route(self):
 def get_context_jobs(self, context):
 	context.parents = [{'route': 'careers', 'title': _('All Jobs') }]
 
+def update_party_blanket_order(args, out):
+	# if out["against_blanket_order"]:
+	blanket_order_details = get_blanket_order_details(args)
+	if blanket_order_details:
+		out.update(blanket_order_details)
