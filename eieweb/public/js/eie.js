@@ -1552,7 +1552,9 @@ $('#letters').hover(
             })()
             });
     }
-// avatar name 
+// login issue in version 13  and avatar name 
 $(document).ready(()=>{
-    $(".full-name").html(frappe.get_cookie("full_name"))
+    $(".full-name").html(frappe.get_cookie("full_name"));
+    $(".block_login").attr('style', 'display: block !important');
+    
 })   
