@@ -168,7 +168,7 @@ function find_closest_match(selected_attribute, selected_attribute_value) {
 	if (matched) {
 		for (var j in matched.attributes) {
 			var attr = matched.attributes[j];
-			$('[itemscope]')
+			$('.product-page-content')
 				.find(repl('.item-view-attribute #selectable[data-attribute="%(attribute)s"] li', attr))
 				.val(attr.attribute_value);
 		}
@@ -179,7 +179,7 @@ function find_closest_match(selected_attribute, selected_attribute_value) {
 
 function get_selected_attributes() {
 	var attributes = {};
-	$('[itemscope]').find(".item-view-attribute ul").each(function() { 
+	$('.product-page-content').find(".item-view-attribute ul").each(function() { 
         attributes[$(this).attr('data-attribute')] = $(this).find('li.selected').text();
         if($(this).find('li.ui-selected').text()){
             attributes[$(this).attr('data-attribute')] = $(this).find('li.ui-selected').text();

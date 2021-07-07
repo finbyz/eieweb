@@ -34,7 +34,7 @@ def get_context(context):
 
 		if flag:
 			priority = 0.4
-			if page.route in ("about","contact"):
+			if page.route in ("company","contact","home"):
 				priority = 0.9
 			elif page.route == "clients":
 				priority = 0.6
