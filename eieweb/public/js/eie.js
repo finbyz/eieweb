@@ -1554,7 +1554,8 @@ $('#letters').hover(
     }
 // login issue in version 13  and avatar name 
 $(document).ready(()=>{
-    $(".full-name").html(frappe.get_cookie("full_name"));
+    if(frappe.get_cookie("full_name") != "Guest"){
+        $(".full-name").html(frappe.get_cookie("full_name"));
+    }
     $(".block_login").attr('style', 'display: block !important');
-    
-})   
+})
