@@ -1190,9 +1190,6 @@ $(document).ready(function() {
         $('#inquiry-form-section').removeClass('slide-right');
     };
 
-    var form = $('#inquiry'),
-        submit = form.find('[name="submit"]');
-
     form.on('submit', function(e) {
         setTimeout(function() {
             lead_creation();
@@ -1201,7 +1198,7 @@ $(document).ready(function() {
     });
     // custom search
     function searchProduct() {
-        var productName = $('#search-product-Nav').val();
+        var productName = $('.searchTerm').val() || $('#search-product-Nav').val();
         var pathname = window.location.pathname;
         var origin = window.location.origin;
         if (productName == '') {

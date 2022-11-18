@@ -5,12 +5,13 @@
 <head>
   <meta charset="utf-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <meta name="google-site-verification" content="N6sgchCB_ssGqgFY1jPLNS-jMcKt_IVPw41HvdOMqeA" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5.0">
   {% if route == "home" or route == "" %}
   <title>EIE Instruments PVT LTD
   </title>
   {% else %}
-  <title>{% block title %}{% if seo_title %} {{ seo_title }} {% else %}EIE Instruments PVT LTD {{ title }}{% endif %}{% endblock %}</title>
+  <title>{% if seo_title %} {{ seo_title }}{% else %}EIE Instruments PVT LTD {{ title }}{% endif %}</title>
   {% endif %}
 
  
@@ -25,7 +26,8 @@
   {% endif %}
 
   {% block description %}{% endblock %}
-
+  <link rel="manifest" href="/assets/eieweb/js/manifest.json">
+  <meta name="theme-color" content="#FB383B">
   {% if route == "index" %}
   <link rel="canonical" href="https://www.eieinstruments.com/home">
   {% endif %}
@@ -269,7 +271,7 @@
   {% block favicon %}
   <link rel="shortcut icon" href="{{ (favicon or '/assets/frappe/images/favicon.png') | abs_url }}" type="image/x-icon">
   {% endblock %}
-
+  <link rel="apple-touch-icon" href="/files/favicon.png">
   {%- block head -%}
   {% if head_html is defined -%}
   {{ head_html or "" }}
@@ -311,7 +313,7 @@
   </script>
   <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
   <!-- google analytics -->
-  <script>
+  <!-- <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -320,6 +322,14 @@
     ga('create', 'UA-49451701-1', 'auto');
     ga('send', 'pageview');
    
+  </script> -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-678953EDEZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-678953EDEZ');
   </script>
 </head>
 
@@ -358,6 +368,7 @@
 
   <script type="text/javascript" src="/assets/eieweb/js/eie.js"></script>
   <script type="text/javascript" src="/pwa.js" ></script>
+
   {%- block script %}
 		{% if colocated_js -%}
 			<script>{{ colocated_js }}</script>

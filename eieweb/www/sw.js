@@ -8,7 +8,6 @@ var urlsToCache = [
     // CSS
     'https://cdn.jsdelivr.net/combine/npm/bootstrap-css-only@4.1.0/css/bootstrap.min.css',
     // JS
-    'https://cdn.jsdelivr.net/combine/gh/finbyz/finbyzweb/finbyzweb/public/js/frappe-web.min.js,npm/bootstrap@4.1.0/dist/js/bootstrap.min.js',
     'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js',
 	
 ];
@@ -21,10 +20,10 @@ this.addEventListener('install', function (event) {
             .then(function (cache) {
                 return cache.addAll(urlsToCache)
                     .catch(function (err) {
-                        console.log('[SW] Cache install Failed: ' + err);
+                        // console.log('[SW] Cache install Failed: ' + err);
                     });
             }).catch(function (err) {
-                console.log('[SW] Install Failed: ' + err);
+                // console.log('[SW] Install Failed: ' + err);
             })
     );
 });
@@ -120,15 +119,19 @@ function fromCache(request) {
 }
 
 function updateCache(request, response) {
-        if (request.url.includes("logout") || request.url.includes("/assets/css/") || request.url.includes("/assets/js/") || request.url.includes("report") || request.url.includes("finbyzerp") || request.url.includes("erpnext") || request.url.includes("api/method") || request.url.includes("/socket.io/") || request.url.includes("desk")  ||  request.url.includes("app") || request.url.includes("login")){
+        if (request.url.includes("pwa.js") || request.url.includes("website_script.js") || request.url.includes("logout") || request.url.includes("/assets/css/") || request.url.includes("/assets/js/") || request.url.includes("report") || request.url.includes("finbyzerp") || request.url.includes("erpnext") || request.url.includes("api/method") || request.url.includes("/socket.io/") || request.url.includes("desk")  ||  request.url.includes("app") || request.url.includes("login") ){
            return 
         }else{
             if(response.status == 200){
-                return caches.open(CACHE_NAME).then(function (cache) {
-                    return cache.put(request, response);
+                caches.keys().then(function(CACHE_NAME) {
+                    CACHE_NAME.forEach(function(cacheName) {
+                      caches.delete(cacheName);
+                    });
                 });
+                
             }
         }
+    clearCache()
 }
 
 function clearCache(key) {

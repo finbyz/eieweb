@@ -1,9 +1,7 @@
 {% set product_info = shopping_cart.product_info %}
 <div class="item-attribute-selectors">
     {% if has_variants and attributes %}
-    
     {% for d in attributes %}
-    
     {% if attribute_values[d.attribute] -%}
     <div class="item-view-attribute {% if (attribute_values[d.attribute] | len)==1 -%} hidden {%- endif %}"
             style="margin-bottom: 10px;">
@@ -18,7 +16,6 @@
             disabled
             {%- endif %}>{{ _(value) }}</li>
             {% endfor %}    
-           
         </ul>
     </div>
     

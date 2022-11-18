@@ -4,7 +4,7 @@
     "start_url": "/",
     "icons": [
       {
-        "src":"https://www.eieinstruments.com/files/EIE_manifest_logo.png",
+        "src":"https://www.eieinstruments.com/files/eie-logo.svg",
         "sizes": "550X550",
         "type": "image/png",
         "purpose": "any maskable"

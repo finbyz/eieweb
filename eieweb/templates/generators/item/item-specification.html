@@ -48,12 +48,45 @@
                 </div>
                 <div class="col-lg-7 col-xl-7 col-md-12 mt-2 order-lg-1 order-md-2 order-sm-1">
                     <br>
-                    <p>{{ description }}</p>
+                    
+                {% if has_variants %} 
+                {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}
+                    {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
+                    {% if doc.website_long_description and longdescription %}
+                        {{ doc.website_long_description }}
+                    {% else %}
+                        <p>{{ description }}</p>
+                    {% endif %}
+                    
+                {% else %}
+                    {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
+                    {% if doc.website_long_description and longdescription %}
+                        {{ doc.website_long_description }}
+                    {% else %}
+                        <p>{{ description }}</p>
+                    {% endif %}
+                {% endif %}
                 </div>
                 {% else %}
                 <div class="col-12">
-                    <br>
-                    <p> {{ description }}</p>
+                {% if has_variants %} 
+                {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}
+                    {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
+                        {% if doc.website_long_description and longdescription %}
+                            {{ doc.website_long_description }}
+                        {% else %}
+                            <p>{{ description }}</p>
+                        {% endif %}
+                    {% else %}
+                    {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
+                        {% if doc.website_long_description and longdescription %}
+                            {{ doc.website_long_description }}
+                        {% else %}
+                        <p>{{ description }}</p>
+                        {% endif %}
+                        
+                {% endif %}
+                       
                 </div>
                 {% endif %}
             </div>

@@ -10,7 +10,7 @@ app_icon = "octicon octicon-file-directory"
 app_color = "grey"
 app_email = "info@finbyz.com"
 app_license = "GPL 3.0"
-
+app_logo_url = "/files/favicon.png"
 
 from eieweb.api import get_items as my_get_item, get_context, make_route, get_context_jobs
 from erpnext.stock.doctype.item.item import Item

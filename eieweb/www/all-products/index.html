@@ -153,7 +153,7 @@
         });
     });
     $('.searchButton').on('click', (e) => {
-    var productName = $('#search-product').val();
+    var productName = $('.searchTerm').val();
     var pathname = window.location.pathname;
     var origin = window.location.origin;
     if (productName == '') {

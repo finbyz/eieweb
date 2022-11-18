@@ -8,6 +8,7 @@
  "allow_print": 0,
  "amount": 0.0,
  "amount_based_on_field": 0,
+ "apply_document_permissions": 0,
  "button_label": "submit",
  "creation": "2020-10-30 12:07:11.300392",
  "currency": "INR",
@@ -19,7 +20,7 @@
  "is_standard": 1,
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2020-11-04 12:47:21.467456",
+ "modified": "2021-09-15 18:12:25.941077",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "inquiry",
@@ -130,6 +131,20 @@
    "max_length": 0,
    "max_value": 0,
    "read_only": 0,
+   "reqd": 0,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "default": "Website",
+   "fieldname": "source",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Source",
+   "max_length": 0,
+   "max_value": 0,
+   "options": "Lead Source",
+   "read_only": 1,
    "reqd": 0,
    "show_in_filter": 0
   }

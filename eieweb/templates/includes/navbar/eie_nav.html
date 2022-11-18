@@ -219,6 +219,7 @@
                             <a href="/login">{{ _("Login") }}</a>
                         </li>
                         {% endif %}
+                        {% if frappe.session.user != 'Guest' %}
                         <li>
                             <a data-ls="loginsubmenu" class="go-tosub-menu" data-toggle="collapse"
                                 aria-expanded="false">
@@ -255,6 +256,7 @@
                                 </li>
                             </ul>
                         </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>

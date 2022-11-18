@@ -144,6 +144,7 @@ def set_form_data(lead_name,company_name,message,mobile_no,product_name, title,e
 	data.source = 'Website'
 	data.notes = title
 	data.email_id = email
+	data.flags.ignore_mandatory = True
 	data.save(ignore_permissions=True)
 	frappe.db.commit()
 	
