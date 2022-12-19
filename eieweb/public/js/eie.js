@@ -1386,6 +1386,7 @@ $('#letters').hover(
             const slider = document.querySelector(".slider")
             // All trails 
             const trail = document.querySelector(".trail").querySelectorAll("div");
+            // console.log(trail);
             const boxWidth= $('.box').width();
 
 

@@ -13,15 +13,16 @@ app_license = "GPL 3.0"
 app_logo_url = "/files/favicon.png"
 
 from eieweb.api import get_items as my_get_item, get_context, make_route, get_context_jobs
-from erpnext.stock.doctype.item.item import Item
+from erpnext.e_commerce.doctype.website_item.website_item import WebsiteItem
 #import erpnext
 # from erpnext.portal.product_configurator.utils import get_items as get_item
 # get_items = my_get_item
-Item.get_context = get_context
+WebsiteItem.get_context = get_context
 
 # override for random string
-Item.make_route = make_route
-from erpnext.hr.doctype.job_opening.job_opening import JobOpening
+WebsiteItem.make_route = make_route
+
+from hrms.hr.doctype.job_opening.job_opening import JobOpening
 JobOpening.get_context = get_context_jobs
 
 # override for customer disabled 0
@@ -30,14 +31,14 @@ from eieweb.api import create_customer_or_supplier
 utils.create_customer_or_supplier = create_customer_or_supplier
 
 #override for sowing draft quotation on website
-# from erpnext.controllers import website_list_for_contact
-# from eieweb.api import get_list_context
-# website_list_for_contact.get_list_context = get_list_context
+from erpnext.controllers import website_list_for_contact
+from eieweb.api import get_list_context
+website_list_for_contact.get_list_context = get_list_context
 
 # override bcz getting 404 error in thirt party files
-from frappe.website import render
+from frappe.website import utils
 from eieweb.api import add_preload_headers as my_add_preload_headers
-render.add_preload_headers = my_add_preload_headers
+utils.add_preload_for_bundled_assets = my_add_preload_headers
 
 
 # override for item search not working

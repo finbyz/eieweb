@@ -10,7 +10,6 @@ import json
 from frappe.utils import cint, cstr, flt
 
 def get_items(filters=None, search=None):
-	frappe.msgprint('call')
 	start = frappe.form_dict.start or 0
 	products_settings = get_product_settings()
 	page_length = products_settings.products_per_page
@@ -105,19 +104,45 @@ def get_items(filters=None, search=None):
 
 def get_context(self, context):
 	context.show_search = True
-	context.search_link = '/product_search'
+	context.search_link = "/search"
+	context.body_class = "product-page"
 
-	#context.parents = get_parent_item_groups(self.item_group)
+	context.parents = get_parent_item_groups(self.website_itemgroup, from_item=True)  # breadcumbs
+	self.attributes = frappe.get_all(
+		"Item Variant Attribute",
+		fields=["attribute", "attribute_value"],
+		filters={"parent": self.item_code},
+	)
 
-	context.parents = get_parent_item_groups(self.website_itemgroup)
+	if self.slideshow:
+		context.update(get_slideshow(self))
 
-	self.set_variant_context(context)
-	self.set_attribute_context(context)
-	self.set_disabled_attributes(context)
 	self.set_metatags(context)
 	self.set_shopping_cart_data(context)
 
+	settings = context.shopping_cart.cart_settings
+
+	self.get_product_details_section(context)
+
+	if settings.get("enable_reviews"):
+		reviews_data = get_item_reviews(self.name)
+		context.update(reviews_data)
+		context.reviews = context.reviews[:4]
+
+	context.wished = False
+	if frappe.db.exists(
+		"Wishlist Item", {"item_code": self.item_code, "parent": frappe.session.user}
+	):
+		context.wished = True
+
+	context.user_is_customer = check_if_user_is_customer()
+
+	context.recommended_items = None
+	if settings and settings.enable_recommendations:
+		context.recommended_items = self.get_recommended_items(settings)
+
 	return context
+
 
 @frappe.whitelist()
 def get_item_compare(item_group):
@@ -212,13 +237,12 @@ def get_transaction_list(doctype, txt=None, filters=None, limit_start=0, limit_p
 
 	return post_process(doctype, transactions)
 
-
-from frappe.website.utils import is_signup_enabled
+from frappe.website.utils import is_signup_disabled
 from frappe.utils import escape_html
 
 @frappe.whitelist(allow_guest=True)
 def sign_up(email, full_name, company, mobile, redirect_to):
-	if not is_signup_enabled():
+	if is_signup_disabled():
 		frappe.throw(_('Sign Up is disabled'), title='Not Allowed')
 
 	user = frappe.db.get("User", {"email": email})
@@ -268,7 +292,7 @@ def create_customer_or_supplier():
 	'''Based on the default Role (Customer, Supplier), create a Customer / Supplier.
 	Called on_session_creation hook.
 	'''
-	from erpnext.shopping_cart.cart import get_debtors_account
+	from erpnext.e_commerce.shopping_cart.cart import get_debtors_account
 	from frappe.utils.nestedset import get_root_of
 	from erpnext.shopping_cart.doctype.shopping_cart_settings.shopping_cart_settings import get_shopping_cart_settings
 

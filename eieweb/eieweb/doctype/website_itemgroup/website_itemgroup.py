@@ -8,10 +8,11 @@ from frappe import _
 from frappe.utils import nowdate, cint, cstr
 from frappe.utils.nestedset import NestedSet
 from frappe.website.website_generator import WebsiteGenerator
-from frappe.website.render import clear_cache
+from frappe.website.utils import clear_cache # path has been changed
 from frappe.website.doctype.website_slideshow.website_slideshow import get_slideshow
-from erpnext.shopping_cart.product_info import set_product_info_for_website
-from erpnext.utilities.product import get_qty_in_stock
+from erpnext.e_commerce.shopping_cart.product_info import set_product_info_for_website
+# from erpnext.shopping_cart.product_info import set_product_info_for_website # above line is added for same
+from erpnext.utilities.product import get_web_item_qty_in_stock
 from six.moves.urllib.parse import quote
 
 
@@ -205,10 +206,19 @@ def get_group_item_count(item_group):
 				where website_itemgroup in (%s))) """ % (child_groups, child_groups))[0][0]
 
 
-def get_parent_item_groups(website_itemgroup_name):
+def get_parent_item_groups(website_itemgroup_name, from_item=False):
+	base_nav_page = {"name": _("Shop by Category"), "route": "/shop-by-category"}
+
+	if from_item and frappe.request.environ.get("HTTP_REFERER"):
+		# base page after 'Home' will vary on Item page
+		last_page = frappe.request.environ["HTTP_REFERER"].split("/")[-1]
+		if last_page and last_page in ("shop-by-category", "all-products"):
+			base_nav_page_title = " ".join(last_page.split("-")).title()
+			base_nav_page = {"name": _(base_nav_page_title), "route": "/" + last_page}
+
 	base_parents = [
-		{"name": frappe._("Home"), "route":"/"},
-		{"name": frappe._("All Products"), "route":"/all-products"},
+		{"name": _("Home"), "route": "/"},
+		base_nav_page,
 	]
 	if not website_itemgroup_name:
 		return base_parents
@@ -227,8 +237,8 @@ def invalidate_cache_for(doc, item_group=None):
 
 	for d in get_parent_item_groups(item_group):
 		website_itemgroup_name = frappe.db.get_value("Website Itemgroup", d.get('name'))
-		if website_itemgroup_name:
-			clear_cache(frappe.db.get_value('Website Itemgroup', website_itemgroup_name, 'route'))
+		# if website_itemgroup_name:
+		# 	clear_cache(frappe.db.get_value('Website Itemgroup', website_itemgroup_name, 'route'))
 
 def get_item_group_defaults(item, company):
 	item = frappe.get_cached_doc("Item", item)
