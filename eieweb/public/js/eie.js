@@ -1190,6 +1190,9 @@ $(document).ready(function() {
         $('#inquiry-form-section').removeClass('slide-right');
     };
 
+    var form = $('#inquiry'),
+    submit = form.find('[name="submit"]');
+    
     form.on('submit', function(e) {
         setTimeout(function() {
             lead_creation();

@@ -9,7 +9,9 @@
  "amount": 0.0,
  "amount_based_on_field": 0,
  "apply_document_permissions": 0,
+ "breadcrumbs": "",
  "button_label": "submit",
+ "client_script": "",
  "creation": "2020-10-30 12:07:11.300392",
  "currency": "INR",
  "doc_type": "Lead",
@@ -20,7 +22,7 @@
  "is_standard": 1,
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2021-09-15 18:12:25.941077",
+ "modified": "2023-01-09 17:38:15.043335",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "inquiry",
@@ -146,6 +148,34 @@
    "options": "Lead Source",
    "read_only": 1,
    "reqd": 0,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "default": "All Territories",
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Territory",
+   "max_length": 0,
+   "max_value": 0,
+   "options": "Territory",
+   "read_only": 0,
+   "reqd": 1,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "default": "OTHER",
+   "fieldname": "industry",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Industry",
+   "max_length": 0,
+   "max_value": 0,
+   "options": "Industry Type",
+   "read_only": 0,
+   "reqd": 1,
    "show_in_filter": 0
   }
  ]
