@@ -28,9 +28,8 @@
             {%- set item_field =  field_filter[0] %}
             {%- set values =  field_filter[1] %}
             <div class="mb-4">
-                <h6>{{ item_field.label }}</h6>
 
-                {% if values | len > 20 %}
+                {% if values | len > page_length %}
                  <!-- ! show inline filter if values more than 20 -->
                 <input type="text" class="form-control form-control-sm mb-2 product-filter-filter" />
                 {% endif %}
@@ -47,17 +46,17 @@
                     </div>
                     {% endfor %}
                 </div>
-                {% else %}
-                <i class="text-muted">{{ _('No values') }}</i>
+               
                 {% endif %}
             </div>
             {% endfor %}
-
+            
+            {% if attribute_filters %}
             {% for attribute in attribute_filters %}
             <div class="mb-4">
                 <h6>{{ attribute.name }}</h6>
 
-                {% if values | len > 20 %}
+                {% if values | len > page_length %}
                 <!-- ! show inline filter if values more than 20  -->
                 <input type="text" class="form-control form-control-sm mb-2 product-filter-filter" />
                 {% endif %}
@@ -81,6 +80,7 @@
                 {% endif %}
             </div>
             {% endfor %}
+            {% endif %}
         </div>
 
         <!-- <script>
@@ -133,8 +133,8 @@
                     <div class="eie-ring eie-btn-bottom "></div>
                 </button>
                 {% endif %}
-                
-                {% if items|length >= page_length %}
+
+                {% if items|length >= 20 %}
                 <button class="eie-button nextpage" data-start="{{ frappe.form_dict.start|int + page_length }}">{{ _("Next") }} 
                     <div class="eie-ring eie-btn-bottom"></div>
                 </button>

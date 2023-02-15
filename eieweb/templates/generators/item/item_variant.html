@@ -74,7 +74,8 @@
            
 			var attribute = $(this).attr("data-attribute");
 			var attribute_value = $(this).find('li.ui-selected').text();
-			var item_code = find_closest_match(attribute, attribute_value);
+			var item_code = find_closest_match(attribute, attribute_value)
+
 			if (!item_code) {
                 frappe.msgprint(__("Cannot find a matching Item. Please select some other value for {0}.", [attribute]))
 				throw e;
@@ -169,7 +170,7 @@ function find_closest_match(selected_attribute, selected_attribute_value) {
 				.find(repl('.item-view-attribute #selectable[data-attribute="%(attribute)s"] li', attr))
 				.val(attr.attribute_value);
 		}
-		return matched.name;
+		return matched.item_code;
 
 	}
 }

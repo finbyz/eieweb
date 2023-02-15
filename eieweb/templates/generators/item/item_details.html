@@ -5,7 +5,7 @@
     </h2>
     <div class="row">
         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-            {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
+            {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}{% endif %}
             {% if doc.model_no %}
             <p style="margin-bottom: 0px;">
                 <span class="bold" style=" color: #fb383b;"> Model Number : {{ doc.model_no or '' }} </span>
@@ -54,12 +54,16 @@
             {% endif %}
         </p>
         <p class="description_line_height">
-            {% if frappe.utils.strip_html(doc.web_long_description or '') %}
-            {{ doc.web_long_description | safe }}
-            {% elif frappe.utils.strip_html(doc.description or '') %}
-            {{ doc.small_description | safe }}
+            {% if has_variants %}
+            {{ doc.small_description | safe or ""}}
             {% else %}
-            {{ _("No description given") }}
+                {% if frappe.utils.strip_html(doc.web_long_description or '') %}
+                {{ doc.web_long_description | safe }}
+                {% elif frappe.utils.strip_html(doc.description or '') %}
+                {{ doc.short_description | safe or ""}}
+                {% else %}
+                {{ _("No description given") }}
+                {% endif %}
             {% endif %}
         </p>
     </div>

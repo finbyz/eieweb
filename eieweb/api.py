@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import _
+import itertools
 from frappe.model.document import Document
 from eieweb.eieweb.doctype.website_itemgroup.website_itemgroup import get_parent_item_groups
 from erpnext.stock.doctype.item.item import Item
@@ -113,11 +114,11 @@ def get_context(self, context):
 
 	self.set_variant_context(context)
 	self.set_attribute_context(context)
-	self.set_disabled_attributes(context)
+	# self.set_disabled_attributes(context)
 	self.set_metatags(context)
 	self.set_shopping_cart_data(context)
-
 	return context
+
 
 @frappe.whitelist()
 def get_item_compare(item_group):
@@ -268,9 +269,9 @@ def create_customer_or_supplier():
 	'''Based on the default Role (Customer, Supplier), create a Customer / Supplier.
 	Called on_session_creation hook.
 	'''
-	from erpnext.shopping_cart.cart import get_debtors_account
+	from erpnext.e_commerce.shopping_cart.cart import get_debtors_account
 	from frappe.utils.nestedset import get_root_of
-	from erpnext.shopping_cart.doctype.shopping_cart_settings.shopping_cart_settings import get_shopping_cart_settings
+	from erpnext.e_commerce.doctype.e_commerce_settings.e_commerce_settings import get_shopping_cart_settings
 
 	user = frappe.session.user
 	if frappe.db.get_value('User', user, 'user_type') != 'Website User':

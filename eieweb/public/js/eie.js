@@ -1183,8 +1183,10 @@ $(document).ready(function() {
                 $('#message').val('');
                 $('#mobile_no').val('');
                 $('#product_name').val('');
-                $('#email').val('');
-                frappe.msgprint("Your interest is inspiring us to do better...");
+                $('#email').val('')
+                var origin = window.location.origin;
+                var url = window.location.origin + "/thanks-on-lead-creation"
+                window.location.href = origin + "/thanks-on-lead-creation";
             }
         });
         $('#inquiry-form-section').removeClass('slide-right');
@@ -1194,6 +1196,7 @@ $(document).ready(function() {
     submit = form.find('[name="submit"]');
     
     form.on('submit', function(e) {
+        // console.log(window.location.href)
         setTimeout(function() {
             lead_creation();
         }, 100);

@@ -48,14 +48,13 @@
                 </div>
                 <div class="col-lg-7 col-xl-7 col-md-12 mt-2 order-lg-1 order-md-2 order-sm-1">
                     <br>
-                    
                 {% if has_variants %} 
-                {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}
+                {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}
                     {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
                     {% if doc.website_long_description and longdescription %}
                         {{ doc.website_long_description }}
                     {% else %}
-                        <p>{{ description }}</p>
+                        <p>{{ doc.description }}</p>
                     {% endif %}
                     
                 {% else %}
@@ -63,28 +62,21 @@
                     {% if doc.website_long_description and longdescription %}
                         {{ doc.website_long_description }}
                     {% else %}
-                        <p>{{ description }}</p>
+                        <p>{{ doc.description }}</p>
                     {% endif %}
                 {% endif %}
                 </div>
                 {% else %}
                 <div class="col-12">
                 {% if has_variants %} 
-                {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}
+                {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}
                     {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
                         {% if doc.website_long_description and longdescription %}
                             {{ doc.website_long_description }}
                         {% else %}
-                            <p>{{ description }}</p>
+                            <p>{{ doc.description }}</p>
                         {% endif %}
-                    {% else %}
-                    {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
-                        {% if doc.website_long_description and longdescription %}
-                            {{ doc.website_long_description }}
-                        {% else %}
-                        <p>{{ description }}</p>
-                        {% endif %}
-                        
+                   
                 {% endif %}
                        
                 </div>
@@ -98,7 +90,7 @@
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13"/>
     </div>
     <div id="tab2" class="tab_content">
-        {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
+        {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}{% endif %}
 
         <div class="container-fluid p-lr-50">
             {% if doc.specifications %}

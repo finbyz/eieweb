@@ -12,15 +12,13 @@ app_email = "info@finbyz.com"
 app_license = "GPL 3.0"
 app_logo_url = "/files/favicon.png"
 
-from eieweb.api import get_items as my_get_item, get_context, make_route, get_context_jobs
-from erpnext.stock.doctype.item.item import Item
-#import erpnext
-# from erpnext.portal.product_configurator.utils import get_items as get_item
-# get_items = my_get_item
-Item.get_context = get_context
 
-# override for random string
-Item.make_route = make_route
+from eieweb.api import get_items as my_get_item, get_context, make_route, get_context_jobs
+# from erpnext.e_commerce.doctype.website_item.website_item import WebsiteItem
+# WebsiteItem.get_context = get_context
+# WebsiteItem.make_route = make_route
+
+# # override for random string
 from erpnext.hr.doctype.job_opening.job_opening import JobOpening
 JobOpening.get_context = get_context_jobs
 
@@ -41,11 +39,11 @@ render.add_preload_headers = my_add_preload_headers
 
 
 # override for item search not working
-import importlib
-erp_get_context = importlib.import_module("erpnext.www.all-products.index")
-eie_get_context = importlib.import_module("eieweb.www.all-products.index")
+# import importlib
+# erp_get_context = importlib.import_module("erpnext.www.all-products.index")
+# eie_get_context = importlib.import_module("eieweb.www.all-products.index")
 
-erp_get_context.get_context = eie_get_context.get_context
+# erp_get_context.get_context = eie_get_context.get_context
 
 from eieweb.api import update_party_blanket_order
 from erpnext.stock import get_item_details

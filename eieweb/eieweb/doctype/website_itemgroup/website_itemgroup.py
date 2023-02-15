@@ -10,8 +10,9 @@ from frappe.utils.nestedset import NestedSet
 from frappe.website.website_generator import WebsiteGenerator
 from frappe.website.render import clear_cache
 from frappe.website.doctype.website_slideshow.website_slideshow import get_slideshow
-from erpnext.shopping_cart.product_info import set_product_info_for_website
-from erpnext.utilities.product import get_qty_in_stock
+# from erpnext.shopping_cart.product_info import set_product_info_for_website
+from erpnext.e_commerce.shopping_cart.product_info import set_product_info_for_website
+# from erpnext.utilities.product import get_qty_in_stock
 from six.moves.urllib.parse import quote
 
 
@@ -125,7 +126,7 @@ def get_product_list_for_group(product_group=None, start=0, limit=10, search=Non
 	data = frappe.db.sql(query, {"product_group": product_group,"search": search, "today": nowdate()}, as_dict=1)
 	data = adjust_qty_for_expired_items(data)
 
-	if cint(frappe.db.get_single_value("Shopping Cart Settings", "enabled")):
+	if cint(frappe.db.get_single_value("E Commerce Settings", "enabled")):
 		for item in data:
 			set_product_info_for_website(item)
 
@@ -242,3 +243,62 @@ def get_item_group_defaults(item, company):
 
 	return frappe._dict()
 
+
+def get_qty_in_stock(item_code, item_warehouse_field, warehouse=None):
+	in_stock, stock_qty = 0, ''
+	template_item_code, is_stock_item = frappe.db.get_value("Item", item_code, ["variant_of", "is_stock_item"])
+
+	if not warehouse:
+		warehouse = frappe.db.get_value("Item", item_code, item_warehouse_field)
+
+	if not warehouse and template_item_code and template_item_code != item_code:
+		warehouse = frappe.db.get_value("Item", template_item_code, item_warehouse_field)
+
+	if warehouse:
+		stock_qty = frappe.db.sql("""
+			select GREATEST(S.actual_qty - S.reserved_qty - S.reserved_qty_for_production - S.reserved_qty_for_sub_contract, 0) / IFNULL(C.conversion_factor, 1)
+			from tabBin S
+			inner join `tabItem` I on S.item_code = I.Item_code
+			left join `tabUOM Conversion Detail` C on I.sales_uom = C.uom and C.parent = I.Item_code
+			where S.item_code=%s and S.warehouse=%s""", (item_code, warehouse))
+
+		if stock_qty:
+			stock_qty = adjust_qty_for_expired_item(item_code, stock_qty, warehouse)
+			in_stock = stock_qty[0][0] > 0 and 1 or 0
+
+	return frappe._dict({"in_stock": in_stock, "stock_qty": stock_qty, "is_stock_item": is_stock_item})
+
+
+def adjust_qty_for_expired_item(item_code, stock_qty, warehouse):
+	batches = frappe.get_all('Batch', filters=[{'item': item_code}], fields=['expiry_date', 'name'])
+	expired_batches = get_expired_batches(batches)
+	stock_qty = [list(item) for item in stock_qty]
+
+	for batch in expired_batches:
+		if warehouse:
+			stock_qty[0][0] = max(0, stock_qty[0][0] - get_batch_qty(batch, warehouse))
+		else:
+			stock_qty[0][0] = max(0, stock_qty[0][0] - qty_from_all_warehouses(get_batch_qty(batch)))
+
+		if not stock_qty[0][0]:
+			break
+
+	return stock_qty
+
+
+def get_expired_batches(batches):
+	"""
+	:param batches: A list of dict in the form [{'expiry_date': datetime.date(20XX, 1, 1), 'name': 'batch_id'}, ...]
+	"""
+	return [b.name for b in batches if b.expiry_date and b.expiry_date <= getdate(nowdate())]
+
+
+def qty_from_all_warehouses(batch_info):
+	"""
+	:param batch_info: A list of dict in the form [{u'warehouse': u'Stores - I', u'qty': 0.8}, ...]
+	"""
+	qty = 0
+	for batch in batch_info:
+		qty = qty + batch.qty
+
+	return qty
