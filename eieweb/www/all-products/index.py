@@ -438,7 +438,7 @@ def get_html_for_items(items):
 	return html
 
 def get_product_settings():
-	doc = frappe.get_cached_doc('Products Settings')
+	doc = frappe.get_cached_doc('E Commerce Settings')
 	doc.products_per_page = doc.products_per_page or 20
 	return doc
 
