@@ -648,7 +648,7 @@ $(function() {
         });
 
         $(".eie-fadeinright").each(function() {
-
+          
             var fadeUpScene2 = new ScrollMagic.Scene({
                     triggerElement: this,
                     triggerHook: 0.7,
@@ -663,7 +663,7 @@ $(function() {
         });
 
         $(".eie-fadeinleft").each(function() {
-
+            
             var fadeUpScene3 = new ScrollMagic.Scene({
                     triggerElement: this,
                     triggerHook: 0.7,
@@ -676,6 +676,23 @@ $(function() {
                 }))
                 .addTo(scrollController)
         });
+       
+            $(".read-mode").mouseleave(function() {
+               
+                var fadeUpScene3 = new ScrollMagic.Scene({
+                    triggerElement: this,
+                    triggerHook: 0.7,
+
+                })
+                .setTween(TweenMax.from(this, 0.8, {
+                    x: -90,
+                    opacity: 0,
+                    ease: Sine.easeInOut,
+                }))
+                .addTo(scrollController)
+        });
+        
+
         //scale eeffect
         $(".eie-fadeinrscale").each(function() {
 

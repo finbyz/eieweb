@@ -1,6 +1,39 @@
+
+
 {% set product_info = shopping_cart.product_info %}
 <div class="item-attribute-selectors">
-    {% if has_variants and attributes %}
+     {% if has_variants and attributes %}
+    <!--{% for i in range(b|length)%}
+     {{b[i].combination}} 
+     
+    {% endfor %} 
+    <br/>
+    
+    {% for i in range(a|length)%}
+     {{a[i][-1]}} <br/>
+    {% endfor %}  -->
+    <!-- {% for i in range(a|length)%}
+     {{a[i][-1]}} <br/>
+     {% for j in range(b|length)%}
+     {{b[j].combination}} <br/>
+     
+        {% endfor %} 
+    {% endfor %}  -->
+    <!-- {% if frappe.session.user == "Administrator" %}
+    {{a}} <br>
+     {{ test }}<br> -->
+     <!-- {{ comb }}<br> -->
+     <!-- {{ vc }}
+    {% endif %} --> 
+    <!--{{previous_attribute}} -->
+   
+    <!-- {% for i in range(b|length)%}
+   
+    {{b[i].attribute_map}} <br/>
+   
+    
+   {% endfor %}  -->
+   
     {% for d in attributes %}
     {% if attribute_values[d.attribute] -%}
     <div class="item-view-attribute {% if (attribute_values[d.attribute] | len)==1 -%} hidden {%- endif %}"
@@ -8,8 +41,12 @@
         <h6 class="text-muted">{{ _(d.attribute) }}</h6>
 
         <ul data-attribute="{{ d.attribute }}" id="selectable">
-
+            <!-- {{disabled_attributes}} -->
+            <!-- {{comn}}    -->
+            <!-- {{variants}}    -->
+           <!-- {{selected_attributes}} -->
             {% for value in attribute_values[d.attribute] %}
+            <!-- {{disabled_attributes}} -->
             <li value="{{ value }}" {% if selected_attributes and selected_attributes[d.attribute]==value -%}
            class='selected'
              {%- elif disabled_attributes and value in disabled_attributes.get(d.attribute, []) -%}
@@ -41,11 +78,11 @@
 </div>
 <script>
    $(".btn-add-to-cart").on("click", function(e) {
-		frappe.provide('erpnext.shopping_cart');
+		frappe.provide('erpnext.e_commerce.shopping_cart');
         const $btn = $(e.currentTarget);
 		$btn.prop('disabled', true);
 
-		erpnext.shopping_cart.update_cart({
+		erpnext.e_commerce.shopping_cart.update_cart({
 			item_code: get_item_code(),
 			qty: 1,
 			callback: function(r) {
@@ -59,12 +96,13 @@
 </script>
 
 <script>
-    var _mousedown = false;
+    var _mousedown = true;
         
-   
- 
     $(".item-view-attribute #selectable").on("click", function() {
-       
+       console.log($(this).find('li.ui-selected').text())
+       for(var i in variant_info) {
+            console.log(Object.values(variant_info[i].attribute_map));
+       }
 		try {
 			var item_code = encodeURIComponent(get_item_code());  
 	    }
@@ -75,10 +113,12 @@
 			var attribute = $(this).attr("data-attribute");
 			var attribute_value = $(this).find('li.ui-selected').text();
 			var item_code = find_closest_match(attribute, attribute_value)
-
+          
 			if (!item_code) {
                 frappe.msgprint(__("Cannot find a matching Item. Please select some other value for {0}.", [attribute]))
+                window.location.reload();
 				throw e;
+               
 			}
 		}
         

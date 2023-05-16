@@ -1,4 +1,3 @@
-
 <ul class="tabs p-lr-50">
     <li class="activated" rel="tab1">
         <h5 class="dark-text sizing">
@@ -37,7 +36,13 @@
         <div class="container-fluid product-video">
             <div class="row  p-lr-50">
                 <!-- start video section -->
-                {% if frappe.db.get_value("Item",doc.name,'youtube_link') %}
+                {% if not has_variants %}
+                {% set desc = frappe.get_doc("Website Item", doc.name) %}
+                {{ desc.description }}
+                {% endif %}
+
+                {% set item = frappe.db.get_value("Website Item", doc.name, 'item_name') %}
+                {% if frappe.db.get_value("Item",item,'youtube_link') %}
                 <div class="col-lg-5 col-xl-5 col-md-12 mt-4 order-lg-2 order-md-1 order-sm-1">
                     <div class="video-image active">
                         <div class="play active"></div>
@@ -49,7 +54,7 @@
                 <div class="col-lg-7 col-xl-7 col-md-12 mt-2 order-lg-1 order-md-2 order-sm-1">
                     <br>
                 {% if has_variants %} 
-                {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}
+                {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}
                     {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
                     {% if doc.website_long_description and longdescription %}
                         {{ doc.website_long_description }}
@@ -69,7 +74,7 @@
                 {% else %}
                 <div class="col-12">
                 {% if has_variants %} 
-                {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}
+                {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}
                     {% set longdescription = doc.website_long_description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %} 
                         {% if doc.website_long_description and longdescription %}
                             {{ doc.website_long_description }}
@@ -90,13 +95,16 @@
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13"/>
     </div>
     <div id="tab2" class="tab_content">
-        {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variants[0].item_code}) %}{% endif %}
+        {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
 
         <div class="container-fluid p-lr-50">
             {% if doc.specifications %}
+            {{doc.name}}
+            
             <br>
             <table class="table table-striped table-bordered " width="60%">
                 {% for row in doc.specifications %}
+                
                 <tr>
                     <td width="50%" style="padding:0.1rem;">
                         <p style="margin-bottom: 0px;">{{ row.specification or '' }}</p>
@@ -110,19 +118,46 @@
             <br>
             {% endif %}
         </div>
+
+
+        {% if not has_variants %} {% set doc = frappe.db.get_value("Website Item", doc.name, "item_code") %}
+        <div class="container-fluid p-lr-50">
+            {% set item_doc = frappe.get_doc("Item", {'name': doc}) %}
+            {% if item_doc.specifications %}
+                {{ item_doc.name }}            
+            <br>
+            <table class="table table-striped table-bordered " width="60%">
+                {% for row in item_doc.specifications %}
+                
+                <tr>
+                    <td width="50%" style="padding:0.1rem;">
+                        <p style="margin-bottom: 0px;">{{ row.specification or '' }}</p>
+                    </td>
+                    <td width="50%" style="padding:0.1rem;">
+                        <p style="margin-bottom: 0px;">{{ row.value or ''}}</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            {% endif %}
+
+        </div>
+        {% endif %}
     </div>
     <!-- #tab2 -->
     <div class="information-container d-flex justify-content-between">
-        <h5 class="tab_drawer_heading " rel="tab3"> Accessories</h5>
-        <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13" />
+        <h5 class="tab_drawer_heading " rel="tab3">Accessories</h5>
+        <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13"/>
     </div>
     <div id="tab3" class="tab_content">
-
-        {% if doc.optional_accessories %}
+        {% set item_doc = frappe.db.get_value("Website Item", {'item_code': doc}, 'item_code') %}
+        {% set items_doc = frappe.get_doc("Item", item_doc) %}
+        {% if items_doc.optional_accessories %}
         <section class=" related-items remove_padding ">
             <div class="container-fluid p-lr-50 products-list-container">
                 <div class="products-list finbyz row">
-                    {% for link in doc.optional_accessories %}
+                    {% for link in items_doc.optional_accessories %}
                     {% if frappe.db.get_value("Item",link.accessory,'show_in_website') %}
                     <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
                         <div class="row no-gutters">
@@ -165,13 +200,14 @@
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13" />
     </div>
     <div id="tab4" class="tab_content">
-        
-        {% if doc.spares %}
+        {% set item_doc = frappe.db.get_value("Website Item", {'item_code': doc}, 'item_code') %}
+        {% set items_doc = frappe.get_doc("Item", item_doc) %}
+        {% if items_doc.spares %}
 
         <section class=" related-items remove_padding">
             <div class="container-fluid products-list-container p-lr-50">
                 <div class="products-list finbyz row">
-                    {% for link in doc.spares %}
+                    {% for link in items_doc.spares %}
                     {% if frappe.db.get_value("Item",link.spare,'show_in_website') %}
                     <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
                         <div class="row no-gutters">
