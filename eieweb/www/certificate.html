@@ -1,6 +1,6 @@
 <body>
     
-    {% set history_list = frappe.get_list("Certificate", {} ,['title', 'image','certificate_type']) %}
+    {% set history_list = frappe.get_list("Certificate", {} ,['certificate_title', 'image','certificate_type']) %}
     <section class="pt-50">
 
         <!-- <div class="container-fluid"> -->
@@ -9,7 +9,7 @@
                 <h2 class="dark-text title-underline">Certificates</h2>
             </div>
         </div>
-        {% set type = ['Legal Documents','Quality Certification','Performance Certification']%}
+        {% set type = ['Legal Documents','Quality Certification','Performance Certification','Others']%}
         <div class="row container-fluid mx-auto my-auto" id="gallery" data-toggle="modal" data-target="#exampleModal">
             {% set count = namespace(a=0)%}
             
@@ -24,7 +24,7 @@
                             data-slide-to="{{ count.a }}" Title="{{ certi_set.title }}" width="215">
                     </div>
                     <div class="Certificates_text">
-                        <p class="text-center">{{ certi_set.title }}</p>
+                        <p class="text-center">{{ certi_set.certificate_title }}</p>
                     </div>
             </div>
         

@@ -11,10 +11,7 @@
   <title>EIE Instruments PVT LTD
   </title>
   {% else %}
-  <title>{% if seo_title %} {{ seo_title }}{% else %}EIE Instruments PVT LTD {{ title }}{% endif %}</title>
-  {% endif %}
-
- 
+  <title>{% if seo_title %}{{ seo_title }}{% else %} EIE Instruments PVT LTD {{ title }}{% endif %}</title>{% endif %}
   <meta name="generator" content="frappe">
 
   {% if keywords %}
@@ -23,6 +20,7 @@
 
   {% if seo_description or small_description or blog_intro %}
   <meta name="description" content="{{ seo_description or small_description or blog_intro }}" />
+  
   {% endif %}
 
   {% block description %}{% endblock %}
@@ -224,6 +222,7 @@
   {% else %}
   <meta name="name" content="{{ seo_title or title }}">
   <meta property="og:title" content="{{ seo_title or title }}" />
+
   {% endif %}
   <meta property="og:url" content="/{{ route }}" />
   <meta property="og:site_name" content="EIE Instruments PVT LTD" />
