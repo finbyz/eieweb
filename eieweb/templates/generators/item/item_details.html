@@ -1,16 +1,23 @@
 <div class="  col-md-12 col-xs-12 col-lg-7  ">
     <!-- title -->
     <h2 itemprop=" name" class="product_title_name" style="margin-bottom: 0;">
-        {{ website_item_name or item_name}}
+        {{ web_item_name or item_name}}
     </h2>
     <div class="row">
         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
             {% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
             {% if doc.model_no %}
-            <!-- {{doc.name}} -->
             <p style="margin-bottom: 0px;">
                 <span class="bold" style=" color: #fb383b;"> Model Number : {{ doc.model_no or '' }} </span>
             </p>
+            {% endif %}
+            {% if not has_variants %} 
+            {% set item_doc = frappe.get_doc("Item", item_code) %}
+            {% if item_doc.model_no %}
+            <p style="margin-bottom: 0px;">
+                <span class="bold" style=" color: #fb383b;"> Model Number : {{ item_doc.model_no or '' }} </span>
+            </p>
+            {% endif %}
             {% endif %}
         </div>
         <div class="col-xl-6 col-lg-12 col-sm-12 col-md-12 space-between-buttons" style="position: relative;">

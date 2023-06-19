@@ -23,7 +23,7 @@
  "is_standard": 1,
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2023-01-11 15:35:06.902100",
+ "modified": "2023-06-19 11:17:21.299324",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "inquiry",
@@ -97,7 +97,7 @@
    "max_length": 0,
    "max_value": 0,
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {
@@ -156,7 +156,7 @@
    "default": "All Territories",
    "fieldname": "territory",
    "fieldtype": "Link",
-   "hidden": 1,
+   "hidden": 0,
    "label": "Territory",
    "max_length": 0,
    "max_value": 0,

@@ -59,7 +59,8 @@
                     {% if doc.website_long_description and longdescription %}
                         {{ doc.website_long_description }}
                     {% else %}
-                        <p>{{ doc.description }}</p>
+                    {% set description = doc.description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %}
+                            <span class="justify"> {{ description }}</span>
                     {% endif %}
                     
                 {% else %}
@@ -67,7 +68,8 @@
                     {% if doc.website_long_description and longdescription %}
                         {{ doc.website_long_description }}
                     {% else %}
-                        <p>{{ doc.description }}</p>
+                    {% set description = doc.description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %}
+                            <span class="justify"> {{ description }}</span>
                     {% endif %}
                 {% endif %}
                 </div>
@@ -79,7 +81,9 @@
                         {% if doc.website_long_description and longdescription %}
                             {{ doc.website_long_description }}
                         {% else %}
-                            <p>{{ doc.description }}</p>
+                        {% set description = doc.description | replace('<div class="ql-editor read-mode"><p><br></p></div>', "") %}
+                            <span class="justify"> {{ description }}</span>
+
                         {% endif %}
                    
                 {% endif %}
