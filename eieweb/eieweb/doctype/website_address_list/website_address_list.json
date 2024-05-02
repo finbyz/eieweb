@@ -1,4 +1,6 @@
 {
+ "actions": [],
+ "allow_rename": 1,
  "autoname": "field:address_title",
  "creation": "2021-06-18 17:40:53.745322",
  "doctype": "DocType",
@@ -45,7 +47,8 @@
    "label": "Show On website"
   }
  ],
- "modified": "2021-06-18 18:43:56.324701",
+ "links": [],
+ "modified": "2023-12-14 13:59:37.904920",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "Website Address List",

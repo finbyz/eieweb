@@ -366,10 +366,11 @@ def get_items(filters=None, search=None):
 			`tabItem`.`name`, `tabItem`.`item_name`, `tabItem`.`item_code`,
 			`tabItem`.`website_image`, `tabItem`.`image`,
 			`tabItem`.`web_long_description`, `tabItem`.`description`,
-			`tabItem`.`route`, `tabItem`.`item_group`
+			`tabWebsite Item`.`route`, `tabItem`.`item_group`
 		FROM
 			`tabItem`
 		{left_join}
+		JOIN `tabWebsite Item` on (`tabWebsite Item`.item_code = `tabItem`.name)
 		WHERE
 			{where_conditions}
 		GROUP BY

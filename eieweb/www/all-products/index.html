@@ -8,7 +8,7 @@
 <div class="container-fluid">
 <div class="row pt-50 pb-0 mt-3 d-flex ">
     <div class="col-8">
-        <div class="search" >
+        <div class="search">
             <input type="search"  class="searchTerm" placeholder="Search Product" aria-label="{{_('Product Search')}}" 
                 aria-describedby="product-search" value="{{ frappe.form_dict.search or '' }}">
                 <button type="search" class="searchButton">
@@ -117,7 +117,9 @@
             <div class=" products-list finbyz row mx-1">
                 {% if items %}
                 {% for item in items %}
+                {% if frappe.db.get_value("Website Item", {'item_code': item.item_code}, "published") %}
                 {% include "eieweb/www/all-products/item_row.html" %}
+                {% endif %}
                 {% endfor %}
                 {% else %}
                 {% include "erpnext/www/all-products/not_found.html" %}
@@ -156,6 +158,7 @@
     var productName = $('.searchTerm').val();
     var pathname = window.location.pathname;
     var origin = window.location.origin;
+    console.log(pathname)
     if (productName == '') {
         var URL = `${origin}${pathname}`;
         window.location = URL;

@@ -33,9 +33,13 @@
    
     
    {% endfor %}  -->
-   
+    
     {% for d in attributes %}
+    
     {% if attribute_values[d.attribute] -%}
+    
+    
+    <!-- {{d.attribute}} -->
     <div class="item-view-attribute {% if (attribute_values[d.attribute] | len)==1 -%} hidden {%- endif %}"
             style="margin-bottom: 10px;">
         <h6 class="text-muted">{{ _(d.attribute) }}</h6>
@@ -45,11 +49,18 @@
             <!-- {{comn}}    -->
             <!-- {{variants}}    -->
            <!-- {{selected_attributes}} -->
+           <!-- {{attribute_values[d.attribute]}} -->
+           <!-- {{attribute_values}} -->
             {% for value in attribute_values[d.attribute] %}
+            <!-- {{value}} -->
+            <!-- {{doc.name}} -->
+            <!-- {{attribute_values}} -->
             <!-- {{disabled_attributes}} -->
-            <li value="{{ value }}" {% if selected_attributes and selected_attributes[d.attribute]==value -%}
-           class='selected'
-             {%- elif disabled_attributes and value in disabled_attributes.get(d.attribute, []) -%}
+            <!-- {{variants}} -->
+            <!-- {{frappe.db.get_value("Item",doc.name,'disabled')}} -->
+            <li value="{{ value }}" {% if selected_attributes and selected_attributes[d.attribute]== value -%}
+                class='selected'
+            {%- elif disabled_attributes and value in disabled_attributes.get(d.attribute, [])  -%}
             disabled
             {%- endif %}>{{ _(value) }}</li>
             {% endfor %}    
@@ -99,10 +110,6 @@
     var _mousedown = true;
         
     $(".item-view-attribute #selectable").on("click", function() {
-       console.log($(this).find('li.ui-selected').text())
-       for(var i in variant_info) {
-            console.log(Object.values(variant_info[i].attribute_map));
-       }
 		try {
 			var item_code = encodeURIComponent(get_item_code());  
 	    }
@@ -117,8 +124,7 @@
 			if (!item_code) {
                 frappe.msgprint(__("Cannot find a matching Item. Please select some other value for {0}.", [attribute]))
                 window.location.reload();
-				throw e;
-               
+				throw e;    
 			}
 		}
         

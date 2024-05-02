@@ -61,7 +61,7 @@
                      
                         <input type="search" placeholder="Search" class="txt" aria-label="{{_('Product Search')}}"
                             aria-describedby="product-search" value="{{ frappe.form_dict.search or '' }}"
-                            id="search-product-Nav">
+                            id="search-product">
                     </div>
                 </div>
             </div>
@@ -89,3 +89,40 @@
         </div>
     </div>
 </div>
+<script>
+    function searchGroupProduct(){
+       var productName=$('#search-product').val();
+               var pathname = window.location.pathname;
+               console.log("hi"+" - "+pathname)
+               var origin   = window.location.origin;
+               console.log("HEELO"+" - "+origin)
+               if(productName == ''){
+                   let URL=origin+pathname;
+                   window.location= URL;
+               }else{
+                if (!pathname.includes("?search=")){
+                    var URL = `${origin}/all-products?search=${productName}`;
+                    window.location = URL;
+                }
+                else{
+                    let URL = `${origin}${pathname}?search=${productName}`;
+                    window.location= URL;
+                }
+               }
+       }
+       $('#search-product').keyup(function(e){
+           if (event.keyCode === 13) {
+               searchGroupProduct();
+           }
+       })
+       $('.searchButton').on('click',(e)=>{
+           searchGroupProduct();
+       })
+
+   $('.clear-filter').on('click',()=>{
+           var pathname = window.location.pathname;
+           var origin   = window.location.origin; 
+           var URL=origin+pathname;
+           window.location=URL;
+   })
+</script>

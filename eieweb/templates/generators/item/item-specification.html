@@ -37,9 +37,15 @@
             <div class="row  p-lr-50">
                 <!-- start video section -->
                 {% if not has_variants %}
-                {% set desc = frappe.get_doc("Website Item", doc.name) %}
-                {{ desc.description }}
+                    {% set item_doc = frappe.get_doc("Item", {'name': doc.item_code}) %}
+                    {% if item_doc.website_long_description != '<div class="ql-editor read-mode"><p><br></p></div>' and item_doc.website_long_description != none %}
+                        {{ item_doc.website_long_description }}
+                    {% else %}
+                        {% set desc = frappe.get_doc("Website Item", doc.name) %}
+                        {{ desc.description }}
+                    {% endif %}
                 {% endif %}
+
 
                 {% set item = frappe.db.get_value("Website Item", doc.name, 'item_name') %}
                 {% if frappe.db.get_value("Item",item,'youtube_link') %}
@@ -155,14 +161,18 @@
         <img src="/files/up-thin-arrow.svg" class="specification_arrow" alt="up-botton" width="13"/>
     </div>
     <div id="tab3" class="tab_content">
-        {% set item_doc = frappe.db.get_value("Website Item", {'item_code': doc}, 'item_code') %}
-        {% set items_doc = frappe.get_doc("Item", item_doc) %}
-        {% if items_doc.optional_accessories %}
+        {% if doc %}
+        {% if has_variants %}
+        {% set item_for_accessories = frappe.get_doc("Item",{'item_code':doc.name}) %}
+        {% else %}
+        {% set item_for_accessories = frappe.get_doc("Item",{'item_code':doc}) %}
+        {% endif %}
+        {% if item_for_accessories.optional_accessories %}
         <section class=" related-items remove_padding ">
             <div class="container-fluid p-lr-50 products-list-container">
                 <div class="products-list finbyz row">
-                    {% for link in items_doc.optional_accessories %}
-                    {% if frappe.db.get_value("Item",link.accessory,'show_in_website') %}
+                    {% for link in item_for_accessories.optional_accessories %}
+                    {% if frappe.db.get_value("Website Item",{"item_code": link.accessory}, 'name') %}
                     <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
                         <div class="row no-gutters">
                             <div class="col-md-12">
@@ -174,7 +184,7 @@
                             </div>
                         </div>
                         <div class="card-content card-body" style="padding-top:0px">
-                            <a href="/{{ frappe.db.get_value('Item',link.accessory,'route') }}">
+                            <a href="/{{ frappe.db.get_value('Website Item',{'item_code': link.accessory},'route') }}">
 
                                 <h5 class="card-title sub-text">
                                     {{ frappe.db.get_value('Item',link.accessory,'website_item_name') or
@@ -184,7 +194,7 @@
                                     {{ frappe.db.get_value('Item',link.accessory,'small_description') or ''}}
                                 </p>
                             </a>
-                            <a href="/{{ frappe.db.get_value('Item',link.accessory,'route') }}"><div class="eie-button  product-button" style="margin-left: 50%;">{{ _('View More') }}
+                            <a href="/{{ frappe.db.get_value('Website Item',{'item_code': link.accessory},'route') }}"><div class="eie-button  product-button" style="margin-left: 50%;">{{ _('View More') }}
                                 <div class="eie-ring eie-btn-bottom "></div> </div>
                             </a>
 
@@ -195,6 +205,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         {% endif %}
 
     </div>
@@ -207,18 +218,19 @@
         {% set item_doc = frappe.db.get_value("Website Item", {'item_code': doc}, 'item_code') %}
         {% set items_doc = frappe.get_doc("Item", item_doc) %}
         {% if items_doc.spares %}
-
+        
         <section class=" related-items remove_padding">
             <div class="container-fluid products-list-container p-lr-50">
                 <div class="products-list finbyz row">
                     {% for link in items_doc.spares %}
-                    {% if frappe.db.get_value("Item",link.spare,'show_in_website') %}
+                    {% if frappe.db.get_value("Website Item",{"item_code": link.spare}, 'name') %}
                     <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
                         <div class="row no-gutters">
                             <div class="col-md-12">
                                 <div class="card-body card-image">
+                                    {# {{ Changed By MEGHWIN from src="{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'image') or '/files/eie-icon.svg' }}" to src="{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'website_image') or '/files/eie-icon.svg' }}" }}#}
                                     <img class="website-image" alt="{{ link.spare }}"
-                                        src="{{ frappe.db.get_value('Item',link.spare,'image') or '/files/eie-icon.svg' }}"
+                                        src="{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'website_image') or '/files/eie-icon.svg' }}"
                                         title="{{ link.spare }}" width="240px">
                                 </div>
                             </div>
@@ -229,7 +241,7 @@
                                     {{ link.spare }}
                                 </h5>
                             </a>
-                            <a href="/{{ frappe.db.get_value('Item',link.spare,'route') }}"><div class="eie-button  product-button" style="margin-left: 50%;">{{ _('View More') }}
+                            <a href="/{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'route') }}"><div class="eie-button  product-button" style="margin-left: 50%;">{{ _('View More') }}
                                 <div class="eie-ring eie-btn-bottom "></div> </div>
                             </a>
                         </div>
