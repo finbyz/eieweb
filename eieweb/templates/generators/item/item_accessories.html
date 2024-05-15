@@ -1,0 +1,44 @@
+{% if doc %}
+{% if doc.has_variants %}
+    {% set item_for_accessories = frappe.get_doc("Item",{'item_code':doc.item_code}) %}
+{% endif %}
+{% if item_for_accessories.optional_accessories %}
+<section class=" related-items remove_padding ">
+    <div class="container-fluid p-lr-50 products-list-container">
+        <div class="products-list finbyz row">
+            {% for link in item_for_accessories.optional_accessories %}
+            {% if frappe.db.get_value("Website Item",{"item_code": link.accessory}, 'name') %}
+            <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
+                <div class="row no-gutters">
+                    <div class="col-md-12">
+                        <div class="card-body card-image">
+                            <img class="website-image" alt="{{ link.accessory }}"
+                                src="{{ frappe.db.get_value('Item',link.accessory,'image') or '/files/eie-icon.svg' }}"
+                                title="{{ link.accessory }}" width="240">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content card-body" style="padding-top:0px">
+                    <a href="/{{ frappe.db.get_value('Website Item',{'item_code': link.accessory},'route') }}">
+
+                        <h5 class="card-title sub-text">
+                            {{ frappe.db.get_value('Item',link.accessory,'website_item_name') or
+                            link.accessory or '' }}
+                        </h5>
+                        <p class="card-title sub-text">
+                            {{ frappe.db.get_value('Item',link.accessory,'small_description') or ''}}
+                        </p>
+                    </a>
+                    <a href="/{{ frappe.db.get_value('Website Item',{'item_code': link.accessory},'route') }}"><div class="eie-button  product-button" style="margin-left: 50%;">{{ _('View More') }}
+                        <div class="eie-ring eie-btn-bottom "></div> </div>
+                    </a>
+
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endif %}

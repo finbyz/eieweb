@@ -19,13 +19,13 @@ from eieweb.api import get_items as my_get_item, get_context, make_route, get_co
 # WebsiteItem.make_route = make_route
 
 # # override for random string
-from erpnext.hr.doctype.job_opening.job_opening import JobOpening
-JobOpening.get_context = get_context_jobs
+# from erpnext.hr.doctype.job_opening.job_opening import JobOpening
+# JobOpening.get_context = get_context_jobs
 
 # override for customer disabled 0
-from erpnext.portal import utils
-from eieweb.api import create_customer_or_supplier
-utils.create_customer_or_supplier = create_customer_or_supplier
+# from erpnext.portal import utils
+# from eieweb.api import create_customer_or_supplier
+# utils.create_customer_or_supplier = create_customer_or_supplier
 
 #override for sowing draft quotation on website
 # from erpnext.controllers import website_list_for_contact
@@ -33,9 +33,9 @@ utils.create_customer_or_supplier = create_customer_or_supplier
 # website_list_for_contact.get_list_context = get_list_context
 
 # override bcz getting 404 error in thirt party files
-from frappe.website import render
-from eieweb.api import add_preload_headers as my_add_preload_headers
-render.add_preload_headers = my_add_preload_headers
+# from frappe.website import render
+# from eieweb.api import add_preload_headers as my_add_preload_headers
+# render.add_preload_headers = my_add_preload_headers
 
 
 # override for item search not working
@@ -61,8 +61,8 @@ website_route_rules=[
 # app_include_js = "/assets/eieweb/js/eieweb.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/eieweb/css/eieweb.css"
-# web_include_js = "/assets/eieweb/js/eieweb.js"
+web_include_css = "/assets/eieweb/css/eieweb.css"
+web_include_js = "/assets/eieweb/js/eieweb.js"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}

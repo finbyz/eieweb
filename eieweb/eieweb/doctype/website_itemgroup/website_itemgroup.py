@@ -8,10 +8,10 @@ from frappe import _
 from frappe.utils import nowdate, cint, cstr
 from frappe.utils.nestedset import NestedSet
 from frappe.website.website_generator import WebsiteGenerator
-from frappe.website.render import clear_cache
+from frappe.website.utils import clear_cache
 from frappe.website.doctype.website_slideshow.website_slideshow import get_slideshow
 # from erpnext.shopping_cart.product_info import set_product_info_for_website
-from erpnext.e_commerce.shopping_cart.product_info import set_product_info_for_website
+from webshop.webshop.shopping_cart.product_info import set_product_info_for_website
 # from erpnext.utilities.product import get_qty_in_stock
 from six.moves.urllib.parse import quote
 
@@ -69,7 +69,7 @@ class WebsiteItemgroup(NestedSet, WebsiteGenerator):
 
 	def get_context(self, context):
 		context.show_search=True
-		context.page_length = cint(frappe.db.get_single_value('E Commerce Settings', 'products_per_page')) or 8
+		context.page_length = cint(frappe.db.get_single_value('Webshop Settings', 'products_per_page')) or 8
 		context.search_link = '/product_search'
 
 		start = int(frappe.form_dict.start or 0)
@@ -126,7 +126,7 @@ def get_product_list_for_group(product_group=None, start=0, limit=10, search=Non
 	data = frappe.db.sql(query, {"product_group": product_group,"search": search, "today": nowdate()}, as_dict=1)
 	data = adjust_qty_for_expired_items(data)
 
-	if cint(frappe.db.get_single_value("E Commerce Settings", "enabled")):
+	if cint(frappe.db.get_single_value("Webshop Settings", "enabled")):
 		for item in data:
 			set_product_info_for_website(item)
 

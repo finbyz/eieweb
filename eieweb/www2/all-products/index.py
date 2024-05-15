@@ -242,7 +242,7 @@ def get_next_attribute_and_values(item_code, selected_attributes):
 	filtered_items_count = len(filtered_items)
 
 	# get product info if exact match
-	from webshop.webshop.shopping_cart.product_info import get_product_info_for_website
+from webshop.webshop.shopping_cart.product_info import get_product_info_for_website
 	if exact_match:
 		data = get_product_info_for_website(exact_match[0])
 		product_info = data.product_info
@@ -439,13 +439,14 @@ def get_html_for_items(items):
 	return html
 
 def get_product_settings():
-	doc = frappe.get_cached_doc('Webshop Settings')
+	doc = frappe.get_cached_doc('E Commerce Settings')
 	doc.products_per_page = doc.products_per_page or 20
 	return doc
 
 
 def get_context(context):
 	from webshop.webshop.product_data_engine.filters import ProductFiltersBuilder
+
 
 	if frappe.form_dict:
 		search = frappe.form_dict.search
@@ -458,9 +459,9 @@ def get_context(context):
 	# engine = ProductQuery()
 	# context.items = engine.query(attribute_filters, field_filters, search, start)
 
-    # finbyz change
+	# finbyz change
 	context.items = get_products_for_website(field_filters, attribute_filters,search)
-    
+	
 	# Add homepage as parent
 	context.parents = [{"name": frappe._("Home"), "route":"/"}]
 
@@ -473,7 +474,7 @@ def get_context(context):
 	context.product_settings = product_settings
 	context.body_class = "product-page"
 	context.page_length = (
-			cint(frappe.db.get_single_value("Webshop Settings", "products_per_page")) or 20
+			cint(frappe.db.get_single_value("E Commerce Settings", "products_per_page")) or 20
 		)
 	context.no_cache = 1
 	return context

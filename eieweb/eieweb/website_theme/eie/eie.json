@@ -1,0 +1,23 @@
+{
+ "_liked_by": "[]",
+ "button_gradients": 0,
+ "button_rounded_corners": 1,
+ "button_shadows": 0,
+ "creation": "2021-06-28 23:26:28.862924",
+ "custom": 0,
+ "custom_overrides": "",
+ "custom_scss": "",
+ "docstatus": 0,
+ "doctype": "Website Theme",
+ "font_properties": "wght@300;400;500;600;700;800",
+ "idx": 6,
+ "ignored_apps": [],
+ "modified": "2024-05-15 11:16:26.524102",
+ "modified_by": "Administrator",
+ "module": "Eieweb",
+ "name": "EIE",
+ "owner": "Administrator",
+ "theme": "EIE",
+ "theme_scss": "$enable-shadows: false;\n$enable-gradients: false;\n$enable-rounded: true;\n\n// Bootstrap Variable Overrides\n\n\n// Import themes from installed apps\n@import \"frappe/public/scss/website.bundle\";\n@import \"erpnext/public/scss/website\";\n\n\n\n// Custom Theme\n\n\n:root {\n\t}\n",
+ "theme_url": "/files/website_theme/eie_style.css"
+}

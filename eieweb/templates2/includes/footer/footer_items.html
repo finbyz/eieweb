@@ -1,0 +1,31 @@
+{% for page in footer_items %}
+{%- if page.child_items -%}
+<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 footer-group">
+	{% if not page.parent_label -%}
+		<div data-label='{{ page.label }}'>
+		<a {% if not page.child_items -%} href="{{ (page.url or '')|abs_url }}" {%- endif %}
+		{% if page.child_items %} onclick="return false;" {% endif %}
+		{{ page.target or ''}}>	</a>
+		{%- if page.child_items -%}
+			<p class="footer-title t-white">{{ page.label }}</p>
+			{%- for child in page.child_items -%}
+			<div class="text_block" data-label='{{ child.label }}'>
+				<p class="footer-txt-md my-1">
+					<a href="{{ child.url | abs_url }}" class="eie-fadeinup-text"
+							{% if child.target %}target="_blank"{% endif %}>
+								{{ child.label }}
+					</a>
+                </p>
+            </div>
+			{%- endfor -%}
+		{%- else -%}
+		<span class="footer-group-label small text-muted">{{ page.label }}<span>
+		</a>
+		{%- endif -%}
+		</div>
+    {%- endif -%}
+    
+</div>
+{%- endif -%}
+{% endfor %}
+

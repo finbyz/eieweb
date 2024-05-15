@@ -1,0 +1,37 @@
+{% set item_doc = frappe.db.get_value("Website Item", {'item_code': doc.item_code}, 'item_code') %}
+{% set items_doc = frappe.get_doc("Item", item_doc) %}
+{% if items_doc.spares %}
+
+<section class=" related-items remove_padding">
+    <div class="container-fluid products-list-container p-lr-50">
+        <div class="products-list finbyz row">
+            {% for link in items_doc.spares %}
+            {% if frappe.db.get_value("Website Item",{"item_code": link.spare}, 'name') %}
+            <div class="card my-3 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12">
+                <div class="row no-gutters">
+                    <div class="col-md-12">
+                        <div class="card-body card-image">
+                            {# {{ Changed By MEGHWIN from src="{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'image') or '/files/eie-icon.svg' }}" to src="{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'website_image') or '/files/eie-icon.svg' }}" }}#}
+                            <img class="website-image" alt="{{ link.spare }}"
+                                src="{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'website_image') or '/files/eie-icon.svg' }}"
+                                title="{{ link.spare }}" width="240px">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content card-body" style="padding-top:0px">
+                    <a href="/{{ frappe.db.get_value('Item',link.spare,'route') }}">
+                        <h5 class="card-title sub-text">
+                            {{ link.spare }}
+                        </h5>
+                    </a>
+                    <a href="/{{ frappe.db.get_value('Website Item',{'item_code': link.spare},'route') }}"><div class="eie-button  product-button" style="margin-left: 50%;">{{ _('View More') }}
+                        <div class="eie-ring eie-btn-bottom "></div> </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

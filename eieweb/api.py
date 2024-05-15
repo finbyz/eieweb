@@ -214,8 +214,8 @@ def get_transaction_list(doctype, txt=None, filters=None, limit_start=0, limit_p
 	return post_process(doctype, transactions)
 
 
-from frappe.website.utils import is_signup_enabled
-from frappe.utils import escape_html
+# from frappe.website.utils import is_signup_enabled
+# from frappe.utils import escape_html
 
 @frappe.whitelist(allow_guest=True)
 def sign_up(email, full_name, company, mobile, redirect_to):
@@ -269,7 +269,7 @@ def create_customer_or_supplier():
 	'''Based on the default Role (Customer, Supplier), create a Customer / Supplier.
 	Called on_session_creation hook.
 	'''
-	from erpnext.e_commerce.shopping_cart.cart import get_debtors_account
+	from webshop.webshop.shopping_cart.cart import get_debtors_account
 	from frappe.utils.nestedset import get_root_of
 	from erpnext.e_commerce.doctype.e_commerce_settings.e_commerce_settings import get_shopping_cart_settings
 
