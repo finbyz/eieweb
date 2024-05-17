@@ -138,6 +138,9 @@ doc_events = {
 		'validate': 'eieweb.api.item_validate'
 	}
 }
+override_doctype_class = {
+	"Website Item": 'eieweb.eieweb.override.override_doctype_class.website_item.WebsiteItem'
+}
 # Scheduled Tasks
 # ---------------
 
@@ -167,9 +170,9 @@ doc_events = {
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "eieweb.event.get_events"
-# }
+override_whitelisted_methods = {
+	"webshop.webshop.api.get_product_filter_data": "eieweb.eieweb.api.get_product_filter_data"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,

@@ -1,8 +1,0 @@
-<!-- Is reused to render within tabs as well as independently -->
-{% if frappe.utils.strip_html(website_description) %}
-<div class="{{ 'mt-2' if not show_tabs else 'mt-5'}}">
-	<div class="col-md-11">
-		{{ website_description }}
-	</div>
-</div>
-{% endif %}
