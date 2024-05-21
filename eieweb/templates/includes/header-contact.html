@@ -59,7 +59,7 @@
                     <div class="nav-search mr-5">
                         <input type="image"  alt="nav_search" class="nav-search-btn ml-1" src="/files/nav-search.png">
                      
-                        <input type="search" placeholder="Search" class="txt" aria-label="{{_('Product Search')}}"
+                        <input type="search" placeholder="Search" aria-label="{{_('Product Search')}}"
                             aria-describedby="product-search" value="{{ frappe.form_dict.search or '' }}"
                             id="search-product">
                     </div>
@@ -89,13 +89,16 @@
         </div>
     </div>
 </div>
+<script src=></script>
 <script>
+    import "https://code.jquery.com/jquery-3.6.0.min.js";
     function searchGroupProduct(){
-       var productName=$('#search-product').val();
+       var productName=$('#search-product').value();
+            console.log(productName,"hellllllllllllllllllllll")
                var pathname = window.location.pathname;
-               console.log("hi"+" - "+pathname)
+              
                var origin   = window.location.origin;
-               console.log("HEELO"+" - "+origin)
+              
                if(productName == ''){
                    let URL=origin+pathname;
                    window.location= URL;
