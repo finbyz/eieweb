@@ -121,7 +121,7 @@ doctype_js = {
 # has_permission = {
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
-
+fixtures = ["Web Page"]
 # Document Events
 # ---------------
 # Hook on document methods and events
