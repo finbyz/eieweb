@@ -1,5 +1,4 @@
 {
- "_liked_by": "[]",
  "button_gradients": 0,
  "button_rounded_corners": 1,
  "button_shadows": 0,
@@ -10,10 +9,10 @@
  "docstatus": 0,
  "doctype": "Website Theme",
  "font_properties": "wght@300;400;500;600;700;800",
- "idx": 8,
+ "idx": 9,
  "ignored_apps": [],
  "js": "",
- "modified": "2024-05-25 09:47:40.285253",
+ "modified": "2024-05-26 12:27:45.647788",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "EIE",
