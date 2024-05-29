@@ -99,7 +99,7 @@ def invalidate_cache_for_web_item(doc):
     Args:
         doc (Item): document against which cache should be cleared
     """
-    invalidate_cache_for(doc, doc.website_itemgroup)
+    invalidate_cache_for(doc)
 
     website_item_groups = list(
         set(
@@ -124,9 +124,21 @@ def invalidate_cache_for_web_item(doc):
 
 def invalidate_cache_for(doc, item_group=None):
     if not item_group:
-        item_group = doc.website_itemgroup
+        item_group = doc.item_group
+    
+    if doc.doctype == "Website Itemgroup":
+        item_group = doc.name
 
-    for d in get_parent_item_groups(item_group):
-        item_group_name = frappe.db.get_value("Website Itemgroup", d.get("name"))
-        if item_group_name:
-            clear_cache(frappe.db.get_value("Website Itemgroup", item_group_name, "route"))
+        for d in get_parent_item_groups(item_group):
+            item_group_name = frappe.db.get_value("Website Itemgroup", d.get("name"))
+            if item_group_name:
+                clear_cache(frappe.db.get_value("Website Itemgroup", item_group_name, "route"))
+    
+    if doc.doctype == "Website Item":
+        for row in doc.get("website_item_groups"):
+            item_group = row.website_itemgroup
+
+            for d in get_parent_item_groups(item_group):
+                item_group_name = frappe.db.get_value("Website Itemgroup", d.get("name"))
+                if item_group_name:
+                    clear_cache(frappe.db.get_value("Website Itemgroup", item_group_name, "route"))

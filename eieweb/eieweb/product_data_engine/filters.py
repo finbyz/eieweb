@@ -69,7 +69,7 @@ class ProductFiltersBuilder:
 			else:
 				# table multiselect
 				values = list(link_doctype_values)
-				frappe.throw(str(values))
+				
 
 			# Remove None
 			if None in values:
