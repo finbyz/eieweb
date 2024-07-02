@@ -65,7 +65,7 @@ def get_product_filter_data(query_args=None):
 			item_group=item_group,
 		)
 	except Exception:
-		frappe.log_error("Product query with filter failed")
+		frappe.log_error("Product query with filter failed", message=frappe.get_traceback())
 		return {"exc": "Something went wrong!"}
 
 	# discount filter data

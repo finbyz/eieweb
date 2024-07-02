@@ -55,7 +55,68 @@
             </div>
         </div>
     </div>
-  </div>
+    <script>
+        var isOpened = false;
+        $('#campaign_enquire_btn').on('click', function () {
+            isOpened = true;
+            if ($("#inquiry-form-section").hasClass('slide-right active')) {
+                $('#inquiry-form-section').removeClass('active').toggleClass('slide-right');
+            }
+            else if ($("#inquiry-form-section").hasClass('active')) {
+                $('#inquiry-form-section').removeClass('active');
+            }
+            // toggle class on click contact button
+            else if ($("#inquiry-form-section").hasClass('slide-right')) {
+                $('#inquiry-form-section').toggleClass('slide-right');
+            }
+            else {
+                $('#inquiry-form-section').toggleClass('slide-right');
+            }
+            if ($('#inquiry-form-section').hasClass('slide-right')) {
+                setTimeout(function () {
+                    $('#rightArrow').removeClass('active');
+                    $('#rightArrow').addClass('deactivated');
+                    $('#leftArrow').addClass('active');
+                }, 600);
+            }
+            else {
+                setTimeout(function () {
+                    $('#leftArrow').removeClass('active');
+                    $('#leftArrow').addClass('deactivated');
+                    $('#rightArrow').addClass('active');
+                }, 600);
+            }
+        });
+        //active form at certain height 
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+
+                if (scroll >= 2000 && !isOpened) {
+                    isOpened = true;
+                    $("#inquiry-form-section").addClass("slide-right");
+                }
+                if ($('#inquiry-form-section').hasClass('slide-right')) {
+                    setTimeout(function () {
+                        $('#rightArrow').removeClass('active');
+                        $('#rightArrow').addClass('deactivated');
+                        $('#leftArrow').addClass('active');
+                    })
+                }
+                else {
+                    setTimeout(function () {
+                        $('#leftArrow').removeClass('active');
+                        $('#leftArrow').addClass('deactivated');
+                        $('#rightArrow').addClass('active');
+                    })
+                }
+            });
+        });
+        $('.reset-button').on('click', () => {
+            $("#inquiry :input").val('');
+        })
+    </script>
+</div>
 {% endif %}
 <div class="container-fluid">
 <a href="/Download" style="cursor:pointer;">

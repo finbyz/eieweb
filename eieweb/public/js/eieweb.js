@@ -1324,6 +1324,7 @@ var mwb_whatsapp = function() {
 //inquiry form
 $(document).ready(function() {
     function lead_creation() {
+        console.log(document.title + '</br>' + window.location.href)
         frappe.call({
             method: "eieweb.api.set_form_data",
             args: {

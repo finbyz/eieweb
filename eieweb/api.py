@@ -143,7 +143,7 @@ def set_form_data(lead_name,company_name,message,mobile_no,product_name, title,e
 	data.mobile_no = mobile_no
 	data.product_name = product_name
 	data.source = 'Website'
-	data.notes = title
+	data.append("notes", {"public": 1, "title": title, "content": message})
 	data.email_id = email
 	data.flags.ignore_mandatory = True
 	data.save(ignore_permissions=True)

@@ -89,43 +89,94 @@
         </div>
     </div>
 </div>
-<script src=></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    import "https://code.jquery.com/jquery-3.6.0.min.js";
-    function searchGroupProduct(){
-       var productName=$('#search-product').value();
-            console.log(productName,"hellllllllllllllllllllll")
-               var pathname = window.location.pathname;
-              
-               var origin   = window.location.origin;
-              
-               if(productName == ''){
-                   let URL=origin+pathname;
-                   window.location= URL;
-               }else{
-                if (!pathname.includes("?search=")){
-                    var URL = `${origin}/all-products?search=${productName}`;
-                    window.location = URL;
-                }
-                else{
-                    let URL = `${origin}${pathname}?search=${productName}`;
-                    window.location= URL;
-                }
-               }
-       }
-       $('#search-product').keyup(function(e){
-           if (event.keyCode === 13) {
-               searchGroupProduct();
-           }
-       })
-       $('.searchButton').on('click',(e)=>{
-           searchGroupProduct();
-       })
+    $(document).ready(function() {
+        alert("jQuery is loaded and document is ready");
 
-   $('.clear-filter').on('click',()=>{
-           var pathname = window.location.pathname;
-           var origin   = window.location.origin; 
-           var URL=origin+pathname;
-           window.location=URL;
-   })
+        function searchGroupProduct() {
+            var productName = $('#search-product').val();
+            var pathname = window.location.pathname;
+            console.log("Current pathname: " + pathname);
+            var origin = window.location.origin;
+            console.log("Origin: " + origin);
+
+            if (productName == '') {
+                alert("Product name is empty. Reloading page...");
+                let URL = origin + pathname;
+                window.location = URL;
+            } else {
+                if (!pathname.includes("?search=")) {
+                    var URL = `${origin}/all-products?search=${productName}`;
+                } else {
+                    let URL = `${origin}${pathname}?search=${productName}`;
+                }
+                alert("Redirecting to: " + URL);
+                window.location = URL;
+            }
+        }
+
+        $('#search-product').keyup(function(e) {
+            if (e.keyCode === 13) {
+                alert("Enter key pressed");
+                searchGroupProduct();
+            }
+        });
+
+        $('.searchButton').on('click', function(e) {
+            alert("Search button clicked");
+            searchGroupProduct();
+        });
+
+        $('.clear-filter').on('click', function() {
+            var pathname = window.location.pathname;
+            var origin = window.location.origin;
+            var URL = origin + pathname;
+            alert("Clearing filter. Redirecting to: " + URL);
+            window.location = URL;
+        });
+    });
 </script>
+
+<!-- <script>
+     $(document).ready(function() {
+        alert("it worked");
+            function searchGroupProduct(){
+                var productName = $('#search-product').val();
+                var pathname = window.location.pathname;
+                console.log("hi" + " - " + pathname)
+                var origin = window.location.origin;
+                console.log("HEELO" + " - " + origin)
+                if(productName == ''){
+                    let URL = origin + pathname;
+                    window.location = URL;
+                } else {
+                    if (!pathname.includes("?search=")){
+                        var URL = `${origin}/all-products?search=${productName}`;
+                        window.location = URL;
+                    } else {
+                        let URL = `${origin}${pathname}?search=${productName}`;
+                        window.location = URL;
+                    }
+                }
+            }
+
+            $('#search-product').keyup(function(e){
+                if (e.keyCode === 13) {
+                    searchGroupProduct();
+                }
+            });
+
+            $('.searchButton').on('click', function(e){
+                searchGroupProduct();
+            });
+
+            $('.clear-filter').on('click', function(){
+                var pathname = window.location.pathname;
+                var origin = window.location.origin;
+                var URL = origin + pathname;
+                window.location = URL;
+            });
+        });
+</script> -->
