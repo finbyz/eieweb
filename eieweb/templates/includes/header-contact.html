@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="container ">
+    <div class="container">
         <div class="d-sm-none show ">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center p-1">
@@ -77,106 +77,143 @@
                 </div>
                 <div class="col-12 d-flex justify-content-center p-1">
                     <div class="nav-search">
-                        <form>
-                            <a class="ml-1" href="#">
-                                <input type="image" class="nav-search-btn" src="/files/nav-search.png">
-                            </a>
-                            <input type="text" placeholder="Search" class="txt">
-                        </form>
+                        <input type="image"  alt="nav_search" class="nav-search-btn ml-1" src="/files/nav-search.png">
+                     
+                        <input type="search" placeholder="Search" aria-label="{{_('Product Search')}}"
+                            aria-describedby="product-search" value="{{ frappe.form_dict.search or '' }}"
+                            id="search-product-mobile" style="width:220px">
+                            <button id="Mobile-view" style="background-color: #fb383b; color: white; border-color:#fb383b;" onclick="searchGroupProductMobile()">Search</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        alert("jQuery is loaded and document is ready");
-
-        function searchGroupProduct() {
-            var productName = $('#search-product').val();
-            var pathname = window.location.pathname;
-            console.log("Current pathname: " + pathname);
-            var origin = window.location.origin;
-            console.log("Origin: " + origin);
-
-            if (productName == '') {
-                alert("Product name is empty. Reloading page...");
-                let URL = origin + pathname;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    function searchGroupProduct(){
+        var productName = $('#search-product').val();
+        var pathname = window.location.pathname;
+      
+        
+        var origin = window.location.origin;
+        
+        if (productName == ''){
+            let URL = origin + pathname;
+            window.location = URL;
+        } else {
+            if (!pathname.includes("?search=")){
+                var URL = `${origin}/all-products?search=${productName}`;
                 window.location = URL;
             } else {
-                if (!pathname.includes("?search=")) {
-                    var URL = `${origin}/all-products?search=${productName}`;
-                } else {
-                    let URL = `${origin}${pathname}?search=${productName}`;
-                }
-                alert("Redirecting to: " + URL);
+                let URL = `${origin}${pathname}?search=${productName}`;
                 window.location = URL;
             }
         }
+    }
+    
+$(document).ready(function() {
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-        $('#search-product').keyup(function(e) {
-            if (e.keyCode === 13) {
-                alert("Enter key pressed");
-                searchGroupProduct();
-            }
-        });
-
-        $('.searchButton').on('click', function(e) {
-            alert("Search button clicked");
-            searchGroupProduct();
-        });
-
-        $('.clear-filter').on('click', function() {
-            var pathname = window.location.pathname;
-            var origin = window.location.origin;
-            var URL = origin + pathname;
-            alert("Clearing filter. Redirecting to: " + URL);
-            window.location = URL;
-        });
+    $(function() {
+        var productName = getParameterByName('search');
+        var productNameMobile = getParameterByName('search');
+        if (productName) {
+            $('#search-box').val(productName); // Set the value of the search-box field
+        }
+        
     });
+    
+    $('#search-product').submit(function(e) {
+        e.preventDefault(); // Prevent the form from submitting the traditional way
+        var searchValue = $('#search-product').val();
+        var URL = `${origin}${pathname}?search=${searchValue}`;
+        window.location = URL;
+        
+    });   
+});
+
+$('input[type=search]').on('keydown', (e) => {
+        if (e.keyCode === 13) {
+            searchGroupProduct();
+        }
+    })
+
+$('.searchButton').on('click', (e) => {
+    searchGroupProduct();
+});
+
+    $('.clear-filter').on('click', () => {
+        var pathname = window.location.pathname;
+        var origin = window.location.origin;
+        var URL = origin + pathname;
+        window.location = URL;
+            
+    });
+
+function searchGroupProductMobile(){
+    var productNameMobile = $('#search-product-mobile').val();
+    var pathname = window.location.pathname;
+    var origin = window.location.origin;
+    if (productNameMobile == ''){
+        let URL = origin + pathname;
+        window.location = URL;
+    } else {
+        if (!pathname.includes("?search=")){
+            var URL = `${origin}/all-products?search=${productNameMobile}`;
+            window.location = URL;
+        } else {
+            let URL = `${origin}${pathname}?search=${productNameMobile}`;
+            window.location = URL;
+        }
+    }
+}
+
+$(document).ready(function() {
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    $(function() {
+        var productNameMobile = getParameterByName('search');
+        if (productNameMobile) {
+            $('#search-box').val(productNameMobile); // Set the value of the search-box field
+        }
+    });
+  
+    $('#search-product-mobile').submit(function(e) {
+        e.preventDefault(); // Prevent the form from submitting the traditional way
+        var searchValue = $('#search-product-mobile').val();
+        var URL = `${origin}${pathname}?search=${searchValue}`;
+        window.location = URL;
+    });    
+});
+
+$('#Mobile-view').on('click', () => {
+    searchGroupProductMobile();
+});
+
+$('.searchButton').on('click', (e) => {
+    searchGroupProductMobile();
+});
+
+$('.clear-filter').on('click', () => {
+    var pathname = window.location.pathname;
+    var origin = window.location.origin;
+    var URL = origin + pathname;
+    window.location = URL;
+});
 </script>
-
-<!-- <script>
-     $(document).ready(function() {
-        alert("it worked");
-            function searchGroupProduct(){
-                var productName = $('#search-product').val();
-                var pathname = window.location.pathname;
-                console.log("hi" + " - " + pathname)
-                var origin = window.location.origin;
-                console.log("HEELO" + " - " + origin)
-                if(productName == ''){
-                    let URL = origin + pathname;
-                    window.location = URL;
-                } else {
-                    if (!pathname.includes("?search=")){
-                        var URL = `${origin}/all-products?search=${productName}`;
-                        window.location = URL;
-                    } else {
-                        let URL = `${origin}${pathname}?search=${productName}`;
-                        window.location = URL;
-                    }
-                }
-            }
-
-            $('#search-product').keyup(function(e){
-                if (e.keyCode === 13) {
-                    searchGroupProduct();
-                }
-            });
-
-            $('.searchButton').on('click', function(e){
-                searchGroupProduct();
-            });
-
-            $('.clear-filter').on('click', function(){
-                var pathname = window.location.pathname;
-                var origin = window.location.origin;
-                var URL = origin + pathname;
-                window.location = URL;
-            });
-        });
-</script> -->

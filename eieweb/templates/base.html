@@ -11,6 +11,48 @@
     {% if seo_description  %}
     <meta name="description" content="{{ seo_description  }}" /> {% endif %}
     {% block description %}{% endblock %}
+	{% if (doctype == "Website Item" ) %}
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org/",
+			"@type": "Product",
+			"name": "{{ title }}",
+			"description": "{{ description|striptags }}",
+			"review": {
+			  "@type": "Review",
+			  "reviewRating": {
+				"@type": "Rating",
+				"ratingValue": 4,
+				"bestRating": 5
+			  },
+			  "author": {
+				"@type": "Person",
+				"name": " Deepak Parikh"
+			  }
+			},
+			"aggregateRating": {
+			  "@type": "AggregateRating",
+			  "ratingValue": 4.4,
+			  "reviewCount": 89
+			}
+		  }
+	</script>
+	{% elif (doctype == "Web Page" and name == "title") or (doctype == "Web Form" and name == "contact") %}
+	<script type="application/ld+json" crossorigin="anonymous">
+		{"@context":"http://schema.org","@type":"Organization",
+		"name":"EIE Instruments Pvt. Ltd",
+		"image":"https://www.eieinstruments.com//files/EIE%20LOGO.png",
+		"@id":"https://www.eieinstruments.com/",
+		"url":"https://www.eieinstruments.com/",
+		"location":[{"@type":"LocalBusiness","parentOrganization":{"name":"EIE Instruments Pvt. Ltd"},"name":"EIE Instruments Pvt. Ltd",
+		"image":"https://www.eieinstruments.com//files/EIE%20LOGO.png",
+		"address":{"@type":"PostalAddress","addressLocality":"Ahmedabad","addressRegion":"Gujarat","postalCode":"380006","streetAddress":"A-1301 BVR Ek, Opp. Hotel Inder Residency, Nr. Gujarat College Ellisbridge"},
+		"geo":{"@type":"GeoCoordinates","latitude":23.03003,"longitude":72.69218},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification",
+		"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"18:00"}],
+		"telephone":"+91 07966211234"}],
+		"description":"EIE Instruments manufactures high-quality laboratory testing equipment for industries like civil engineering, pharmaceuticals, and textiles, ensuring precision and reliability since 1977."}   
+	</script>
+	{% endif %}
 	{% block favicon %}
 
 	<link
@@ -45,6 +87,7 @@
 		window.socketio_port = {{ (frappe.socketio_port or 9000) }};
 		window.show_language_picker = {{ show_language_picker or 'false' }};
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif %} class="{{ body_class or ''}}">
 	{% include "public/icons/timeless/icons.svg" %}

@@ -53,6 +53,11 @@ $(function () {
             })
         }
     });
+    setTimeout(function() {
+        $('#search-box').trigger('input');
+        $('#search-box').focus();
+    }
+    , 1000);
 });
 $('.reset-button').on('click', () => {
     $("#inquiry :input").val('');
@@ -1362,26 +1367,26 @@ $(document).ready(function() {
         e.preventDefault();
     });
     // custom search
-    function searchProduct() {
-        var productName = $('.searchTerm').val() || $('#search-product').val();
-        var pathname = window.location.pathname;
-        var origin = window.location.origin;
-        if (productName == '') {
-            var URL = `${origin}${pathname}`;
-            window.location = URL;
-        } else {
-            var URL = `${origin}/all-products?search=${productName}`;
-            window.location = URL;
-        }
-    }
-    $('input[type=search]').on('keydown', (e) => {
-        if (e.keyCode === 13) {
-            searchProduct();
-        }
-    })
-    $('.nav-search-btn').on('click', (e) => {
-        searchProduct();
-    })
+    // function searchProduct() {
+    //     var productName = $('.searchTerm').val() || $('#search-product').val();
+    //     var pathname = window.location.pathname;
+    //     var origin = window.location.origin;
+    //     if (productName == '') {
+    //         var URL = `${origin}${pathname}`;
+    //         window.location = URL;
+    //     } else {
+    //         var URL = `${origin}/all-products?search=${productName}`;
+    //         window.location = URL;
+    //     }
+    // }
+    // $('input[type=search]').on('keydown', (e) => {
+    //     if (e.keyCode === 13) {
+    //         searchProduct();
+    //     }
+    // })
+    // $('.nav-search-btn').on('click', (e) => {
+    //     searchProduct();
+    // })
 
     var current_location = window.location.pathname;
     if (current_location != '/') {
@@ -1571,6 +1576,64 @@ $('.child-cat li a').hover(function () {
 })
 
 
+function searchGroupProductMobile(){
+    var productNameMobile = $('#search-product-mobile').val();
+    var pathname = window.location.pathname;
+    var origin = window.location.origin;
+    if (productNameMobile == ''){
+        let URL = origin + pathname;
+        window.location = URL;
+    } else {
+        if (!pathname.includes("?search=")){
+            var URL = `${origin}/all-products?search=${productNameMobile}`;
+            window.location = URL;
+        } else {
+            let URL = `${origin}${pathname}?search=${productNameMobile}`;
+            window.location = URL;
+        }
+    }
+}
+
+$(document).ready(function() {
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    $(function() {
+        var productNameMobile = getParameterByName('search');
+        if (productNameMobile) {
+            $('#search-box').val(productNameMobile); // Set the value of the search-box field
+        }
+    });
+  
+    $('#search-product-mobile').submit(function(e) {
+        e.preventDefault(); // Prevent the form from submitting the traditional way
+        var searchValue = $('#search-product-mobile').val();
+        var URL = `${origin}${pathname}?search=${searchValue}`;
+        window.location = URL;
+    });    
+});
+
+$('#Mobile-view').on('click', () => {
+    searchGroupProductMobile();
+});
+
+$('.searchButton').on('click', (e) => {
+    searchGroupProductMobile();
+});
+
+$('.clear-filter').on('click', () => {
+    var pathname = window.location.pathname;
+    var origin = window.location.origin;
+    var URL = origin + pathname;
+    window.location = URL;
+});
 
 
 if ('serviceWorker' in navigator) {
@@ -1583,4 +1646,5 @@ if ('serviceWorker' in navigator) {
 } else {
     console.warn('[PWA] No Service Worker support on your device');
 }
+
 
