@@ -1,7 +1,5 @@
 {% if doc %}
-{% if doc.has_variants %}
-    {% set item_for_accessories = frappe.get_doc("Item",{'item_code':doc.item_code}) %}
-
+{% set item_for_accessories = frappe.get_doc("Item",{'item_code':doc.item_code}) %}
 {% if item_for_accessories.optional_accessories %}
 <section class=" related-items remove_padding ">
     <div class="container-fluid p-lr-50 products-list-container">
@@ -38,6 +36,5 @@
         </div>
     </div>
 </section>
-{% endif %}
 {% endif %}
 {% endif %}

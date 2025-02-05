@@ -33,19 +33,28 @@
 
 
 
-	<p class="product-item-code">
-		<span itemprop="name">Model No: {{ frappe.db.get_value("Item",doc.item_code,"model_no")}}</span>
-	</p>
+	<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+		{% if has_variants %} {% set doc = frappe.get_doc("Item",{'name':variant.name}) %}{% endif %}
+		{% if doc.model_no %}
+		<p style="margin-bottom: 0px;">
+			<span class="bold" style=" color: #fb383b; font-size: 15px;"> Model Number : {{ doc.model_no or '' }} </span>
+		</p>
+		{% endif %}
+		{% if not has_variants %} 
+		{% set item_doc = frappe.get_doc("Item", item_code) %}
+		{% if item_doc.model_no %}
+		<p style="margin-bottom: 0px;">
+			<span class="bold" style=" color: #fb383b; font-size: 15px;"> Model Number : {{ item_doc.model_no or '' }} </span>
+		</p>
+		{% endif %}
+		{% endif %}
+	</div>
 	
 	<div class="product-description-font" itemprop="description">
-		{% if frappe.utils.strip_html(doc.web_long_description or '') %}
-			{{ doc.web_long_description | safe }}
-		{% elif frappe.utils.strip_html(doc.description or '')  %}
-			{{ frappe.db.get_value("Item",doc.item_code,"small_description") | safe }}
-		{% else %}
-			{{ "" }}
-		{% endif  %}
+		{{ short_description }}
 		</div>
+		<br>
+		<br>
 	{% if has_variants %}
 		<!-- configure template -->
 		<!-- {% include "templates/generators/item/item_configure.html" %} -->

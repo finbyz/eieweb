@@ -64,7 +64,7 @@ class WebsiteItem(_WebsiteGenerator):
 		self.set_shopping_cart_data(context)
 
 		settings = context.shopping_cart.cart_settings
-
+		
 		self.get_product_details_section(context)
 
 		if settings.get("enable_reviews"):
@@ -96,15 +96,18 @@ class WebsiteItem(_WebsiteGenerator):
 	def get_tabs(self):
 		tab_values = {}
 
+		
+		doc = frappe.get_doc("Item", self.item_code)
+		variant = frappe.form_dict.variant
+		if variant:
+			doc = frappe.get_doc("Item", variant)
+		index = 1
+
 		website_template = ''
 		if frappe.utils.strip_html(self.web_long_description or ''):
 			website_template = self.web_long_description
-		elif frappe.utils.strip_html(self.description or ''):
+		else:
 			website_template = self.description
-		
-		doc = frappe.get_doc("Item", self.item_code)
-		index = 1
-
 		if website_template:
 			tab_values[f"tab_{index}_title"] = "More Information"
 			tab_values[f"tab_{index}_content"] = frappe.render_template(
@@ -122,6 +125,7 @@ class WebsiteItem(_WebsiteGenerator):
 				{
 					"website_specifications": doc.specifications,
 					"show_tabs": self.show_tabbed_section,
+					"doc" : self
 				},
 			)
 

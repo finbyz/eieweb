@@ -9,15 +9,52 @@
  "docstatus": 0,
  "doctype": "Website Theme",
  "font_properties": "wght@300;400;500;600;700;800",
- "idx": 10,
- "ignored_apps": [],
+ "idx": 11,
+ "ignored_apps": [
+  {
+   "app": "eie"
+  },
+  {
+   "app": "erpnext"
+  },
+  {
+   "app": "finbyzerp"
+  },
+  {
+   "app": "finbyznewsletter"
+  },
+  {
+   "app": "frappe"
+  },
+  {
+   "app": "hrms"
+  },
+  {
+   "app": "lending"
+  },
+  {
+   "app": "india_compliance"
+  },
+  {
+   "app": "payments"
+  },
+  {
+   "app": "productivity_next"
+  },
+  {
+   "app": "webshop"
+  },
+  {
+   "app": "whatsapp_erpnext"
+  }
+ ],
  "js": "",
- "modified": "2024-07-10 11:27:11.834275",
+ "modified": "2025-01-22 09:40:50.266219",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "EIE",
  "owner": "Administrator",
  "theme": "EIE",
- "theme_scss": "$enable-shadows: false;\n$enable-gradients: false;\n$enable-rounded: true;\n\n// Bootstrap Variable Overrides\n\n\n// Import themes from installed apps\n@import \"frappe/public/scss/website.bundle\";\n@import \"erpnext/public/scss/website\";\n\n\n\n// Custom Theme\n\n\n:root {\n\t}\n",
+ "theme_scss": "$enable-shadows: false;\n$enable-gradients: false;\n$enable-rounded: true;\n\n// Bootstrap Variable Overrides\n\n\n// Import themes from installed apps\n\n\n\n// Custom Theme\n\n\n:root {\n\t}\n",
  "theme_url": "/files/website_theme/eie_style.css"
 }

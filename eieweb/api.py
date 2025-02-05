@@ -135,15 +135,16 @@ def item_validate(self,method):
 		self.db_set('show_in_website',0)
 
 @frappe.whitelist(allow_guest=True)
-def set_form_data(lead_name,company_name,message,mobile_no,product_name, title,email):
+def set_form_data(lead_name,company_name,phone,requirments, title,email,city,message):
 	data = frappe.new_doc("Lead")
 	data.lead_name = lead_name
 	data.company_name = company_name
+	data.phone = phone
 	data.message = message
-	data.mobile_no = mobile_no
-	data.product_name = product_name
+	data.requirments = requirments
+	data.city = city
 	data.source = 'Website'
-	data.append("notes", {"public": 1, "title": title, "content": message})
+	data.append("notes", {"public": 1, "title": title, "note": message})
 	data.email_id = email
 	data.flags.ignore_mandatory = True
 	data.save(ignore_permissions=True)

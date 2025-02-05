@@ -1,10 +1,13 @@
 {
+ "accept_payment": 0,
  "allow_comments": 0,
  "allow_delete": 0,
  "allow_edit": 0,
  "allow_incomplete": 0,
  "allow_multiple": 0,
  "allow_print": 0,
+ "amount": 0.0,
+ "amount_based_on_field": 0,
  "anonymous": 0,
  "apply_document_permissions": 0,
  "breadcrumbs": "",
@@ -21,11 +24,12 @@
  "list_columns": [],
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2024-05-20 14:17:44.052442",
+ "modified": "2024-09-02 11:27:24.581724",
  "modified_by": "Administrator",
  "module": "Eieweb",
  "name": "inquiry",
  "owner": "Administrator",
+ "payment_button_label": "Buy Now",
  "published": 1,
  "route": "inquiry",
  "show_attachments": 0,
@@ -68,7 +72,7 @@
    "max_value": 0,
    "options": "Email",
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {
@@ -80,7 +84,7 @@
    "max_length": 0,
    "max_value": 0,
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {
@@ -104,7 +108,7 @@
    "max_length": 0,
    "max_value": 0,
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {
@@ -117,7 +121,7 @@
    "max_value": 0,
    "options": "Country",
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {
@@ -129,7 +133,7 @@
    "max_length": 0,
    "max_value": 0,
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {
@@ -143,7 +147,7 @@
    "max_value": 0,
    "options": "Lead Source",
    "read_only": 1,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {

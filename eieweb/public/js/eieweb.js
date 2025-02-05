@@ -1335,18 +1335,20 @@ $(document).ready(function() {
             args: {
                 'lead_name': $('#lead_name').val(),
                 'company_name': $('#company_name').val(),
+                'phone': $('#phone').val(),
+                'requirments': $('#requirments').val(),
                 'message': $('#message').val(),
-                'mobile_no': $('#mobile_no').val(),
-                'product_name': $('#product_name').val(),
+                'city': $('#city').val(),
                 'title': document.title + '</br>' + window.location.href,
                 'email': $('#email').val()
             },
             callback: function(r) {
                 $('#lead_name').val('');
                 $('#company_name').val('');
+                $('#requirments').val('');
+                $('#phone').val('');
+                $('#city').val('');
                 $('#message').val('');
-                $('#mobile_no').val('');
-                $('#product_name').val('');
                 $('#email').val('')
                 var origin = window.location.origin;
                 var url = window.location.origin + "/thanks-on-lead-creation"
